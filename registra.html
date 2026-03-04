@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conectar SAT | MiyagiSánchez</title>
+    <meta name="description"
+        content="Conecta tu RFC al SAT de forma segura para activar tu back-office financiero con MiyagiSánchez.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Syntage onboarding script -->
+    <script id="syntage-onboarding-id" src="https://onboarding.syntage.com/script.min.js" data-key="31e7fd"
+        async></script>
+
+    <!-- Shared design system -->
+    <link rel="stylesheet" href="shared.css">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .sat-card {
+            max-width: 440px;
+            width: 100%;
+            background: white;
+            padding: 48px 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 40px rgba(28, 26, 22, 0.10);
+            text-align: center;
+            border-top: 4px solid var(--terracotta);
+        }
+
+        .sat-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: 32px;
+            text-decoration: none;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            background: rgba(74, 122, 85, 0.08);
+            color: var(--sage);
+            padding: 8px 18px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+            font-weight: 600;
+            border: 1px solid rgba(74, 122, 85, 0.15);
+        }
+
+        .sat-card h1 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            color: var(--ink);
+        }
+
+        .sat-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--ink-soft);
+            margin-bottom: 32px;
+        }
+
+        .btn-connect {
+            background: var(--terracotta);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+            width: 100%;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-connect:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        #error-msg {
+            margin-top: 16px;
+            color: var(--warm-red);
+            font-size: 0.88rem;
+            display: none;
+            padding: 12px;
+            background: rgba(194, 59, 34, 0.06);
+            border-radius: 4px;
+            border: 1px solid rgba(194, 59, 34, 0.15);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #step-success .success-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sat-card">
+        <a href="miyagisanchez.html" class="sat-logo">
+            <div class="brand-mark">M</div>
+            MiyagiSánchez
+        </a>
+
+        <div id="step-start">
+            <div class="security-badge">
+                🔒 Conexión SAT Protegida
+            </div>
+            <h1>Cuidamos la raíz</h1>
+            <p>Conecta tu RFC para automatizar tu cumplimiento fiscal con la tranquilidad de una conexión encriptada y
+                segura.</p>
+
+            <button class="btn-connect" type="button" onclick="iniciarConexion()">Conectar con el SAT</button>
+            <div id="error-msg" role="alert"></div>
+        </div>
+
+        <div id="step-success" class="hidden">
+            <div class="success-icon">✨</div>
+            <h1>¡Todo listo!</h1>
+            <p>Tu cuenta ha sido vinculada con éxito. Ya estamos trabajando en tu plan de cumplimiento.</p>
+            <p style="font-size:0.82rem;color:var(--muted);">Puedes cerrar esta pestaña con seguridad.</p>
+        </div>
+    </div>
+
+    <script>
+        const stepStart = document.getElementById('step-start');
+        const stepSuccess = document.getElementById('step-success');
+        const errorDiv = document.getElementById('error-msg');
+
+        function iniciarConexion() {
+            errorDiv.style.display = 'none';
+            try {
+                window.syntage.onboarding.init({ sat: true });
+            } catch (e) {
+                errorDiv.textContent = "Preparando el acceso... por favor espera un segundo.";
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        window.addEventListener("entityOnboardingLoaded", () => {
+            window.syntage.onboarding.subscribe("syntage.onboarding.success", () => {
+                stepStart.classList.add('hidden');
+                stepSuccess.classList.remove('hidden');
+            });
+
+            window.syntage.onboarding.subscribe("syntage.onboarding.error", (_, error) => {
+                errorDiv.style.display = 'block';
+                const messages = {
+                    'credentialInvalid': 'El RFC o la contraseña (CIEC) son incorrectos.',
+                    'credentialDisabled': 'Esta cuenta parece tener restricciones en el SAT.',
+                    'error': 'Error de comunicación. Intenta de nuevo.'
+                };
+                errorDiv.textContent = messages[error.code] || 'Ocurrió un error. Intenta de nuevo.';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
