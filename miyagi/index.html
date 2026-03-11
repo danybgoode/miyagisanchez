@@ -10,22 +10,28 @@
   <meta name="robots" content="index, follow">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://miyagisanchez.com/miyagisanchez.html">
+  <link rel="canonical" href="https://miyagisanchez.com/">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Favicon — slash mark easter egg -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230E0E11'/><line x1='9' y1='26' x2='23' y2='6' stroke='%23E8A020' stroke-width='3.5' stroke-linecap='round'/></svg>">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="MiyagiSánchez — Back-office financiero para founders en México">
   <meta property="og:description"
-    content="Contabilidad, SAT, conciliación bancaria y métricas de producto — con un asesor financiero humano incluido.">
+    content="Contabilidad, SAT, conciliación bancaria — con un asesor financiero humano incluido.">
   <meta property="og:url" content="https://miyagisanchez.com/">
 
   <!-- Shared design system -->
   <link rel="stylesheet" href="shared.css">
 
   <style>
+    /* ── HERO wrapper — obsidian background ── */
+    body > section.hero-wrap,
+    .hero-section-bg {
+      background: var(--ms-obsidian);
+    }
+
     /* ── HERO ── */
     .hero {
       max-width: var(--max-w);
@@ -46,42 +52,44 @@
 
     .eyebrow-pip {
       width: 32px;
-      height: 2px;
-      background: var(--terracotta);
+      height: 1.5px;
+      background: var(--ms-marigold);
       flex-shrink: 0;
     }
 
     .eyebrow-text {
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
+      font-family: var(--ms-font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--ms-marigold);
     }
 
     .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5.5vw, 5.8rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
+      font-family: var(--ms-font-sans);
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 500;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
       margin-bottom: 32px;
+      color: var(--ms-obsidian);
     }
 
     .hero-title .italic {
-      font-family: var(--font-serif);
+      font-family: var(--ms-font-serif);
       font-style: italic;
       font-weight: 400;
-      color: var(--terracotta);
+      color: var(--ms-marigold);
     }
 
     .hero-body {
       font-size: 1.05rem;
       line-height: 1.75;
-      color: var(--ink-soft);
+      color: var(--ms-offwhite-dim);
       max-width: 480px;
       margin-bottom: 40px;
+      font-weight: 300;
     }
 
     .hero-proof {
@@ -92,16 +100,16 @@
     }
 
     .proof-num {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: 1.6rem;
-      font-weight: 800;
+      font-weight: 500;
       letter-spacing: -0.03em;
-      color: var(--ink);
+      color: var(--ms-offwhite);
     }
 
     .proof-label {
       font-size: 0.75rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       margin-top: 2px;
       line-height: 1.4;
     }
@@ -129,20 +137,21 @@
       content: '';
       flex: 1;
       height: 1px;
-      background: var(--rule);
+      background: rgba(244, 243, 239, 0.10);
     }
 
     .cta-divider span {
       font-size: 0.72rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       letter-spacing: 0.05em;
     }
 
     .hero-footnote {
       font-size: 0.75rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       margin-top: 16px;
       max-width: 340px;
+      font-weight: 300;
     }
 
     /* ── HERO VISUAL (chat) ── */
@@ -152,130 +161,112 @@
     }
 
     .chat-window {
-      background: white;
-      border: 1px solid var(--rule);
+      background: #111b21;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 40px rgba(28, 26, 22, 0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
-
     .chat-topbar {
-      background: var(--paper-2);
-      padding: 14px 18px;
+      background: #202c33;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid var(--rule);
+      gap: 12px;
     }
 
     .chat-avatar {
-      width: 32px;
-      height: 32px;
-      background: var(--ink);
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
+      background: #00a884;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--paper);
+      font-weight: 600;
+      font-size: 16px;
       flex-shrink: 0;
     }
 
     .chat-name {
-      font-family: var(--font-display);
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 500;
+      color: #e9edef;
     }
 
     .chat-status {
-      font-size: 0.68rem;
-      color: var(--sage);
+      font-size: 12px;
+      color: #8696a0;
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
     .status-dot {
-      width: 5px;
-      height: 5px;
-      background: var(--sage);
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      animation: blink 2s ease infinite;
+      background: #00a884;
     }
 
     @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.3;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
     }
 
     .chat-messages {
-      padding: 20px 16px;
+      background: #0b141a;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23182229' fill-opacity='0.8'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      padding: 12px 16px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 4px;
       min-height: 320px;
     }
 
     .msg {
-      max-width: 82%;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: 0.82rem;
+      max-width: 75%;
+      padding: 6px 10px 8px;
+      border-radius: 8px;
+      font-size: 14px;
       line-height: 1.5;
-      opacity: 0;
-      animation: msgSlide 0.35s ease forwards;
+      position: relative;
+      word-wrap: break-word;
     }
 
     @keyframes msgSlide {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .msg.user {
-      background: var(--ink);
-      color: var(--paper);
-      align-self: flex-end;
-      border-bottom-right-radius: 3px;
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .msg.miyagi {
-      background: var(--paper-2);
-      border: 1px solid var(--rule);
-      color: var(--ink-soft);
+      background: #202c33;
+      color: #e9edef;
       align-self: flex-start;
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: 2px;
+    }
+
+    .msg.user {
+      background: #005c4b;
+      color: #e9edef;
+      align-self: flex-end;
+      border-top-right-radius: 2px;
     }
 
     .msg em {
       font-style: normal;
-      font-weight: 700;
-      color: var(--terracotta);
+      font-weight: 500;
+      color: var(--ms-marigold);
     }
 
     .msg .good {
-      color: var(--sage);
-      font-weight: 700;
+      color: #4CAF82;
+      font-weight: 500;
     }
 
     .msg .warn {
-      color: var(--warm-red);
-      font-weight: 700;
+      color: #E05252;
+      font-weight: 500;
     }
 
     .msg:nth-child(1) {
@@ -299,10 +290,10 @@
     }
 
     .msg-time {
-      font-size: 0.6rem;
-      color: var(--muted);
-      margin-top: 3px;
+      font-size: 11px;
+      color: #8696a0;
       text-align: right;
+      margin-top: 2px;
     }
 
     .msg.miyagi .msg-time {
@@ -310,42 +301,35 @@
     }
 
     .chat-input {
-      border-top: 1px solid var(--rule);
-      padding: 12px 16px;
+      background: #202c33;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
     }
 
     .chat-input-field {
-      flex: 1;
-      background: var(--paper-2);
-      border: 1px solid var(--rule);
+      background: #2a3942;
       border-radius: 20px;
-      padding: 8px 14px;
-      font-size: 0.78rem;
-      color: var(--muted);
+      padding: 9px 16px;
+      color: #8696a0;
+      font-size: 14px;
+      width: 100%;
     }
 
-    .float-badge {
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      background: white;
-      border: 1px solid var(--rule);
-      border-radius: 8px;
+    
       padding: 12px 16px;
-      box-shadow: 0 4px 20px rgba(28, 26, 22, 0.10);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 0.78rem;
+      color: var(--ms-offwhite-dim);
     }
 
     .badge-icon {
       width: 32px;
       height: 32px;
-      background: var(--sage);
+      background: var(--ms-marigold-glow);
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -355,19 +339,20 @@
 
     .badge-label {
       font-size: 0.65rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
     }
 
     .badge-value {
-      font-family: var(--font-display);
-      font-weight: 700;
+      font-family: var(--ms-font-sans);
+      font-weight: 500;
       font-size: 0.85rem;
+      color: var(--ms-offwhite);
     }
 
     /* ── WHAT YOU GET ── */
     .what {
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--ms-obsidian-2);
+      color: var(--ms-offwhite);
       padding: 100px var(--pad-x);
     }
 
@@ -385,85 +370,89 @@
     }
 
     .what-title {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: clamp(2rem, 4vw, 3.8rem);
-      font-weight: 800;
+      font-weight: 500;
       line-height: 1.0;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
     }
 
     .what-title .italic {
-      font-family: var(--font-serif);
+      font-family: var(--ms-font-serif);
       font-style: italic;
       font-weight: 400;
-      color: var(--gold);
+      color: var(--ms-marigold);
     }
 
     .what-intro {
       font-size: 1rem;
       line-height: 1.8;
-      color: rgba(245, 242, 236, 0.6);
+      color: var(--ms-offwhite-dimmer);
       padding-top: 8px;
+      font-weight: 300;
     }
 
     .what-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: rgba(245, 242, 236, 0.08);
-      border: 1px solid rgba(245, 242, 236, 0.08);
+      background: rgba(244, 243, 239, 0.06);
+      border: 1px solid rgba(244, 243, 239, 0.06);
       border-radius: 6px;
       overflow: hidden;
     }
 
     .what-item {
-      background: var(--ink);
+      background: var(--ms-obsidian-2);
       padding: 40px 32px;
       transition: background 0.3s;
     }
 
     .what-item:hover {
-      background: #242118;
+      background: var(--ms-obsidian-3);
     }
 
     .what-num {
-      font-family: var(--font-display);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+      font-family: var(--ms-font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--ms-marigold);
       margin-bottom: 16px;
     }
 
     .what-item-title {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 500;
       margin-bottom: 12px;
       line-height: 1.3;
+      color: var(--ms-offwhite);
     }
 
     .what-item-body {
       font-size: 0.83rem;
       line-height: 1.7;
-      color: rgba(245, 242, 236, 0.5);
+      color: var(--ms-offwhite-dimmer);
+      font-weight: 300;
     }
 
     .what-item.featured {
-      background: var(--terracotta);
+      background: var(--ms-marigold);
     }
 
     .what-item.featured:hover {
-      background: #b5581f;
+      background: var(--ms-marigold-dim);
     }
 
-    .what-item.featured .what-num {
-      color: rgba(255, 255, 255, 0.6);
+    .what-item.featured .what-num,
+    .what-item.featured .what-item-title {
+      color: var(--ms-obsidian);
     }
 
     .what-item.featured .what-item-body {
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(14, 14, 17, 0.75);
     }
 
     /* ── DIFFERENTIATOR ── */
@@ -471,9 +460,13 @@
       padding: 100px var(--pad-x);
       max-width: var(--max-w);
       margin: 0 auto;
+      background: var(--ms-offwhite);
+      max-width: 100%;
     }
 
     .diff-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 100px;
@@ -481,26 +474,28 @@
     }
 
     .diff-title {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 800;
+      font-weight: 500;
       line-height: 1.1;
       letter-spacing: -0.03em;
       margin-bottom: 24px;
+      color: var(--ms-obsidian);
     }
 
     .diff-title .italic {
-      font-family: var(--font-serif);
+      font-family: var(--ms-font-serif);
       font-style: italic;
       font-weight: 400;
-      color: var(--terracotta);
+      color: var(--ms-marigold-dim);
     }
 
     .diff-body {
       font-size: 0.98rem;
       line-height: 1.8;
-      color: var(--ink-soft);
+      color: var(--ms-obsidian-3);
       margin-bottom: 32px;
+      font-weight: 300;
     }
 
     .metric-cards {
@@ -510,49 +505,42 @@
     }
 
     .metric-card {
-      background: white;
-      border: 1px solid var(--rule);
+      background: var(--ms-offwhite);
+      border: 1px solid rgba(14, 14, 17, 0.10);
       border-radius: 8px;
       padding: 20px;
       transition: box-shadow 0.2s;
     }
 
     .metric-card:hover {
-      box-shadow: 0 4px 20px rgba(28, 26, 22, 0.08);
+      box-shadow: 0 4px 20px rgba(14, 14, 17, 0.10);
     }
 
     .metric-card-label {
       font-size: 0.68rem;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       margin-bottom: 8px;
     }
 
     .metric-card-value {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 500;
       letter-spacing: -0.03em;
       margin-bottom: 4px;
+      color: var(--ms-obsidian);
     }
 
-    .metric-card-value.up {
-      color: var(--sage);
-    }
-
-    .metric-card-value.down {
-      color: var(--warm-red);
-    }
-
-    .metric-card-value.neutral {
-      color: var(--ink);
-    }
+    .metric-card-value.up   { color: #2D8F5F; }
+    .metric-card-value.down { color: #C04040; }
+    .metric-card-value.neutral { color: var(--ms-obsidian); }
 
     .metric-card-delta {
       font-size: 0.72rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
     }
 
     .metric-card.span-2 {
@@ -561,9 +549,9 @@
 
     /* ── HUMAN SECTION ── */
     .human {
-      background: var(--paper-2);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+      background: var(--ms-obsidian-2);
+      border-top: 1px solid rgba(244, 243, 239, 0.06);
+      border-bottom: 1px solid rgba(244, 243, 239, 0.06);
       padding: 100px var(--pad-x);
     }
 
@@ -577,16 +565,17 @@
     }
 
     .human-title {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 800;
+      font-weight: 500;
       line-height: 1.1;
       letter-spacing: -0.03em;
       margin-bottom: 24px;
+      color: var(--ms-offwhite);
     }
 
     .human-title .italic {
-      font-family: var(--font-serif);
+      font-family: var(--ms-font-serif);
       font-style: italic;
       font-weight: 400;
     }
@@ -594,7 +583,8 @@
     .human-body {
       font-size: 0.98rem;
       line-height: 1.8;
-      color: var(--ink-soft);
+      color: var(--ms-offwhite-dim);
+      font-weight: 300;
     }
 
     .human-body p+p {
@@ -615,19 +605,20 @@
       gap: 12px;
       font-size: 0.9rem;
       line-height: 1.5;
+      color: var(--ms-offwhite-dim);
     }
 
     .included-marker {
       width: 22px;
       height: 22px;
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--ms-marigold);
+      color: var(--ms-obsidian);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.6rem;
-      font-weight: 700;
+      font-weight: 500;
       flex-shrink: 0;
       margin-top: 1px;
     }
@@ -657,7 +648,7 @@
     .tl-dot {
       width: 12px;
       height: 12px;
-      background: var(--terracotta);
+      background: var(--ms-marigold);
       border-radius: 50%;
       flex-shrink: 0;
       margin-top: 4px;
@@ -666,29 +657,35 @@
     .tl-line {
       width: 1px;
       flex: 1;
-      background: var(--rule);
+      background: rgba(244, 243, 239, 0.1);
       margin-top: 4px;
     }
 
     .tl-label {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--terracotta);
+      color: var(--ms-marigold);
       margin-bottom: 4px;
     }
 
     .tl-text {
       font-size: 0.88rem;
       line-height: 1.6;
-      color: var(--ink-soft);
+      color: var(--ms-offwhite-dim);
+      font-weight: 300;
     }
 
     /* ── PRICING ── */
     .pricing {
       padding: 100px var(--pad-x);
+      max-width: 100%;
+      background: var(--ms-offwhite);
+    }
+
+    .pricing-inner {
       max-width: var(--max-w);
       margin: 0 auto;
     }
@@ -703,40 +700,60 @@
     }
 
     .pricing-title {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 800;
+      font-weight: 500;
       letter-spacing: -0.03em;
       margin-bottom: 16px;
+      color: var(--ms-obsidian);
     }
 
     .pricing-sub {
       font-size: 1rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       max-width: 480px;
       margin: 0 auto;
+      font-weight: 300;
     }
 
     .pricing-cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      
       gap: 20px;
     }
 
+    .plan-cta-secondary {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      padding: 12px 24px;
+      border: 1px solid var(--marigold, #E8A020);
+      border-radius: 6px;
+      color: var(--offwhite-dim, #A8A7A2);
+      font-size: 14px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .plan-cta-secondary:hover {
+      border-color: var(--marigold, #E8A020);
+      color: var(--marigold, #E8A020);
+    }
+
     .pricing-card {
-      background: white;
-      border: 1.5px solid var(--rule);
+      background: var(--ms-offwhite);
+      border: 1.5px solid rgba(14, 14, 17, 0.12);
       border-radius: 8px;
       padding: 36px 28px;
       transition: box-shadow 0.2s;
     }
 
     .pricing-card:hover {
-      box-shadow: 0 8px 32px rgba(28, 26, 22, 0.08);
+      box-shadow: 0 8px 32px rgba(14, 14, 17, 0.10);
     }
 
     .pricing-card.pop {
-      border-color: var(--ink);
+      border-color: var(--ms-marigold);
       position: relative;
     }
 
@@ -745,52 +762,53 @@
       top: -11px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--ms-marigold);
+      color: var(--ms-obsidian);
       padding: 3px 14px;
       border-radius: 20px;
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: 0.65rem;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
     .plan-tier {
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
+      font-family: var(--ms-font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       margin-bottom: 16px;
     }
 
     .plan-price {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: 2.2rem;
-      font-weight: 800;
+      font-weight: 500;
       letter-spacing: -0.03em;
       line-height: 1;
       margin-bottom: 4px;
+      color: var(--ms-obsidian);
     }
 
     .plan-price-currency {
       font-size: 1rem;
-      font-weight: 400;
-      color: var(--muted);
+      font-weight: 300;
+      color: var(--ms-offwhite-dimmer);
     }
 
     .plan-cadence {
       font-size: 0.78rem;
-      color: var(--muted);
+      color: var(--ms-offwhite-dimmer);
       margin-bottom: 28px;
     }
 
     .plan-divider {
       border: none;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid rgba(14, 14, 17, 0.10);
       margin-bottom: 24px;
     }
 
@@ -804,15 +822,16 @@
 
     .plan-feature {
       font-size: 0.85rem;
-      color: var(--ink-soft);
+      color: var(--ms-obsidian-3);
       display: flex;
       align-items: start;
       gap: 8px;
+      font-weight: 300;
     }
 
     .plan-feature::before {
       content: '·';
-      color: var(--terracotta);
+      color: var(--ms-marigold);
       font-size: 1.2rem;
       line-height: 1;
       flex-shrink: 0;
@@ -822,36 +841,42 @@
       display: block;
       text-align: center;
       padding: 12px;
-      border-radius: 3px;
-      font-family: var(--font-display);
+      border-radius: 4px;
+      font-family: var(--ms-font-sans);
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 500;
       text-decoration: none;
       letter-spacing: 0.02em;
-      border: 1.5px solid var(--ink);
-      color: var(--ink);
+      border: 1.5px solid rgba(14, 14, 17, 0.20);
+      color: var(--ms-obsidian);
       transition: all 0.2s;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .plan-cta:hover {
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--ms-obsidian);
+      color: var(--ms-offwhite);
+      border-color: var(--ms-obsidian);
     }
 
     .pricing-card.pop .plan-cta {
-      background: var(--terracotta);
-      border-color: var(--terracotta);
-      color: white;
+      background: var(--ms-marigold);
+      border-color: var(--ms-marigold);
+      color: var(--ms-obsidian);
     }
 
     .pricing-card.pop .plan-cta:hover {
-      opacity: 0.88;
+      background: var(--ms-marigold-dim);
+      border-color: var(--ms-marigold-dim);
     }
 
     /* ── CONTACT ── */
     .contact {
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--ms-obsidian);
+      color: var(--ms-offwhite);
       padding: 100px var(--pad-x);
     }
 
@@ -865,47 +890,49 @@
     }
 
     .contact-eyebrow {
-      font-family: var(--font-display);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
+      font-family: var(--ms-font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--ms-marigold);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 24px;
     }
 
     .contact-eyebrow::before {
       content: '';
       width: 24px;
-      height: 2px;
-      background: var(--gold);
+      height: 1.5px;
+      background: var(--ms-marigold);
       flex-shrink: 0;
     }
 
     .contact-title {
-      font-family: var(--font-display);
+      font-family: var(--ms-font-sans);
       font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 800;
+      font-weight: 500;
       line-height: 1.05;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.03em;
       margin-bottom: 24px;
+      color: var(--ms-offwhite);
     }
 
     .contact-title .italic {
-      font-family: var(--font-serif);
+      font-family: var(--ms-font-serif);
       font-style: italic;
       font-weight: 400;
-      color: var(--gold);
+      color: var(--ms-marigold);
     }
 
     .contact-body {
       font-size: 0.98rem;
       line-height: 1.8;
-      color: rgba(245, 242, 236, 0.6);
+      color: var(--ms-offwhite-dimmer);
       margin-bottom: 40px;
+      font-weight: 300;
     }
 
     .contact-options {
@@ -919,18 +946,19 @@
       align-items: center;
       gap: 14px;
       padding: 16px 20px;
-      background: rgba(245, 242, 236, 0.05);
-      border: 1px solid rgba(245, 242, 236, 0.1);
+      background: rgba(244, 243, 239, 0.04);
+      border: 1px solid rgba(244, 243, 239, 0.08);
       border-radius: 4px;
       font-size: 0.85rem;
-      color: rgba(245, 242, 236, 0.7);
+      color: var(--ms-offwhite-dim);
       text-decoration: none;
       transition: all 0.2s;
+      min-height: 44px;
     }
 
     .contact-option:hover {
-      background: rgba(245, 242, 236, 0.1);
-      color: var(--paper);
+      background: rgba(244, 243, 239, 0.08);
+      color: var(--ms-offwhite);
     }
 
     .contact-option-icon {
@@ -944,26 +972,23 @@
       flex-shrink: 0;
     }
 
-    .contact-option-text {
-      flex: 1;
-    }
+    .contact-option-text { flex: 1; }
 
     .contact-option-label {
       font-size: 0.68rem;
-      color: rgba(245, 242, 236, 0.4);
+      color: var(--ms-offwhite-dimmer);
       margin-bottom: 2px;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
 
-    .contact-option-val {
-      font-weight: 600;
-    }
+    .contact-option-val { font-weight: 500; }
 
     .contact-option-arr {
       font-size: 1rem;
       opacity: 0.4;
+      color: var(--ms-marigold);
     }
 
     /* ── FORM ── */
@@ -1088,26 +1113,35 @@
 
     /* ── DARK FOOTER ── */
     .dark-footer {
-      border-top: 1px solid rgba(245, 242, 236, 0.08);
-      background: var(--ink);
+      border-top: 1px solid rgba(244, 243, 239, 0.06);
+      background: var(--ms-obsidian);
     }
 
-    .dark-footer .site-footer {
+    .dark-footer .site-footer-inner {
       border-top: none;
+      padding: 40px var(--pad-x);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
     }
 
     .dark-footer .footer-brand,
     .dark-footer .footer-nav a {
-      color: rgba(245, 242, 236, 0.4);
+      color: var(--ms-offwhite-dimmer);
     }
 
     .dark-footer .footer-brand:hover,
     .dark-footer .footer-nav a:hover {
-      color: rgba(245, 242, 236, 0.8);
+      color: var(--ms-offwhite);
     }
 
     .dark-footer .footer-copy {
-      color: rgba(245, 242, 236, 0.2);
+      color: var(--ms-offwhite-dimmer);
+      opacity: 0.5;
     }
 
     /* ── MOBILE ── */
@@ -1118,13 +1152,7 @@
         gap: 48px;
       }
 
-      .float-badge {
-        display: none;
-      }
-
-      .what {
-        padding: 72px var(--pad-x-sm);
-      }
+      
 
       .what-header {
         grid-template-columns: 1fr;
@@ -1191,15 +1219,26 @@
 
 <body>
 
-  <!-- ── NAV ── -->
+  <!-- SHARED: nav-start -->
   <nav aria-label="Navegación principal">
-    <a class="nav-brand" href="miyagisanchez.html">
-      <div class="brand-mark">M</div>
-      MiyagiSánchez
+    <a class="nav-brand" href="https://miyagi.despachobonsai.com" title="">
+      <div class="ms-mark" title="Miyagi San 🥋">
+        <svg viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+          <circle cx="320" cy="320" r="320" fill="#0E0E11"/>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#E8A020" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#E8A020" stop-opacity="0"/>
+          </radialGradient>
+          <circle cx="320" cy="320" r="320" fill="url(#glow)"/>
+          <circle cx="320" cy="320" r="220" stroke="rgba(244,243,239,0.08)" stroke-width="1.5"/>
+          <line x1="142" y1="390" x2="232" y2="390" stroke="rgba(244,243,239,0.22)" stroke-width="6" stroke-linecap="round"/>
+          <line x1="408" y1="250" x2="498" y2="250" stroke="rgba(244,243,239,0.22)" stroke-width="6" stroke-linecap="round"/>
+          <line x1="196" y1="480" x2="444" y2="160" stroke="#E8A020" stroke-width="14" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="ms-wordmark"><span class="ms-w1">MiyagiSan</span><span class="ms-w2">chez</span></span>
     </a>
     <ul class="nav-links">
-      <li><a href="#que-incluye">Qué incluye</a></li>
-      <li><a href="#metricas">Métricas</a></li>
       <li><a href="#precios">Precios</a></li>
       <li><a href="https://wa.me/525599629166?text=Hola, ¿me podrías explicar súper simple el servicio de MiyagiSánchez?" class="btn-nav">Habla con Miyagi</a></li>
     </ul>
@@ -1207,6 +1246,7 @@
       <span></span><span></span><span></span>
     </button>
   </nav>
+  <!-- SHARED: nav-end -->
 
   <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-label="Menú móvil">
     <a href="#que-incluye">Qué incluye</a>
@@ -1216,56 +1256,229 @@
   </div>
 
   <!-- ── HERO ── -->
-  <section class="hero">
-    <div>
-      <div class="hero-eyebrow">
-        <div class="eyebrow-pip"></div>
-        <span class="eyebrow-text">Back-office para founders · Ciudad de México</span>
-      </div>
-
-      <h1 class="hero-title">
-        registra gasto<br>
-        <span class="italic">concilia CFDI</span>
-      </h1>
-
-      <p class="hero-body">
-        MiyagiSánchez es el back-office financiero para founders en México. Contabilidad, SAT, conciliación
-        bancaria, métricas de producto — y un asesor financiero humano que se reúne contigo cada mes. Para que te
-        enfoques en construir, no en capturar datos.
-      </p>
-
-      <div class="hero-proof" aria-hidden="true">
-        <div class="proof-item">
-          <div class="proof-num"></div>
-          <div class="proof-label"></div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-num"></div>
-          <div class="proof-label"></div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-num"></div>
-          <div class="proof-label"></div>
-        </div>
-      </div>
-
-      <div class="hero-cta-block">
-        <a href="https://wa.me/525599629166?text=Hola, ¿me podrías explicar súper simple el servicio de MiyagiSánchez?" target="_blank" rel="noopener noreferrer"
-          class="btn-primary">
-          Habla con Miyagi ahora mismo →
-        </a>
-        <div class="cta-divider"><span>o si prefieres</span></div>
-        <a href="https://calendly.com/miyagisanchez/30min" target="_blank" rel="noopener noreferrer"
-          class="btn-secondary">
-          Agenda una llamada para conocernos
-        </a>
-      </div>
-      <p class="hero-footnote">
-        Sin pitch. Sin presión. Solo 30 minutos para ver si podemos ayudarte.
-      </p>
+<div style="background:var(--ms-offwhite); position:relative;">
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">
+      <div class="eyebrow-pip"></div>
+      <span class="eyebrow-text"><br><br></span>
     </div>
 
-    <!-- CHAT VISUAL -->
+    <h1 class="hero-title">
+      ¿Sabes cuánto<br>
+      <span class="italic">ganaste este mes?</span>
+    </h1>
+
+    <p class="hero-body">
+      Miyagi Sánchez es el back-office financiero para empresarios en México. Contabilidad, análisis, conciliación bancaria — y un asesor humano que se reúne contigo cada mes.
+    </p>
+
+    <div class="hero-cta-block">
+      <a href="https://wa.me/525599629166?text=Hola, ¿me podrías explicar súper simple el servicio de MiyagiSánchez?"
+        target="_blank" rel="noopener noreferrer"
+        class="btn-primary">
+        Habla con Miyagi ahora →
+      </a>
+      <div class="cta-divider"><span>o si prefieres</span></div>
+      <a href="https://calendly.com/miyagisanchez/intro"
+        target="_blank" rel="noopener noreferrer"
+        class="plan-cta-secondary">
+        Agenda 30 minutos con nosotros
+      </a>
+    </div>
+    <p class="hero-footnote">
+      Sin pitch. Sin presión. Solo tus números, explicados por fin.
+    </p>
+  </div>
+
+  <!-- CHAT VISUAL -->
+  <!-- CHAT VISUAL -->
+<div class="hero-visual" aria-hidden="true">
+  <div class="chat-window">
+    <div class="chat-topbar">
+      <div class="chat-avatar">M</div>
+      <div>
+        <div class="chat-name">Miyagi Sánchez</div>
+        <div class="chat-status">
+          <div class="status-dot"></div>
+          En línea · tu analista financiero
+        </div>
+      </div>
+    </div>
+    <div class="chat-messages" id="hero-chat-messages">
+      <!-- Populated by JS on load -->
+    </div>
+    <div class="chat-input">
+      <div class="chat-input-field">Pregúntale algo a Miyagi...</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const variations = [
+
+    // Variación 1 — Control & visibility · Pablo · agencia SEO
+    [
+      { from: 'user',   text: 'oye Miyagi, de verdad estoy ganando dinero con mi negocio? porque facturo bien pero nunca me queda nada', time: '9:02 AM' },
+      { from: 'miyagi', text: 'Es una de las preguntas más importantes que puedes hacerte. La respuesta corta: facturar mucho no es lo mismo que ganar mucho. 👀<br><br>Revisando octubre — facturaste <em>$84,200 MXN</em> pero tus egresos fueron <em>$61,400 MXN</em>. Tu utilidad real fue <em>$22,800 MXN</em>. Margen del 27%.', time: '9:03 AM', ticks: true },
+      { from: 'user',   text: 'wow no tenía idea que era tan poco. y eso es bueno o malo?', time: '9:04 AM' },
+      { from: 'miyagi', text: '27% es saludable para una agencia. El tema es que en septiembre estabas en 31% — tus gastos están creciendo más rápido que tus ingresos. No es una emergencia, pero hay que vigilarlo. Ya te aviso si se repite. 🤝', time: '9:04 AM', ticks: true },
+    ],
+
+    // Variación 2 — SAT anxiety · Renata · ecommerce
+    [
+      { from: 'user',   text: 'Miyagi tengo un relajo con el SAT, no sé ni por dónde empezar, llevo meses ignorando esto', time: '10:15 AM' },
+      { from: 'miyagi', text: 'Tranquila, esto tiene solución. Pasa más seguido de lo que crees. Lo primero es saber exactamente qué tienes pendiente — sin eso, todo lo demás es ruido. ¿Tienes tu RFC y tu e.firma a la mano?', time: '10:16 AM', ticks: true },
+      { from: 'user',   text: 'sí los tengo, pero no sé qué debo ni qué períodos', time: '10:17 AM' },
+      { from: 'miyagi', text: 'Perfecto. Con eso me conecto al SAT y en menos de 24 horas te digo exactamente qué periodos tienes pendientes, qué montos y en qué orden atacarlos. Un paso a la vez. 🤝', time: '10:17 AM', ticks: true },
+      { from: 'user',   text: 'qué alivio, gracias', time: '10:18 AM' },
+      { from: 'miyagi', text: 'Para eso estoy. Mándame tu estado de cuenta más reciente y arrancamos hoy mismo.', time: '10:18 AM', ticks: true },
+    ],
+
+    // Variación 3 — Financial literacy · Diego · freelance diseñador
+    [
+      { from: 'user',   text: 'oye Miyagi, un inversionista me pidió un "flujo de efectivo" de mi negocio y no tengo idea qué es eso', time: '4:33 PM' },
+      { from: 'miyagi', text: 'Buena pregunta. El flujo de efectivo es simple: cuánto dinero entra, cuánto sale y cuándo. No es lo mismo que tus ganancias — puedes ser rentable y quedarte sin efectivo si tus clientes te pagan tarde. 👀', time: '4:34 PM', ticks: true },
+      { from: 'user',   text: 'ahhh o sea es diferente a mis ingresos?', time: '4:35 PM' },
+      { from: 'miyagi', text: 'Exacto. Tú puedes facturar $50k este mes pero si cobras a 60 días, ese dinero no existe todavía. Revisando tus movimientos de octubre — tienes <em>$94,000 MXN</em> disponibles hoy y un runway de <em>4 meses</em> con tu ritmo actual de gastos.', time: '4:35 PM', ticks: true },
+      { from: 'user',   text: 'eso es lo que le mando a mi cliente?', time: '4:36 PM' },
+      { from: 'miyagi', text: 'El reporte está siempre listo para presentar, puedes descargarlo desde tu dashboard: miyagisanchez.com/dashboard', time: '4:36 AM', ticks: true },
+    ],
+
+  ];
+
+  function buildMessages(msgs) {
+    return msgs.map(function(m) {
+      var timeHtml = '<div class="msg-time">' + m.time + (m.ticks ? ' ✓✓' : '') + '</div>';
+      return '<div class="msg ' + m.from + '">' + m.text + timeHtml + '</div>';
+    }).join('');
+  }
+
+  var pick = variations[Math.floor(Math.random() * variations.length)];
+  document.getElementById('hero-chat-messages').innerHTML = buildMessages(pick);
+})();
+</script>
+
+</section>
+<span style="
+  position:absolute;
+  font-size:10px;
+  color:rgba(14,14,17,0.18);
+  bottom:16px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+  letter-spacing:0.03em;
+">Primera regla del karate: el karate sirve para defenderse, nunca para atacar.</span>
+</div>
+  
+  
+  <section class="human" id="dolor">
+    <div class="human-inner" style="grid-template-columns: 1fr; text-align: center; max-width: 860px; margin: 0 auto;">
+      <div class="section-pip" style="justify-content: center;">El costo de no saber</div>
+      <h2 class="human-title" style="text-align: center;">
+        Las finanzas de tu negocio<br>
+        son complicadas.<br>
+        <span class="italic"; style="color:var(--ms-marigold);">Hasta ahora.</span>
+      </h2>
+
+      <div class="metric-cards" style="margin-top: 48px;">
+
+        <div class="metric-card">
+          <div class="metric-card-value up">7 de 10</div>
+          <div class="metric-card-label">empresarios en México no saben su utilidad neta del mes anterior</div>
+          <div class="metric-card-delta">No es descuido — es que la contabilidad tradicional no fue diseñada para darte esa respuesta rápido</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-card-value down">60%</div>
+          <div class="metric-card-label">de los negocios que cierran eran rentables en papel</div>
+          <div class="metric-card-delta">El problema casi nunca son las ventas. Casi siempre es el flujo.</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-card-value neutral">3 días</div>
+          <div class="metric-card-label">para que veas si Miyagi cambia cómo entiendes tu negocio</div>
+          <div class="metric-card-delta">Gratis. Sin compromiso. Solo tus números, explicados por fin.<br><br>
+            <a href="https://buy.stripe.com/8x2bJ2emR3aOcY6bsn4c800?locale=es"
+            target="_blank" rel="noopener noreferrer"
+            class="plan-cta">Empieza hoy — 3 días gratis</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  
+  <section class="diff" id="miyagi-descubre">
+    <div class="diff-inner">
+      <div>
+        <div class="section-pip">Miyagi en acción</div>
+        <h2 class="diff-title">
+          No espera<br>
+          a que le<br>
+          <span class="italic">preguntes.</span>
+        </h2>
+        <p class="diff-body">
+          Seas agencia, startup, despacho o freelancer — tus números cuentan una historia. Miyagi la lee mientras tú trabajas y te avisa cuando encuentra algo que importa.
+        </p>
+        <p class="diff-body">
+          No un reporte. No un dashboard. Un mensaje directo con lo que necesitas saber.
+        </p>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="chat-window">
+          <div class="chat-topbar">
+            <div class="chat-avatar">M</div>
+            <div>
+              <div class="chat-name">Miyagi Sánchez</div>
+              <div class="chat-status">
+                <div class="status-dot"></div>
+                En línea · tu analista financiero
+              </div>
+            </div>
+          </div>
+          <div class="chat-messages">
+            <div class="msg miyagi">
+              Oye Pablo, revisando octubre encontré algo interesante 👀
+              <div class="msg-time">8:47 AM ✓✓</div>
+            </div>
+            <div class="msg user">
+              a ver
+              <div class="msg-time">11:15 AM</div>
+            </div>
+            <div class="msg miyagi">
+              Tienes un cliente que te pagó puntual los últimos 4 meses — siempre la misma cantidad, siempre la primera semana. Es tu ingreso más estable. ¿Lo tienes en contrato formal o es de palabra?
+              <div class="msg-time">11:15 AM ✓✓</div>
+            </div>
+            <div class="msg user">
+              jaja de palabra la neta, ya lo conozco de años
+              <div class="msg-time">11:17 AM</div>
+            </div>
+            <div class="msg miyagi">
+              Te entiendo. Solo te digo que representa el <em>34% de tus ingresos</em> — si un mes no llega, lo resientes fuerte. No te digo que desconfíes, solo que vale la pena tenerlo por escrito. 🤝
+              <div class="msg-time">11:17 AM ✓✓</div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <div class="chat-input-field">Pregúntale algo a Miyagi...</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+
+
+
+  <section class="diff" id="cierre-mes">
+  <div class="diff-inner">
+
     <div class="hero-visual" aria-hidden="true">
       <div class="chat-window">
         <div class="chat-topbar">
@@ -1280,281 +1493,670 @@
         </div>
         <div class="chat-messages">
           <div class="msg miyagi">
-            Sofía, revisé el movimiento del viernes. Tienes 3 depósitos de Conekta sin CFDI emitido — suman <em>$47,200 MXN</em>. El SAT los puede interpretar como ingreso no declarado. ¿Los facturamos?
-            <div class="msg-time">9:02 AM ✓✓</div>
-          </div>
-          <div class="msg user">
-            ay sí, son cobros de Despacho Bonsai genéralos por favor
-            <div class="msg-time">9:14 AM</div>
-          </div>
-          <div class="msg miyagi">
-            Listo. CFDIs emitidos y timbrados.
+            Pablo, cerré tu octubre. Aquí va el resumen. 🤝
             <br><br>
-            También llevas 2 meses pagando <span class="warn">$3,800 MXN</span> a Adobe sin registrarlo como deducible. ¿Lo agrego? Te lo devuelve el SAT.
-            <div class="msg-time">9:14 AM ✓✓</div>
+            📈 Ingresos: <em>$84,200 MXN</em><br>
+            📉 Egresos: <em>$61,400 MXN</em><br>
+            💰 Utilidad: <em>$22,800 MXN</em> · Margen 27%
+            <div class="msg-time">8:47 AM ✓✓</div>
           </div>
           <div class="msg user">
-            no sabía que era deducible — sí, agrégalo
-            <div class="msg-time">9:15 AM</div>
+            qué bien, gracias. ¿todo normal?
+            <div class="msg-time">9:03 AM</div>
           </div>
           <div class="msg miyagi">
-            <span class="good">✓</span> Agregado. Tu declaración vence en <em>11 días</em> — ya tengo todo listo. Solo hay una discrepancia de $200 en la cuenta BBVA. ¿La revisamos?
-            <div class="msg-time">9:15 AM ✓✓</div>
+            Casi. Tus ingresos subieron 12% vs septiembre — eso es bueno. Pero tus gastos subieron 18%. El margen bajó de 31% a 27%.
+            <br><br>
+            Lo que más creció fue "servicios externos" — pasó de $3,200 a $7,200 en un mes. ¿Fue algo puntual o ya se vuelve fijo?
+            <div class="msg-time">9:04 AM ✓✓</div>
+          </div>
+          <div class="msg user">
+            ah sí, contraté un diseñador para un proyecto, ya terminó
+            <div class="msg-time">9:06 AM</div>
+          </div>
+          <div class="msg miyagi">
+            Perfecto, entonces noviembre debería verse mejor. Lo tengo registrado como gasto variable — no lo cuento como parte de tu estructura fija. 👌
+            <br><br>
+            Una cosa más: llevas 3 meses pagando $1,800 MXN a una suscripción de Notion. ¿La sigues usando activamente?
+            <div class="msg-time">9:06 AM ✓✓</div>
+          </div>
+          <div class="msg user">
+            jaja honestamente no tanto. la cancelo
+            <div class="msg-time">9:09 AM</div>
+          </div>
+          <div class="msg miyagi">
+            $21,600 al año en algo que no usas — bien que lo cancelas. Eso es todo por octubre. Noviembre te aviso igual. 🤝
+            <div class="msg-time">9:09 AM ✓✓</div>
           </div>
         </div>
         <div class="chat-input">
           <div class="chat-input-field">Pregúntale algo a Miyagi...</div>
         </div>
       </div>
-      <div class="float-badge">
-        <div class="badge-icon">✅</div>
-        <div>
-          <div class="badge-label">SAT · Conciliación</div>
-          <div class="badge-value">3 CFDIs timbrados · 1 pendiente</div>
+      
+    </div>
+
+    <div>
+      <div class="section-pip">Cierre mensual</div>
+      <h2 class="diff-title" style="color: var(--ms-obsidian);">
+        Tu mes cerrado<br>
+        <span class="italic"> sin pedirlo.</span>
+      </h2>
+      <p class="diff-body" style="color: var(--ms-offwhite-dim);">
+        Cada inicio de mes Miyagi cierra el anterior y te manda un resumen directo en WhatsApp. Sin PDF. Sin portal. Sin tener que pedirlo.
+      </p>
+      <p class="diff-body" style="color: var(--ms-offwhite-dim);">
+        Y si encuentra algo que no cuadra — una suscripción olvidada, un gasto que creció sin que te dieras cuenta — te pregunta. Así de simple.
+      </p>
+    </div>
+
+  </div>
+</section>
+<!-- ── HOW IT WORKS ── -->
+<section class="diff" id="como-funciona" style="background: var(--ms-obsidian-2); overflow: hidden;">
+  <div style="max-width: 960px; margin: 0 auto; padding: 80px 24px; padding-bottom: 0;">
+
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 80px;">
+      <div class="section-pip" style="justify-content: center;">Cómo funciona</div>
+      <h2 class="diff-title" style="text-align: center; color: var(--ms-offwhite);">
+        De tu banco a tu WhatsApp.<br>
+        <span class="italic">En 24 horas.</span>
+      </h2>
+      <p class="diff-body" style="color: var(--ms-offwhite-dim); max-width: 440px; margin: 0 auto;">
+        Sin apps nuevas. Sin portales. Miyagi entra a tu flujo financiero — no al revés.
+      </p>
+    </div>
+
+    <!-- Flow diagram -->
+    <div style="position: relative; margin-bottom: 96px;">
+      <div style="
+        display: grid;
+        grid-template-columns: 1fr 120px 1fr;
+        align-items: center;
+        gap: 0;
+      ">
+
+        <!-- LEFT — Sources -->
+        <div style="display: flex; flex-direction: column; gap: 28px; align-items: flex-end; padding-right: 60px;">
+
+          <div class="flow-node" style="animation-delay:0s; text-align:right;">
+            <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">WhatsApp</div>
+              </div>
+              <!-- WhatsApp green -->
+              <div style="width:40px;height:40px;border-radius:10px;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.374l-.36-.214-3.733.886.917-3.648-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-node" style="animation-delay:.1s; text-align:right;">
+            <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Email</div>
+                
+              </div>
+              <!-- Email -->
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#4285F4,#34A853);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect x="0" y="0" width="22" height="16" rx="2" fill="none"/><path d="M1 1l10 8L21 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/><rect x="0.9" y="0.9" width="20.2" height="14.2" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-node" style="animation-delay:.2s; text-align:right;">
+            <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Banco</div>
+                
+              </div>
+              <!-- Bank -->
+              <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#1a1f71,#003087);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="20" viewBox="0 0 22 20" fill="none"><path d="M11 1L21 7H1L11 1Z" fill="white" opacity=".9"/><rect x="3" y="9" width="3" height="7" rx="1" fill="white" opacity=".9"/><rect x="9.5" y="9" width="3" height="7" rx="1" fill="white" opacity=".9"/><rect x="16" y="9" width="3" height="7" rx="1" fill="white" opacity=".9"/><rect x="1" y="17" width="20" height="2" rx="1" fill="white" opacity=".9"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-node" style="animation-delay:.3s; text-align:right;">
+            <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);">SAT</div>
+                              </div>
+              <!-- SAT -->
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(232,160,32,0.15);border:1px solid rgba(232,160,32,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#E8A020" stroke-width="1.5"/><path d="M11 6v6l4 2" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CENTER — Miyagi mark + SVG branches -->
+        <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+
+          <!-- SVG branch lines — full-width overlay -->
+          <svg style="
+            position:absolute;
+            width:calc(100% + 240px);
+            height:260px;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            pointer-events:none;
+            overflow:visible;
+          " viewBox="-120 -130 240 260" preserveAspectRatio="xMidYMid meet">
+
+            <!-- Lines from sources (left) to center -->
+            <!-- WA -->
+            <path d="M-120,-78 C-60,-78 -30,0 0,0" stroke="rgba(37,211,102,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line"/>
+            <!-- Email -->
+            <path d="M-120,-26 C-60,-26 -30,0 0,0" stroke="rgba(66,133,244,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:.3s"/>
+            <!-- Bank -->
+            <path d="M-120,26 C-60,26 -30,0 0,0" stroke="rgba(244,243,239,0.2)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:.6s"/>
+            <!-- SAT -->
+            <path d="M-120,78 C-60,78 -30,0 0,0" stroke="rgba(232,160,32,0.45)" stroke-width="1.5" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:.9s"/>
+
+            <!-- Lines from center to destinations (right) -->
+            <path d="M0,0 C30,-78 60,-78 120,-78" stroke="rgba(37,211,102,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:.15s"/>
+            <path d="M0,0 C30,-26 60,-26 120,-26" stroke="rgba(232,160,32,0.35)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:.45s"/>
+            <path d="M0,0 C30,26 60,26 120,26" stroke="rgba(244,243,239,0.2)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:.75s"/>
+            <path d="M0,0 C30,78 60,78 120,78" stroke="rgba(244,243,239,0.15)" stroke-width="1" fill="none" stroke-dasharray="4 3" class="branch-line" style="animation-delay:1.05s"/>
+
+          </svg>
+
+          <!-- Pulsing rings -->
+          <div style="position:absolute;width:130px;height:130px;border-radius:50%;border:1px solid rgba(232,160,32,0.12);animation:ring-pulse 3s ease-in-out infinite;pointer-events:none;"></div>
+          <div style="position:absolute;width:100px;height:100px;border-radius:50%;border:1px solid rgba(232,160,32,0.18);animation:ring-pulse 3s ease-in-out infinite .6s;pointer-events:none;"></div>
+
+          <!-- The mark -->
+          <div style="
+            width:72px;height:72px;
+            border-radius:50%;
+            background:var(--ms-obsidian);
+            border:1.5px solid rgba(232,160,32,0.4);
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 0 32px rgba(232,160,32,0.15),0 0 64px rgba(232,160,32,0.07);
+            position:relative;z-index:3;
+          ">
+            <svg width="38" height="38" viewBox="0 0 640 640" fill="none">
+              <line x1="175" y1="460" x2="285" y2="180" stroke="#F4F3EF" stroke-width="20" stroke-linecap="round" opacity=".65"/>
+              <line x1="355" y1="460" x2="465" y2="180" stroke="#F4F3EF" stroke-width="20" stroke-linecap="round" opacity=".65"/>
+              <line x1="265" y1="460" x2="375" y2="180" stroke="#E8A020" stroke-width="24" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+        </div>
+
+        <!-- RIGHT — Destinations -->
+        <div style="display:flex;flex-direction:column;gap:28px;align-items:flex-start;padding-left:60px;">
+
+          <div class="flow-node" style="animation-delay:.15s;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:40px;height:40px;border-radius:10px;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.374l-.36-.214-3.733.886.917-3.648-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Tu WhatsApp</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-node" style="animation-delay:.45s;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(232,160,32,0.15);border:1px solid rgba(232,160,32,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="12" rx="2" stroke="#E8A020" stroke-width="1.5"/><path d="M6 15v2M14 15v2M4 17h12" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round"/><path d="M6 8h8M6 11h5" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);">Dashboard</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-node" style="animation-delay:.75s;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(244,243,239,0.05);border:1px solid rgba(244,243,239,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="#F4F3EF" stroke-width="1.5" opacity=".6"/><path d="M3 19c0-4 3.582-7 8-7s8 3 8 7" stroke="#F4F3EF" stroke-width="1.5" stroke-linecap="round" opacity=".6"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Tu contador</div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-node" style="animation-delay:1.05s;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:40px;height:40px;border-radius:10px;background:rgba(244,243,239,0.05);border:1px solid rgba(244,243,239,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#A8A7A2" stroke-width="1.5"/><path d="M7 6h6M7 9h6M7 12h4" stroke="#A8A7A2" stroke-width="1.5" stroke-linecap="round"/><path d="M13 14l2 2 3-3" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Tu software</div>
+                
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ── WHAT YOU GET ── -->
-  <section class="what" id="que-incluye">
-    <div class="what-inner">
-      <div class="what-header">
-        <div>
-          <div class="section-pip" style="color:var(--gold);">Back-office completo</div>
-          <h2 class="what-title">
-            Simplifica tu<br>
-            back-office.<br>
-            <span class="italic">Recupera tu tiempo.</span>
-          </h2>
+    <!-- Three moments — editorial, no cards -->
+    <div style="
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:0;
+      border-top:1px solid rgba(244,243,239,0.07);
+      padding-top:64px;
+    ">
+
+      <div style="padding:0 40px 0 0; border-right:1px solid rgba(244,243,239,0.07);">
+        <div style="font-size:48px;font-weight:500;color:rgba(232,160,32,0.2);line-height:1;margin-bottom:20px;font-family:'DM Sans',sans-serif;">01</div>
+        <div style="font-size:16px;font-weight:500;color:var(--ms-offwhite);margin-bottom:10px;">Comparte lo que ya tienes</div>
+        <div style="font-size:13px;color:var(--ms-offwhite-dimmer);line-height:1.7;">
+          El mismo PDF que le mandas a tu contador. Por WhatsApp o por correo. Eso es todo.
         </div>
-        <p class="what-intro">
-          MiyagiSánchez mezcla tecnología y experiencia humana para darte la base financiera que tu startup necesita
-          para crecer con confianza — y mantenerse al corriente sin que te quite el sueño.
-        </p>
       </div>
 
-      <div class="what-grid">
-        <div class="what-item featured">
-          <div class="what-num">Incluido en todos los planes</div>
-          <div class="what-item-title">Tu asesor financiero dedicado — humano, real</div>
-          <div class="what-item-body">Reunión mensual de revisión. Preguntas cuando quieras por WhatsApp. Una persona
-            que conoce tu negocio, no un bot haciéndose pasar por uno.</div>
+      <div style="padding:0 40px; border-right:1px solid rgba(244,243,239,0.07);">
+        <div style="font-size:48px;font-weight:500;color:rgba(232,160,32,0.2);line-height:1;margin-bottom:20px;font-family:'DM Sans',sans-serif;">02</div>
+        <div style="font-size:16px;font-weight:500;color:var(--ms-offwhite);margin-bottom:10px;">Miyagi procesa todo</div>
+        <div style="font-size:13px;color:var(--ms-offwhite-dimmer);line-height:1.7;">
+          Categoriza, concilia con el SAT y construye tu P&L. Mientras tú trabajas.
         </div>
-        <div class="what-item">
-          <div class="what-num">01 · Bookkeeping</div>
-          <div class="what-item-title">Contabilidad mensual</div>
-          <div class="what-item-body">Categorización de transacciones, conciliación bancaria y libros organizados.
-            Tax-ready, investor-ready, siempre al corriente.</div>
+      </div>
+
+      <div style="padding:0 0 0 40px;">
+        <div style="font-size:48px;font-weight:500;color:rgba(232,160,32,0.2);line-height:1;margin-bottom:20px;font-family:'DM Sans',sans-serif;">03</div>
+        <div style="font-size:16px;font-weight:500;color:var(--ms-offwhite);margin-bottom:10px;">Tus números llegan a ti</div>
+        <div style="font-size:13px;color:var(--ms-offwhite-dimmer);line-height:1.7;">
+          Resumen en WhatsApp. Dashboard actualizado. Tu contador tiene lo que necesita.
         </div>
-        <div class="what-item">
-          <div class="what-num">02 · Taxes</div>
-          <div class="what-item-title">SAT, ISR e IVA sin drama</div>
-          <div class="what-item-body">Declaraciones mensuales, DIOT, declaración anual. Tu RFC activo y sin alertas. El
-            SAT deja de ser un problema cuando alguien más lo monitorea.</div>
-        </div>
-        <div class="what-item">
-          <div class="what-num">03 · Reportes</div>
-          <div class="what-item-title">Live data 24/7 — llamada estratégica mensual</div>
-          <div class="what-item-body">Estados financieros actualizados en tiempo real. Cada mes, sesión 1-1 con tu
-            asesor financiero en los primeros 15 días para revisar performance y ajustar rumbo.</div>
-        </div>
-        <div class="what-item">
-          <div class="what-num">04 · Producto</div>
-          <div class="what-item-title">Métricas de producto integradas</div>
-          <div class="what-item-body">LTV, CAC, churn, retención, payback — calculadas con tus datos financieros reales,
-            no con estimaciones. El ángulo que ningún otro despacho te da.</div>
-        </div>
-        <div class="what-item">
-          <div class="what-num">05 · Integraciones</div>
-          <div class="what-item-title">Con las herramientas que ya usas</div>
-          <div class="what-item-body">Stripe, MercadoPago, Conekta, Shopify — más PDFs de HSBC, Nu, Clara, BBVA.
-            Conectamos tu stack sin que cambies nada.</div>
-        </div>
+      </div>
+
+    </div>
+
+    <!-- Reassurance — inline, typographic, no boxes -->
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:32px;
+      margin-top:48px;
+      flex-wrap:wrap;
+    ">
+      <div style="font-size:13px;color:var(--ms-offwhite-dimmer);">
+        <span style="color:var(--ms-marigold);font-weight:500;">Setup en 10 minutos</span> · un estado de cuenta y Miyagi hace el resto
+      </div>
+      <div style="width:3px;height:3px;border-radius:50%;background:rgba(244,243,239,0.2);"></div>
+      <div style="font-size:13px;color:var(--ms-offwhite-dimmer);">
+        <span style="color:var(--ms-marigold);font-weight:500;">Primer resumen en 24 horas</span> · garantizado
       </div>
     </div>
-  </section>
 
-  <!-- ── DIFFERENTIATOR: PRODUCT METRICS ── -->
-  <section class="diff" id="metricas">
-    <div class="diff-inner">
-      <div>
-        <div class="section-pip">El ángulo que falta</div>
-        <h2 class="diff-title">
-          Tus métricas de<br>
-          producto hablan<br>
-          con tus <span class="italic">finanzas.</span>
-        </h2>
-        <p class="diff-body">
-          Ningún despacho contable en México te dice cómo está tu churn rate. Y ningún consultor de producto te dice si
-          tu CAC es sostenible dada tu estructura de costos real. Ese hueco existe porque son mundos que no se hablan.
-        </p>
-        <p class="diff-body">
-          Nosotros venimos del producto — 20 años construyendo y midiendo sistemas a escala. MiyagiSánchez conecta tus
-          métricas de crecimiento con tus datos financieros reales, para que sepas no solo cuánto ganaste sino si lo que
-          ganaste tiene sentido dado lo que está pasando en tu producto.
-        </p>
-      </div>
+  </div>
+</section>
 
-      <div class="metric-cards" aria-hidden="true">
-        <div class="metric-card">
-          <div class="metric-card-label">Churn Rate</div>
-          <div class="metric-card-value up">2.4%</div>
-          <div class="metric-card-delta">▼ 0.7pp vs mes anterior · Impacto en LTV: +$1,200</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-card-label">LTV / CAC Ratio</div>
-          <div class="metric-card-value up">4.2x</div>
-          <div class="metric-card-delta">Benchmark saludable: &gt;3x · Estás bien</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-card-label">CAC Payback</div>
-          <div class="metric-card-value neutral">5.8 meses</div>
-          <div class="metric-card-delta">Basado en ingresos reales reconciliados</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-card-label">Margen Neto</div>
-          <div class="metric-card-value down">38%</div>
-          <div class="metric-card-delta">▼ 7pp vs sep · Egresos crecieron más rápido</div>
-        </div>
-        <div class="metric-card span-2">
-          <div class="metric-card-label">Runway Estimado</div>
-          <div class="metric-card-value up">8.2 meses</div>
-          <div class="metric-card-delta">Con tasa de quema actual de $190k/mes · Actualizado al cierre de octubre</div>
-        </div>
-      </div>
+<style>
+.flow-node {
+  animation: fade-up 0.5s ease both;
+}
+
+.branch-line {
+  animation: dash-flow 3s linear infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dash-flow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -28; }
+}
+
+@keyframes ring-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.9; transform: scale(1.06); }
+}
+</style>
+
+<!-- ── DASHBOARD ── -->
+<section class="diff" id="dashboard" style="background: var(--ms-obsidian-2); overflow: hidden; padding-bottom: 0;">
+  <div style="max-width: 960px; margin: 0 auto; padding: 0px 24px 0;">
+
+    <!-- Header -->
+    <div style="text-align: center; margin-bottom: 56px;">
+      <div class="section-pip" style="justify-content: center;">Tu dashboard</div>
+      <h2 class="diff-title" style="text-align: center; color: var(--ms-offwhite);">
+        Todo en un lugar.<br>
+        <span class="italic">Sin abrir Excel.</span>
+      </h2>
+      <p class="diff-body" style="color: var(--ms-offwhite-dim); max-width: 480px; margin: 0 auto;">
+        Tu posición financiera completa, narrada como una historia. Y cuando necesitas los datos crudos, un clic y están en tu carpeta.
+      </p>
     </div>
-  </section>
 
-  <!-- ── HUMAN ELEMENT ── -->
-  <section class="human">
-    <div class="human-inner">
-      <div>
-        <div class="section-pip">El elemento humano</div>
-        <h2 class="human-title">
-          La tecnología<br>hace el trabajo.<br>
-          <span class="italic">Nosotros lo interpretamos.</span>
-        </h2>
-        <div class="human-body">
-          <p>Miyagi procesa tus datos, categoriza tus transacciones y responde preguntas a las 11pm. Pero hay decisiones
-            que necesitan criterio, contexto y una persona que te conozca.</p>
-          <p>Por eso cada plan incluye un asesor financiero certificado asignado a tu cuenta. Una persona real que
-            revisa tus estados financieros y se reúne contigo cada mes.</p>
+    <!-- Dashboard mockup window -->
+    <div style="
+      background: #0d1117;
+      border-radius: 16px 16px 0 0;
+      border: 1px solid rgba(244,243,239,0.08);
+      border-bottom: none;
+      overflow: hidden;
+      box-shadow: 0 -8px 64px rgba(0,0,0,0.5);
+      position: relative;
+    ">
+
+      <!-- Window chrome -->
+      <div style="
+        background: #161b22;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid rgba(244,243,239,0.06);
+      ">
+        <div style="display:flex;gap:6px;">
+          <div style="width:12px;height:12px;border-radius:50%;background:#ff5f57;"></div>
+          <div style="width:12px;height:12px;border-radius:50%;background:#febc2e;"></div>
+          <div style="width:12px;height:12px;border-radius:50%;background:#28c840;"></div>
         </div>
-        <ul class="included-list">
-          <li class="included-item">
-            <div class="included-marker">1</div>
-            <span>Reunión mensual de 30 minutos para revisar tus números con tu asesor financiero asignado</span>
-          </li>
-          <li class="included-item">
-            <div class="included-marker">2</div>
-            <span>Acceso directo por WhatsApp para preguntas durante el mes</span>
-          </li>
-          <li class="included-item">
-            <div class="included-marker">3</div>
-            <span>Revisión proactiva de discrepancias antes de que se vuelvan problemas</span>
-          </li>
-          <li class="included-item">
-            <div class="included-marker">4</div>
-            <span>Orientación en decisiones: ¿vale la pena tomar deuda? ¿Es buen momento para invertir?</span>
-          </li>
-        </ul>
+        <div style="
+          background: rgba(244,243,239,0.06);
+          border-radius: 6px;
+          padding: 4px 16px;
+          font-size: 12px;
+          color: var(--ms-offwhite-dimmer);
+          flex: 1;
+          text-align: center;
+          max-width: 320px;
+          margin: 0 auto;
+        ">miyagi.despachobonsai.com/dashboard</div>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="tl-dot"></div>
-            <div class="tl-line"></div>
+      <!-- Dashboard layout -->
+      <div style="display: grid; grid-template-columns: 200px 1fr; min-height: 520px;">
+
+        <!-- Sidebar -->
+        <div style="
+          background: #0d1117;
+          border-right: 1px solid rgba(244,243,239,0.06);
+          padding: 24px 0;
+        ">
+          <!-- Logo -->
+          <div style="padding: 0 20px 24px; border-bottom: 1px solid rgba(244,243,239,0.06); margin-bottom: 16px;">
+            <div style="font-size: 15px; font-weight: 500; color: var(--ms-offwhite);">MiyagiSan<span style="color: var(--ms-marigold);">chez</span></div>
+            <div style="font-size: 11px; color: var(--ms-offwhite-dimmer); margin-top: 2px;">Pablo · Cleanranks</div>
           </div>
-          <div>
-            <div class="tl-label">Día 1 · Onboarding</div>
-            <div class="tl-text">Conoces a tu asesor financiero. Conectamos tus bancos, SAT y herramientas. Limpiamos
-              historial si es necesario.</div>
+
+          <!-- Nav items -->
+          <div style="display:flex;flex-direction:column;gap:2px;padding:0 12px;">
+            <div style="
+              background: rgba(232,160,32,0.1);
+              border: 1px solid rgba(232,160,32,0.2);
+              border-radius: 8px;
+              padding: 8px 12px;
+              font-size: 13px;
+              color: var(--ms-marigold);
+              display: flex;
+              align-items: center;
+              gap: 8px;
+            ">
+              <span>📊</span> Resumen
+            </div>
+            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
+              <span>📈</span> P&L
+            </div>
+            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
+              <span>💸</span> Gastos
+            </div>
+            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
+              <span>🏦</span> Cuentas
+            </div>
+            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
+              <span>📄</span> Documentos
+            </div>
+          </div>
+
+          <!-- Period selector -->
+          <div style="padding: 16px 12px 0; margin-top: 16px; border-top: 1px solid rgba(244,243,239,0.06);">
+            <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:8px; padding: 0 4px;">Período</div>
+            <div style="
+              background: rgba(244,243,239,0.06);
+              border-radius: 8px;
+              padding: 8px 12px;
+              font-size: 13px;
+              color: var(--ms-offwhite);
+              display:flex;
+              justify-content:space-between;
+              align-items:center;
+            ">
+              Oct 2025 <span style="color:var(--ms-offwhite-dimmer);font-size:10px;">▼</span>
+            </div>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="tl-dot"></div>
-            <div class="tl-line"></div>
+
+        <!-- Main content -->
+        <div style="padding: 24px; overflow: hidden;">
+
+          <!-- Top row: key metrics -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+            <div style="
+              background: #161b22;
+              border: 1px solid rgba(244,243,239,0.06);
+              border-radius: 10px;
+              padding: 16px;
+            ">
+              <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:6px;">Ingresos</div>
+              <div style="font-size: 22px; font-weight:500; color:var(--ms-offwhite); letter-spacing:-0.02em;">$84,200</div>
+              <div style="font-size: 11px; color: #4ade80; margin-top:4px;">▲ 12% vs sep</div>
+            </div>
+            <div style="
+              background: #161b22;
+              border: 1px solid rgba(244,243,239,0.06);
+              border-radius: 10px;
+              padding: 16px;
+            ">
+              <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:6px;">Utilidad neta</div>
+              <div style="font-size: 22px; font-weight:500; color:var(--ms-marigold); letter-spacing:-0.02em;">$22,800</div>
+              <div style="font-size: 11px; color: var(--ms-offwhite-dimmer); margin-top:4px;">Margen 27%</div>
+            </div>
+            <div style="
+              background: #161b22;
+              border: 1px solid rgba(244,243,239,0.06);
+              border-radius: 10px;
+              padding: 16px;
+            ">
+              <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:6px;">Runway</div>
+              <div style="font-size: 22px; font-weight:500; color:var(--ms-offwhite); letter-spacing:-0.02em;">4.1 <span style="font-size:13px;font-weight:300;">meses</span></div>
+              <div style="font-size: 11px; color: var(--ms-offwhite-dimmer); margin-top:4px;">Con quema actual</div>
+            </div>
           </div>
-          <div>
-            <div class="tl-label">Cada mes · Cierre</div>
-            <div class="tl-text">Miyagi procesa tus estados de cuenta. Hacemos los cálculos necesarios. Estados
-              financieros siempre actualizados.</div>
+
+          <!-- Miyagi story card -->
+          <div style="
+            background: linear-gradient(135deg, rgba(232,160,32,0.08) 0%, rgba(232,160,32,0.03) 100%);
+            border: 1px solid rgba(232,160,32,0.18);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+          ">
+            <div style="
+              width: 28px; height: 28px; border-radius: 50%;
+              background: var(--ms-marigold);
+              display:flex;align-items:center;justify-content:center;
+              font-size:12px;font-weight:600;color:var(--ms-obsidian);
+              flex-shrink:0;
+            ">M</div>
+            <div>
+              <div style="font-size:11px;color:var(--ms-marigold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Resumen de Miyagi · Octubre 2025</div>
+              <div style="font-size:13px;color:var(--ms-offwhite-dim);line-height:1.6;font-family:'Arial',serif;font-style:italic;">
+                Octubre fue buen mes — tus ingresos crecieron 12%. Pero los gastos crecieron más rápido. El margen bajó de 31% a 27%. El culpable fue "servicios externos" que se duplicó. Ya lo revisamos juntos y es un gasto puntual — noviembre debería normalizarse. Tu runway está saludable. Sigue así. 🤝
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="tl-dot"></div>
-            <div class="tl-line"></div>
-          </div>
-          <div>
-            <div class="tl-label">Reunión mensual</div>
-            <div class="tl-text">30 minutos con tu asesor financiero. Revisas tus números, haces preguntas, tomas
-              decisiones con contexto real.</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="tl-dot"></div>
-          </div>
-          <div>
-            <div class="tl-label">Todo el mes · Miyagi</div>
-            <div class="tl-text">Preguntas cuando quieras por WhatsApp. Miyagi responde al instante con tus datos
-              reales.</div>
+
+          <!-- Bottom row: chart + CSV export -->
+          <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end;">
+
+            <!-- Mini bar chart -->
+            <div style="
+              background: #161b22;
+              border: 1px solid rgba(244,243,239,0.06);
+              border-radius: 10px;
+              padding: 16px;
+            ">
+              <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:14px;">Ingresos vs Egresos · Últimos 4 meses</div>
+              <div style="display:flex;align-items:flex-end;gap:8px;height:60px;">
+                <!-- Jul -->
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                    <div style="width:100%;background:rgba(74,222,128,0.4);border-radius:3px 3px 0 0;height:38px;"></div>
+                    <div style="width:100%;background:rgba(248,113,113,0.4);border-radius:3px 3px 0 0;height:28px;"></div>
+                  </div>
+                  <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Jul</div>
+                </div>
+                <!-- Ago -->
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                    <div style="width:100%;background:rgba(74,222,128,0.4);border-radius:3px 3px 0 0;height:42px;"></div>
+                    <div style="width:100%;background:rgba(248,113,113,0.4);border-radius:3px 3px 0 0;height:30px;"></div>
+                  </div>
+                  <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Ago</div>
+                </div>
+                <!-- Sep -->
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                    <div style="width:100%;background:rgba(74,222,128,0.5);border-radius:3px 3px 0 0;height:46px;"></div>
+                    <div style="width:100%;background:rgba(248,113,113,0.5);border-radius:3px 3px 0 0;height:30px;"></div>
+                  </div>
+                  <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sep</div>
+                </div>
+                <!-- Oct — active -->
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                    <div style="width:100%;background:rgba(74,222,128,0.85);border-radius:3px 3px 0 0;height:54px;box-shadow:0 0 8px rgba(74,222,128,0.3);"></div>
+                    <div style="width:100%;background:rgba(248,113,113,0.85);border-radius:3px 3px 0 0;height:40px;box-shadow:0 0 8px rgba(248,113,113,0.3);"></div>
+                  </div>
+                  <div style="font-size:9px;color:var(--ms-marigold);font-weight:500;">Oct</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CSV export — highlighted with callout -->
+            <div style="position:relative;">
+              <!-- Callout arrow -->
+              <div style="
+                position:absolute;
+                top:-40px;
+                right:0;
+                background: var(--ms-marigold);
+                color: var(--ms-obsidian);
+                font-size:11px;
+                font-weight:500;
+                padding:5px 10px;
+                border-radius:6px;
+                white-space:nowrap;
+              ">Tu contador lo agradece ↓</div>
+
+              <div style="
+                background: linear-gradient(135deg, rgba(232,160,32,0.12), rgba(232,160,32,0.05));
+                border: 1px solid rgba(232,160,32,0.3);
+                border-radius: 10px;
+                padding: 16px 20px;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                gap:8px;
+                cursor:pointer;
+                min-width:140px;
+              ">
+                <div style="font-size:22px;">📥</div>
+                <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);">Exportar CSV</div>
+                <div style="font-size:11px;color:var(--ms-offwhite-dimmer);text-align:center;line-height:1.4;">Todas tus transacciones · Oct 2025</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
+
+      <!-- Spotify Wrapped teaser bar — pinned to bottom of window -->
+      <div style="
+        background: linear-gradient(90deg, #1a0a2e 0%, #0f1a2e 50%, #1a150a 100%);
+        border-top: 1px solid rgba(232,160,32,0.15);
+        padding: 14px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      ">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="font-size:20px;">🎴</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Tu Resumen del Año está casi listo</div>
+            <div style="font-size:12px;color:var(--ms-offwhite-dimmer);">Miyagi preparó tu historia financiera de 2025 — 12 meses, los momentos que importaron.</div>
+          </div>
+        </div>
+        <div style="
+          background: var(--ms-marigold);
+          color: var(--ms-obsidian);
+          font-size: 12px;
+          font-weight: 600;
+          padding: 8px 16px;
+          border-radius: 6px;
+          white-space: nowrap;
+          cursor: pointer;
+          flex-shrink: 0;
+        ">Ver mi año →</div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ── PRICING ── -->
   <section class="pricing" id="precios">
     <div class="pricing-header">
       <div class="section-pip">Precios</div>
       <h2 class="pricing-title">Simple. Sin letra chica.</h2>
-      <p class="pricing-sub">Asesor financiero humano incluido en todos los planes. Sin costo de setup.</p>
+      <p class="pricing-sub">Sin costo de setup. Cancela cuando quieras.</p>
     </div>
+    <div class="pricing-cards" style="justify-content: center;">
 
-    <div class="pricing-cards">
-      
-
-      <div class="pricing-card pop">
-        <div class="pop-label">Más popular</div>
-        <div class="plan-tier">Standard Plan</div>
-        <div class="plan-price">$1,200 <span class="plan-price-currency">MXN</span></div>
-        <div class="plan-cadence">por mes · 1 entidad</div>
+      <div class="pricing-card pop" style="max-width: 480px; width: 100%;">
+        <div class="pop-label">Todo incluido</div>
+        <div class="plan-tier">Plan Claridad</div>
+        <div class="plan-price">$699 <span class="plan-price-currency">MXN</span></div>
+        <div class="plan-cadence">por mes · cancela cuando quieras</div>
         <hr class="plan-divider">
         <ul class="plan-features">
-          <li class="plan-feature">Contabilidad mensual personalizada</li>
-          <li class="plan-feature">Miyagi Sánchez siempre disponible</li>
-          <li class="plan-feature">Multi-banco (HSBC, Nu, Clara, BBVA)</li>
-          <li class="plan-feature">P&amp;L + Cash Flow + Balance General</li>
-          <li class="plan-feature">Conciliación SAT automática</li>
+          <li class="plan-feature">Miyagi Sánchez en WhatsApp, siempre disponible</li>
+          <li class="plan-feature">Reunión mensual con asesor (20 minutos)</li>
+          <li class="plan-feature">Conexión SAT y conciliación</li>
+          <li class="plan-feature">Análisis automático de tus estados de cuenta</li>
+          <li class="plan-feature">P&amp;L mensual con comparativa vs mes anterior</li>
+          <li class="plan-feature">Detección de gastos fijos vs variables</li>
+          <li class="plan-feature">Multi-banco · HSBC, Nu, BBVA, cualquier banco mexicano</li>
+          <li class="plan-feature">Cash Flow + Balance General</li>
           <li class="plan-feature">Reportes investor-ready</li>
           <li class="plan-feature">Dashboard financiero personalizado</li>
+          <li class="plan-feature">Descarga de transacciones en CSV</li>
         </ul>
-        <a href="https://buy.stripe.com/8x2bJ2emR3aOcY6bsn4c800?locale=es" target="_blank" rel="noopener noreferrer"
-          class="plan-cta">Comienza prueba gratis por 3 días</a>
+        <a href="https://buy.stripe.com/8x2bJ2emR3aOcY6bsn4c800?locale=es"
+          target="_blank" rel="noopener noreferrer"
+          class="plan-cta">Empieza hoy — 3 días gratis</a>
+        <a href="https://calendly.com/miyagisanchez/intro"
+          target="_blank" rel="noopener noreferrer"
+          class="plan-cta-secondary">¿Tienes preguntas? Hablamos 30 min →</a>
       </div>
 
-      <div class="pricing-card">
-        <div class="plan-tier">Scale · Series A prep</div>
-        <div class="plan-price">$7,500 <span class="plan-price-currency">MXN</span></div>
-        <div class="plan-cadence">por mes · múltiples entidades</div>
-        <hr class="plan-divider">
-        <ul class="plan-features">
-          <li class="plan-feature">Todo en Standard</li>
-          <li class="plan-feature">Estrategia FinOps y unit economics</li>
-          <li class="plan-feature">Preparación para due diligence</li>
-          <li class="plan-feature">Modelaje financiero</li>
-          <li class="plan-feature">Nómina y entidades múltiples</li>
-          <li class="plan-feature">Reuniones quincenales</li>
-          <li class="plan-feature">Acceso directo al equipo fundador</li>
-        </ul>
-        <a href="https://calendly.com/miyagisanchez/30min" class="plan-cta">Agendar llamada</a>
-      </div>
     </div>
   </section>
 
@@ -1582,7 +2184,7 @@
             </div>
             <div class="contact-option-arr">→</div>
           </a>
-          <a href="https://calendly.com/miyagisanchez/30min" target="_blank" rel="noopener noreferrer"
+          <a href="https://calendly.com/miyagisanchez/intro" target="_blank" rel="noopener noreferrer"
             class="contact-option">
             <div class="contact-option-icon" style="background:rgba(196,98,45,0.2)">🗓</div>
             <div class="contact-option-text">
@@ -1605,23 +2207,32 @@
     </div>
   </section>
 
+  <!-- SHARED: footer-start -->
   <div class="dark-footer">
     <footer class="site-footer">
-      <a href="miyagisanchez.html" class="footer-brand">
-        <div class="brand-mark" style="background:rgba(245,242,236,0.1);color:rgba(245,242,236,0.6);">M</div>
-        MiyagiSánchez
-      </a>
-      <ul class="footer-nav">
-        <li><a href="https://despachobonsai.com">Despacho Bonsai</a></li>
-        <li><li><a href="mailto:hola@despachobonsai.com">hola@despachobonsai.com</a></li></li>
-        <li><a href="https://calendly.com/miyagisanchez/30min" target="_blank" rel="noopener noreferrer">Agendar
-            llamada</a></li>
-        <li><a href="terminos.html">Términos</a></li>
-        <li><a href="privacidad.html">Privacidad</a></li>
-      </ul>
-      <span class="footer-copy">CDMX, México · 2025 · Powered by Despacho Bonsai</span>
+      <div class="site-footer-inner" style="max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:40px var(--pad-x);">
+        <a href="/" class="footer-brand">
+          <div class="ms-mark">
+            <svg viewBox="0 0 640 640" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+              <circle cx="320" cy="320" r="320" fill="#0E0E11"/>
+              <line x1="196" y1="480" x2="444" y2="160" stroke="#E8A020" stroke-width="14" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="ms-wordmark"><span class="ms-w1">MiyagiSan</span><span class="ms-w2">chez</span></span>
+        </a>
+        <ul class="footer-nav">
+          <li><a href="https://despachobonsai.com">Despacho Bonsai</a></li>
+          <li><a href="mailto:hola@despachobonsai.com">hola@despachobonsai.com</a></li>
+          <li><a href="https://calendly.com/miyagisanchez/intro" target="_blank" rel="noopener noreferrer">Agendar llamada</a></li>
+          <li><a href="terminos.html">Términos</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+        </ul>
+        <span class="footer-copy">CDMX, México · 2026 · Powered by Despacho Bonsai</span>
+      </div>
+      <p style="font-size:10px;color:var(--ms-offwhite-dimmer);opacity:0.4;text-align:center;margin-top:40px;padding-bottom:24px;">MiyagiSánchez no se hace responsable de ningún torneo de karate.</p>
     </footer>
   </div>
+  <!-- SHARED: footer-end -->
 
   <script>
     // Mobile nav toggle
