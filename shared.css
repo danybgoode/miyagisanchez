@@ -33,6 +33,14 @@
   --nav-h:        60px;
   --pad-x:        48px;
   --pad-x-sm:     20px;
+  --ms-obsidian:     #0E0E11;
+  --ms-obsidian-2:   #16161A;
+  --ms-obsidian-3:   #1E1E24;
+  --ms-marigold:     #E8A020;
+  --ms-marigold-dim: #C4861A;
+  --ms-offwhite:     #F4F3EF;
+  --ms-offwhite-dim: #A8A7A2;
+  --ms-offwhite-dimmer: #5A5955;
 }
 
 /* ── BASE RESET ── */
