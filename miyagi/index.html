@@ -4,13 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiyagiSánchez — Back-office financiero para founders en México</title>
+  <title>Miyagi Sánchez — Back-office financiero para founders en México</title>
   <meta name="description"
     content="Contabilidad, SAT, conciliación bancaria y métricas de producto — con un asesor financiero humano incluido. Para founders, solopreneurs y early-stage startups en México.">
   <meta name="robots" content="index, follow">
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TXT64QQL');</script>
+  <!-- End Google Tag Manager -->
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://miyagisanchez.com/">
+  <link rel="canonical" href="https://miyagisanchez.despachobonsai.com/">
 
   <!-- Favicon — slash mark easter egg -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230E0E11'/><line x1='9' y1='26' x2='23' y2='6' stroke='%23E8A020' stroke-width='3.5' stroke-linecap='round'/></svg>">
@@ -20,1204 +27,20 @@
   <meta property="og:title" content="MiyagiSánchez — Back-office financiero para founders en México">
   <meta property="og:description"
     content="Contabilidad, SAT, conciliación bancaria — con un asesor financiero humano incluido.">
-  <meta property="og:url" content="https://miyagisanchez.com/">
+  <meta property="og:url" content="https://miyagisanchez.despachobonsai.com/">
 
   <!-- Shared design system -->
-  <link rel="stylesheet" href="sshared.css">
+  <link rel="stylesheet" href="shared.css">
 
-  <style>
-    /* ── HERO wrapper — obsidian background ── */
-    body > section.hero-wrap,
-    .hero-section-bg {
-      background: var(--ms-obsidian);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 90px var(--pad-x) 80px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .eyebrow-pip {
-      width: 32px;
-      height: 1.5px;
-      background: var(--ms-marigold);
-      flex-shrink: 0;
-    }
-
-    .eyebrow-text {
-      font-family: var(--ms-font-sans);
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ms-marigold);
-    }
-
-    .hero-title {
-      font-family: var(--ms-font-sans);
-      font-size: clamp(32px, 6vw, 64px);
-      font-weight: 500;
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      margin-bottom: 32px;
-      color: var(--ms-obsidian);
-    }
-
-    .hero-title .italic {
-      font-family: var(--ms-font-serif);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ms-marigold);
-    }
-
-    .hero-body {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: var(--ms-offwhite-dim);
-      max-width: 480px;
-      margin-bottom: 40px;
-      font-weight: 300;
-    }
-
-    .hero-proof {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
-
-    .proof-num {
-      font-family: var(--ms-font-sans);
-      font-size: 1.6rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      color: var(--ms-offwhite);
-    }
-
-    .proof-label {
-      font-size: 0.75rem;
-      color: var(--ms-offwhite-dimmer);
-      margin-top: 2px;
-      line-height: 1.4;
-    }
-
-    .hero-cta-block {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 380px;
-    }
-
-    .hero-cta-block .btn-primary,
-    .hero-cta-block .btn-secondary {
-      width: 100%;
-    }
-
-    .cta-divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .cta-divider::before,
-    .cta-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(244, 243, 239, 0.10);
-    }
-
-    .cta-divider span {
-      font-size: 0.72rem;
-      color: var(--ms-offwhite-dimmer);
-      letter-spacing: 0.05em;
-    }
-
-    .hero-footnote {
-      font-size: 0.75rem;
-      color: var(--ms-offwhite-dimmer);
-      margin-top: 16px;
-      max-width: 340px;
-      font-weight: 300;
-    }
-
-    /* ── HERO VISUAL (chat) ── */
-    .hero-visual {
-      position: relative;
-      padding-top: 12px;
-    }
-
-    .chat-window {
-      background: #111b21;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    }
-    .chat-topbar {
-      background: #202c33;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .chat-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #00a884;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-
-    .chat-name {
-      font-size: 15px;
-      font-weight: 500;
-      color: #e9edef;
-    }
-
-    .chat-status {
-      font-size: 12px;
-      color: #8696a0;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #00a884;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    .chat-messages {
-      background: #0b141a;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23182229' fill-opacity='0.8'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      padding: 12px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-height: 320px;
-    }
-
-    .msg {
-      max-width: 75%;
-      padding: 6px 10px 8px;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.5;
-      position: relative;
-      word-wrap: break-word;
-    }
-
-    @keyframes msgSlide {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .msg.miyagi {
-      background: #202c33;
-      color: #e9edef;
-      align-self: flex-start;
-      border-top-left-radius: 2px;
-    }
-
-    .msg.user {
-      background: #005c4b;
-      color: #e9edef;
-      align-self: flex-end;
-      border-top-right-radius: 2px;
-    }
-
-    .msg em {
-      font-style: normal;
-      font-weight: 500;
-      color: var(--ms-marigold);
-    }
-
-    .msg .good {
-      color: #4CAF82;
-      font-weight: 500;
-    }
-
-    .msg .warn {
-      color: #E05252;
-      font-weight: 500;
-    }
-
-    .msg:nth-child(1) {
-      animation-delay: 0.3s;
-    }
-
-    .msg:nth-child(2) {
-      animation-delay: 1.1s;
-    }
-
-    .msg:nth-child(3) {
-      animation-delay: 2.2s;
-    }
-
-    .msg:nth-child(4) {
-      animation-delay: 3.4s;
-    }
-
-    .msg:nth-child(5) {
-      animation-delay: 4.5s;
-    }
-
-    .msg-time {
-      font-size: 11px;
-      color: #8696a0;
-      text-align: right;
-      margin-top: 2px;
-    }
-
-    .msg.miyagi .msg-time {
-      text-align: left;
-    }
-
-    .chat-input {
-      background: #202c33;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-    }
-
-    .chat-input-field {
-      background: #2a3942;
-      border-radius: 20px;
-      padding: 9px 16px;
-      color: #8696a0;
-      font-size: 14px;
-      width: 100%;
-    }
-
-    
-      padding: 12px 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.78rem;
-      color: var(--ms-offwhite-dim);
-    }
-
-    .badge-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--ms-marigold-glow);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    .badge-label {
-      font-size: 0.65rem;
-      color: var(--ms-offwhite-dimmer);
-    }
-
-    .badge-value {
-      font-family: var(--ms-font-sans);
-      font-weight: 500;
-      font-size: 0.85rem;
-      color: var(--ms-offwhite);
-    }
-
-    /* ── WHAT YOU GET ── */
-    .what {
-      background: var(--ms-obsidian-2);
-      color: var(--ms-offwhite);
-      padding: 100px var(--pad-x);
-    }
-
-    .what-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    .what-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: end;
-      margin-bottom: 80px;
-    }
-
-    .what-title {
-      font-family: var(--ms-font-sans);
-      font-size: clamp(2rem, 4vw, 3.8rem);
-      font-weight: 500;
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-    }
-
-    .what-title .italic {
-      font-family: var(--ms-font-serif);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ms-marigold);
-    }
-
-    .what-intro {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--ms-offwhite-dimmer);
-      padding-top: 8px;
-      font-weight: 300;
-    }
-
-    .what-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(244, 243, 239, 0.06);
-      border: 1px solid rgba(244, 243, 239, 0.06);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .what-item {
-      background: var(--ms-obsidian-2);
-      padding: 40px 32px;
-      transition: background 0.3s;
-    }
-
-    .what-item:hover {
-      background: var(--ms-obsidian-3);
-    }
-
-    .what-num {
-      font-family: var(--ms-font-sans);
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ms-marigold);
-      margin-bottom: 16px;
-    }
-
-    .what-item-title {
-      font-family: var(--ms-font-sans);
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 12px;
-      line-height: 1.3;
-      color: var(--ms-offwhite);
-    }
-
-    .what-item-body {
-      font-size: 0.83rem;
-      line-height: 1.7;
-      color: var(--ms-offwhite-dimmer);
-      font-weight: 300;
-    }
-
-    .what-item.featured {
-      background: var(--ms-marigold);
-    }
-
-    .what-item.featured:hover {
-      background: var(--ms-marigold-dim);
-    }
-
-    .what-item.featured .what-num,
-    .what-item.featured .what-item-title {
-      color: var(--ms-obsidian);
-    }
-
-    .what-item.featured .what-item-body {
-      color: rgba(14, 14, 17, 0.75);
-    }
-
-    /* ── DIFFERENTIATOR ── */
-    .diff {
-      padding: 100px var(--pad-x);
-      max-width: var(--max-w);
-      margin: 0 auto;
-      background: var(--ms-offwhite);
-      max-width: 100%;
-    }
-
-    .diff-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .diff-title {
-      font-family: var(--ms-font-sans);
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      color: var(--ms-obsidian);
-    }
-
-    .diff-title .italic {
-      font-family: var(--ms-font-serif);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ms-marigold-dim);
-    }
-
-    .diff-body {
-      font-size: 0.98rem;
-      line-height: 1.8;
-      color: var(--ms-obsidian-3);
-      margin-bottom: 32px;
-      font-weight: 300;
-    }
-
-    .metric-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .metric-card {
-      background: var(--ms-offwhite);
-      border: 1px solid rgba(14, 14, 17, 0.10);
-      border-radius: 8px;
-      padding: 20px;
-      transition: box-shadow 0.2s;
-    }
-
-    .metric-card:hover {
-      box-shadow: 0 4px 20px rgba(14, 14, 17, 0.10);
-    }
-
-    .metric-card-label {
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ms-offwhite-dimmer);
-      margin-bottom: 8px;
-    }
-
-    .metric-card-value {
-      font-family: var(--ms-font-sans);
-      font-size: 1.5rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      margin-bottom: 4px;
-      color: var(--ms-obsidian);
-    }
-
-    .metric-card-value.up   { color: #2D8F5F; }
-    .metric-card-value.down { color: #C04040; }
-    .metric-card-value.neutral { color: var(--ms-obsidian); }
-
-    .metric-card-delta {
-      font-size: 0.72rem;
-      color: var(--ms-offwhite-dimmer);
-    }
-
-    .metric-card.span-2 {
-      grid-column: span 2;
-    }
-
-    /* ── HUMAN SECTION ── */
-    .human {
-      background: var(--ms-obsidian-2);
-      border-top: 1px solid rgba(244, 243, 239, 0.06);
-      border-bottom: 1px solid rgba(244, 243, 239, 0.06);
-      padding: 100px var(--pad-x);
-    }
-
-    .human-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .human-title {
-      font-family: var(--ms-font-sans);
-      font-size: clamp(1.8rem, 3.5vw, 3rem);
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      color: var(--ms-offwhite);
-    }
-
-    .human-title .italic {
-      font-family: var(--ms-font-serif);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .human-body {
-      font-size: 0.98rem;
-      line-height: 1.8;
-      color: var(--ms-offwhite-dim);
-      font-weight: 300;
-    }
-
-    .human-body p+p {
-      margin-top: 16px;
-    }
-
-    .included-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 32px;
-    }
-
-    .included-item {
-      display: flex;
-      align-items: start;
-      gap: 12px;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: var(--ms-offwhite-dim);
-    }
-
-    .included-marker {
-      width: 22px;
-      height: 22px;
-      background: var(--ms-marigold);
-      color: var(--ms-obsidian);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      font-weight: 500;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .timeline-item {
-      display: flex;
-      gap: 20px;
-      position: relative;
-    }
-
-    .timeline-item:not(:last-child) {
-      padding-bottom: 32px;
-    }
-
-    .timeline-left {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .tl-dot {
-      width: 12px;
-      height: 12px;
-      background: var(--ms-marigold);
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 4px;
-    }
-
-    .tl-line {
-      width: 1px;
-      flex: 1;
-      background: rgba(244, 243, 239, 0.1);
-      margin-top: 4px;
-    }
-
-    .tl-label {
-      font-family: var(--ms-font-sans);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ms-marigold);
-      margin-bottom: 4px;
-    }
-
-    .tl-text {
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--ms-offwhite-dim);
-      font-weight: 300;
-    }
-
-    /* ── PRICING ── */
-    .pricing {
-      padding: 100px var(--pad-x);
-      max-width: 100%;
-      background: var(--ms-offwhite);
-    }
-
-    .pricing-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-    }
-
-    .pricing-header {
-      text-align: center;
-      margin-bottom: 64px;
-    }
-
-    .pricing-header .section-pip {
-      justify-content: center;
-    }
-
-    .pricing-title {
-      font-family: var(--ms-font-sans);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-      color: var(--ms-obsidian);
-    }
-
-    .pricing-sub {
-      font-size: 1rem;
-      color: var(--ms-offwhite-dimmer);
-      max-width: 480px;
-      margin: 0 auto;
-      font-weight: 300;
-    }
-
-    .pricing-cards {
-      display: grid;
-      
-      gap: 20px;
-    }
-
-    .plan-cta-secondary {
-      display: block;
-      text-align: center;
-      margin-top: 12px;
-      padding: 12px 24px;
-      border: 1px solid var(--marigold, #E8A020);
-      border-radius: 6px;
-      color: var(--offwhite-dim, #A8A7A2);
-      font-size: 14px;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .plan-cta-secondary:hover {
-      border-color: var(--marigold, #E8A020);
-      color: var(--marigold, #E8A020);
-    }
-
-    .pricing-card {
-      background: var(--ms-offwhite);
-      border: 1.5px solid rgba(14, 14, 17, 0.12);
-      border-radius: 8px;
-      padding: 36px 28px;
-      transition: box-shadow 0.2s;
-    }
-
-    .pricing-card:hover {
-      box-shadow: 0 8px 32px rgba(14, 14, 17, 0.10);
-    }
-
-    .pricing-card.pop {
-      border-color: var(--ms-marigold);
-      position: relative;
-    }
-
-    .pop-label {
-      position: absolute;
-      top: -11px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--ms-marigold);
-      color: var(--ms-obsidian);
-      padding: 3px 14px;
-      border-radius: 20px;
-      font-family: var(--ms-font-sans);
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .plan-tier {
-      font-family: var(--ms-font-sans);
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--ms-offwhite-dimmer);
-      margin-bottom: 16px;
-    }
-
-    .plan-price {
-      font-family: var(--ms-font-sans);
-      font-size: 2.2rem;
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 4px;
-      color: var(--ms-obsidian);
-    }
-
-    .plan-price-currency {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--ms-offwhite-dimmer);
-    }
-
-    .plan-cadence {
-      font-size: 0.78rem;
-      color: var(--ms-offwhite-dimmer);
-      margin-bottom: 28px;
-    }
-
-    .plan-divider {
-      border: none;
-      border-top: 1px solid rgba(14, 14, 17, 0.10);
-      margin-bottom: 24px;
-    }
-
-    .plan-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      margin-bottom: 28px;
-    }
-
-    .plan-feature {
-      font-size: 0.85rem;
-      color: var(--ms-obsidian-3);
-      display: flex;
-      align-items: start;
-      gap: 8px;
-      font-weight: 300;
-    }
-
-    .plan-feature::before {
-      content: '·';
-      color: var(--ms-marigold);
-      font-size: 1.2rem;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .plan-cta {
-      display: block;
-      text-align: center;
-      padding: 12px;
-      border-radius: 4px;
-      font-family: var(--ms-font-sans);
-      font-size: 0.82rem;
-      font-weight: 500;
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      border: 1.5px solid rgba(14, 14, 17, 0.20);
-      color: var(--ms-obsidian);
-      transition: all 0.2s;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .plan-cta:hover {
-      background: var(--ms-obsidian);
-      color: var(--ms-offwhite);
-      border-color: var(--ms-obsidian);
-    }
-
-    .pricing-card.pop .plan-cta {
-      background: var(--ms-marigold);
-      border-color: var(--ms-marigold);
-      color: var(--ms-obsidian);
-    }
-
-    .pricing-card.pop .plan-cta:hover {
-      background: var(--ms-marigold-dim);
-      border-color: var(--ms-marigold-dim);
-    }
-
-    /* ── CONTACT ── */
-    .contact {
-      background: var(--ms-obsidian);
-      color: var(--ms-offwhite);
-      padding: 100px var(--pad-x);
-    }
-
-    .contact-inner {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: start;
-    }
-
-    .contact-eyebrow {
-      font-family: var(--ms-font-sans);
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ms-marigold);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .contact-eyebrow::before {
-      content: '';
-      width: 24px;
-      height: 1.5px;
-      background: var(--ms-marigold);
-      flex-shrink: 0;
-    }
-
-    .contact-title {
-      font-family: var(--ms-font-sans);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 500;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      color: var(--ms-offwhite);
-    }
-
-    .contact-title .italic {
-      font-family: var(--ms-font-serif);
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ms-marigold);
-    }
-
-    .contact-body {
-      font-size: 0.98rem;
-      line-height: 1.8;
-      color: var(--ms-offwhite-dimmer);
-      margin-bottom: 40px;
-      font-weight: 300;
-    }
-
-    .contact-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-option {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 20px;
-      background: rgba(244, 243, 239, 0.04);
-      border: 1px solid rgba(244, 243, 239, 0.08);
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--ms-offwhite-dim);
-      text-decoration: none;
-      transition: all 0.2s;
-      min-height: 44px;
-    }
-
-    .contact-option:hover {
-      background: rgba(244, 243, 239, 0.08);
-      color: var(--ms-offwhite);
-    }
-
-    .contact-option-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .contact-option-text { flex: 1; }
-
-    .contact-option-label {
-      font-size: 0.68rem;
-      color: var(--ms-offwhite-dimmer);
-      margin-bottom: 2px;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .contact-option-val { font-weight: 500; }
-
-    .contact-option-arr {
-      font-size: 1rem;
-      opacity: 0.4;
-      color: var(--ms-marigold);
-    }
-
-    /* ── FORM ── */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-label {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(245, 242, 236, 0.4);
-    }
-
-    .form-input,
-    .form-select,
-    .form-textarea {
-      background: rgba(245, 242, 236, 0.06);
-      border: 1px solid rgba(245, 242, 236, 0.12);
-      border-radius: 3px;
-      padding: 12px 14px;
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      color: var(--paper);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-input::placeholder,
-    .form-textarea::placeholder {
-      color: rgba(245, 242, 236, 0.2);
-    }
-
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
-      border-color: rgba(245, 242, 236, 0.4);
-    }
-
-    .form-select {
-      cursor: pointer;
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(245,242,236,0.3)' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-    }
-
-    .form-select option {
-      background: #2a2820;
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .submit-btn {
-      background: var(--terracotta);
-      color: white;
-      border: none;
-      border-radius: 3px;
-      padding: 14px 28px;
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      letter-spacing: 0.01em;
-      transition: opacity 0.2s, transform 0.2s;
-      width: 100%;
-    }
-
-    .submit-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
-    }
-
-    .form-note {
-      font-size: 0.72rem;
-      color: rgba(245, 242, 236, 0.25);
-      text-align: center;
-      line-height: 1.5;
-    }
-
-    .form-success-msg {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .form-success-msg .icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-    }
-
-    .form-success-msg .title {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .form-success-msg .body {
-      font-size: 0.88rem;
-      color: rgba(245, 242, 236, 0.5);
-      line-height: 1.6;
-    }
-
-    /* ── DARK FOOTER ── */
-    .dark-footer {
-      border-top: 1px solid rgba(244, 243, 239, 0.06);
-      background: var(--ms-obsidian);
-    }
-
-    .dark-footer .site-footer-inner {
-      border-top: none;
-      padding: 40px var(--pad-x);
-      max-width: var(--max-w);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .dark-footer .footer-brand,
-    .dark-footer .footer-nav a {
-      color: var(--ms-offwhite-dimmer);
-    }
-
-    .dark-footer .footer-brand:hover,
-    .dark-footer .footer-nav a:hover {
-      color: var(--ms-offwhite);
-    }
-
-    .dark-footer .footer-copy {
-      color: var(--ms-offwhite-dimmer);
-      opacity: 0.5;
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 48px var(--pad-x-sm) 60px;
-        gap: 48px;
-      }
-
-      
-
-      .what-header {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .what-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .diff {
-        padding: 72px var(--pad-x-sm);
-      }
-
-      .diff-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .human {
-        padding: 72px var(--pad-x-sm);
-      }
-
-      .human-inner {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .pricing {
-        padding: 72px var(--pad-x-sm);
-      }
-
-      .pricing-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .contact {
-        padding: 72px var(--pad-x-sm);
-      }
-
-      .contact-inner {
-        grid-template-columns: 1fr;
-        gap: 56px;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .metric-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .metric-card.span-2 {
-        grid-column: span 1;
-      }
-
-      .hero-proof {
-        gap: 24px;
-      }
-    }
-  </style>
+  
 </head>
 
 <body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXT64QQL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <!-- SHARED: nav-start -->
   <nav aria-label="Navegación principal">
@@ -1249,8 +72,6 @@
   <!-- SHARED: nav-end -->
 
   <div class="nav-mobile-drawer" id="nav-mobile-drawer" aria-label="Menú móvil">
-    <a href="#que-incluye">Qué incluye</a>
-    <a href="#metricas">Métricas</a>
     <a href="#precios">Precios</a>
     <a href="https://wa.me/525599629166?text=Hola, ¿me podrías explicar súper simple el servicio de MiyagiSánchez?">Habla con Miyagi</a>
   </div>
@@ -1259,12 +80,9 @@
 <div style="background:var(--ms-offwhite); position:relative;">
 <section class="hero">
   <div>
-    <div class="hero-eyebrow">
-      <div class="eyebrow-pip"></div>
-      <span class="eyebrow-text"><br><br></span>
-    </div>
+    
 
-    <h1 class="hero-title">
+    <h1 class="hero-title" id="hero-headline">
       ¿Sabes cuánto<br>
       <span class="italic">ganaste este mes?</span>
     </h1>
@@ -1292,7 +110,6 @@
   </div>
 
   <!-- CHAT VISUAL -->
-  <!-- CHAT VISUAL -->
 <div class="hero-visual" aria-hidden="true">
   <div class="chat-window">
     <div class="chat-topbar">
@@ -1301,7 +118,7 @@
         <div class="chat-name">Miyagi Sánchez</div>
         <div class="chat-status">
           <div class="status-dot"></div>
-          En línea · tu analista financiero
+          <span id="hero-chat-subtitle">En línea · tu analista financiero</span>
         </div>
       </div>
     </div>
@@ -1316,47 +133,85 @@
 
 <script>
 (function() {
-  const variations = [
 
-    // Variación 1 — Control & visibility · Pablo · agencia SEO
-    [
-      { from: 'user',   text: 'oye Miyagi, de verdad estoy ganando dinero con mi negocio? porque facturo bien pero nunca me queda nada', time: '9:02 AM' },
-      { from: 'miyagi', text: 'Es una de las preguntas más importantes que puedes hacerte. La respuesta corta: facturar mucho no es lo mismo que ganar mucho. 👀<br><br>Revisando octubre — facturaste <em>$84,200 MXN</em> pero tus egresos fueron <em>$61,400 MXN</em>. Tu utilidad real fue <em>$22,800 MXN</em>. Margen del 27%.', time: '9:03 AM', ticks: true },
-      { from: 'user',   text: 'wow no tenía idea que era tan poco. y eso es bueno o malo?', time: '9:04 AM' },
-      { from: 'miyagi', text: '27% es saludable para una agencia. El tema es que en septiembre estabas en 31% — tus gastos están creciendo más rápido que tus ingresos. No es una emergencia, pero hay que vigilarlo. Ya te aviso si se repite. 🤝', time: '9:04 AM', ticks: true },
-    ],
+  const pairs = [
 
-    // Variación 2 — SAT anxiety · Renata · ecommerce
-    [
-      { from: 'user',   text: 'Miyagi tengo un relajo con el SAT, no sé ni por dónde empezar, llevo meses ignorando esto', time: '10:15 AM' },
-      { from: 'miyagi', text: 'Tranquila, esto tiene solución. Pasa más seguido de lo que crees. Lo primero es saber exactamente qué tienes pendiente — sin eso, todo lo demás es ruido. ¿Tienes tu RFC y tu e.firma a la mano?', time: '10:16 AM', ticks: true },
-      { from: 'user',   text: 'sí los tengo, pero no sé qué debo ni qué períodos', time: '10:17 AM' },
-      { from: 'miyagi', text: 'Perfecto. Con eso me conecto al SAT y en menos de 24 horas te digo exactamente qué periodos tienes pendientes, qué montos y en qué orden atacarlos. Un paso a la vez. 🤝', time: '10:17 AM', ticks: true },
-      { from: 'user',   text: 'qué alivio, gracias', time: '10:18 AM' },
-      { from: 'miyagi', text: 'Para eso estoy. Mándame tu estado de cuenta más reciente y arrancamos hoy mismo.', time: '10:18 AM', ticks: true },
-    ],
+    // Pair 1 — ¿Sabes cuánto te quedó después de todo? · Diego · freelance dev
+    {
+      headline: '¿Sabes cuánto te quedó<br><span class="italic">después de todo?</span>',
+      subtitle: 'En línea · tu analista financiero',
+      messages: [
+        { from: 'user',   text: 'Miyagi, cobré bien este mes pero al final del mes no me queda nada, siempre pasa lo mismo', time: '7:58 PM' },
+        { from: 'miyagi', text: 'Es el problema más común en freelance. Facturas mucho, pero entre impuestos, herramientas y gastos del negocio, lo que realmente te queda es otra historia.<br><br>Revisando octubre — ingresaron <em>$52,400 MXN</em> a tu cuenta. Pero tus costos operativos fueron <em>$31,800 MXN</em>. Te quedaron <em>$20,600 MXN</em> reales.', time: '7:59 PM', ticks: true },
+        { from: 'user',   text: 'o sea casi el 40% se va en costos?? no tenía idea', time: '8:01 PM' },
+        { from: 'miyagi', text: 'Exacto. Y eso sin contar ISR. Lo bueno es que <em>$8,200 MXN</em> de esos costos son deducibles — si los declaramos bien te los devuelve el SAT. ¿Los tienes facturados? 🤝', time: '8:01 PM', ticks: true },
+      ]
+    },
 
-    // Variación 3 — Financial literacy · Diego · freelance diseñador
-    [
-      { from: 'user',   text: 'oye Miyagi, un inversionista me pidió un "flujo de efectivo" de mi negocio y no tengo idea qué es eso', time: '4:33 PM' },
-      { from: 'miyagi', text: 'Buena pregunta. El flujo de efectivo es simple: cuánto dinero entra, cuánto sale y cuándo. No es lo mismo que tus ganancias — puedes ser rentable y quedarte sin efectivo si tus clientes te pagan tarde. 👀', time: '4:34 PM', ticks: true },
-      { from: 'user',   text: 'ahhh o sea es diferente a mis ingresos?', time: '4:35 PM' },
-      { from: 'miyagi', text: 'Exacto. Tú puedes facturar $50k este mes pero si cobras a 60 días, ese dinero no existe todavía. Revisando tus movimientos de octubre — tienes <em>$94,000 MXN</em> disponibles hoy y un runway de <em>4 meses</em> con tu ritmo actual de gastos.', time: '4:35 PM', ticks: true },
-      { from: 'user',   text: 'eso es lo que le mando a mi cliente?', time: '4:36 PM' },
-      { from: 'miyagi', text: 'El reporte está siempre listo para presentar, puedes descargarlo desde tu dashboard: miyagisanchez.com/dashboard', time: '4:36 AM', ticks: true },
-    ],
+    // Pair 2 — ¿Sabes cuánto ganaste este mes? · Pablo · agencia SEO
+    {
+      headline: '¿Sabes cuánto ganaste<br><span class="italic">este mes?</span>',
+      subtitle: 'En línea · tu analista financiero',
+      messages: [
+        { from: 'user',   text: 'oye Miyagi, de verdad estoy ganando dinero con mi negocio? porque facturo bien pero nunca me queda nada', time: '9:02 AM' },
+        { from: 'miyagi', text: 'Es la pregunta más importante que puedes hacerte. Facturar mucho no es lo mismo que ganar mucho. 👀<br><br>Revisando octubre — facturaste <em>$84,200 MXN</em> pero tus egresos fueron <em>$61,400 MXN</em>. Tu utilidad real fue <em>$22,800 MXN</em>. Margen del 27%.', time: '9:03 AM', ticks: true },
+        { from: 'user',   text: 'wow no tenía idea. ¿eso es bueno o malo?', time: '9:04 AM' },
+        { from: 'miyagi', text: '27% es saludable para una agencia. El tema es que en septiembre estabas en 31% — tus gastos están creciendo más rápido que tus ingresos. No es emergencia, pero hay que vigilarlo. Ya te aviso si se repite. 🤝', time: '9:04 AM', ticks: true },
+      ]
+    },
+
+    // Pair 3 — ¿Qué tan rentable es tu negocio, realmente? · Renata · ecommerce
+    {
+      headline: '¿Qué tan rentable es<br><span class="italic">tu negocio, realmente?</span>',
+      subtitle: 'En línea · tu analista financiero',
+      messages: [
+        { from: 'user',   text: 'Miyagi tengo una duda, vendo bastante en mi tienda pero siento que no gano tanto. hay algo raro no?', time: '3:12 PM' },
+        { from: 'miyagi', text: 'Tiene mucho sentido que lo sientas así. En ecommerce es muy común — las ventas se ven bien pero los márgenes se comen entre envíos, devoluciones y comisiones de plataforma.<br><br>Revisando octubre: vendiste <em>$118,000 MXN</em> pero entre mercancía, Mercado Pago, envíos y publicidad se fueron <em>$94,400 MXN</em>. Margen real: <em>20%</em>.', time: '3:13 PM', ticks: true },
+        { from: 'user',   text: 'solo el 20%?? pensé que era más', time: '3:15 PM' },
+        { from: 'miyagi', text: 'Es normal que se sienta así. Lo que más te come es publicidad — <em>$18,000 MXN</em> el mes pasado. ¿Tienes medido cuánto te cuesta conseguir cada venta? Con ese dato podemos ver si conviene ajustar. 🤝', time: '3:15 PM', ticks: true },
+      ]
+    },
+
+    // Pair 4 — ¿Sabes en qué se fue el dinero este mes? · Sofía · startup
+    {
+      headline: '¿Sabes en qué se fue<br><span class="italic">el dinero este mes?</span>',
+      subtitle: 'En línea · tu analista financiero',
+      messages: [
+        { from: 'user',   text: 'Miyagi neta no sé en qué se me va el dinero, siento que tengo muchos gastos chicos que suman un chorro', time: '11:30 AM' },
+        { from: 'miyagi', text: 'Ese feeling casi siempre tiene razón. Lo revisé — tienes <em>14 suscripciones activas</em> este mes. Suman <em>$9,840 MXN</em>. Algunas las usas diario, otras no las has abierto en semanas. 👀', time: '11:31 AM', ticks: true },
+        { from: 'user',   text: 'no puede ser, cuáles son las que no uso?', time: '11:33 AM' },
+        { from: 'miyagi', text: 'Notion (<em>$1,800</em>), Loom (<em>$980</em>) y un Adobe plan que no reconozco (<em>$1,200</em>). Las tres llevan más de 2 meses sin movimiento. Son <em>$3,980 MXN</em> al mes — casi <em>$48k al año</em>. ¿Las cancelamos? 🤝', time: '11:33 AM', ticks: true },
+      ]
+    },
+
+    // Pair 5 — ¿Cuánto tiempo puede sobrevivir tu negocio sin ventas? · Marcos · consultor
+    {
+      headline: '¿Cuánto tiempo sobreviviría<br><span class="italic">tu negocio sin ventas?</span>',
+      subtitle: 'En línea · tu analista financiero',
+      messages: [
+        { from: 'user',   text: 'oye Miyagi, qué pasaría si me tardo en cerrar un cliente el siguiente mes? tengo algo ahorrado pero no sé si me alcanza', time: '6:45 PM' },
+        { from: 'miyagi', text: 'Buena pregunta para hacerse antes de que pase. Revisando tus números — tienes <em>$67,000 MXN</em> disponibles hoy. Tus costos fijos mensuales son <em>$21,400 MXN</em>: renta, servicios, suscripciones.<br><br>Sin ingresos nuevos, tienes para <em>3.1 meses</em>.', time: '6:46 PM', ticks: true },
+        { from: 'user',   text: 'ah ok, más de lo que pensaba. ¿eso es suficiente?', time: '6:48 PM' },
+        { from: 'miyagi', text: 'Para un consultor es razonable. Lo ideal son 3 meses mínimo — tú estás justo ahí. Si en las próximas semanas no cierras algo, te aviso antes de que llegues a 2 meses. Así tienes tiempo de reaccionar. 🤝', time: '6:48 PM', ticks: true },
+      ]
+    },
 
   ];
 
   function buildMessages(msgs) {
     return msgs.map(function(m) {
-      var timeHtml = '<div class="msg-time">' + m.time + (m.ticks ? ' ✓✓' : '') + '</div>';
-      return '<div class="msg ' + m.from + '">' + m.text + timeHtml + '</div>';
+      var ticks = m.ticks ? ' ✓✓' : '';
+      return '<div class="msg ' + m.from + '">' + m.text +
+        '<div class="msg-time">' + m.time + ticks + '</div></div>';
     }).join('');
   }
 
-  var pick = variations[Math.floor(Math.random() * variations.length)];
-  document.getElementById('hero-chat-messages').innerHTML = buildMessages(pick);
+  var pick = pairs[Math.floor(Math.random() * pairs.length)];
+
+  document.getElementById('hero-headline').innerHTML = pick.headline;
+  document.getElementById('hero-chat-messages').innerHTML = buildMessages(pick.messages);
+  document.getElementById('hero-chat-subtitle').textContent = pick.subtitle;
+
 })();
 </script>
 
@@ -1375,13 +230,175 @@
 ">Primera regla del karate: el karate sirve para defenderse, nunca para atacar.</span>
 </div>
   
-  
+  <!-- ── FEATURE SET ── -->
+<section id="que-incluye" style="background: var(--ms-obsidian);">
+  <div style="max-width: 960px; margin: 0 auto; padding: 80px 54px;">
+
+    <!-- Header -->
+    <div style="margin-bottom: 64px;">
+      <div class="section-pip">Nuestro servicio</div>
+      <h2 class="diff-title" style="color: var(--ms-offwhite);">
+        Todo lo que necesita<br>
+        <span class="italic">tu negocio para crecer.</span>
+      </h2>
+    </div>
+
+    <!-- Always-on banner -->
+    <div style="
+      background: linear-gradient(135deg, rgba(232,160,32,0.1), rgba(232,160,32,0.04));
+      border: 1px solid rgba(232,160,32,0.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    ">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="
+          width: 36px; height: 36px;
+          border-radius: 50%;
+          background: var(--ms-marigold);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 14px; font-weight: 600;
+          color: var(--ms-obsidian);
+          flex-shrink: 0;
+        ">M</div>
+        <div>
+          <div style="font-size: 15px; font-weight: 500; color: var(--ms-offwhite);">Miyagi siempre activo</div>
+          <div style="font-size: 12px; color: var(--ms-offwhite-dimmer); margin-top: 2px;">Disponible en WhatsApp cuando lo necesites — no solo cuando te lo manda el contador</div>
+        </div>
+      </div>
+      <div style="
+        font-size: 11px;
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        color: var(--ms-marigold);
+        border: 1px solid rgba(232,160,32,0.25);
+        border-radius: 6px;
+        padding: 4px 10px;
+        white-space: nowrap;
+      ">Todos los planes</div>
+    </div>
+
+    <!-- Human advisor banner -->
+    <div style="
+      background: rgba(244,243,239,0.03);
+      border: 1px solid rgba(244,243,239,0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    ">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <div style="
+          width: 36px; height: 36px;
+          border-radius: 50%;
+          background: rgba(244,243,239,0.08);
+          border: 1px solid rgba(244,243,239,0.12);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 16px;
+          flex-shrink: 0;
+        ">👤</div>
+        <div>
+          <div style="font-size: 15px; font-weight: 500; color: var(--ms-offwhite);">Asesor humano incluido</div>
+          <div style="font-size: 12px; color: var(--ms-offwhite-dimmer); margin-top: 2px;">Revisión humana de tus transacciones en todos los planes. El nivel de especialización varía.</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <div style="
+          font-size: 11px;
+          color: var(--ms-offwhite-dim);
+          border: 1px solid rgba(244,243,239,0.12);
+          border-radius: 6px;
+          padding: 4px 10px;
+          white-space: nowrap;
+        ">Claridad · Asesor generalista</div>
+        <div style="
+          font-size: 11px;
+          color: var(--ms-marigold);
+          border: 1px solid rgba(232,160,32,0.25);
+          border-radius: 6px;
+          padding: 4px 10px;
+          white-space: nowrap;
+        ">Dirección · Estratega certificado</div>
+      </div>
+    </div>
+
+    <!-- Feature grid -->
+    <div class="feature-grid">
+
+      <div class="feature-item">
+        <div class="feature-number">01</div>
+        <div class="feature-content">
+          <div class="feature-category">Bookkeeping</div>
+          <div class="feature-title">Contabilidad mensual</div>
+          <div class="feature-body">Categorización de transacciones, conciliación bancaria y libros siempre al corriente. Tax-ready, investor-ready — sin que tengas que pedirlo.</div>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-number">02</div>
+        <div class="feature-content">
+          <div class="feature-category">Taxes</div>
+          <div class="feature-title">SAT, ISR e IVA sin drama</div>
+          <div class="feature-body">Declaraciones mensuales, DIOT y declaración anual. Tu RFC activo y sin alertas. El SAT deja de ser un problema cuando alguien más lo monitorea por ti.</div>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-number">03</div>
+        <div class="feature-content">
+          <div class="feature-category">Financial Analysis</div>
+          <div class="feature-title">Tus números, explicados por fin</div>
+          <div class="feature-body">P&L, cash flow y runway — en español real, no en jerga. Miyagi te dice qué significan tus números y qué hacer con ellos esta semana. No al final del trimestre.</div>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-number">04</div>
+        <div class="feature-content">
+          <div class="feature-category">Expenses</div>
+          <div class="feature-title">Sabes en qué gastas. Por fin.</div>
+          <div class="feature-body">Cada movimiento categorizado. Fijos vs variables. Miyagi detecta suscripciones olvidadas, gastos que crecen sin que te des cuenta y patrones que cuestan sin producir.</div>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-number">05</div>
+        <div class="feature-content">
+          <div class="feature-category">Dashboard + Exportación</div>
+          <div class="feature-title">Tu posición en pantalla, tus datos en tu carpeta</div>
+          <div class="feature-body">Todo en tiempo real. Y cuando necesitas los números crudos — para ti, tu contador o tu software contable — un clic y están listos. Excel, Sheets, QuickBooks.</div>
+        </div>
+      </div>
+
+      <!-- Teaser for Dirección -->
+      <div class="feature-item feature-item--premium">
+        <div class="feature-number" style="color: rgba(232,160,32,0.3);">+</div>
+        <div class="feature-content">
+          <div class="feature-category" style="color: var(--ms-marigold);">Solo en Dirección</div>
+          <div class="feature-title">Estrategia financiera bespoke</div>
+          <div class="feature-body">Un estratega financiero certificado que se embebe en tu negocio. Reuniones mensuales, modelaje financiero, unit economics y decisiones que mueven la aguja — no solo reportes.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
   <section class="human" id="dolor">
     <div class="human-inner" style="grid-template-columns: 1fr; text-align: center; max-width: 860px; margin: 0 auto;">
       <div class="section-pip" style="justify-content: center;">El costo de no saber</div>
       <h2 class="human-title" style="text-align: center;">
-        Las finanzas de tu negocio<br>
-        son complicadas.<br>
+        Lo que no ves en tus finanzas <br>
+        ya está tomando decisiones por ti.<br>
         <span class="italic"; style="color:var(--ms-marigold);">Hasta ahora.</span>
       </h2>
 
@@ -1419,8 +436,7 @@
         <div class="section-pip">Miyagi en acción</div>
         <h2 class="diff-title">
           No espera<br>
-          a que le<br>
-          <span class="italic">preguntes.</span>
+          <span class="italic"> que le preguntes.</span>
         </h2>
         <p class="diff-body">
           Seas agencia, startup, despacho o freelancer — tus números cuentan una historia. Miyagi la lee mientras tú trabajas y te avisa cuando encuentra algo que importa.
@@ -1539,13 +555,13 @@
     <div>
       <div class="section-pip">Cierre mensual</div>
       <h2 class="diff-title" style="color: var(--ms-obsidian);">
-        Tu mes cerrado<br>
-        <span class="italic"> sin pedirlo.</span>
+        Tu cierre de mes, <br>
+        <span class="italic">listo antes de que te acuerdes.</span>
       </h2>
-      <p class="diff-body" style="color: var(--ms-offwhite-dim);">
-        Cada inicio de mes Miyagi cierra el anterior y te manda un resumen directo en WhatsApp. Sin PDF. Sin portal. Sin tener que pedirlo.
+      <p class="diff-body">
+        Cada inicio de mes Miyagi cierra el anterior y te manda un resumen directo en WhatsApp. Sin PDF. Sin tener que pedirlo.
       </p>
-      <p class="diff-body" style="color: var(--ms-offwhite-dim);">
+      <p class="diff-body">
         Y si encuentra algo que no cuadra — una suscripción olvidada, un gasto que creció sin que te dieras cuenta — te pregunta. Así de simple.
       </p>
     </div>
@@ -1564,7 +580,7 @@
         <span class="italic">En 24 horas.</span>
       </h2>
       <p class="diff-body" style="color: var(--ms-offwhite-dim); max-width: 440px; margin: 0 auto;">
-        Sin apps nuevas. Sin portales. Miyagi entra a tu flujo financiero — no al revés.
+        Sin apps nuevas. Miyagi entra a tu flujo financiero — no al revés.
       </p>
     </div>
 
@@ -1743,103 +759,151 @@
     </div>
 
     <!-- Three moments — editorial, no cards -->
-    <div style="
-      display:grid;
-      grid-template-columns:1fr 1fr 1fr;
-      gap:0;
-      border-top:1px solid rgba(244,243,239,0.07);
-      padding-top:64px;
-    ">
+<div class="moments-grid">
+  <div class="moment-item">
+    <div class="moment-num">01</div>
+    <div class="moment-title">Comparte lo que ya tienes</div>
+    <div class="moment-body">El mismo PDF que le mandas a tu contador. Por WhatsApp o por correo. Eso es todo.</div>
+  </div>
+  <div class="moment-item">
+    <div class="moment-num">02</div>
+    <div class="moment-title">Miyagi procesa todo</div>
+    <div class="moment-body">Categoriza, concilia con el SAT y construye tu P&L. Mientras tú trabajas.</div>
+  </div>
+  <div class="moment-item moment-item--last">
+    <div class="moment-num">03</div>
+    <div class="moment-title">Tus números llegan a ti</div>
+    <div class="moment-body">Resumen en WhatsApp. Dashboard actualizado. Tu contador tiene lo que necesita.</div>
+  </div>
+</div>
 
-      <div style="padding:0 40px 0 0; border-right:1px solid rgba(244,243,239,0.07);">
-        <div style="font-size:48px;font-weight:500;color:rgba(232,160,32,0.2);line-height:1;margin-bottom:20px;font-family:'DM Sans',sans-serif;">01</div>
-        <div style="font-size:16px;font-weight:500;color:var(--ms-offwhite);margin-bottom:10px;">Comparte lo que ya tienes</div>
-        <div style="font-size:13px;color:var(--ms-offwhite-dimmer);line-height:1.7;">
-          El mismo PDF que le mandas a tu contador. Por WhatsApp o por correo. Eso es todo.
-        </div>
-      </div>
-
-      <div style="padding:0 40px; border-right:1px solid rgba(244,243,239,0.07);">
-        <div style="font-size:48px;font-weight:500;color:rgba(232,160,32,0.2);line-height:1;margin-bottom:20px;font-family:'DM Sans',sans-serif;">02</div>
-        <div style="font-size:16px;font-weight:500;color:var(--ms-offwhite);margin-bottom:10px;">Miyagi procesa todo</div>
-        <div style="font-size:13px;color:var(--ms-offwhite-dimmer);line-height:1.7;">
-          Categoriza, concilia con el SAT y construye tu P&L. Mientras tú trabajas.
-        </div>
-      </div>
-
-      <div style="padding:0 0 0 40px;">
-        <div style="font-size:48px;font-weight:500;color:rgba(232,160,32,0.2);line-height:1;margin-bottom:20px;font-family:'DM Sans',sans-serif;">03</div>
-        <div style="font-size:16px;font-weight:500;color:var(--ms-offwhite);margin-bottom:10px;">Tus números llegan a ti</div>
-        <div style="font-size:13px;color:var(--ms-offwhite-dimmer);line-height:1.7;">
-          Resumen en WhatsApp. Dashboard actualizado. Tu contador tiene lo que necesita.
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Reassurance — inline, typographic, no boxes -->
-    <div style="
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:32px;
-      margin-top:48px;
-      flex-wrap:wrap;
-    ">
-      <div style="font-size:13px;color:var(--ms-offwhite-dimmer);">
-        <span style="color:var(--ms-marigold);font-weight:500;">Setup en 10 minutos</span> · un estado de cuenta y Miyagi hace el resto
-      </div>
-      <div style="width:3px;height:3px;border-radius:50%;background:rgba(244,243,239,0.2);"></div>
-      <div style="font-size:13px;color:var(--ms-offwhite-dimmer);">
-        <span style="color:var(--ms-marigold);font-weight:500;">Primer resumen en 24 horas</span> · garantizado
-      </div>
+<!-- Reassurance -->
+<div class="reassurance-row">
+  <div class="reassurance-item">
+    <span class="reassurance-highlight">Setup en 10 minutos</span> · un estado de cuenta y Miyagi hace el resto
+  </div>
+  <div class="reassurance-dot"></div>
+  <div class="reassurance-item">
+    <span class="reassurance-highlight">Primer resumen en 24 horas</span> · garantizado
+  </div>
+</div>
     </div>
 
   </div>
+  <!-- Mobile flow diagram substitute -->
+<div class="flow-mobile" style="display:none; margin-bottom: 64px;">
+
+  <!-- Sources -->
+  <div style="margin-bottom: 24px;">
+    <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:12px; padding-top: 30px;">Lo que entra ↓</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.374l-.36-.214-3.733.886.917-3.648-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-offwhite);">WhatsApp · PDF · imagen</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#4285F4,#34A853);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="13" viewBox="0 0 22 16" fill="none"><path d="M1 1l10 8L21 1" stroke="white" stroke-width="1.8" stroke-linecap="round"/><rect x="0.9" y="0.9" width="20.2" height="14.2" rx="1.5" stroke="white" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-offwhite);">Email · estado de cuenta</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#1a1f71,#003087);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="16" viewBox="0 0 22 20" fill="none"><path d="M11 1L21 7H1L11 1Z" fill="white" opacity=".9"/><rect x="3" y="9" width="3" height="7" rx="1" fill="white" opacity=".9"/><rect x="9.5" y="9" width="3" height="7" rx="1" fill="white" opacity=".9"/><rect x="16" y="9" width="3" height="7" rx="1" fill="white" opacity=".9"/><rect x="1" y="17" width="20" height="2" rx="1" fill="white" opacity=".9"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-offwhite);">BBVA · Nu · HSBC · cualquier banco</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(232,160,32,0.15);border:1px solid rgba(232,160,32,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="#E8A020" stroke-width="1.5"/><path d="M11 6v6l4 2" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-marigold);">SAT · CFDIs · conciliación fiscal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Miyagi node -->
+  <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid rgba(244,243,239,0.07);border-bottom:1px solid rgba(244,243,239,0.07);margin-bottom:24px;">
+    <div style="position:relative;display:flex;align-items:center;justify-content:center;width:56px;height:56px;flex-shrink:0;">
+      <div style="position:absolute;width:56px;height:56px;border-radius:50%;border:1px solid rgba(232,160,32,0.2);animation:ring-pulse 3s ease-in-out infinite;"></div>
+      <div style="width:44px;height:44px;border-radius:50%;background:var(--ms-obsidian);border:1.5px solid rgba(232,160,32,0.4);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(232,160,32,0.15);">
+        <svg width="24" height="24" viewBox="0 0 640 640" fill="none">
+          <line x1="175" y1="460" x2="285" y2="180" stroke="#F4F3EF" stroke-width="20" stroke-linecap="round" opacity=".65"/>
+          <line x1="355" y1="460" x2="465" y2="180" stroke="#F4F3EF" stroke-width="20" stroke-linecap="round" opacity=".65"/>
+          <line x1="265" y1="460" x2="375" y2="180" stroke="#E8A020" stroke-width="24" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Miyagi procesa todo</div>
+      <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:2px;">Categoriza · concilia · construye tu P&L</div>
+    </div>
+  </div>
+
+  <!-- Destinations -->
+  <div>
+    <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:12px;">Lo que sale ↓</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:#25D366;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.016-1.374l-.36-.214-3.733.886.917-3.648-.235-.374A9.818 9.818 0 1112 21.818z"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-offwhite);">Tu resumen en WhatsApp</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(232,160,32,0.15);border:1px solid rgba(232,160,32,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="12" rx="2" stroke="#E8A020" stroke-width="1.5"/><path d="M6 15v2M14 15v2M4 17h12" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round"/><path d="M6 8h8M6 11h5" stroke="#E8A020" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-marigold);">Tu dashboard · P&L · runway</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(244,243,239,0.05);border:1px solid rgba(244,243,239,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="#F4F3EF" stroke-width="1.5" opacity=".6"/><path d="M3 19c0-4 3.582-7 8-7s8 3 8 7" stroke="#F4F3EF" stroke-width="1.5" stroke-linecap="round" opacity=".6"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-offwhite);">Tu contador · read-only · CSV</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(244,243,239,0.05);border:1px solid rgba(244,243,239,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#A8A7A2" stroke-width="1.5"/><path d="M7 6h6M7 9h6M7 12h4" stroke="#A8A7A2" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span style="font-size:13px;color:var(--ms-offwhite);">Excel · Sheets · QuickBooks</span>
+      </div>
+    </div>
+  </div>
+
+</div>
 </section>
 
-<style>
-.flow-node {
-  animation: fade-up 0.5s ease both;
-}
 
-.branch-line {
-  animation: dash-flow 3s linear infinite;
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes dash-flow {
-  from { stroke-dashoffset: 0; }
-  to   { stroke-dashoffset: -28; }
-}
-
-@keyframes ring-pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50%       { opacity: 0.9; transform: scale(1.06); }
-}
-</style>
 
 <!-- ── DASHBOARD ── -->
-<section class="diff" id="dashboard" style="background: var(--ms-obsidian-2); overflow: hidden; padding-bottom: 0;">
-  <div style="max-width: 960px; margin: 0 auto; padding: 0px 24px 0;">
+<!-- ── DASHBOARD SUITE ── -->
+<section id="dashboard" style="background: var(--ms-obsidian); overflow: hidden;">
+  <div style="max-width: 960px; margin: 0 auto; padding: 80px 24px 0;">
 
     <!-- Header -->
-    <div style="text-align: center; margin-bottom: 56px;">
+    <div style="text-align: center; margin-bottom: 48px;">
       <div class="section-pip" style="justify-content: center;">Tu dashboard</div>
       <h2 class="diff-title" style="text-align: center; color: var(--ms-offwhite);">
-        Todo en un lugar.<br>
-        <span class="italic">Sin abrir Excel.</span>
+        Todo conectado. Todo al corriente.<br>
+        <span class="italic">Todo tuyo.</span>
       </h2>
       <p class="diff-body" style="color: var(--ms-offwhite-dim); max-width: 480px; margin: 0 auto;">
-        Tu posición financiera completa, narrada como una historia. Y cuando necesitas los datos crudos, un clic y están en tu carpeta.
+        Tu estado financiero completo, una narrativa clara. Cada mes, sin falta, sin necesidad de interpretes especializados.
       </p>
     </div>
 
-    <!-- Dashboard mockup window -->
+    <!-- Tab nav -->
+    <div class="dash-tabs" role="tablist">
+      <button class="dash-tab active" data-tab="resumen" role="tab">📊 Resumen</button>
+      <button class="dash-tab" data-tab="cashflow" role="tab">💸 Cash Flow</button>
+      <button class="dash-tab" data-tab="balance" role="tab">⚖️ Balance</button>
+      <button class="dash-tab" data-tab="reconciliacion" role="tab">✓ Conciliación</button>
+    </div>
+
+    <!-- Dashboard window -->
     <div style="
       background: #0d1117;
       border-radius: 16px 16px 0 0;
@@ -1847,9 +911,7 @@
       border-bottom: none;
       overflow: hidden;
       box-shadow: 0 -8px 64px rgba(0,0,0,0.5);
-      position: relative;
     ">
-
       <!-- Window chrome -->
       <div style="
         background: #161b22;
@@ -1877,288 +939,633 @@
         ">miyagi.despachobonsai.com/dashboard</div>
       </div>
 
-      <!-- Dashboard layout -->
-      <div style="display: grid; grid-template-columns: 200px 1fr; min-height: 520px;">
-
-        <!-- Sidebar -->
-        <div style="
-          background: #0d1117;
-          border-right: 1px solid rgba(244,243,239,0.06);
-          padding: 24px 0;
-        ">
-          <!-- Logo -->
-          <div style="padding: 0 20px 24px; border-bottom: 1px solid rgba(244,243,239,0.06); margin-bottom: 16px;">
-            <div style="font-size: 15px; font-weight: 500; color: var(--ms-offwhite);">MiyagiSan<span style="color: var(--ms-marigold);">chez</span></div>
-            <div style="font-size: 11px; color: var(--ms-offwhite-dimmer); margin-top: 2px;">Pablo · Cleanranks</div>
-          </div>
-
-          <!-- Nav items -->
-          <div style="display:flex;flex-direction:column;gap:2px;padding:0 12px;">
-            <div style="
-              background: rgba(232,160,32,0.1);
-              border: 1px solid rgba(232,160,32,0.2);
-              border-radius: 8px;
-              padding: 8px 12px;
-              font-size: 13px;
-              color: var(--ms-marigold);
-              display: flex;
-              align-items: center;
-              gap: 8px;
-            ">
-              <span>📊</span> Resumen
+      <!-- ── TAB: RESUMEN ── -->
+      <div class="dash-panel active" id="panel-resumen">
+        <div style="display: grid; grid-template-columns: 200px 1fr; min-height: 480px;">
+          <!-- Sidebar -->
+          <div style="background:#0d1117;border-right:1px solid rgba(244,243,239,0.06);padding:24px 0;">
+            <div style="padding:0 20px 24px;border-bottom:1px solid rgba(244,243,239,0.06);margin-bottom:16px;">
+              <div style="font-size:15px;font-weight:500;color:var(--ms-offwhite);">MiyagiSan<span style="color:var(--ms-marigold);">chez</span></div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:2px;">Pablo · Cleanranks</div>
             </div>
-            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
-              <span>📈</span> P&L
+            <div style="display:flex;flex-direction:column;gap:2px;padding:0 12px;">
+              <div style="background:rgba(232,160,32,0.1);border:1px solid rgba(232,160,32,0.2);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--ms-marigold);display:flex;align-items:center;gap:8px;">
+                <span>📊</span> Resumen
+              </div>
+              <div style="padding:8px 12px;font-size:13px;color:var(--ms-offwhite-dimmer);display:flex;align-items:center;gap:8px;border-radius:8px;"><span>💸</span> Cash Flow</div>
+              <div style="padding:8px 12px;font-size:13px;color:var(--ms-offwhite-dimmer);display:flex;align-items:center;gap:8px;border-radius:8px;"><span>⚖️</span> Balance</div>
+              <div style="padding:8px 12px;font-size:13px;color:var(--ms-offwhite-dimmer);display:flex;align-items:center;gap:8px;border-radius:8px;"><span>✓</span> Conciliación</div>
             </div>
-            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
-              <span>💸</span> Gastos
-            </div>
-            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
-              <span>🏦</span> Cuentas
-            </div>
-            <div style="padding: 8px 12px; font-size: 13px; color: var(--ms-offwhite-dimmer); display:flex;align-items:center;gap:8px; border-radius:8px;">
-              <span>📄</span> Documentos
+            <div style="padding:16px 12px 0;margin-top:16px;border-top:1px solid rgba(244,243,239,0.06);">
+              <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:8px;padding:0 4px;">Período</div>
+              <div style="background:rgba(244,243,239,0.06);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--ms-offwhite);display:flex;justify-content:space-between;align-items:center;">
+                Oct 2025 <span style="color:var(--ms-offwhite-dimmer);font-size:10px;">▼</span>
+              </div>
             </div>
           </div>
-
-          <!-- Period selector -->
-          <div style="padding: 16px 12px 0; margin-top: 16px; border-top: 1px solid rgba(244,243,239,0.06);">
-            <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:8px; padding: 0 4px;">Período</div>
-            <div style="
-              background: rgba(244,243,239,0.06);
-              border-radius: 8px;
-              padding: 8px 12px;
-              font-size: 13px;
-              color: var(--ms-offwhite);
-              display:flex;
-              justify-content:space-between;
-              align-items:center;
-            ">
-              Oct 2025 <span style="color:var(--ms-offwhite-dimmer);font-size:10px;">▼</span>
+          <!-- Main -->
+          <div style="padding:24px;overflow:hidden;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;">
+              <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:16px;">
+                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Ingresos</div>
+                <div style="font-size:22px;font-weight:500;color:var(--ms-offwhite);letter-spacing:-.02em;">$84,200</div>
+                <div style="font-size:11px;color:#4ade80;margin-top:4px;">▲ 12% vs sep</div>
+              </div>
+              <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:16px;">
+                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Utilidad neta</div>
+                <div style="font-size:22px;font-weight:500;color:var(--ms-marigold);letter-spacing:-.02em;">$22,800</div>
+                <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:4px;">Margen 27%</div>
+              </div>
+              <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:16px;">
+                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Runway</div>
+                <div style="font-size:22px;font-weight:500;color:var(--ms-offwhite);letter-spacing:-.02em;">4.1 <span style="font-size:13px;font-weight:300;">meses</span></div>
+                <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:4px;">Con quema actual</div>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,rgba(232,160,32,0.08),rgba(232,160,32,0.03));border:1px solid rgba(232,160,32,0.18);border-radius:12px;padding:18px;margin-bottom:20px;display:flex;gap:14px;align-items:flex-start;">
+              <div style="width:28px;height:28px;border-radius:50%;background:var(--ms-marigold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ms-obsidian);flex-shrink:0;">M</div>
+              <div>
+                <div style="font-size:11px;color:var(--ms-marigold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">Resumen · Octubre 2025</div>
+                <div style="font-size:13px;color:var(--ms-offwhite-dim);line-height:1.6;font-family:'Arial',serif;font-style:italic;">Octubre fue buen mes — ingresos arriba 12%. Pero los gastos crecieron más rápido. El margen bajó de 31% a 27%. Ya lo revisamos, es un gasto puntual — noviembre debería normalizarse. 🤝</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;">
+              <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:16px;">
+                <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:14px;">Ingresos vs Egresos · Últimos 4 meses</div>
+                <div style="display:flex;align-items:flex-end;gap:8px;height:60px;">
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                    <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                      <div style="width:100%;background:rgba(74,222,128,0.4);border-radius:3px 3px 0 0;height:38px;"></div>
+                      <div style="width:100%;background:rgba(248,113,113,0.4);border-radius:3px 3px 0 0;height:28px;"></div>
+                    </div>
+                    <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Jul</div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                    <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                      <div style="width:100%;background:rgba(74,222,128,0.4);border-radius:3px 3px 0 0;height:42px;"></div>
+                      <div style="width:100%;background:rgba(248,113,113,0.4);border-radius:3px 3px 0 0;height:30px;"></div>
+                    </div>
+                    <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Ago</div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                    <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                      <div style="width:100%;background:rgba(74,222,128,0.5);border-radius:3px 3px 0 0;height:46px;"></div>
+                      <div style="width:100%;background:rgba(248,113,113,0.5);border-radius:3px 3px 0 0;height:30px;"></div>
+                    </div>
+                    <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sep</div>
+                  </div>
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
+                    <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
+                      <div style="width:100%;background:rgba(74,222,128,0.85);border-radius:3px 3px 0 0;height:54px;box-shadow:0 0 8px rgba(74,222,128,0.3);"></div>
+                      <div style="width:100%;background:rgba(248,113,113,0.85);border-radius:3px 3px 0 0;height:40px;box-shadow:0 0 8px rgba(248,113,113,0.3);"></div>
+                    </div>
+                    <div style="font-size:9px;color:var(--ms-marigold);font-weight:500;">Oct</div>
+                  </div>
+                </div>
+              </div>
+              <div style="position:relative;">
+                <div style="position:absolute;top:-36px;right:0;background:var(--ms-marigold);color:var(--ms-obsidian);font-size:11px;font-weight:500;padding:5px 10px;border-radius:6px;white-space:nowrap;">Tu contador lo agradece ↓</div>
+                <div style="background:linear-gradient(135deg,rgba(232,160,32,0.12),rgba(232,160,32,0.05));border:1px solid rgba(232,160,32,0.3);border-radius:10px;padding:16px 20px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;min-width:140px;">
+                  <div style="font-size:22px;">📥</div>
+                  <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);">Exportar CSV</div>
+                  <div style="font-size:11px;color:var(--ms-offwhite-dimmer);text-align:center;line-height:1.4;">Transacciones · Oct 2025</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- Main content -->
-        <div style="padding: 24px; overflow: hidden;">
-
-          <!-- Top row: key metrics -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;">
-            <div style="
-              background: #161b22;
-              border: 1px solid rgba(244,243,239,0.06);
-              border-radius: 10px;
-              padding: 16px;
-            ">
-              <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:6px;">Ingresos</div>
-              <div style="font-size: 22px; font-weight:500; color:var(--ms-offwhite); letter-spacing:-0.02em;">$84,200</div>
-              <div style="font-size: 11px; color: #4ade80; margin-top:4px;">▲ 12% vs sep</div>
-            </div>
-            <div style="
-              background: #161b22;
-              border: 1px solid rgba(244,243,239,0.06);
-              border-radius: 10px;
-              padding: 16px;
-            ">
-              <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:6px;">Utilidad neta</div>
-              <div style="font-size: 22px; font-weight:500; color:var(--ms-marigold); letter-spacing:-0.02em;">$22,800</div>
-              <div style="font-size: 11px; color: var(--ms-offwhite-dimmer); margin-top:4px;">Margen 27%</div>
-            </div>
-            <div style="
-              background: #161b22;
-              border: 1px solid rgba(244,243,239,0.06);
-              border-radius: 10px;
-              padding: 16px;
-            ">
-              <div style="font-size: 10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ms-offwhite-dimmer); margin-bottom:6px;">Runway</div>
-              <div style="font-size: 22px; font-weight:500; color:var(--ms-offwhite); letter-spacing:-0.02em;">4.1 <span style="font-size:13px;font-weight:300;">meses</span></div>
-              <div style="font-size: 11px; color: var(--ms-offwhite-dimmer); margin-top:4px;">Con quema actual</div>
-            </div>
-          </div>
-
-          <!-- Miyagi story card -->
-          <div style="
-            background: linear-gradient(135deg, rgba(232,160,32,0.08) 0%, rgba(232,160,32,0.03) 100%);
-            border: 1px solid rgba(232,160,32,0.18);
-            border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 20px;
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-          ">
-            <div style="
-              width: 28px; height: 28px; border-radius: 50%;
-              background: var(--ms-marigold);
-              display:flex;align-items:center;justify-content:center;
-              font-size:12px;font-weight:600;color:var(--ms-obsidian);
-              flex-shrink:0;
-            ">M</div>
+        <!-- Wrapped teaser -->
+        <div style="background:linear-gradient(90deg,#1a0a2e,#0f1a2e,#1a150a);border-top:1px solid rgba(232,160,32,0.15);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="font-size:20px;">🎴</div>
             <div>
-              <div style="font-size:11px;color:var(--ms-marigold);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Resumen de Miyagi · Octubre 2025</div>
-              <div style="font-size:13px;color:var(--ms-offwhite-dim);line-height:1.6;font-family:'Arial',serif;font-style:italic;">
-                Octubre fue buen mes — tus ingresos crecieron 12%. Pero los gastos crecieron más rápido. El margen bajó de 31% a 27%. El culpable fue "servicios externos" que se duplicó. Ya lo revisamos juntos y es un gasto puntual — noviembre debería normalizarse. Tu runway está saludable. Sigue así. 🤝
+              <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Tu Resumen del Año está casi listo</div>
+              <div style="font-size:12px;color:var(--ms-offwhite-dimmer);">Miyagi preparó tu historia financiera de 2025 — 12 meses, los momentos que importaron.</div>
+            </div>
+          </div>
+          <div style="background:var(--ms-marigold);color:var(--ms-obsidian);font-size:12px;font-weight:600;padding:8px 16px;border-radius:6px;white-space:nowrap;cursor:pointer;flex-shrink:0;">Ver mi año →</div>
+        </div>
+      </div>
+
+      <!-- ── TAB: CASH FLOW ── -->
+      <div class="dash-panel" id="panel-cashflow">
+        <div style="padding:28px;">
+
+          <!-- Miyagi educates first -->
+          <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--ms-marigold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ms-obsidian);flex-shrink:0;">M</div>
+            <div>
+              <div style="font-size:11px;color:var(--ms-marigold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">¿Qué es el cash flow?</div>
+              <div style="font-size:13px;color:var(--ms-offwhite-dim);line-height:1.6;font-family:'Arial',serif;font-style:italic;">Es el dinero que realmente entra y sale de tu negocio — y cuándo. No es lo mismo que tus ganancias. Puedes ser rentable y quedarte sin efectivo si tus clientes tardan en pagarte. Este reporte responde: ¿tengo para operar el mes que viene? 🤝</div>
+            </div>
+          </div>
+
+          <!-- Top metrics -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+            <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:14px;">
+              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Entradas</div>
+              <div style="font-size:20px;font-weight:500;color:#4ade80;letter-spacing:-.02em;">$84,200</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:3px;">Cobros recibidos</div>
+            </div>
+            <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:14px;">
+              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Salidas</div>
+              <div style="font-size:20px;font-weight:500;color:#f87171;letter-spacing:-.02em;">$61,400</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:3px;">Pagos realizados</div>
+            </div>
+            <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:14px;">
+              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Flujo neto</div>
+              <div style="font-size:20px;font-weight:500;color:var(--ms-marigold);letter-spacing:-.02em;">+$22,800</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:3px;">Efectivo ganado</div>
+            </div>
+            <div style="background:#161b22;border:1px solid rgba(232,160,32,0.12);border-radius:10px;padding:14px;border-color:rgba(232,160,32,0.2);">
+              <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Punto de equilibrio</div>
+              <div style="font-size:20px;font-weight:500;color:var(--ms-marigold);letter-spacing:-.02em;">94%</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);margin-top:3px;">Casi saliste tablas</div>
+            </div>
+          </div>
+
+          <!-- Weekly timeline -->
+          <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:12px;padding:20px;margin-bottom:20px;">
+            <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:16px;">Entradas vs Salidas · Semana a semana · Octubre</div>
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:flex-end;height:80px;">
+              <!-- Wk1 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;">
+                <div style="flex:1;width:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
+                  <div style="width:100%;background:rgba(74,222,128,0.7);border-radius:3px 3px 0 0;height:55%;"></div>
+                  <div style="width:100%;background:rgba(248,113,113,0.6);border-radius:3px 3px 0 0;height:40%;"></div>
+                </div>
+                <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sem 1</div>
+              </div>
+              <!-- Wk2 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;">
+                <div style="flex:1;width:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
+                  <div style="width:100%;background:rgba(74,222,128,0.7);border-radius:3px 3px 0 0;height:35%;"></div>
+                  <div style="width:100%;background:rgba(248,113,113,0.6);border-radius:3px 3px 0 0;height:55%;"></div>
+                </div>
+                <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sem 2</div>
+              </div>
+              <!-- Wk3 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;">
+                <div style="flex:1;width:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
+                  <div style="width:100%;background:rgba(74,222,128,0.85);border-radius:3px 3px 0 0;height:70%;box-shadow:0 0 6px rgba(74,222,128,0.3);"></div>
+                  <div style="width:100%;background:rgba(248,113,113,0.6);border-radius:3px 3px 0 0;height:30%;"></div>
+                </div>
+                <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sem 3</div>
+              </div>
+              <!-- Wk4 -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;">
+                <div style="flex:1;width:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;">
+                  <div style="width:100%;background:rgba(74,222,128,0.7);border-radius:3px 3px 0 0;height:45%;"></div>
+                  <div style="width:100%;background:rgba(248,113,113,0.85);border-radius:3px 3px 0 0;height:50%;box-shadow:0 0 6px rgba(248,113,113,0.3);"></div>
+                </div>
+                <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sem 4</div>
+              </div>
+              <!-- Total -->
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;">
+                <div style="flex:1;width:100%;display:flex;align-items:center;justify-content:center;">
+                  <div style="text-align:center;">
+                    <div style="font-size:15px;font-weight:500;color:var(--ms-marigold);">+$22.8k</div>
+                    <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">neto</div>
+                  </div>
+                </div>
+                <div style="font-size:9px;color:var(--ms-marigold);font-weight:500;">Total</div>
+              </div>
+            </div>
+            <!-- Legend -->
+            <div style="display:flex;gap:16px;margin-top:12px;">
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ms-offwhite-dimmer);">
+                <div style="width:10px;height:10px;border-radius:2px;background:rgba(74,222,128,0.7);"></div> Entradas
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ms-offwhite-dimmer);">
+                <div style="width:10px;height:10px;border-radius:2px;background:rgba(248,113,113,0.6);"></div> Salidas
               </div>
             </div>
           </div>
 
-          <!-- Bottom row: chart + CSV export -->
-          <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end;">
-
-            <!-- Mini bar chart -->
-            <div style="
-              background: #161b22;
-              border: 1px solid rgba(244,243,239,0.06);
-              border-radius: 10px;
-              padding: 16px;
-            ">
-              <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:14px;">Ingresos vs Egresos · Últimos 4 meses</div>
-              <div style="display:flex;align-items:flex-end;gap:8px;height:60px;">
-                <!-- Jul -->
-                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
-                    <div style="width:100%;background:rgba(74,222,128,0.4);border-radius:3px 3px 0 0;height:38px;"></div>
-                    <div style="width:100%;background:rgba(248,113,113,0.4);border-radius:3px 3px 0 0;height:28px;"></div>
-                  </div>
-                  <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Jul</div>
+          <!-- Fixed vs Variable + CSV -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+            <!-- Fixed -->
+            <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:12px;padding:18px;">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:12px;">Gastos fijos</div>
+              <div style="font-size:24px;font-weight:500;color:var(--ms-offwhite);margin-bottom:14px;">$41,200</div>
+              <div style="display:flex;flex-direction:column;gap:7px;">
+                <div style="display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--ms-offwhite-dim);">🏢 Renta</span>
+                  <span style="color:var(--ms-offwhite);">$18,000</span>
                 </div>
-                <!-- Ago -->
-                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
-                    <div style="width:100%;background:rgba(74,222,128,0.4);border-radius:3px 3px 0 0;height:42px;"></div>
-                    <div style="width:100%;background:rgba(248,113,113,0.4);border-radius:3px 3px 0 0;height:30px;"></div>
-                  </div>
-                  <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Ago</div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--ms-offwhite-dim);">👥 Nómina</span>
+                  <span style="color:var(--ms-offwhite);">$15,000</span>
                 </div>
-                <!-- Sep -->
-                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
-                    <div style="width:100%;background:rgba(74,222,128,0.5);border-radius:3px 3px 0 0;height:46px;"></div>
-                    <div style="width:100%;background:rgba(248,113,113,0.5);border-radius:3px 3px 0 0;height:30px;"></div>
-                  </div>
-                  <div style="font-size:9px;color:var(--ms-offwhite-dimmer);">Sep</div>
-                </div>
-                <!-- Oct — active -->
-                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;">
-                  <div style="width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:54px;gap:2px;">
-                    <div style="width:100%;background:rgba(74,222,128,0.85);border-radius:3px 3px 0 0;height:54px;box-shadow:0 0 8px rgba(74,222,128,0.3);"></div>
-                    <div style="width:100%;background:rgba(248,113,113,0.85);border-radius:3px 3px 0 0;height:40px;box-shadow:0 0 8px rgba(248,113,113,0.3);"></div>
-                  </div>
-                  <div style="font-size:9px;color:var(--ms-marigold);font-weight:500;">Oct</div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--ms-offwhite-dim);">📱 Suscripciones</span>
+                  <span style="color:var(--ms-offwhite);">$8,200</span>
                 </div>
               </div>
             </div>
+            <!-- Variable -->
+            <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:12px;padding:18px;">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:12px;">Gastos variables</div>
+              <div style="font-size:24px;font-weight:500;color:var(--ms-offwhite);margin-bottom:14px;">$20,200</div>
+              <div style="display:flex;flex-direction:column;gap:7px;">
+                <div style="display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--ms-offwhite-dim);">📣 Publicidad</span>
+                  <span style="color:var(--ms-offwhite);">$9,400</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--ms-offwhite-dim);">🤝 Servicios externos</span>
+                  <span style="color:var(--ms-offwhite);">$7,200</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;">
+                  <span style="color:var(--ms-offwhite-dim);">🚗 Viáticos</span>
+                  <span style="color:var(--ms-offwhite);">$3,600</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <!-- CSV export — highlighted with callout -->
-            <div style="position:relative;">
-              <!-- Callout arrow -->
-              <div style="
-                position:absolute;
-                top:-40px;
-                right:0;
-                background: var(--ms-marigold);
-                color: var(--ms-obsidian);
-                font-size:11px;
-                font-weight:500;
-                padding:5px 10px;
-                border-radius:6px;
-                white-space:nowrap;
-              ">Tu contador lo agradece ↓</div>
+          <!-- CSV export row — prominent -->
+          <div style="background:linear-gradient(135deg,rgba(232,160,32,0.1),rgba(232,160,32,0.04));border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);margin-bottom:4px;">📥 Exportar CSV completo</div>
+              <div style="font-size:12px;color:var(--ms-offwhite-dimmer);">Todos tus movimientos categorizados · listo para Excel, Sheets o QuickBooks</div>
+            </div>
+            <div style="background:var(--ms-marigold);color:var(--ms-obsidian);font-size:12px;font-weight:600;padding:8px 16px;border-radius:8px;white-space:nowrap;cursor:pointer;flex-shrink:0;">Descargar →</div>
+          </div>
 
-              <div style="
-                background: linear-gradient(135deg, rgba(232,160,32,0.12), rgba(232,160,32,0.05));
-                border: 1px solid rgba(232,160,32,0.3);
-                border-radius: 10px;
-                padding: 16px 20px;
-                display:flex;
-                flex-direction:column;
-                align-items:center;
-                gap:8px;
-                cursor:pointer;
-                min-width:140px;
-              ">
-                <div style="font-size:22px;">📥</div>
-                <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);">Exportar CSV</div>
-                <div style="font-size:11px;color:var(--ms-offwhite-dimmer);text-align:center;line-height:1.4;">Todas tus transacciones · Oct 2025</div>
+        </div>
+      </div>
+
+      <!-- ── TAB: BALANCE ── -->
+      <div class="dash-panel" id="panel-balance">
+        <div style="padding:28px;">
+          <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--ms-marigold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ms-obsidian);flex-shrink:0;">M</div>
+            <div>
+              <div style="font-size:11px;color:var(--ms-marigold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">Tu posición financiera · Octubre 2025</div>
+              <div style="font-size:13px;color:var(--ms-offwhite-dim);line-height:1.6;font-family:'Arial',serif;font-style:italic;">Tu balance te dice qué tienes, qué debes y cuánto vale tu negocio en este momento. No necesitas ser contador para entenderlo — aquí va tu versión. 🤝</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+            <!-- Lo que tienes -->
+            <div style="background:#161b22;border:1px solid rgba(74,222,128,0.15);border-radius:12px;padding:20px;">
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#4ade80;margin-bottom:16px;">Lo que tienes</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <div style="font-size:13px;color:var(--ms-offwhite);">💰 Efectivo disponible</div>
+                    <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">BBVA + Nu · al cierre</div>
+                  </div>
+                  <div style="font-size:15px;font-weight:500;color:var(--ms-offwhite);">$94,000</div>
+                </div>
+                <div style="height:1px;background:rgba(244,243,239,0.06);"></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <div style="font-size:13px;color:var(--ms-offwhite);">📄 Por cobrar</div>
+                    <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">Facturas emitidas pendientes</div>
+                  </div>
+                  <div style="font-size:15px;font-weight:500;color:var(--ms-offwhite);">$32,400</div>
+                </div>
+              </div>
+              <div style="border-top:1px solid rgba(74,222,128,0.2);padding-top:12px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-size:12px;font-weight:500;color:#4ade80;">Total activos</div>
+                <div style="font-size:18px;font-weight:500;color:#4ade80;">$126,400</div>
               </div>
             </div>
 
+            <!-- Lo que debes -->
+            <div style="background:#161b22;border:1px solid rgba(248,113,113,0.15);border-radius:12px;padding:20px;">
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#f87171;margin-bottom:16px;">Lo que debes</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <div style="font-size:13px;color:var(--ms-offwhite);">📬 Por pagar</div>
+                    <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">Facturas recibidas pendientes</div>
+                  </div>
+                  <div style="font-size:15px;font-weight:500;color:var(--ms-offwhite);">$18,600</div>
+                </div>
+                <div style="height:1px;background:rgba(244,243,239,0.06);"></div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <div>
+                    <div style="font-size:13px;color:var(--ms-offwhite);">🏦 Créditos</div>
+                    <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">Saldo pendiente</div>
+                  </div>
+                  <div style="font-size:15px;font-weight:500;color:var(--ms-offwhite);">$12,000</div>
+                </div>
+              </div>
+              <div style="border-top:1px solid rgba(248,113,113,0.2);padding-top:12px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-size:12px;font-weight:500;color:#f87171;">Total pasivos</div>
+                <div style="font-size:18px;font-weight:500;color:#f87171;">$30,600</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Net position -->
+          <div style="background:linear-gradient(135deg,rgba(232,160,32,0.1),rgba(232,160,32,0.03));border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:20px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <div>
+              <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);margin-bottom:6px;">Tu posición neta</div>
+              <div style="font-size:12px;color:var(--ms-offwhite-dimmer);font-family:'Instrument Serif',serif;font-style:italic;">Activos − Pasivos · lo que vale tu negocio hoy</div>
+            </div>
+            <div style="font-size:36px;font-weight:500;color:var(--ms-marigold);letter-spacing:-.02em;">$95,800</div>
+          </div>
+
+          <div style="font-size:11px;color:var(--ms-offwhite-dimmer);text-align:center;padding:4px 0 8px;">
+            Este balance incluye efectivo y facturas. No refleja activos físicos ni deudas no documentadas.
+          </div>
+
+          <!-- CSV -->
+          <div style="background:linear-gradient(135deg,rgba(232,160,32,0.1),rgba(232,160,32,0.04));border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);margin-bottom:3px;">📥 Exportar balance completo</div>
+              <div style="font-size:12px;color:var(--ms-offwhite-dimmer);">Listo para tu contador o inversionista</div>
+            </div>
+            <div style="background:var(--ms-marigold);color:var(--ms-obsidian);font-size:12px;font-weight:600;padding:8px 16px;border-radius:8px;white-space:nowrap;cursor:pointer;flex-shrink:0;">Descargar →</div>
           </div>
         </div>
       </div>
 
-      <!-- Spotify Wrapped teaser bar — pinned to bottom of window -->
-      <div style="
-        background: linear-gradient(90deg, #1a0a2e 0%, #0f1a2e 50%, #1a150a 100%);
-        border-top: 1px solid rgba(232,160,32,0.15);
-        padding: 14px 28px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-      ">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="font-size:20px;">🎴</div>
-          <div>
-            <div style="font-size:13px;font-weight:500;color:var(--ms-offwhite);">Tu Resumen del Año está casi listo</div>
-            <div style="font-size:12px;color:var(--ms-offwhite-dimmer);">Miyagi preparó tu historia financiera de 2025 — 12 meses, los momentos que importaron.</div>
+      <!-- ── TAB: RECONCILIACIÓN ── -->
+      <div class="dash-panel" id="panel-reconciliacion">
+        <div style="padding:28px;">
+          <div style="background:rgba(232,160,32,0.06);border:1px solid rgba(232,160,32,0.15);border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--ms-marigold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--ms-obsidian);flex-shrink:0;">M</div>
+            <div>
+              <div style="font-size:11px;color:var(--ms-marigold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;">¿Qué es conciliación?</div>
+              <div style="font-size:13px;color:var(--ms-offwhite-dim);line-height:1.6;font-family:'Arial',serif;font-style:italic;">Es confirmar que cada movimiento en tu banco tiene su CFDI correspondiente — y viceversa. El SAT cruza esta información. Miyagi lo hace automáticamente para que no haya sorpresas en tu declaración. 🤝</div>
+            </div>
+          </div>
+
+          <!-- Summary bar -->
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:24px;">
+            <div style="background:#161b22;border:1px solid rgba(74,222,128,0.2);border-radius:10px;padding:16px;text-align:center;">
+              <div style="font-size:28px;font-weight:500;color:#4ade80;margin-bottom:4px;">47</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">Movimientos conciliados</div>
+            </div>
+            <div style="background:#161b22;border:1px solid rgba(248,193,113,0.2);border-radius:10px;padding:16px;text-align:center;">
+              <div style="font-size:28px;font-weight:500;color:#fbbf24;margin-bottom:4px;">3</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">Pendientes de CFDI</div>
+            </div>
+            <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:10px;padding:16px;text-align:center;">
+              <div style="font-size:28px;font-weight:500;color:var(--ms-offwhite);margin-bottom:4px;">94%</div>
+              <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">Tasa de conciliación</div>
+            </div>
+          </div>
+
+          <!-- Transaction list -->
+          <div style="background:#161b22;border:1px solid rgba(244,243,239,0.06);border-radius:12px;overflow:hidden;margin-bottom:16px;">
+            <div style="padding:14px 18px;border-bottom:1px solid rgba(244,243,239,0.06);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ms-offwhite-dimmer);">Movimientos · Octubre 2025</div>
+
+            <!-- Reconciled rows -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(244,243,239,0.04);">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0;">✓</div>
+                <div>
+                  <div style="font-size:13px;color:var(--ms-offwhite);">Pago cliente — Despacho Norte</div>
+                  <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">CFDI: DBN-2025-147 · 3 oct</div>
+                </div>
+              </div>
+              <div style="font-size:13px;font-weight:500;color:#4ade80;">+$24,000</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(244,243,239,0.04);">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0;">✓</div>
+                <div>
+                  <div style="font-size:13px;color:var(--ms-offwhite);">Renta oficina</div>
+                  <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">CFDI: INM-2025-089 · 1 oct</div>
+                </div>
+              </div>
+              <div style="font-size:13px;font-weight:500;color:#f87171;">-$18,000</div>
+            </div>
+
+            <!-- Pending row -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(251,191,36,0.04);border-bottom:1px solid rgba(244,243,239,0.04);">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.4);display:flex;align-items:center;justify-content:center;font-size:10px;color:#fbbf24;flex-shrink:0;">!</div>
+                <div>
+                  <div style="font-size:13px;color:var(--ms-offwhite);">Transferencia recibida</div>
+                  <div style="font-size:11px;color:#fbbf24;">Sin CFDI · Miyagi te avisó · 17 oct</div>
+                </div>
+              </div>
+              <div style="font-size:13px;font-weight:500;color:#fbbf24;">+$8,400</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(244,243,239,0.04);">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,0.15);border:1px solid rgba(74,222,128,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:#4ade80;flex-shrink:0;">✓</div>
+                <div>
+                  <div style="font-size:13px;color:var(--ms-offwhite);">Nómina octubre</div>
+                  <div style="font-size:11px;color:var(--ms-offwhite-dimmer);">CFDI: NOM-2025-010 · 15 oct</div>
+                </div>
+              </div>
+              <div style="font-size:13px;font-weight:500;color:#f87171;">-$15,000</div>
+            </div>
+            <div style="padding:10px 18px;text-align:center;font-size:12px;color:var(--ms-offwhite-dimmer);">+ 43 movimientos más conciliados</div>
+          </div>
+
+          <!-- CSV -->
+          <div style="background:linear-gradient(135deg,rgba(232,160,32,0.1),rgba(232,160,32,0.04));border:1px solid rgba(232,160,32,0.25);border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+            <div>
+              <div style="font-size:13px;font-weight:500;color:var(--ms-marigold);margin-bottom:3px;">📥 Exportar reporte de conciliación</div>
+              <div style="font-size:12px;color:var(--ms-offwhite-dimmer);">Movimientos vs CFDIs · listo para tu contador</div>
+            </div>
+            <div style="background:var(--ms-marigold);color:var(--ms-obsidian);font-size:12px;font-weight:600;padding:8px 16px;border-radius:8px;white-space:nowrap;cursor:pointer;flex-shrink:0;">Descargar →</div>
           </div>
         </div>
-        <div style="
-          background: var(--ms-marigold);
-          color: var(--ms-obsidian);
-          font-size: 12px;
-          font-weight: 600;
-          padding: 8px 16px;
-          border-radius: 6px;
-          white-space: nowrap;
-          cursor: pointer;
-          flex-shrink: 0;
-        ">Ver mi año →</div>
       </div>
 
-    </div>
-  </div>
+    </div><!-- end window -->
+  </div><!-- end inner -->
 </section>
 
+<script>
+(function() {
+  const tabs = document.querySelectorAll('.dash-tab');
+  const panels = document.querySelectorAll('.dash-panel');
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      const target = tab.dataset.tab;
+
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+
+      tab.classList.add('active');
+      document.getElementById('panel-' + target).classList.add('active');
+    });
+  });
+})();
+</script>
+
   <!-- ── PRICING ── -->
-  <section class="pricing" id="precios">
-    <div class="pricing-header">
-      <div class="section-pip">Precios</div>
-      <h2 class="pricing-title">Simple. Sin letra chica.</h2>
-      <p class="pricing-sub">Sin costo de setup. Cancela cuando quieras.</p>
-    </div>
-    <div class="pricing-cards" style="justify-content: center;">
+<section class="pricing" id="precios" style="background: var(--ms-offwhite);">
+  <div class="pricing-header">
+    <div class="section-pip" style="color: var(--ms-marigold);">Precios</div>
+    <h2 class="pricing-title" style="color: var(--ms-obsidian);">Simple. Sin letra chica.</h2>
+    <p class="pricing-sub" style="color: var(--ms-offwhite-dimmer);">Sin costo de setup. Sin contratos. Cancela cuando quieras.</p>
+  </div>
 
-      <div class="pricing-card pop" style="max-width: 480px; width: 100%;">
-        <div class="pop-label">Todo incluido</div>
-        <div class="plan-tier">Plan Claridad</div>
-        <div class="plan-price">$699 <span class="plan-price-currency">MXN</span></div>
-        <div class="plan-cadence">por mes · cancela cuando quieras</div>
-        <hr class="plan-divider">
-        <ul class="plan-features">
-          <li class="plan-feature">Miyagi Sánchez en WhatsApp, siempre disponible</li>
-          <li class="plan-feature">Reunión mensual con asesor (20 minutos)</li>
-          <li class="plan-feature">Conexión SAT y conciliación</li>
-          <li class="plan-feature">Análisis automático de tus estados de cuenta</li>
-          <li class="plan-feature">P&amp;L mensual con comparativa vs mes anterior</li>
-          <li class="plan-feature">Detección de gastos fijos vs variables</li>
-          <li class="plan-feature">Multi-banco · HSBC, Nu, BBVA, cualquier banco mexicano</li>
-          <li class="plan-feature">Cash Flow + Balance General</li>
-          <li class="plan-feature">Reportes investor-ready</li>
-          <li class="plan-feature">Dashboard financiero personalizado</li>
-          <li class="plan-feature">Descarga de transacciones en CSV</li>
-        </ul>
-        <a href="https://buy.stripe.com/8x2bJ2emR3aOcY6bsn4c800?locale=es"
-          target="_blank" rel="noopener noreferrer"
-          class="plan-cta">Empieza hoy — 3 días gratis</a>
-        <a href="https://calendly.com/miyagisanchez/intro"
-          target="_blank" rel="noopener noreferrer"
-          class="plan-cta-secondary">¿Tienes preguntas? Hablamos 30 min →</a>
-      </div>
+  <div class="pricing-cards">
 
+    <!-- CLARIDAD -->
+    <div class="pricing-card" style="background: white; border-color: rgba(14,14,17,0.1);">
+      <div class="plan-tier" style="color: var(--ms-obsidian);">Claridad</div>
+      <div class="plan-price" style="color: var(--ms-obsidian);">$599 <span class="plan-price-currency">MXN</span></div>
+      <div class="plan-cadence" style="color: var(--ms-offwhite-dimmer);">por mes · una entidad</div>
+      <hr class="plan-divider" style="border-color: rgba(14,14,17,0.08);">
+      <ul class="plan-features">
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Miyagi en WhatsApp, siempre activo
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Responde preguntas, manda alertas y entrega tu resumen mensual directo en WhatsApp — sin que tengas que abrir ninguna app.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Asesor humano generalista
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Un asesor financiero humano revisa tus transacciones mensualmente y está disponible por chat para resolver dudas. No es un especialista, pero conoce bien las finanzas de PyMEs mexicanas.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Contabilidad mensual
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Categorizamos cada transacción, conciliamos tus cuentas bancarias y mantenemos tus libros al corriente — listos para el SAT y para cualquier auditoría.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Declaraciones SAT incluidas
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">ISR e IVA mensuales, DIOT y declaración anual. Tu RFC siempre activo y sin multas — nosotros monitoreamos, tú no tienes que pensar en ello.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            P&L, Cash Flow + Runway
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Tu estado de resultados, flujo de efectivo y cuántos meses puede sobrevivir tu negocio — actualizados mensualmente y explicados en español por Miyagi.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Control de gastos fijos y variables
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Miyagi separa automáticamente tus gastos fijos de los variables, detecta patrones y te avisa cuando algo crece fuera de lo normal.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Dashboard + exportación CSV
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Acceso a tu dashboard financiero en línea. Descarga todas tus transacciones en CSV con un clic — listo para Excel, Google Sheets o QuickBooks.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Conciliación bancaria vs SAT
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Cruzamos cada movimiento de tu cuenta bancaria con sus CFDIs correspondientes. Sabes exactamente qué está conciliado y qué no — antes de que el SAT lo note.</span>
+          </span>
+        </li>
+        <li class="plan-feature" style="color: var(--ms-obsidian);">
+          <span class="feature-tooltip-wrap">
+            Multi-banco · BBVA, Nu, HSBC y más
+            <span class="ftooltip-icon">?</span>
+            <span class="ftooltip-box">Aceptamos estados de cuenta de cualquier banco mexicano en PDF o imagen — BBVA, Nu, HSBC, Banorte, Santander, lo que uses.</span>
+          </span>
+        </li>
+      </ul>
+      <a href="https://buy.stripe.com/8x2bJ2emR3aOcY6bsn4c800?locale=es"
+        target="_blank" rel="noopener noreferrer"
+        class="plan-cta" style="background: var(--ms-obsidian); color: var(--ms-offwhite);">
+        Empieza hoy — 3 días gratis
+      </a>
+      <a href="https://calendly.com/miyagisanchez/30min"
+        target="_blank" rel="noopener noreferrer"
+        class="plan-cta-secondary" style="border-color: rgba(14,14,17,0.15); color: var(--ms-offwhite-dimmer);">
+        ¿Tienes preguntas? Hablamos →
+      </a>
     </div>
-  </section>
+
+    <!-- DIRECCIÓN -->
+    <div class="pricing-card pop" style="background: var(--ms-offwhite); border-color: rgba(232,160,32,0.25);">
+      <div class="pop-label">Para negocios que escalan</div>
+      <div class="plan-tier">Dirección</div>
+      <div class="plan-price">Personalizado <span class="plan-price-currency"></span></div>
+      <div class="plan-cadence" style="color: var(--ms-offwhite-dimmer);">por mes · bespoke · desde una entidad</div>
+      <hr class="plan-divider" style="color: var(--ms-offwhite-dimmer);">
+      <ul class="plan-features">
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Todo en Claridad, incluido
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Todo lo del plan Claridad está incluido — Miyagi, contabilidad, SAT, dashboard, CSV y conciliación.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Estratega financiero certificado
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Un CFO/CPO especialista se embebe en tu negocio. No un generalista — alguien que entiende unit economics, modelaje financiero y decisiones de capital para empresas en crecimiento.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Reunión mensual de estrategia
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Sesión mensual de 60 minutos con tu estratega financiero para revisar resultados, ajustar proyecciones y tomar decisiones con los números sobre la mesa.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Modelaje financiero y proyecciones
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Modelos financieros a medida — escenarios de crecimiento, análisis de punto de equilibrio, proyecciones de cash flow y presupuestos anuales.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Unit economics y métricas de producto
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">CAC, LTV, margen por canal, costo por unidad — las métricas que los inversionistas piden y que te dicen si tu modelo de negocio tiene futuro.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Reportes investor-ready
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Reportes financieros formateados para presentar a inversionistas, socios o instituciones de crédito — P&L, balance, cash flow y KPIs en un solo documento profesional.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Entidades múltiples
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Maneja la contabilidad de más de una empresa, holding o persona moral bajo un mismo servicio — ideal para grupos empresariales y founders con múltiples proyectos.</span>
+          </span>
+        </li>
+        <li class="plan-feature">
+          <span class="feature-tooltip-wrap">
+            Preparación para due diligence
+            <span class="ftooltip-icon ftooltip-icon--dark">?</span>
+            <span class="ftooltip-box ftooltip-box--dark">Organizamos y preparamos toda tu documentación financiera para procesos de inversión, auditorías externas o adquisiciones — sin carreras de último momento.</span>
+          </span>
+        </li>
+      </ul>
+      <a href="https://calendly.com/miyagisanchez/30min"
+        target="_blank" rel="noopener noreferrer"
+        class="plan-cta">
+        Agendar llamada de diagnóstico →
+      </a>
+      <p style="font-size: 11px; color: var(--ms-offwhite-dimmer); text-align: center; margin-top: 12px; line-height: 1.5;">
+        Precio base. Cotización personalizada según alcance.
+      </p>
+    </div>
+
+  </div>
+</section>
 
   <!-- ── CONTACT ── -->
   <section class="contact" id="contacto">
