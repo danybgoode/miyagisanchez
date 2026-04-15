@@ -33,8 +33,28 @@ const i18n = {
 
   async loadTranslations(lang) {
     try {
-      const response = await fetch(`locales/${lang}.json`);
-      this.translations[lang] = await response.json();
+      // Determine current page from URL
+      let page = window.location.pathname.split('/').pop().replace('.html', '');
+      if (!page || page === '/') {
+        page = 'index';
+      }
+
+      // Load global translations
+      const globalResponse = await fetch(`locales/${lang}/global.json`);
+      const globalData = await globalResponse.json();
+      
+      let pageData = {};
+      try {
+        const pageResponse = await fetch(`locales/${lang}/${page}.json`);
+        if (pageResponse.ok) {
+          pageData = await pageResponse.json();
+        }
+      } catch (e) {
+        console.warn(`No page-specific translations found for ${page}`);
+      }
+
+      // Merge translations
+      this.translations[lang] = { ...globalData, ...pageData };
     } catch (error) {
       console.error(`Could not load translations for ${lang}:`, error);
     }

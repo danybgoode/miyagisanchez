@@ -1,0 +1,139 @@
+/* Navigation Bar */
+
+position: absolute;
+height: 44px;
+left: 0px;
+right: 0px;
+top: 20px;
+
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+border-radius: 10px 10px 0px 0px;
+
+
+/* Right Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px 10px;
+
+position: absolute;
+width: 55px;
+min-width: 55px;
+height: 29px;
+right: 7px;
+top: 7px;
+
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1), inset 0px 0px 1px #000000, inset 0px 1px 0.5px rgba(0, 0, 0, 0.4), inset 0px 0px 5px rgba(0, 0, 0, 0.4);
+border-radius: 5px;
+
+
+/* Label */
+
+width: 35px;
+height: 15px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #CECECE;
+
+text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.8);
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 1;
+
+
+/* Title */
+
+position: absolute;
+width: 104px;
+height: 24px;
+left: calc(50% - 104px/2);
+top: 9px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+text-align: center;
+
+color: #CECECE;
+
+text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.8);
+
+
+/* Bar Button */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+position: absolute;
+width: 55px;
+max-width: 55px;
+height: 29px;
+left: 7px;
+top: 7px;
+
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1), inset 0px 0px 1px #000000, inset 0px 1px 0.5px rgba(0, 0, 0, 0.4), inset 0px 0px 5px rgba(0, 0, 0, 0.4);
+border-radius: 5px;
+
+
+/* Extras / Icon Wrapper */
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 0px;
+
+width: 20px;
+height: 20px;
+
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* line_3_horizontal */
+
+width: 20px;
+height: 20px;
+
+filter: drop-shadow(0px -1px 0px rgba(0, 0, 0, 0.8));
+
+/* Inside auto layout */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Shape */
+
+position: absolute;
+left: 10%;
+right: 10%;
+top: 15%;
+bottom: 10%;
+
+background: #CECECE;
