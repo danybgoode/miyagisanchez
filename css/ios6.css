@@ -1,0 +1,152 @@
+/* css/ios6.css - iOS 6 Skeuomorphic Design System */
+:root {
+  /* Typography */
+  --font-stack: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  
+  /* Colors */
+  --primary-blue: #147EFB;
+  --primary-blue-dark: #0060e0;
+  --bg-dark: #3d3d3d;
+  --bg-medium: #4a4a4a;
+  --surface-white: #ffffff;
+  --border-gray: #c8c7cc;
+  --text-primary: #1a1a1a;
+  --text-secondary: #888888;
+  --text-on-dark: #ffffff;
+  --text-muted-on-dark: #c8c7cc;
+  --danger-color: #e84040;
+  --success-color: #4cd964;
+
+  /* Background Textures */
+  --linen-dark: #3d3d3d repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 2px),
+                repeating-linear-gradient(-45deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 2px);
+  --linen-medium: #4a4a4a repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 2px),
+                  repeating-linear-gradient(-45deg, rgba(0,0,0,0.05) 0 1px, transparent 1px 2px);
+}
+
+/* Base Elements Reset & Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-stack);
+  font-weight: 400;
+  color: var(--text-primary);
+  background-color: #3d3d3d;
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.1) 0 2px, transparent 2px 4px);
+  background-size: 4px 4px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text-on-dark);
+}
+
+/* Base Typography utilities */
+.text-on-dark { color: var(--text-on-dark); text-shadow: 0 -1px 0 rgba(0,0,0,0.8); }
+.text-muted { color: var(--text-muted-on-dark); text-shadow: 0 -1px 0 rgba(0,0,0,0.8); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(to bottom, #1e84fd 0%, #0060e0 100%);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+}
+
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+}
+
+/* Buttons - Primary (raised, pressable) */
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(to bottom, #1e84fd, #0060e0);
+  border: 1px solid #0050c0;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+  padding: 13px 24px; /* Total height: 13*2 + 16 + 2 = 44px */
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  font-family: var(--font-stack);
+  font-size: 16px;
+  text-decoration: none;
+}
+.btn-primary:active {
+  background: linear-gradient(to bottom, #0050c0, #003da0);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  transform: translateY(1px);
+}
+.btn-primary:disabled {
+  background: linear-gradient(to bottom, #a0a0a0, #888888);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Buttons - Secondary (subtle) */
+.btn-secondary {
+  display: inline-block;
+  background: linear-gradient(to bottom, #f0f0f0, #d8d8d8);
+  border: 1px solid #b0b0b0;
+  border-radius: 10px; /* Changed from 6px for consistency */
+  color: #1a1a1a;
+  font-weight: 600;
+  padding: 11px 16px; /* Total height: 11*2 + 16 + 2 = 40px, but 44 is better for primary. 40 is okay for secondary items but let's push it a bit */
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  font-family: var(--font-stack);
+  font-size: 16px;
+  text-decoration: none;
+}
+.btn-secondary:active {
+  background: linear-gradient(to bottom, #d0d0d0, #b8b8b8);
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.3);
+  transform: translateY(1px);
+}
+
+/* Inputs (recessed) */
+.input-recessed {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(#d0d0d0, #e8e8e8);
+  border: 1px solid #aaaaaa;
+  border-radius: 6px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  font-family: var(--font-stack);
+  font-size: 16px;
+  color: #1a1a1a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.input-recessed:focus {
+  border-color: var(--primary-blue);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), 0 0 0 3px rgba(20,126,251,0.3);
+}

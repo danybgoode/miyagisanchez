@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-i18n="page_title">Bonsai</title>
+    <link rel="stylesheet" href="css/ios6.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <header class="main-header" id="nav">
+        <div class="container nav-container">
+            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">SaaS Pro</span></div>
+            
+            <div class="lang-switcher" style="display:flex; gap: 0; margin-left: auto; margin-right: 10px;">
+                <button class="btn-secondary lang-btn" onclick="setLanguage('en')" style="padding: 6px 10px; font-size: 12px; border-radius: 12px 0 0 12px; min-width: 40px; height: 32px;">EN</button>
+                <button class="btn-secondary lang-btn" onclick="setLanguage('es')" style="padding: 6px 10px; font-size: 12px; border-radius: 0 12px 12px 0; min-width: 40px; height: 32px; border-left: 0;">ES</button>
+            </div>
+
+            <button class="btn-secondary mobile-menu-btn" data-i18n="nav_menu">Menu</button>
+            <nav class="nav-links">
+                <a href="#hero" data-i18n="nav_home">Home</a>
+                <a href="#features" data-i18n="nav_features">Features</a>
+                <a href="#how-it-works" data-i18n="nav_how_it_works">How It Works</a>
+                <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+                <a href="#testimonials" data-i18n="nav_testimonials">Testimonials</a>
+                <a href="#cta" class="btn-primary" data-i18n="nav_get_started">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section container">
+            <div class="split-hero">
+                <div class="hero-content">
+                    <h1 class="hero-title" data-i18n="hero_title">[PLACEHOLDER_MAIN_HEADLINE]</h1>
+                    <p class="hero-subtitle text-muted" data-i18n="hero_subtitle">[PLACEHOLDER_SUBHEADLINE_EXPLAINING_VALUE_PROPOSITION]</p>
+                    <div>
+                        <a href="#pricing" class="btn-primary" data-i18n="hero_cta_free">Start For Free</a>
+                        <a href="#how-it-works" class="btn-secondary" style="margin-left: 10px;" data-i18n="hero_cta_learn">Learn More</a>
+                    </div>
+                    
+                    <!-- Visibility Example -->
+                    <div data-lang-visible="en" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
+                        <span data-i18n="en_only_msg">This is only visible in English!</span>
+                    </div>
+                    <div data-lang-visible="es" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
+                        <span data-i18n="es_only_msg">¡Esto solo es visible en español!</span>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="hero-image-placeholder" data-i18n="hero_image_alt">
+                        [PLACEHOLDER_PRODUCT_SCREENSHOT_OR_ILLUSTRATION]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container">
+            <div class="section-header">
+                <h2 class="section-title text-on-dark" data-i18n="features_title">[PLACEHOLDER_FEATURES_TITLE]</h2>
+                <p class="text-muted" data-i18n="features_subtitle">[PLACEHOLDER_FEATURES_SUBTITLE]</p>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header" data-i18n="feature_1_name">[PLACEHOLDER_FEATURE_1_NAME]</div>
+                    <h3 class="card-title" data-i18n="feature_1_benefit">[PLACEHOLDER_FEATURE_1_BENEFIT]</h3>
+                    <p class="card-text" data-i18n="feature_1_description">[PLACEHOLDER_FEATURE_1_DESCRIPTION]</p>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-i18n="feature_2_name">[PLACEHOLDER_FEATURE_2_NAME]</div>
+                    <h3 class="card-title" data-i18n="feature_2_benefit">[PLACEHOLDER_FEATURE_2_BENEFIT]</h3>
+                    <p class="card-text" data-i18n="feature_2_description">[PLACEHOLDER_FEATURE_2_DESCRIPTION]</p>
+                </div>
+               
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="container">
+            <div class="section-header">
+                <h2 class="section-title text-on-dark" data-i18n="hiw_title">[PLACEHOLDER_HOW_IT_WORKS_TITLE]</h2>
+            </div>
+            <div class="card">
+                <div class="grid-3" style="margin-top: 0;">
+                    <div>
+                        <h3 class="card-title"><span data-i18n="hiw_step_1">1. [PLACEHOLDER_STEP_1]</span></h3>
+                        <p class="card-text" data-i18n="hiw_step_1_details">[PLACEHOLDER_STEP_1_DETAILS]</p>
+                    </div>
+                    <div>
+                        <h3 class="card-title"><span data-i18n="hiw_step_2">2. [PLACEHOLDER_STEP_2]</span></h3>
+                        <p class="card-text" data-i18n="hiw_step_2_details">[PLACEHOLDER_STEP_2_DETAILS]</p>
+                    </div>
+                    <div>
+                        <h3 class="card-title"><span data-i18n="hiw_step_3">3. [PLACEHOLDER_STEP_3]</span></h3>
+                        <p class="card-text" data-i18n="hiw_step_3_details">[PLACEHOLDER_STEP_3_DETAILS]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="container">
+<div class="section-header">
+                    <h2 class="section-title text-on-dark" data-i18n="pricing_title">[PLACEHOLDER_PRICING_TITLE]</h2>
+                </div>
+            <div class="grid-3">
+                <div class="card pricing-card">
+                    <div class="card-header" data-i18n="plan_basic_name">[PLACEHOLDER_BASIC_PLAN]</div>
+                    <div class="pricing-price" data-i18n="plan_basic_price">[PLACEHOLDER_$9]/mo</div>
+                    <ul class="pricing-features">
+                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                        <li style="color:var(--text-secondary);" data-i18n="plan_feature_excluded">[PLACEHOLDER_FEATURE_EXCLUDED]</li>
+                    </ul>
+                    <button class="btn-secondary" data-i18n="cta_basic">Choose Basic</button>
+                </div>
+                <div class="card pricing-card featured">
+                    <div class="card-header" data-i18n="plan_pro_name">[PLACEHOLDER_PRO_PLAN]</div>
+                    <div class="pricing-price" data-i18n="plan_pro_price">[PLACEHOLDER_$29]/mo</div>
+                    <ul class="pricing-features">
+                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                    </ul>
+                    <button class="btn-primary" data-i18n="cta_pro">Choose Pro</button>
+                </div>
+                <div class="card pricing-card">
+                    <div class="card-header" data-i18n="plan_enterprise_name">[PLACEHOLDER_ENTERPRISE_PLAN]</div>
+                    <div class="pricing-price" data-i18n="plan_enterprise_price">[PLACEHOLDER_CUSTOM]</div>
+                    <ul class="pricing-features">
+                        <li data-i18n="plan_pro_everything">[PLACEHOLDER_EVERYTHING_IN_PRO]</li>
+                        <li data-i18n="plan_sso">[PLACEHOLDER_SSO_SAML]</li>
+                        <li data-i18n="plan_support">[PLACEHOLDER_DEDICATED_SUPPORT]</li>
+                    </ul>
+                    <button class="btn-secondary" data-i18n="cta_contact">Contact Us</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="container">
+            <div class="section-header">
+                <h2 class="section-title text-on-dark" data-i18n="testimonials_title">[PLACEHOLDER_TESTIMONIALS_TITLE]</h2>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_1">[PLACEHOLDER_QUOTE_1]</span>"</p>
+                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
+                        <div class="testimonial-avatar"></div>
+                        <div>
+                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_1">[PLACEHOLDER_AUTHOR_1]</div>
+                            <div class="text-secondary" data-i18n="company_1">[PLACEHOLDER_COMPANY_1]</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_2">[PLACEHOLDER_QUOTE_2]</span>"</p>
+                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
+                        <div class="testimonial-avatar"></div>
+                        <div>
+                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_2">[PLACEHOLDER_AUTHOR_2]</div>
+                            <div class="text-secondary" data-i18n="company_2">[PLACEHOLDER_COMPANY_2]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="cta" class="cta-section container">
+            <h2 class="hero-title" data-i18n="cta_title">[PLACEHOLDER_FINAL_CTA_TITLE]</h2>
+            <p class="hero-subtitle text-muted" style="margin-bottom:30px;" data-i18n="cta_subtitle">[PLACEHOLDER_FINAL_CTA_SUBTITLE]</p>
+            <div style="max-width:400px; margin:0 auto; display:flex; flex-direction:column; gap:16px;">
+                <input type="email" class="input-recessed" placeholder="[PLACEHOLDER_ENTER_EMAIL]" data-i18n="cta_placeholder">
+                <button class="btn-primary" style="width:100%;" data-i18n="cta_button">[PLACEHOLDER_SIGN_UP_NOW]</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container">
+            <div class="section-header">
+                <h2 class="section-title text-on-dark" data-i18n="features_title">[PLACEHOLDER_FEATURES_TITLE]</h2>
+                <p class="text-muted" data-i18n="features_subtitle">[PLACEHOLDER_FEATURES_SUBTITLE]</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-header" data-i18n="feature_1_name">[PLACEHOLDER_FEATURE_1_NAME]</div>
+                    <h3 class="card-title" data-i18n="feature_1_benefit">[PLACEHOLDER_FEATURE_1_BENEFIT]</h3>
+                    <p class="card-text" data-i18n="feature_1_description">[PLACEHOLDER_FEATURE_1_DESCRIPTION]</p>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-i18n="feature_2_name">[PLACEHOLDER_FEATURE_2_NAME]</div>
+                    <h3 class="card-title" data-i18n="feature_2_benefit">[PLACEHOLDER_FEATURE_2_BENEFIT]</h3>
+                    <p class="card-text" data-i18n="feature_2_description">[PLACEHOLDER_FEATURE_2_DESCRIPTION]</p>
+                </div>
+                <div class="card">
+                    <div class="card-header" data-i18n="feature_3_name">[PLACEHOLDER_FEATURE_3_NAME]</div>
+                    <h3 class="card-title" data-i18n="feature_3_benefit">[PLACEHOLDER_FEATURE_3_BENEFIT]</h3>
+                    <p class="card-text" data-i18n="feature_3_description">[PLACEHOLDER_FEATURE_3_DESCRIPTION]</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="logo"><span data-i18n="logo_text">[PLACEHOLDER_LOGO]</span></div>
+            <div class="footer-links">
+                <a href="#nav" class="text-muted" data-i18n="nav_home">Home</a>
+                <a href="#features" class="text-muted" data-i18n="nav_features">Features</a>
+                <a href="privacy.html" class="text-muted" data-i18n="footer_privacy">Privacy Policy</a>
+                <a href="terms.html" class="text-muted" data-i18n="footer_terms">Terms of Service</a>
+                <a href="cookies.html" class="text-muted" data-i18n="footer_cookies">Cookie Policy</a>
+            </div>
+            <p class="footer-text text-secondary" data-i18n="footer_copy">&copy; [PLACEHOLDER_YEAR] [PLACEHOLDER_COMPANY_NAME]. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
