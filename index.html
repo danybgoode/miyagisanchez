@@ -11,7 +11,8 @@
 <body>
     <header class="main-header" id="nav">
         <div class="container nav-container">
-            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">SaaS Pro</span></div>
+             <a href="index.html">
+            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">Bonsai</span></div></a>
             
             <div class="lang-switcher" style="display:flex; gap: 0; margin-left: auto; margin-right: 10px;">
                 <button class="btn-secondary lang-btn" onclick="setLanguage('en')" style="padding: 6px 10px; font-size: 12px; border-radius: 12px 0 0 12px; min-width: 40px; height: 32px;">EN</button>
@@ -50,7 +51,7 @@
                 
                 <div class="hero-image">
                     <div class="hero-image-placeholder" aria-label="Bonsai dashboard showing unified inbox and content calendar side by side">
-                        <video autoplay muted loop playsinline src="hero.mp4" class="hero-video"></video>
+                        <video autoplay muted playsinline src="hero.mov" class="hero-video"></video>
                     </div>
                 </div>
             </div>
@@ -65,6 +66,7 @@
             <div class="grid-3">
                 <div class="card">
                     <div class="card-header" data-i18n="feature_1_name">[PLACEHOLDER_FEATURE_1_NAME]</div>
+
                     <h3 class="card-title" data-i18n="feature_1_benefit">[PLACEHOLDER_FEATURE_1_BENEFIT]</h3>
                     <p class="card-text" data-i18n="feature_1_description">[PLACEHOLDER_FEATURE_1_DESCRIPTION]</p>
                 </div>
@@ -78,6 +80,16 @@
                     <h3 class="card-title" data-i18n="feature_3_benefit">[PLACEHOLDER_FEATURE_2_BENEFIT]</h3>
                     <p class="card-text" data-i18n="feature_3_description">[PLACEHOLDER_FEATURE_2_DESCRIPTION]</p>
                 </div>
+
+            </div>
+            <div class="grid-2">
+                <div class="card-image-placeholder">
+                    <img src="analytics_es.png" class="card-img" alt="Inbox preview">
+                </div>
+                <div class="card-image-placeholder">
+                    <img src="conversa.png" class="card-img" alt="Inbox preview">
+                </div>
+
             </div>
         </section>
 
@@ -101,6 +113,15 @@
                         <p class="card-text" data-i18n="hiw_step_3_details">[PLACEHOLDER_STEP_3_DETAILS]</p>
                     </div>
                 </div>
+                
+            </div>
+            <div class="grid-2">
+                <div class="card-image-placeholder">
+                    <img src="canales.png" class="card-img" alt="Inbox preview">
+                </div>
+                <div class="card-image-placeholder">
+                    <video autoplay muted loop playsinline src="general.mov" class="hero-video"></video>
+                </div>
             </div>
         </section>
 
@@ -108,40 +129,53 @@
         <section id="pricing" class="container">
             <div class="section-header">
                     <h2 class="section-title text-on-dark" data-i18n="pricing_title">[PLACEHOLDER_PRICING_TITLE]</h2>
+                    <div data-lang-visible="en" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
+                        <span data-i18n="en_only_msg">This is only visible in English!</span>
+                    </div>
                     <div data-lang-visible="es" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
                         <span data-i18n="es_only_msg">¡Esto solo es visible en español!</span>
                     </div>
                 </div>
             <div class="grid-3">
-                <div class="card pricing-card">
-                    <div class="card-header" data-i18n="plan_basic_name">[PLACEHOLDER_BASIC_PLAN]</div>
-                    <div class="pricing-price" data-i18n="plan_basic_price">[PLACEHOLDER_$9]/mo</div>
-                    <ul class="pricing-features">
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li style="color:var(--text-secondary);" data-i18n="plan_feature_excluded">[PLACEHOLDER_FEATURE_EXCLUDED]</li>
+                <!-- Disabled Pricing Card -->
+                <div class="card pricing-card" 
+                     style="opacity: 0.6; pointer-events: none; filter: grayscale(0.8); user-select: none; border-color: #ccc;" 
+                     aria-disabled="true">
+                    <div class="card-header" data-i18n="plan_basic_nae"></div>
+                    <div class="pricing-price" data-i18n="plan_basic_price" style="color: #888;">$399 mxn/mes</div>
+                    <ul class="pricing-features" style="color: #999;">
+                        <li data-i18n="plan_feature_basic_seats">Unlimited Team Seats</li>
+                        <li data-i18n="plan_feature_brands_standard">Up to 5 Client Brands</li>
+                        <li data-i18n="plan_feature_inbox">Unified Omnichannel Inbox</li>
+                        <li data-i18n="plan_feature_social">Multi-Platform Social Scheduling</li>
+                        <li data-i18n="plan_feature_approval">Client Approval Workflows</li>
+                        <li data-i18n="plan_feature_analytics">Consolidated Team Analytics</li>
                     </ul>
-                    <button class="btn-secondary" data-i18n="cta_basic">Choose Basic</button>
+                    <button class="btn-secondary" data-i18n="cta_basic" disabled style="background-color: #ccc; border-color: #bbb; color: #777;">Choose Basic</button>
                 </div>
+
                 <div class="card pricing-card featured">
-                    <div class="card-header" data-i18n="plan_pro_nme">Bonsai</div>
+                    <div class="card-header" data-i18n="plan_pro_nam"></div>
                     <div class="pricing-price" data-i18n="plan_pro_price">[PLACEHOLDER_$29]/mo</div>
                     <ul class="pricing-features">
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                        <li data-i18n="plan_feature_seats"><b>Unlimited</b> Team Seats</li>
+                        <li data-i18n="plan_feature_brands_founder"><b>Up to 10</b> Client Brands</li>
+                        <li data-i18n="plan_feature_inbox">Unified Omnichannel Inbox</li>
+                        <li data-i18n="plan_feature_social">Multi-Platform Social Scheduling</li>
+                        <li data-i18n="plan_feature_approval">Client Approval Workflows</li>
+                        <li data-i18n="plan_feature_analytics">Consolidated Team Analytics</li>
                     </ul>
                     <button class="btn-primary" data-i18n="cta_pro">Choose Pro</button>
                 </div>
                 <div class="card pricing-card">
-                    <div class="card-header" data-i18n="plan_enterprise_name">[PLACEHOLDER_ENTERPRISE_PLAN]</div>
+                    <div class="card-header" data-i18n="plan_enterprise_name"></div>
                     <div class="pricing-price" data-i18n="plan_enterprise_price">[PLACEHOLDER_CUSTOM]</div>
                     <ul class="pricing-features">
-                        <li data-i18n="plan_pro_everything">[PLACEHOLDER_EVERYTHING_IN_PRO]</li>
-                        <li data-i18n="plan_sso">[PLACEHOLDER_SSO_SAML]</li>
-                        <li data-i18n="plan_support">[PLACEHOLDER_DEDICATED_SUPPORT]</li>
+                        <li data-i18n="plan_feature_custom_brands">Unlimited Client Brands</li>
+                        <li data-i18n="plan_feature_migration">Dedicated Migration Support</li>
+                        <li data-i18n="plan_feature_training">1-on-1 Team Training</li>
                     </ul>
-                    <button class="btn-secondary" data-i18n="cta_contact">Contact Us</button>
+                    <a href="https://cal.com/miyagisan/15min" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display: block; text-align: center; text-decoration: none;" data-i18n="cta_book_call">Book a Demo</a>
                 </div>
             </div>
         </section>
@@ -153,9 +187,31 @@
             </div>
             <div class="grid-2">
                 <div class="card">
+                    <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_3">[PLACEHOLDER_QUOTE_1]</span>"</p>
+                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
+                        <div class="testimonial-avatar"><img src="unicorn.png"></div>
+                        <div>
+                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_3">[PLACEHOLDER_AUTHOR_1]</div>
+                            <div class="text-secondary" data-i18n="company_3">[PLACEHOLDER_COMPANY_1]</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_2">[PLACEHOLDER_QUOTE_2]</span>"</p>
+                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
+                        <div class="testimonial-avatar"><img src="bull.png"></div>
+                        <div>
+                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_2">[PLACEHOLDER_AUTHOR_2]</div>
+                            <div class="text-secondary" data-i18n="company_2">[PLACEHOLDER_COMPANY_2]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card">
                     <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_1">[PLACEHOLDER_QUOTE_1]</span>"</p>
                     <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
-                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-avatar"><img src="chicken.png"></div>
                         <div>
                             <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_1">[PLACEHOLDER_AUTHOR_1]</div>
                             <div class="text-secondary" data-i18n="company_1">[PLACEHOLDER_COMPANY_1]</div>
@@ -163,12 +219,12 @@
                     </div>
                 </div>
                 <div class="card">
-                    <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_2">[PLACEHOLDER_QUOTE_2]</span>"</p>
+                    <p class="card-text" style="font-style: italic;">"<span data-i18n="quote_5">[PLACEHOLDER_QUOTE_2]</span>"</p>
                     <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
-                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-avatar"><img src="cow.png"></div>
                         <div>
-                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_2">[PLACEHOLDER_AUTHOR_2]</div>
-                            <div class="text-secondary" data-i18n="company_2">[PLACEHOLDER_COMPANY_2]</div>
+                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_5">[PLACEHOLDER_AUTHOR_2]</div>
+                            <div class="text-secondary" data-i18n="company_5">[PLACEHOLDER_COMPANY_2]</div>
                         </div>
                     </div>
                 </div>
@@ -177,20 +233,21 @@
 
         <!-- CTA Section -->
         <section id="cta" class="cta-section container">
-
-            <div class="section-header">
-                <h1 class="hero-title text-on-dark" data-i18n="cta_title">[PLACEHOLDER_FEATURES_TITLE]</h2>
-                <p class="text-muted" data-i18n="promotional_price_es">[PLACEHOLDER_FEATURES_SUBTITLE]</p>
+             <div class="grid-2">
+                <div class="card-image-placeholder">
+                    <video autoplay muted playsinline src="llamacenter.mov" class="hero-video"></video>
+                </div>
+                <div class="card-image-placeholder">
+                    <div class="section-header">
+                        <h1 class="hero-title text-on-dark" data-i18n="cta_title">[PLACEHOLDER_FEATURES_TITLE]</h1><br>
+                        
+                        <div>
+                            <a href="#pricing" class="btn-primary" data-i18n="hero_cta_free">Start For Free</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            
-            
-            <div>
-                <a href="#pricing" class="btn-primary" data-i18n="hero_cta_free">Start For Free</a>
-                
-            </div>
-            
-            <!-- Visibility Example -->
+             <!-- Visibility Example -->
             <div data-lang-visible="en" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
                 <span data-i18n="en_only_msg">This is only visible in English!</span>
             </div>
@@ -202,13 +259,14 @@
 
     <footer class="main-footer">
         <div class="container">
-            <div class="logo"><span data-i18n="logo_text">[PLACEHOLDER_LOGO]</span></div>
+            <a href="index.html">
+            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">Bonsai</span></div></a>
             <div class="footer-links">
-                <a href="index.html" class="text-muted">Home</a>
+                <!-- Visibility Example <a href="index.html" class="text-muted">Home</a>
                 <a href="creators.html" class="text-muted">Creators</a>
                 <a href="merchants.html" class="text-muted">Merchants</a>
                 <a href="agency.html" class="text-muted">Agencies</a>
-                <span class="text-muted">|</span>
+                <span class="text-muted">|</span>-->
                 <a href="privacy.html" class="text-muted" data-i18n="footer_privacy">Privacy Policy</a>
                 <a href="terms.html" class="text-muted" data-i18n="footer_terms">Terms of Service</a>
                 <a href="cookies.html" class="text-muted" data-i18n="footer_cookies">Cookie Policy</a>

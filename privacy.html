@@ -11,7 +11,8 @@
 <body>
     <header class="main-header" id="nav">
         <div class="container nav-container">
-            <a href="index.html" class="logo" style="text-decoration:none;"><span data-i18n="logo_text">[PLACEHOLDER_LOGO]</span></a>
+             <a href="index.html">
+            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">Bonsai</span></div></a>
             
             <div class="lang-switcher" style="display:flex; gap: 0; margin-left: auto; margin-right: 10px;">
                 <button class="btn-secondary lang-btn" onclick="setLanguage('en')" style="padding: 6px 10px; font-size: 12px; border-radius: 12px 0 0 12px; min-width: 40px; height: 32px;">EN</button>
@@ -20,12 +21,13 @@
 
             <button class="btn-secondary mobile-menu-btn" data-i18n="nav_menu">Menu</button>
             <nav class="nav-links">
-                <a href="index.html#hero" data-i18n="nav_home">Home</a>
-                <a href="index.html#features" data-i18n="nav_features">Features</a>
-                <a href="index.html#pricing" data-i18n="nav_pricing">Pricing</a>
+                <a href="#features" data-i18n="nav_features">Features</a>
+                <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+                <a href="#cta" class="btn-primary" data-i18n="nav_get_started">Get Started</a>
             </nav>
         </div>
     </header>
+
 
     <main class="container">
         <div class="card standard-panel">
@@ -50,10 +52,15 @@
 
     <footer class="main-footer">
         <div class="container">
-            <div class="logo"><span data-i18n="logo_text">[PLACEHOLDER_LOGO]</span></div>
+            <a href="index.html">
+            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">Bonsai</span></div></a>
             <div class="footer-links">
-                <a href="index.html" class="text-muted" data-i18n="nav_home">Home</a>
-                <a href="privacy.html" class="text-muted" style="color: #fff;" data-i18n="footer_privacy">Privacy Policy</a>
+                <!-- Visibility Example <a href="index.html" class="text-muted">Home</a>
+                <a href="creators.html" class="text-muted">Creators</a>
+                <a href="merchants.html" class="text-muted">Merchants</a>
+                <a href="agency.html" class="text-muted">Agencies</a>
+                <span class="text-muted">|</span>-->
+                <a href="privacy.html" class="text-muted" data-i18n="footer_privacy">Privacy Policy</a>
                 <a href="terms.html" class="text-muted" data-i18n="footer_terms">Terms of Service</a>
                 <a href="cookies.html" class="text-muted" data-i18n="footer_cookies">Cookie Policy</a>
             </div>

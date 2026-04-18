@@ -63,10 +63,14 @@ h1, h2, h3, h4, h5, h6 {
 .logo-icon {
   width: 24px;
   height: 24px;
-  background: linear-gradient(to bottom, #1e84fd 0%, #0060e0 100%);
-  border-radius: 6px;
+  background: linear-gradient(
+    to bottom, 
+    #A34343 0% 33.3%,    /* Faded Brick Red */
+    #C9B37E 33.3% 66.6%, /* Muted Mustard Yellow */
+    #4A5D7E 66.6% 100%   /* Desaturated Slate Blue */
+);
+
   display: flex;
-  align-items: center;
   justify-content: center;
   color: #fff;
   font-size: 16px;
