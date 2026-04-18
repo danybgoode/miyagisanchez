@@ -171,7 +171,7 @@ const i18n = {
       // Create the discounted price
       const discountedPriceElement = document.createElement('span');
       discountedPriceElement.className = 'pricing-discounted';
-      discountedPriceElement.style.fontSize = '36px';
+      discountedPriceElement.style.fontSize = '30px';
       discountedPriceElement.style.fontWeight = '700';
       discountedPriceElement.style.color = '#000';
       discountedPriceElement.style.marginLeft = '10px';
@@ -224,7 +224,7 @@ const i18n = {
       // Create the discounted price
       const discountedPriceElement = document.createElement('span');
       discountedPriceElement.className = 'pricing-discounted';
-      discountedPriceElement.style.fontSize = '36px';
+      discountedPriceElement.style.fontSize = '30px';
       discountedPriceElement.style.fontWeight = '700';
       discountedPriceElement.style.color = '#000';
       discountedPriceElement.style.marginLeft = '10px';
