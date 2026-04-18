@@ -46,18 +46,31 @@ document.addEventListener('DOMContentLoaded', () => {
     glove.style.backgroundImage = `url('${cursorDataUrl}')`;
     document.body.appendChild(glove);
 
-    const interactiveElements = document.querySelectorAll('button, .btn-primary, .btn-secondary, .btn-danger');
+    const interactiveElements = document.querySelectorAll('button, .btn-secondary, .btn-danger');
+    const primaryElements = document.querySelectorAll('.btn-primary');
+
+    const primaryCursor = document.createElement('div');
+    primaryCursor.classList.add('custom-primary-cursor');
+    primaryCursor.style.backgroundImage = `url('/cursor.svg')`;
+    document.body.appendChild(primaryCursor);
 
     let isHovering = false;
+    let isPrimaryHovering = false;
 
     window.addEventListener('mousemove', (e) => {
       if (isHovering) {
         glove.style.left = `${e.clientX - 3}px`;
         glove.style.top = `${e.clientY - 8}px`;
       }
+      if (isPrimaryHovering) {
+        primaryCursor.style.left = `${e.clientX - 27}px`;
+        primaryCursor.style.top = `${e.clientY - 27}px`;
+      }
     });
 
     interactiveElements.forEach(el => {
+      if (el.classList.contains('btn-primary')) return; // handled below
+
       el.addEventListener('mouseenter', (e) => {
         isHovering = true;
         glove.style.left = `${e.clientX - 3}px`;
@@ -77,6 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       el.addEventListener('mouseup', () => {
         glove.classList.remove('squeeze');
+      });
+    });
+
+    primaryElements.forEach(el => {
+      el.addEventListener('mouseenter', (e) => {
+        isPrimaryHovering = true;
+        primaryCursor.style.left = `${e.clientX - 27}px`;
+        primaryCursor.style.top = `${e.clientY - 27}px`;
+        primaryCursor.classList.add('show');
+      });
+
+      el.addEventListener('mouseleave', () => {
+        isPrimaryHovering = false;
+        primaryCursor.classList.remove('show');
       });
     });
   }

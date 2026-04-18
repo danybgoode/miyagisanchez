@@ -191,20 +191,23 @@
   }
 }
 
-.custom-glove-cursor {
+.custom-glove-cursor, .custom-primary-cursor {
   position: fixed;
   pointer-events: none;
-  width: 48px;
-  height: 48px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   z-index: 999999;
+  will-change: transform, left, top;
+}
+
+.custom-glove-cursor {
+  width: 48px;
+  height: 48px;
   transform: scale(0.8);
   opacity: 0;
   transform-origin: 50% 10%;
   transition: transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 50ms ease;
-  will-change: transform, left, top;
 }
 
 .custom-glove-cursor.show {
@@ -214,4 +217,14 @@
 
 .custom-glove-cursor.squeeze {
   transform: scale(0.9) !important;
+}
+
+.custom-primary-cursor {
+  width: 55px;
+  height: 55px;
+  opacity: 0;
+}
+
+.custom-primary-cursor.show {
+  opacity: 1;
 }
