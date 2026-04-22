@@ -7,8 +7,19 @@
     <link rel="stylesheet" href="css/ios6.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WNMX9KMS');</script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNMX9KMS"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header class="main-header" id="nav">
         <div class="container nav-container">
              <a href="index.html">
@@ -313,5 +324,21 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      (function(d,t) {
+        var BASE_URL="https://chat.despachobonsai.com";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: '1xQzZkDhjgc6z8B8DXosEXKF',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
+
 </body>
 </html>
