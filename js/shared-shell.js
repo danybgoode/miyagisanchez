@@ -54,7 +54,7 @@
               </button>
               <nav class="nav-links">
                 ${(navSets[shellNav] || navSets.marketing).trim()}
-                <a href="https://dashboard.despachobonsai.com/sign-up" class="btn-primary" data-i18n="nav_get_started">Get Started</a>
+                <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="nav_get_started">Get Started</a>
               </nav>
             </div>
           </header>
