@@ -152,6 +152,11 @@ section:not(:last-child)::after {
   flex: 1;
   text-align: left;
 }
+#hero-cta-button {
+  display: flex;
+  width: 100%;
+  padding: 1.25rem 0;
+}
 .hero-title {
   font-size: 48px;
   margin-bottom: 20px;

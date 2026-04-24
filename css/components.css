@@ -67,30 +67,160 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
+  perspective: 1100px;
 }
-.trust-text-pill {
+.trust-channel-key {
+  --key-surface: linear-gradient(to bottom, #58a5ff, #1877f2);
+  --key-edge: rgba(14, 31, 63, 0.54);
+  --key-highlight: rgba(255,255,255,0.24);
+  --key-glow: rgba(255,255,255,0.16);
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 10px 16px;
-  border-radius: 999px;
+  min-height: 54px;
+  padding: 12px 18px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.22);
   color: #fff;
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  font-family: var(--font-stack);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.28);
+  background: var(--key-surface);
   box-shadow:
-    inset 0 2px 3px rgba(255,255,255,0.16),
-    0 4px 0 rgba(18, 24, 41, 0.24),
-    0 10px 16px rgba(0,0,0,0.14);
+    inset 0 1px 0 rgba(0,0,0,0.08),
+    inset 0 2px 3px var(--key-highlight),
+    inset 0 -1px 0 rgba(255,255,255,0.10),
+    0 6px 0 var(--key-edge),
+    0 12px 18px rgba(0,0,0,0.18);
+  transition:
+    transform 110ms ease-out,
+    box-shadow 110ms ease-out,
+    filter 160ms ease-out;
+  cursor: pointer;
+  touch-action: manipulation;
+  will-change: transform, box-shadow;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
-.trust-text-pill.whatsapp { background: linear-gradient(to bottom, #48d889, #16b765); }
-.trust-text-pill.instagram { background: linear-gradient(135deg, #ffc867, #f56040 30%, #d62976 65%, #8134af 100%); }
-.trust-text-pill.facebook { background: linear-gradient(to bottom, #58a5ff, #1877f2); }
-.trust-text-pill.email { background: linear-gradient(to bottom, #aeb9ce, #7a8aa6); }
-.trust-text-pill.telegram { background: linear-gradient(to bottom, #67d0ff, #229ed9); }
-.trust-text-pill.sms { background: linear-gradient(to bottom, #ffd972, #dcae43); }
+.trust-channel-key::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.22), transparent 56%),
+    linear-gradient(to bottom, rgba(255,255,255,0.08), transparent 42%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+.trust-channel-key::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(10,16,28,0.18);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.14);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.trust-channel-key:hover {
+  filter: brightness(0.97);
+}
+.trust-channel-key:focus-visible {
+  outline: 3px solid rgba(118, 174, 255, 0.75);
+  outline-offset: 3px;
+}
+.trust-channel-key:active,
+.trust-channel-key.is-pressed {
+  transform: translateY(6px);
+  box-shadow:
+    inset 0 1px 0 rgba(0,0,0,0.12),
+    inset 0 1px 2px rgba(255,255,255,0.16),
+    0 0 0 var(--key-edge),
+    0 2px 5px rgba(0,0,0,0.14);
+}
+.trust-channel-key.is-popping {
+  animation: trust-key-pop 520ms cubic-bezier(0.22, 0.9, 0.24, 1) both;
+  animation-delay: var(--pop-delay, 0ms);
+}
+.trust-channel-key.whatsapp {
+  --key-surface: linear-gradient(to bottom, #56dc92, #19b86b);
+  --key-edge: #10834d;
+}
+.trust-channel-key.instagram {
+  --key-surface: linear-gradient(135deg, #ffd26f, #f66545 28%, #d92a78 62%, #8a3fb1 100%);
+  --key-edge: #7a2a92;
+}
+.trust-channel-key.facebook {
+  --key-surface: linear-gradient(to bottom, #58a5ff, #1877f2);
+  --key-edge: #0b58bf;
+}
+.trust-channel-key.email {
+  --key-surface: linear-gradient(to bottom, #bcc5d6, #8798b3);
+  --key-edge: #66758e;
+}
+.trust-channel-key.telegram {
+  --key-surface: linear-gradient(to bottom, #69d4ff, #249fda);
+  --key-edge: #1d7ca9;
+}
+.trust-channel-key.sms {
+  --key-surface: linear-gradient(to bottom, #ffdf7e, #d8ae44);
+  --key-edge: #9e7b2f;
+}
+@keyframes trust-key-pop {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.08),
+      inset 0 2px 3px var(--key-highlight),
+      inset 0 -1px 0 rgba(255,255,255,0.10),
+      0 6px 0 var(--key-edge),
+      0 12px 18px rgba(0,0,0,0.18);
+  }
+  28% {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.06),
+      inset 0 2px 3px rgba(255,255,255,0.28),
+      inset 0 -1px 0 rgba(255,255,255,0.10),
+      0 12px 0 var(--key-edge),
+      0 22px 28px rgba(0,0,0,0.2);
+  }
+  62% {
+    transform: translateY(3px) scale(0.995);
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.1),
+      inset 0 1px 2px rgba(255,255,255,0.18),
+      0 3px 0 var(--key-edge),
+      0 8px 10px rgba(0,0,0,0.12);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow:
+      inset 0 1px 0 rgba(0,0,0,0.08),
+      inset 0 2px 3px var(--key-highlight),
+      inset 0 -1px 0 rgba(255,255,255,0.10),
+      0 6px 0 var(--key-edge),
+      0 12px 18px rgba(0,0,0,0.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-channel-key,
+  .trust-channel-key.is-popping {
+    animation: none !important;
+    transition: none;
+  }
+}
+
 .feature-story-card {
   min-height: 255px;
   background: linear-gradient(to bottom, rgba(250,251,252,0.98) 0%, rgba(238,241,245,0.94) 100%);
@@ -969,9 +1099,9 @@
   .trust-bar-chips {
     gap: 10px;
   }
-  .trust-text-pill {
-    min-height: 38px;
-    padding: 8px 14px;
+  .trust-channel-key {
+    min-height: 48px;
+    padding: 10px 14px;
     font-size: 13px;
   }
   .pain-copy {

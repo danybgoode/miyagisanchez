@@ -50,7 +50,7 @@
                     <h1 class="hero-title" data-i18n="hero_title">[PLACEHOLDER_MAIN_HEADLINE]</h1>
                     <p class="hero-subtitle text-muted" data-i18n="hero_subtitle">[PLACEHOLDER_SUBHEADLINE_EXPLAINING_VALUE_PROPOSITION]</p>
                     <div>
-                        <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="hero_cta_free">Start For Free</a>
+                        <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" id="hero-cta-button" data-i18n="hero_cta_free">Start For Free</a>
                         
                     </div>
                     
@@ -84,13 +84,13 @@
         <section id="trust-bar" class="container trust-bar-section">
             <div class="trust-bar-shell">
                 <span class="trust-bar-label" data-i18n="trust_bar_label">Conecta con los canales donde ya están tus clientes:</span>
-                <div class="trust-bar-chips" aria-hidden="true">
-                    <span class="trust-text-pill whatsapp">WhatsApp</span>
-                    <span class="trust-text-pill instagram">Instagram</span>
-                    <span class="trust-text-pill facebook">Facebook</span>
-                    <span class="trust-text-pill email">Email</span>
-                    <span class="trust-text-pill telegram">Telegram</span>
-                    <span class="trust-text-pill sms">SMS</span>
+                <div class="trust-bar-chips" aria-label="Messaging and sales channels">
+                    <button type="button" class="trust-channel-key whatsapp" data-trust-key>WhatsApp</button>
+                    <button type="button" class="trust-channel-key instagram" data-trust-key>Instagram</button>
+                    <button type="button" class="trust-channel-key facebook" data-trust-key>Facebook</button>
+                    <button type="button" class="trust-channel-key email" data-trust-key>Email</button>
+                    <button type="button" class="trust-channel-key telegram" data-trust-key>Telegram</button>
+                    <button type="button" class="trust-channel-key sms" data-trust-key>SMS</button>
                 </div>
             </div>
         </section>
