@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 24" width="120" height="24" role="img" aria-label="Bonsai logo">
+  <title>Bonsai</title>
+
+  <!-- Symbol: tricolor square -->
+  <!-- Top third: Faded Brick Red -->
+  <rect x="0" y="0" width="24" height="8" fill="#A34343"/>
+  <!-- Middle third: Muted Mustard Yellow -->
+  <rect x="0" y="8" width="24" height="8" fill="#C9B37E"/>
+  <!-- Bottom third: Desaturated Slate Blue -->
+  <rect x="0" y="16" width="24" height="8" fill="#4A5D7E"/>
+
+  <!-- Wordmark: BONSAI -->
+  <text
+    x="32"
+    y="20"
+    font-family="'Futura-CondensedExtraBold', 'Futura', 'Trebuchet MS', sans-serif"
+    font-weight="800"
+    font-size="20"
+    letter-spacing="0.5"
+    fill="#1a1a1a"
+  >Bonsai</text>
+</svg>

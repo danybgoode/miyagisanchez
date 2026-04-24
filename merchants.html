@@ -4,29 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title data-i18n="page_title">Bonsai</title>
+    <meta name="description" content="Powerful tools for e-commerce and retail." data-i18n-content="meta_description">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#3d3d3d">
+    <link rel="canonical" href="https://despachobonsai.com/merchants.html" data-dynamic-canonical>
+    <meta property="og:site_name" content="Despacho Bonsai">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bonsai for Merchants" data-i18n-content="meta_og_title">
+    <meta property="og:description" content="Powerful tools for e-commerce and retail." data-i18n-content="meta_og_description">
+    <meta property="og:image" content="https://despachobonsai.com/hero.jpg">
+    <meta property="og:image:alt" content="Bonsai dashboard preview" data-i18n-content="meta_social_image_alt">
+    <meta property="og:url" content="https://despachobonsai.com/merchants.html" data-dynamic-og-url>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bonsai for Merchants" data-i18n-content="meta_og_title">
+    <meta name="twitter:description" content="Powerful tools for e-commerce and retail." data-i18n-content="meta_og_description">
+    <meta name="twitter:image" content="https://despachobonsai.com/hero.jpg">
+    <link rel="icon" type="image/svg+xml" href="bonsai-logo-assets/bonsai-icon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="bonsai-logo-assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="bonsai-logo-assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="bonsai-logo-assets/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="css/ios6.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/components.css">
 </head>
-<body>
-    <header class="main-header" id="nav">
-        <div class="container nav-container">
-            <div class="logo"><span class="logo-icon"></span> <span data-i18n="logo_text">SaaS Pro</span></div>
-            
-            <div class="lang-switcher" style="display:flex; gap: 0; margin-left: auto; margin-right: 10px;">
-                <button class="btn-secondary lang-btn" onclick="setLanguage('en')" style="padding: 6px 10px; font-size: 12px; border-radius: 12px 0 0 12px; min-width: 40px; height: 32px;">EN</button>
-                <button class="btn-secondary lang-btn" onclick="setLanguage('es')" style="padding: 6px 10px; font-size: 12px; border-radius: 0 12px 12px 0; min-width: 40px; height: 32px; border-left: 0;">ES</button>
-            </div>
-
-            <button class="btn-secondary mobile-menu-btn" data-i18n="nav_menu">Menu</button>
-            <nav class="nav-links">
-                <a href="#features" data-i18n="nav_features">Features</a>
-                <a href="#how-it-works" data-i18n="nav_how_it_works">How It Works</a>
-                <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
-                <a href="https://dashboard.despachobonsai.com/sign-up" class="btn-primary" data-i18n="nav_get_started">Get Started</a>
-            </nav>
-        </div>
-    </header>
+<body data-shell-nav="marketing">
+    <div data-shared-header></div>
 
     <main>
         <!-- Hero Section -->
@@ -68,7 +71,6 @@
                     <div class="card-header" data-i18n="feature_1_name">[PLACEHOLDER_FEATURE_1_NAME]</div>
                     <h3 class="card-title" data-i18n="feature_1_benefit">[PLACEHOLDER_FEATURE_1_BENEFIT]</h3>
                     <p class="card-text" data-i18n="feature_1_description">[PLACEHOLDER_FEATURE_1_DESCRIPTION]</p>
-                    <img src="wallet.png">
                 </div>
                 <div class="card">
                     <div class="card-header" data-i18n="feature_2_name">[PLACEHOLDER_FEATURE_2_NAME]</div>
@@ -185,23 +187,9 @@
         </section>
     </main>
 
-    <footer class="main-footer">
-        <div class="container">
-            <div class="logo"><span data-i18n="logo_text">[PLACEHOLDER_LOGO]</span></div>
-            <div class="footer-links">
-                <a href="index.html" class="text-muted">Home</a>
-                <a href="creators.html" class="text-muted">Creators</a>
-                <a href="merchants.html" class="text-muted">Merchants</a>
-                <a href="agency.html" class="text-muted">Agencies</a>
-                <span class="text-muted">|</span>
-                <a href="privacy.html" class="text-muted" data-i18n="footer_privacy">Privacy Policy</a>
-                <a href="terms.html" class="text-muted" data-i18n="footer_terms">Terms of Service</a>
-                <a href="cookies.html" class="text-muted" data-i18n="footer_cookies">Cookie Policy</a>
-            </div>
-            <p class="footer-text text-secondary" data-i18n="footer_copy">&copy; [PLACEHOLDER_YEAR] [PLACEHOLDER_COMPANY_NAME]. All rights reserved.</p>
-        </div>
-    </footer>
+    <div data-shared-footer></div>
 
+    <script src="js/shared-shell.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>

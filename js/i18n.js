@@ -10,6 +10,10 @@ const i18n = {
   currentLanguage: 'en',
 
   async init() {
+    if (typeof window.renderSharedShell === 'function') {
+      window.renderSharedShell();
+    }
+
     // 1. Detect language
     const storedLang = localStorage.getItem(this.storageKey);
     const browserLang = navigator.language.split('-')[0];
@@ -21,6 +25,8 @@ const i18n = {
     } else {
       this.currentLanguage = this.defaultLanguage;
     }
+
+    document.documentElement.lang = this.currentLanguage;
 
     // 2. Initial fetch and apply
     await this.loadTranslations(this.currentLanguage);
@@ -79,6 +85,8 @@ const i18n = {
 
   applyTranslations() {
     const elements = document.querySelectorAll('[data-i18n]');
+    const ariaLabelElements = document.querySelectorAll('[data-i18n-aria-label]');
+    const contentElements = document.querySelectorAll('[data-i18n-content]');
     const langData = this.translations[this.currentLanguage];
     
     if (!langData) return;
@@ -93,6 +101,24 @@ const i18n = {
         } else {
           el.innerHTML = translation;
         }
+      }
+    });
+
+    ariaLabelElements.forEach(el => {
+      const key = el.getAttribute('data-i18n-aria-label');
+      const translation = langData[key];
+
+      if (translation) {
+        el.setAttribute('aria-label', translation);
+      }
+    });
+
+    contentElements.forEach(el => {
+      const key = el.getAttribute('data-i18n-content');
+      const translation = langData[key];
+
+      if (translation) {
+        el.setAttribute('content', translation);
       }
     });
 

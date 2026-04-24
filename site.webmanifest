@@ -1,0 +1,24 @@
+{
+  "name": "Despacho Bonsai",
+  "short_name": "Bonsai",
+  "icons": [
+    {
+      "src": "bonsai-logo-assets/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "bonsai-logo-assets/favicon-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "bonsai-logo-assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#3d3d3d",
+  "background_color": "#3d3d3d",
+  "display": "standalone"
+}

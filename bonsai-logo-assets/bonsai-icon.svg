@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Bonsai icon">
+  <title>Bonsai</title>
+  <!-- Top third: Faded Brick Red -->
+  <rect x="0" y="0" width="24" height="8" fill="#A34343"/>
+  <!-- Middle third: Muted Mustard Yellow -->
+  <rect x="0" y="8" width="24" height="8" fill="#C9B37E"/>
+  <!-- Bottom third: Desaturated Slate Blue -->
+  <rect x="0" y="16" width="24" height="8" fill="#4A5D7E"/>
+</svg>
