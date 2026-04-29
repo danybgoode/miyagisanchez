@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="../">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai — Telegram to Buffer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(148deg, #f5f0ff 0%, #ede8fb 30%, #e8f0ff 65%, #f0fff8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 40px 24px;
+    }
+
+    /* ════════════════════════════════════════
+       DOUGHY CLAY SYSTEM
+    ════════════════════════════════════════ */
+
+    .clay-light {
+      position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.68);
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.10),
+        0 14px 38px rgba(0,0,0,0.10),
+        0 28px 60px rgba(0,0,0,0.06),
+        -6px -6px 16px rgba(255,255,255,0.92),
+        inset 0 5px 0 rgba(255,255,255,0.82),
+        inset 5px 5px 16px rgba(255,255,255,0.50),
+        inset -5px -5px 16px rgba(0,0,0,0.10);
+    }
+    .clay-light::before {
+      content: '';
+      position: absolute; top: 7%; left: 9%; width: 50%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 55%, transparent 72%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Phone-specific deep clay */
+    .clay-phone {
+      position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.14);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.35),
+        0 18px 45px rgba(0,0,0,0.38),
+        0 40px 80px rgba(0,0,0,0.22),
+        inset 0 5px 0 rgba(255,255,255,0.10),
+        inset 5px 5px 18px rgba(255,255,255,0.06),
+        inset -5px -5px 18px rgba(0,0,0,0.25);
+    }
+    .clay-phone::before {
+      content: '';
+      position: absolute; top: 5%; left: 8%; width: 54%; height: 40%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 40% 35%,
+        rgba(255,255,255,0.12) 0%, transparent 65%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Chat bubble */
+    .clay-bubble {
+      position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.60);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.10),
+        -3px -3px 8px rgba(255,255,255,0.88),
+        inset 0 4px 0 rgba(255,255,255,0.76),
+        inset 3px 3px 10px rgba(255,255,255,0.46),
+        inset -3px -3px 10px rgba(0,0,0,0.09);
+    }
+    .clay-bubble::before {
+      content: '';
+      position: absolute; top: 4px; left: 9px;
+      width: 44%; height: 50%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.46) 0%, transparent 68%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Queue card */
+    .clay-card {
+      position: relative; isolation: isolate;
+      border-radius: 16px;
+      border: 1.5px solid rgba(255,255,255,0.65);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.11),
+        0 12px 28px rgba(0,0,0,0.09),
+        -5px -5px 14px rgba(255,255,255,0.90),
+        inset 0 4px 0 rgba(255,255,255,0.80),
+        inset 4px 4px 12px rgba(255,255,255,0.48),
+        inset -4px -4px 12px rgba(0,0,0,0.09);
+    }
+    .clay-card::before {
+      content: '';
+      position: absolute; top: 6%; left: 8%; width: 48%; height: 46%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255,255,255,0.52) 0%, rgba(255,255,255,0.08) 55%, transparent 72%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Pill badge */
+    .clay-pill {
+      position: relative; isolation: isolate;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.62);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.13),
+        -2px -2px 6px rgba(255,255,255,0.90),
+        inset 0 3px 0 rgba(255,255,255,0.72),
+        inset 2px 2px 7px rgba(255,255,255,0.42),
+        inset -2px -2px 7px rgba(0,0,0,0.10);
+    }
+
+    /* Platform icon badge */
+    .platform-icon {
+      width: 20px; height: 20px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 800; color: white;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      box-shadow:
+        0 2px 6px rgba(0,0,0,0.18),
+        inset 0 2px 0 rgba(255,255,255,0.35),
+        inset 1px 1px 4px rgba(255,255,255,0.20);
+    }
+
+    /* Side buttons */
+    .side-btn {
+      position: absolute;
+      border-radius: 3px 0 0 3px;
+      background: linear-gradient(to left, #1a0b45 0%, #27115e 40%, #1e0d50 100%);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-left: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(0,0,0,0.4);
+      box-shadow: -3px 2px 6px rgba(0,0,0,0.5),
+        inset 1px 1px 3px rgba(255,255,255,0.07),
+        inset -1px -1px 2px rgba(0,0,0,0.3);
+    }
+    .side-btn.right {
+      border-radius: 0 3px 3px 0;
+      background: linear-gradient(to right, #1a0b45 0%, #27115e 40%, #1e0d50 100%);
+      box-shadow: 3px 2px 6px rgba(0,0,0,0.5),
+        inset -1px 1px 3px rgba(255,255,255,0.07);
+      border-left: none;
+      border-right: 1px solid rgba(255,255,255,0.10);
+    }
+
+    /* ════════════════════════════════════════
+       PHONE
+    ════════════════════════════════════════ */
+
+    .phone-tilt {
+      transform: perspective(1100px) rotateY(-7deg) rotateX(2deg);
+      transform-style: preserve-3d;
+      position: relative; flex-shrink: 0;
+    }
+    .phone-tilt::after {
+      content: '';
+      position: absolute;
+      bottom: -24px; left: 6%; right: -2%; height: 24px;
+      background: radial-gradient(ellipse at 55% 50%,
+        rgba(80,20,180,0.22) 0%, transparent 70%);
+      filter: blur(10px); z-index: -1;
+    }
+
+    .phone {
+      width: 282px;
+      border-radius: 46px;
+      background: radial-gradient(ellipse at 30% 18%,
+        #3d1c80 0%, #250d5a 45%, #150637 100%);
+      padding: 16px 12px 22px;
+      overflow: visible;
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 100%; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+      padding-bottom: 12px; position: relative; z-index: 2;
+    }
+    .notch-speaker {
+      width: 52px; height: 5px; border-radius: 100px;
+      background: rgba(0,0,0,0.55);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .notch-cam {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #1a1a2e, #000);
+      box-shadow: 0 0 0 1.5px #111, 0 0 5px rgba(80,120,255,0.2);
+      flex-shrink: 0;
+    }
+
+    .phone-screen {
+      border-radius: 30px; overflow: hidden;
+      background: #ecf0ff; position: relative;
+    }
+
+    .phone-home-bar {
+      display: flex; justify-content: center; padding: 12px 0 0;
+    }
+    .home-pill {
+      width: 100px; height: 5px; border-radius: 100px;
+      background: rgba(255,255,255,0.22);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 16px 5px;
+      font-size: 11.5px; font-weight: 700; color: #2e1065;
+      background: rgba(255,255,255,0.45); backdrop-filter: blur(6px);
+    }
+    .status-icons { display: flex; align-items: center; gap: 5px; }
+
+    /* Telegram header */
+    .tg-header {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 13px;
+      background: linear-gradient(160deg, #ede9fe, #ddd6fe);
+      border-bottom: 1px solid rgba(167,139,250,0.18);
+    }
+    .tg-back { font-size: 17px; color: #7c3aed; font-weight: 800; flex-shrink: 0; }
+    .tg-av {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(140deg, #a78bfa, #6d28d9);
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      box-shadow: 0 2px 8px rgba(109,40,217,0.3);
+    }
+    .tg-contact-info { flex: 1; min-width: 0; }
+    .tg-name { font-size: 13px; font-weight: 800; color: #2e1065; }
+    .tg-status {
+      font-size: 10.5px; color: #7c3aed; opacity: 0.8;
+      display: flex; align-items: center; gap: 4px; margin-top: 1px;
+    }
+    .online-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: #22c55e;
+      box-shadow: 0 0 4px #22c55e; flex-shrink: 0;
+    }
+
+    /* Messages */
+    .tg-messages {
+      min-height: 256px; padding: 12px 11px;
+      display: flex; flex-direction: column; gap: 9px;
+      background-image:
+        radial-gradient(circle, rgba(167,139,250,0.15) 1px, transparent 1px),
+        linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%);
+      background-size: 20px 20px, 100% 100%;
+    }
+
+    .date-chip {
+      display: flex; justify-content: center;
+    }
+    .date-chip span {
+      font-size: 10.5px; font-weight: 600; color: #6d28d9; opacity: 0.65;
+      background: rgba(255,255,255,0.6); padding: 2px 10px;
+      border-radius: 100px; backdrop-filter: blur(4px);
+    }
+
+    .msg-out { display: flex; justify-content: flex-end; opacity: 0; }
+    .bubble-out {
+      max-width: 88%; padding: 9px 12px;
+      border-radius: 16px 16px 4px 16px;
+      background: linear-gradient(140deg, #c4b5fd, #7c3aed);
+      font-size: 12.5px; font-weight: 600; color: #fff; line-height: 1.45;
+    }
+
+    .msg-in { display: flex; align-items: flex-end; gap: 6px; opacity: 0; }
+    .msg-in-av {
+      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(140deg, #a78bfa, #6d28d9);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .bubble-in {
+      max-width: 88%; padding: 9px 12px;
+      border-radius: 16px 16px 16px 4px;
+      background: linear-gradient(140deg, #f5f3ff, #ede9fe);
+      font-size: 12.5px; font-weight: 600; color: #2e1065; line-height: 1.45;
+    }
+
+    /* Processing indicator */
+    #proc-row { display: flex; align-items: flex-end; gap: 6px; opacity: 0; }
+    .proc-bubble {
+      padding: 9px 13px; border-radius: 16px 16px 16px 4px;
+      background: linear-gradient(140deg, #fffbeb, #fef3c7);
+      display: flex; align-items: center; gap: 9px;
+    }
+    .eq-wrap { display: flex; align-items: flex-end; gap: 2.5px; height: 16px; }
+    .eq-b { width: 3px; height: 5px; border-radius: 2px 2px 1px 1px; transform-origin: bottom; }
+
+    /* Input bar */
+    .tg-input {
+      display: flex; align-items: center; gap: 8px; padding: 9px 11px;
+      background: rgba(255,255,255,0.55); backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(167,139,250,0.16);
+    }
+    .tg-field {
+      flex: 1; height: 33px; border-radius: 100px;
+      background: rgba(255,255,255,0.72);
+      border: 1.5px solid rgba(167,139,250,0.28);
+      padding: 0 12px; font-size: 12px; color: rgba(109,40,217,0.35);
+      font-weight: 500;
+      display: flex; align-items: center;
+      box-shadow: inset 0 2px 5px rgba(109,40,217,0.07),
+        inset -1px -1px 3px rgba(255,255,255,0.8), 0 1px 0 rgba(255,255,255,0.9);
+    }
+    .send-btn {
+      width: 33px; height: 33px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(145deg, #a78bfa, #6d28d9);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      box-shadow:
+        0 4px 8px rgba(109,40,217,0.40), 0 10px 22px rgba(109,40,217,0.28),
+        -2px -2px 5px rgba(255,255,255,0.55),
+        inset 0 3px 0 rgba(255,255,255,0.55),
+        inset 2px 2px 6px rgba(255,255,255,0.28),
+        inset -2px -2px 6px rgba(0,0,0,0.22);
+      transition: transform 80ms, box-shadow 80ms;
+    }
+    .send-btn::before {
+      content: ''; position: absolute; top: 5px; left: 6px;
+      width: 46%; height: 44%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.5) 0%, transparent 70%);
+    }
+    .send-btn:active { transform: translateY(2px) scale(0.94); }
+
+    /* ════════════════════════════════════════
+       MAGIC PACKET + TRAILS
+    ════════════════════════════════════════ */
+
+    #magic-packet {
+      position: absolute;
+      width: 20px; height: 20px; border-radius: 7px;
+      background: linear-gradient(135deg, #f97316 0%, #a855f7 100%);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      box-shadow:
+        0 0 10px rgba(249,115,22,0.7),
+        0 0 24px rgba(168,85,247,0.5),
+        inset 0 2px 0 rgba(255,255,255,0.45);
+      opacity: 0; z-index: 50;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    /* Specular on packet */
+    #magic-packet::before {
+      content: ''; position: absolute; top: 3px; left: 4px;
+      width: 40%; height: 40%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.55) 0%, transparent 70%);
+    }
+
+    .spark { position: absolute; border-radius: 50%; opacity: 0; pointer-events: none; z-index: 49; transform: translate(-50%,-50%); }
+
+    /* ════════════════════════════════════════
+       BUFFER QUEUE PANEL
+    ════════════════════════════════════════ */
+
+    #buffer-panel {
+      flex: 1; border-radius: 22px;
+      background: radial-gradient(ellipse at 24% 18%, #fafafe 0%, #f0ecff 45%, #e8e4f8 100%);
+      overflow: hidden; display: flex; flex-direction: column;
+      min-width: 0;
+    }
+
+    .buf-header {
+      padding: 15px 18px;
+      border-bottom: 1px solid rgba(167,139,250,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.42); backdrop-filter: blur(4px);
+    }
+
+    .buf-logo {
+      display: flex; align-items: center; gap: 9px;
+    }
+    .buf-icon {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: linear-gradient(140deg, #6B4FBB, #3d1f8a);
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      box-shadow: 0 3px 8px rgba(59,31,138,0.35), inset 0 2px 0 rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .buf-title { font-size: 14px; font-weight: 800; color: #1e0e3e; }
+    .buf-sub   { font-size: 10.5px; color: #7c3aed; opacity: 0.75; margin-top: 1px; }
+
+    .queue-count {
+      font-size: 10.5px; font-weight: 700; color: #6d28d9;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.22);
+      padding: 3px 10px; border-radius: 100px;
+    }
+
+    .buf-queue {
+      padding: 14px 16px 16px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+
+    /* Queue card internals */
+    .qcard-inner {
+      padding: 12px 14px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .qcard-top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+    }
+    .qcard-text {
+      font-size: 12px; font-weight: 600; color: #2e1065;
+      line-height: 1.4; flex: 1;
+    }
+    .qcard-time {
+      font-size: 10px; font-weight: 700; color: #7c3aed;
+      opacity: 0.75; white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+    }
+    .qcard-bottom {
+      display: flex; align-items: center; gap: 5px;
+    }
+    .qcard-divider {
+      height: 1px; background: rgba(139,92,246,0.12); margin: 0 -14px;
+    }
+
+    @media (min-width: 521px) and (max-width: 980px) {
+      body {
+        padding: 24px 12px;
+      }
+      #layout {
+        display: block !important;
+      }
+      #buffer-panel {
+        width: min(100%, 430px);
+        margin: 0 auto;
+        min-width: 0;
+      }
+      .phone-tilt,
+      #magic-packet,
+      .spark {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        min-height: auto;
+        align-items: flex-start;
+        padding: 16px 10px 22px;
+        overflow: hidden;
+      }
+      #layout {
+        flex-direction: column !important;
+        gap: 18px !important;
+        align-items: center !important;
+      }
+      .phone-tilt {
+        align-self: center !important;
+        margin-top: 0 !important;
+        transform: none;
+      }
+      .phone {
+        width: min(274px, calc(100vw - 36px));
+      }
+      .tg-messages {
+        min-height: 226px;
+      }
+      #buffer-panel {
+        width: min(100%, 330px);
+        flex: none;
+      }
+      .buf-queue {
+        padding: 12px 14px 14px;
+      }
+      .qcard-text {
+        font-size: 11.5px;
+      }
+      #magic-packet,
+      .spark {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div style="max-width:900px; width:100%;">
+
+  <!-- Section header -->
+  
+
+  <!-- Main layout -->
+  <div id="layout" style="display:flex; align-items:center; gap:36px; position:relative;">
+
+    <!-- Magic packet -->
+    <div id="magic-packet"></div>
+    <!-- Spark trails -->
+    <div class="spark" id="sp1" style="width:6px;height:6px;background:radial-gradient(circle,#f97316,transparent);"></div>
+    <div class="spark" id="sp2" style="width:5px;height:5px;background:radial-gradient(circle,#a855f7,transparent);"></div>
+    <div class="spark" id="sp3" style="width:7px;height:7px;background:radial-gradient(circle,#fbbf24,transparent);"></div>
+    <div class="spark" id="sp4" style="width:4px;height:4px;background:radial-gradient(circle,#c084fc,transparent);"></div>
+
+    <!-- ══════════
+         PHONE
+    ══════════ -->
+    <div class="phone-tilt" style="align-self:flex-start; margin-top:20px;">
+
+      <!-- Volume buttons (left) -->
+      <div class="side-btn" style="left:-5px;top:21%;width:4px;height:34px;"></div>
+      <div class="side-btn" style="left:-5px;top:30%;width:4px;height:58px;"></div>
+      <div class="side-btn" style="left:-5px;top:41%;width:4px;height:58px;"></div>
+      <!-- Power button (right) -->
+      <div class="side-btn right" style="right:-5px;top:27%;width:4px;height:66px;"></div>
+
+      <div class="phone clay-phone">
+        <!-- Notch -->
+        <div class="phone-notch">
+          <div class="notch-cam"></div>
+          <div class="notch-speaker"></div>
+        </div>
+
+        <div class="phone-screen">
+          <!-- Status bar -->
+          <div class="status-bar">
+            <span style="font-weight:800;font-size:11.5px;">9:41</span>
+            <div class="status-icons">
+              <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+                <rect x="0" y="7" width="2.5" height="4" rx="0.8" fill="#4c1d95" opacity="0.9"/>
+                <rect x="3.8" y="4.5" width="2.5" height="6.5" rx="0.8" fill="#4c1d95" opacity="0.9"/>
+                <rect x="7.6" y="2" width="2.5" height="9" rx="0.8" fill="#4c1d95" opacity="0.9"/>
+                <rect x="11.4" y="0" width="2.2" height="11" rx="0.8" fill="#4c1d95" opacity="0.35"/>
+              </svg>
+              <svg width="20" height="11" viewBox="0 0 20 11" fill="none">
+                <rect x="0.5" y="0.5" width="16" height="10" rx="2.2" stroke="#4c1d95" stroke-opacity="0.8"/>
+                <rect x="2" y="2" width="10" height="7" rx="1.2" fill="#4c1d95" opacity="0.85"/>
+                <rect x="17" y="3" width="2.2" height="5" rx="1" fill="#4c1d95" opacity="0.55"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Telegram header -->
+          <div class="tg-header">
+            <span class="tg-back">‹</span>
+            <div class="tg-av">
+              <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai"
+                   style="width:20px;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
+            </div>
+            <div class="tg-contact-info">
+              <div class="tg-name">Personal Agent</div>
+              <div class="tg-status">
+                <span class="online-dot"></span>online
+              </div>
+            </div>
+            <span style="font-size:15px;color:#7c3aed;opacity:0.75;">⋮</span>
+          </div>
+
+          <!-- Messages -->
+          <div class="tg-messages" id="tg-messages">
+            <div class="date-chip"><span>Today</span></div>
+
+            <!-- User message -->
+            <div class="msg-out" id="msg-user">
+              <div class="clay-bubble bubble-out" id="user-bubble">
+                Hey, schedule a post for tomorrow morning on all channels: "Big update coming to Despacho Bonsai! 🚀"
+              </div>
+            </div>
+
+            <!-- Processing indicator -->
+            <div id="proc-row">
+              <div class="msg-in-av">
+                <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt=""
+                     style="width:12px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+              </div>
+              <div class="clay-bubble proc-bubble">
+                <div class="eq-wrap">
+                  <div class="eq-b" id="eq1" style="background:#f97316;"></div>
+                  <div class="eq-b" id="eq2" style="background:#a855f7;"></div>
+                  <div class="eq-b" id="eq3" style="background:#f97316;"></div>
+                  <div class="eq-b" id="eq4" style="background:#a855f7;"></div>
+                  <div class="eq-b" id="eq5" style="background:#fbbf24;"></div>
+                </div>
+                <span style="font-size:11.5px;font-weight:700;color:#92400e;">Queuing to Buffer...</span>
+              </div>
+            </div>
+
+            <!-- Agent reply -->
+            <div class="msg-in" id="msg-agent">
+              <div class="msg-in-av">
+                <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt=""
+                     style="width:12px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+              </div>
+              <div class="clay-bubble bubble-in">
+                Done! 🎉 Your post is queued for<br/>
+                <strong>tomorrow at 9:00 AM</strong><br/>
+                <span style="font-size:11px;color:#7c3aed;opacity:0.8;">LinkedIn · X · Instagram</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input bar -->
+          <div class="tg-input">
+            <div class="tg-field">Message</div>
+            <div class="send-btn">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M6.5 11V2M2.5 6L6.5 2L10.5 6" stroke="white" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div><!-- screen -->
+
+        <div class="phone-home-bar"><div class="home-pill"></div></div>
+      </div>
+    </div><!-- phone-tilt -->
+
+    <!-- ══════════════════
+         BUFFER QUEUE
+    ══════════════════ -->
+    <div id="buffer-panel" class="clay-light">
+      <div class="buf-header">
+        <div class="buf-logo">
+          <div class="buf-icon">
+            <!-- Buffer-ish icon: three staggered bars -->
+            <svg width="18" height="16" viewBox="0 0 18 16" fill="none">
+              <rect x="0" y="0" width="18" height="3.5" rx="1.75" fill="rgba(255,255,255,0.9)"/>
+              <rect x="2" y="6.25" width="14" height="3.5" rx="1.75" fill="rgba(255,255,255,0.75)"/>
+              <rect x="4" y="12.5" width="10" height="3.5" rx="1.75" fill="rgba(255,255,255,0.6)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="buf-title">Buffer Queue</div>
+            <div class="buf-sub" id="buf-sub">2 posts scheduled</div>
+          </div>
+        </div>
+        <span class="queue-count" id="queue-count">2</span>
+      </div>
+
+      <div class="buf-queue" id="buf-queue">
+
+        <!-- NEW CARD — inflates in (initially hidden, sits at top) -->
+        <div class="clay-card" id="new-card" style="opacity:0; transform:scale(0.4); transform-origin:top center;">
+          <div style="position:absolute;top:-1px;right:14px;">
+            <span class="clay-pill" style="font-size:9px;font-weight:800;color:#7c2d12;
+              background:linear-gradient(135deg,#fed7aa,#fb923c);
+              padding:2px 8px;display:inline-block;">New ✦</span>
+          </div>
+          <div class="qcard-inner">
+            <div class="qcard-top">
+              <div class="qcard-text">
+                Big update coming to Despacho Bonsai! 🚀
+              </div>
+              <div class="qcard-time">Tomorrow<br/>9:00 AM</div>
+            </div>
+            <div class="qcard-divider"></div>
+            <div class="qcard-bottom">
+              <!-- LinkedIn -->
+              <div class="platform-icon" style="background:#0077B5;">in</div>
+              <!-- X -->
+              <div class="platform-icon" style="background:#000;border-color:rgba(255,255,255,0.25);">
+                <svg width="9" height="9" viewBox="0 0 300 300" fill="white">
+                  <path d="M178.57 127.15 290.27 0h-26.46l-97.03 112.68L89.34 0H0l117.13 170.31L0 300h26.46l102.4-118.96L204.66 300H294L178.57 127.15Zm-36.26 42.11-11.87-16.99L36.66 19.49h40.67l76.2 109.03 11.87 16.99 99.09 141.7h-40.67l-81.5-116.56z"/>
+                </svg>
+              </div>
+              <!-- Instagram -->
+              <div class="platform-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">IG</div>
+              <span style="font-size:10px;font-weight:600;color:#9ca3af;margin-left:3px;">All channels</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Existing card 1 -->
+        <div class="clay-card">
+          <div class="qcard-inner">
+            <div class="qcard-top">
+              <div class="qcard-text">
+                Product launch countdown — only 3 days left. Are you ready?
+              </div>
+              <div class="qcard-time">Thu Apr 24<br/>10:00 AM</div>
+            </div>
+            <div class="qcard-divider"></div>
+            <div class="qcard-bottom">
+              <div class="platform-icon" style="background:#0077B5;">in</div>
+              <div class="platform-icon" style="background:#000;border-color:rgba(255,255,255,0.25);">
+                <svg width="9" height="9" viewBox="0 0 300 300" fill="white">
+                  <path d="M178.57 127.15 290.27 0h-26.46l-97.03 112.68L89.34 0H0l117.13 170.31L0 300h26.46l102.4-118.96L204.66 300H294L178.57 127.15Zm-36.26 42.11-11.87-16.99L36.66 19.49h40.67l76.2 109.03 11.87 16.99 99.09 141.7h-40.67l-81.5-116.56z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Existing card 2 -->
+        <div class="clay-card">
+          <div class="qcard-inner">
+            <div class="qcard-top">
+              <div class="qcard-text">
+                Behind the scenes: meet the team building Despacho Bonsai ✨
+              </div>
+              <div class="qcard-time">Fri Apr 25<br/>2:00 PM</div>
+            </div>
+            <div class="qcard-divider"></div>
+            <div class="qcard-bottom">
+              <div class="platform-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">IG</div>
+              <div class="platform-icon" style="background:#1877F2;">f</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- buffer-panel -->
+  </div><!-- layout -->
+</div>
+
+<script>
+  /* ──────────────────────────────────────
+     Cubic bezier point helper
+  ────────────────────────────────────── */
+  function bzPt(t, x1,y1, cpx,cpy, x2,y2) {
+    // Quadratic-ish: symmetric control point
+    const mt = 1 - t;
+    return {
+      x: mt*mt*x1 + 2*mt*t*cpx + t*t*x2,
+      y: mt*mt*y1 + 2*mt*t*cpy + t*t*y2,
+    };
+  }
+
+  /* ──────────────────────────────────────
+     Get trajectory: phone → new-card
+  ────────────────────────────────────── */
+  function getTrajectory() {
+    const layout  = document.getElementById('layout');
+    const phone   = document.querySelector('.phone');
+    const newCard = document.getElementById('new-card');
+    const lr = layout.getBoundingClientRect();
+    const pr = phone.getBoundingClientRect();
+    const nr = newCard.getBoundingClientRect();
+
+    const x1 = pr.right  - lr.left;
+    const y1 = pr.top    - lr.top + pr.height * 0.45;
+    const x2 = nr.left   - lr.left + nr.width * 0.35;
+    const y2 = nr.top    - lr.top  + nr.height * 0.4;
+    // Arc upward: control point above the midpoint
+    const cpx = (x1 + x2) / 2;
+    const cpy = Math.min(y1, y2) - 60;
+
+    return { x1, y1, cpx, cpy, x2, y2 };
+  }
+
+  /* ──────────────────────────────────────
+     Animate a dot along the bezier arc
+  ────────────────────────────────────── */
+  function flyAlongArc(el, traj, delay, dur, onLand) {
+    const obj = { t: 0 };
+    gsap.set(el, { opacity: 1, scale: 1, rotation: 0 });
+    gsap.to(obj, {
+      t: 1, duration: dur, delay, ease: 'power2.inOut',
+      onUpdate() {
+        const p = bzPt(obj.t, traj.x1, traj.y1, traj.cpx, traj.cpy, traj.x2, traj.y2);
+        gsap.set(el, { x: p.x, y: p.y, rotation: obj.t * 360 });
+      },
+      onComplete() {
+        gsap.to(el, { opacity: 0, scale: 2.5, duration: 0.3, ease: 'power2.out' });
+        if (onLand) onLand();
+      },
+    });
+  }
+
+  /* ──────────────────────────────────────
+     Equalizer bars
+  ────────────────────────────────────── */
+  let eqTs = [];
+  function startEq() {
+    eqTs.forEach(t => t.kill()); eqTs = [];
+    [
+      { id:'#eq1', max:15, dur:0.38, d:0.00 },
+      { id:'#eq2', max:12, dur:0.50, d:0.10 },
+      { id:'#eq3', max:16, dur:0.42, d:0.05 },
+      { id:'#eq4', max:10, dur:0.46, d:0.18 },
+      { id:'#eq5', max:14, dur:0.36, d:0.08 },
+    ].forEach(c => eqTs.push(
+      gsap.to(c.id, { height: c.max+'px', duration: c.dur, ease: 'sine.inOut',
+                      repeat: -1, yoyo: true, delay: c.d })
+    ));
+  }
+  function stopEq() { eqTs.forEach(t => t.kill()); eqTs = []; }
+
+  /* ──────────────────────────────────────
+     Main loop
+  ────────────────────────────────────── */
+  function runLoop() {
+    stopEq();
+
+    gsap.set('#msg-user',   { opacity: 0, y: 10, scale: 0.95 });
+    gsap.set('#proc-row',   { opacity: 0 });
+    gsap.set('#msg-agent',  { opacity: 0, y: 8, scale: 0.95 });
+    gsap.set('#new-card',   { opacity: 0, scale: 0.4, transformOrigin: 'top center' });
+    gsap.set('#magic-packet', { opacity: 0, scale: 1, x: 0, y: 0, rotation: 0 });
+    gsap.set(['#sp1','#sp2','#sp3','#sp4'], { opacity: 0 });
+    document.getElementById('queue-count').textContent = '2';
+    document.getElementById('buf-sub').textContent = '2 posts scheduled';
+
+    const tl = gsap.timeline({ onComplete: () => gsap.delayedCall(1.0, runLoop) });
+
+    /* 0.4s — user message */
+    tl.to('#msg-user', {
+      opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(1.8)',
+    }, 0.4);
+
+    /* 1.6s — processing indicator */
+    tl.to('#proc-row', { opacity: 1, duration: 0.3 }, 1.6);
+    tl.add(startEq, 1.6);
+
+    /* 2.5s — magic packet launches */
+    tl.add(() => {
+      const traj = getTrajectory();
+
+      // Main packet
+      flyAlongArc(
+        document.getElementById('magic-packet'),
+        traj, 0, 0.72,
+        () => {
+          // Inflate the card
+          gsap.to('#new-card', {
+            opacity: 1, scale: 1, duration: 0.55, ease: 'elastic.out(1, 0.52)',
+          });
+          // Burst sparks outward from landing point
+          ['#sp1','#sp2','#sp3','#sp4'].forEach((id, i) => {
+            const angle = (i / 4) * Math.PI * 2;
+            const dist  = 28 + i * 8;
+            gsap.set(id, { x: traj.x2, y: traj.y2, opacity: 1, scale: 1 });
+            gsap.to(id, {
+              x: traj.x2 + Math.cos(angle) * dist,
+              y: traj.y2 + Math.sin(angle) * dist,
+              opacity: 0, scale: 0,
+              duration: 0.45, ease: 'power2.out', delay: i * 0.04,
+            });
+          });
+          // Update count
+          document.getElementById('queue-count').textContent = '3';
+          document.getElementById('buf-sub').textContent = '3 posts scheduled';
+        }
+      );
+
+      // Trailing sparks follow slightly behind
+      ['#sp1','#sp2','#sp3','#sp4'].forEach((sp, i) => {
+        const jitter = (Math.random() - 0.5) * 28;
+        const trailTraj = { ...traj, cpy: traj.cpy + jitter };
+        const obj = { t: 0 };
+        gsap.to(obj, {
+          t: 0.75, duration: 0.55, delay: 0.06 + i * 0.04, ease: 'power1.in',
+          onUpdate() {
+            const p = bzPt(obj.t, trailTraj.x1, trailTraj.y1, trailTraj.cpx, trailTraj.cpy, trailTraj.x2, trailTraj.y2);
+            gsap.set(sp, { x: p.x, y: p.y, opacity: 0.7 - obj.t * 0.7, scale: 1 - obj.t * 0.6 });
+          },
+          onComplete() { gsap.set(sp, { opacity: 0 }); },
+        });
+      });
+
+    }, 2.5);
+
+    /* 3.0s — stop processing, hide indicator */
+    tl.add(stopEq, 3.2);
+    tl.to('#proc-row', { opacity: 0, duration: 0.25 }, 3.2);
+
+    /* 3.5s — agent reply */
+    tl.to('#msg-agent', {
+      opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(1.8)',
+    }, 3.5);
+
+    /* Hold until t=11 */
+    tl.to({}, { duration: 1 }, 10.0);
+  }
+
+  gsap.delayedCall(0.3, runLoop);
+</script>
+</body>
+</html>

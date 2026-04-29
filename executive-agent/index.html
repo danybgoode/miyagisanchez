@@ -324,6 +324,32 @@
             justify-content: center;
             gap: 18px;
         }
+        .executive-data-synthesis-visual {
+            min-height: 560px;
+            padding: 0;
+            overflow: hidden;
+        }
+        .executive-data-synthesis-frame {
+            width: 100%;
+            height: 560px;
+            border: 0;
+            display: block;
+            border-radius: 22px;
+            background: transparent;
+        }
+        .executive-buffer-visual {
+            min-height: 560px;
+            padding: 0;
+            overflow: hidden;
+        }
+        .executive-buffer-frame {
+            width: 100%;
+            height: 560px;
+            border: 0;
+            display: block;
+            border-radius: 22px;
+            background: transparent;
+        }
         .executive-visual-stack {
             position: relative;
             z-index: 1;
@@ -419,6 +445,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 16px;
             background:
                 radial-gradient(circle at 30% 26%, rgba(255,255,255,0.9), transparent 34%),
                 linear-gradient(to bottom, #f8fbff, #e9eef7);
@@ -428,7 +455,7 @@
                 0 5px 0 rgba(182, 191, 208, 0.85),
                 0 14px 24px rgba(0,0,0,0.08);
         }
-        .executive-step-visual span {
+        .executive-step-number {
             width: 54px;
             height: 54px;
             border-radius: 50%;
@@ -445,6 +472,160 @@
                 0 14px 22px rgba(47, 131, 229, 0.25),
                 inset 0 2px 3px rgba(255,255,255,0.18);
         }
+        .quick-connect-visual,
+        .mcp-form-visual {
+            width: 100%;
+            display: grid;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .quick-connect-pill {
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 8px 10px 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.76);
+            box-shadow:
+                inset 0 2px 3px rgba(255,255,255,0.82),
+                0 4px 0 rgba(182, 191, 208, 0.58),
+                0 12px 18px rgba(0,0,0,0.07);
+            color: #2e3a59;
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .quick-connect-pill strong {
+            color: #0b63cb;
+            font-size: 11px;
+        }
+        .mcp-form-visual {
+            padding: 14px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.76);
+            box-shadow:
+                inset 0 2px 3px rgba(255,255,255,0.82),
+                0 5px 0 rgba(182, 191, 208, 0.72);
+        }
+        .mcp-form-label {
+            color: #54627a;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .mcp-address-field {
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            border-radius: 10px;
+            background: #f8fbff;
+            border: 1px solid rgba(115,132,162,0.18);
+            color: #2e3a59;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+        .mcp-add-button {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(to bottom, #53a1ff, #2f83e5);
+            color: white;
+            font-size: 13px;
+            font-weight: 900;
+            box-shadow: 0 4px 0 #0b63cb;
+        }
+        .claude-phone-visual {
+            min-height: 420px;
+            align-items: center;
+        }
+        .claude-phone {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 300px);
+            border-radius: 34px;
+            padding: 12px;
+            background: radial-gradient(ellipse at 30% 18%, #3d1c80 0%, #250d5a 45%, #150637 100%);
+            box-shadow:
+                0 16px 34px rgba(0,0,0,0.24),
+                inset 0 4px 0 rgba(255,255,255,0.10),
+                inset -4px -4px 14px rgba(0,0,0,0.24);
+        }
+        .claude-screen {
+            border-radius: 24px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #f7f5ff, #ede9fe);
+        }
+        .claude-bar {
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.72);
+            color: #2e1065;
+            font-size: 12px;
+            font-weight: 900;
+            text-align: center;
+        }
+        .claude-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 300px;
+            padding: 12px;
+        }
+        .chat-bubble {
+            max-width: 88%;
+            padding: 10px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            line-height: 1.35;
+            font-weight: 650;
+        }
+        .chat-bubble.user {
+            align-self: flex-end;
+            color: #fff;
+            background: linear-gradient(140deg, #c4b5fd, #7c3aed);
+            border-bottom-right-radius: 5px;
+        }
+        .chat-bubble.agent,
+        .brain-card {
+            align-self: flex-start;
+            color: #2e1065;
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(167,139,250,0.18);
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 3px 8px rgba(109,40,217,0.08);
+        }
+        .brain-card {
+            max-width: 92%;
+            padding: 10px 12px;
+            border-radius: 16px;
+            font-size: 11.5px;
+            font-weight: 800;
+        }
+        .brain-line {
+            display: block;
+            margin-top: 5px;
+            color: #7c3aed;
+        }
+        .action-list {
+            margin-top: 8px;
+            display: grid;
+            gap: 5px;
+            color: #4c1d95;
+            font-size: 11.5px;
+        }
+        .guided-workflow-section .feature-pair-card {
+            padding: 28px;
+        }
+        .guided-workflow-copy {
+            display: grid;
+            gap: 14px;
+        }
         .executive-pricing-grid {
             max-width: 460px;
             margin: 0 auto;
@@ -456,6 +637,10 @@
         @media (max-width: 768px) {
             .executive-orchestrator-hero { min-height: 760px; }
             .executive-orchestrator-frame { height: 760px; }
+            .executive-data-synthesis-visual { min-height: 940px; }
+            .executive-data-synthesis-frame { height: 940px; }
+            .executive-buffer-visual { min-height: 840px; }
+            .executive-buffer-frame { height: 840px; }
             .feature-visual-personal-agent { min-height: 480px !important; }
             .phone-tilt { transform: perspective(1100px) rotateY(0deg) rotateX(0deg); }
             .pa-phone { width: 280px; }
@@ -463,6 +648,10 @@
         @media (max-width: 480px) {
             .executive-orchestrator-hero { min-height: 720px; }
             .executive-orchestrator-frame { height: 720px; }
+            .executive-data-synthesis-visual { min-height: 900px; }
+            .executive-data-synthesis-frame { height: 900px; }
+            .executive-buffer-visual { min-height: 800px; }
+            .executive-buffer-frame { height: 800px; }
             .feature-visual-personal-agent { min-height: 420px !important; padding: 10px !important; }
             .pa-phone { width: 256px; border-radius: 42px; }
             .pa-screen { border-radius: 28px; }
@@ -678,25 +867,15 @@
                 <div class="feature-pair-card card feature-pair-card-reverse">
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
-                            <h3 class="card-title feature-story-title" data-i18n="executive_pain_2_title">Pain 2 placeholder</h3>
-                            <p class="card-text pain-copy" data-i18n="executive_pain_2_copy">Placeholder copy for the second pain point.</p>
+                            <h3 class="card-title feature-story-title" data-i18n="executive_pain_2_title">Your data is useful. It is also everywhere.</h3>
+                            <p class="card-text pain-copy" data-i18n="executive_pain_2_copy">Analytics knows what changed. HubSpot knows what stalled. Bonsai brings the scattered signals into one conversation and turns cross-tool context into reports you can act on.</p>
                         </div>
-                        <figure class="feature-visual executive-placeholder-visual" aria-hidden="true">
-                            <div class="feature-panel-lights">
-                                <span class="panel-light green"></span>
-                                <span class="panel-light amber"></span>
-                                <span class="panel-light blue"></span>
-                            </div>
-                            <div class="executive-visual-stack">
-                                <span class="executive-visual-chip">Analytics</span>
-                                <span class="executive-visual-chip">CRM</span>
-                                <span class="executive-visual-chip">Social</span>
-                            </div>
-                            <div class="executive-visual-panel">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+                        <figure class="feature-visual executive-data-synthesis-visual" aria-hidden="true">
+                            <iframe
+                                class="executive-data-synthesis-frame"
+                                src="visuals/data-synthesis.html"
+                                title="Cross-tool data synthesis report visual"
+                                loading="lazy"></iframe>
                         </figure>
                     </div>
                 </div>
@@ -704,21 +883,15 @@
                 <div class="feature-pair-card card">
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
-                            <h3 class="card-title feature-story-title" data-i18n="executive_pain_3_title">Pain 3 placeholder</h3>
-                            <p class="card-text pain-copy" data-i18n="executive_pain_3_copy">Placeholder copy for the third pain point.</p>
+                            <h3 class="card-title feature-story-title" data-i18n="executive_pain_3_title">Strategy still takes too much assembly.</h3>
+                            <p class="card-text pain-copy" data-i18n="executive_pain_3_copy">Creating a social strategy means pulling performance data from Analytics, pipeline signals from HubSpot, and then translating it all into posts. Bonsai connects those sources, suggests a plan, and lets you edit it until it sounds like you.</p>
                         </div>
-                        <figure class="feature-visual executive-placeholder-visual executive-placeholder-visual-alt" aria-hidden="true">
-                            <div class="feature-panel-lights">
-                                <span class="panel-light green"></span>
-                                <span class="panel-light amber"></span>
-                                <span class="panel-light blue"></span>
-                            </div>
-                            <div class="executive-approval-card">
-                                <span class="approval-dot"></span>
-                                <span class="approval-line long"></span>
-                                <span class="approval-line"></span>
-                                <span class="approval-button"></span>
-                            </div>
+                        <figure class="feature-visual executive-buffer-visual" aria-hidden="true">
+                            <iframe
+                                class="executive-buffer-frame"
+                                src="visuals/features-telegram-bufferNOTEXT.html"
+                                title="Executive agent social strategy to Buffer visual"
+                                loading="lazy"></iframe>
                         </figure>
                     </div>
                 </div>
@@ -733,19 +906,73 @@
             </div>
             <div class="grid-3 executive-steps-grid">
                 <div class="card executive-step-card">
-                    <div class="executive-step-visual" aria-hidden="true"><span>1</span></div>
-                    <h3 class="card-title" data-i18n="executive_hiw_step_1">Step 1 placeholder</h3>
-                    <p class="card-text" data-i18n="executive_hiw_step_1_copy">Placeholder copy for step one.</p>
+                    <h3 class="card-title" data-i18n="executive_hiw_step_1">Connect your tools to Bonsai.</h3>
+                    <p class="card-text" data-i18n="executive_hiw_step_1_copy">Pick the tools you already use and connect them with one click or tap.</p>
+                    <div class="executive-step-visual" aria-hidden="true">
+                        <div class="quick-connect-visual">
+                            <div class="quick-connect-pill"><span>Google Analytics</span><strong>Connect</strong></div>
+                            <div class="quick-connect-pill"><span>HubSpot</span><strong>Connect</strong></div>
+                            <div class="quick-connect-pill"><span>Buffer</span><strong>Connect</strong></div>
+                            <div class="quick-connect-pill"><span>Calendar</span><strong>Connect</strong></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card executive-step-card">
-                    <div class="executive-step-visual" aria-hidden="true"><span>2</span></div>
-                    <h3 class="card-title" data-i18n="executive_hiw_step_2">Step 2 placeholder</h3>
-                    <p class="card-text" data-i18n="executive_hiw_step_2_copy">Placeholder copy for step two.</p>
+                    <h3 class="card-title" data-i18n="executive_hiw_step_2">Connect Bonsai to your AI.</h3>
+                    <p class="card-text" data-i18n="executive_hiw_step_2_copy">Paste the Bonsai MCP address into Claude, ChatGPT, Gemini, or the assistant you use.</p>
+                    <div class="executive-step-visual" aria-hidden="true">
+                        <div class="mcp-form-visual">
+                            <div class="mcp-form-label">claude.ai / connectors</div>
+                            <div class="mcp-address-field">https://mcp.despachobonsai.com</div>
+                            <div class="mcp-add-button">Add MCP server</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card executive-step-card">
-                    <div class="executive-step-visual" aria-hidden="true"><span>3</span></div>
-                    <h3 class="card-title" data-i18n="executive_hiw_step_3">Step 3 placeholder</h3>
-                    <p class="card-text" data-i18n="executive_hiw_step_3_copy">Placeholder copy for step three.</p>
+                    <h3 class="card-title" data-i18n="executive_hiw_step_3">Unleash the balrog.</h3>
+                    <p class="card-text" data-i18n="executive_hiw_step_3_copy">Ask Claude to get you set up. Bonsai exposes your connected tools as actions your assistant can use.</p>
+                    <div class="executive-step-visual claude-phone-visual" aria-hidden="true">
+                        <div class="claude-phone">
+                            <div class="claude-screen">
+                                <div class="claude-bar">Claude</div>
+                                <div class="claude-chat">
+                                    <div class="chat-bubble user">Hey Claude, I just added Bonsai. Can you get me set up?</div>
+                                    <div class="brain-card">
+                                        Claude brains
+                                        <span class="brain-line">Connecting to Bonsai...</span>
+                                        <span class="brain-line">Reading available toolset...</span>
+                                    </div>
+                                    <div class="chat-bubble agent">This is truly an amazing setup. Now that I have connected to Bonsai, I can orchestrate social accounts through Buffer, get performance analytics, work with HubSpot, and read your calendar.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guided Workflows Section -->
+        <section id="guided-workflows" class="container guided-workflow-section">
+            <div class="feature-pairs">
+                <div class="feature-pair-card card">
+                    <div class="feature-pair-layout">
+                        <div class="feature-story-card guided-workflow-copy">
+                            <h2 class="section-title" data-i18n="executive_guided_title">Guided plays, not blank prompts.</h2>
+                            <p class="card-text pain-copy" data-i18n="executive_guided_copy">Bonsai can recommend predefined plays through the MCP endpoint, so Claude can guide the work instead of asking you to invent the workflow from scratch.</p>
+                        </div>
+                        <figure class="feature-visual claude-phone-visual" aria-hidden="true">
+                            <div class="claude-phone">
+                                <div class="claude-screen">
+                                    <div class="claude-bar">Claude</div>
+                                    <div class="claude-chat">
+                                        <div class="chat-bubble agent">Bonsai recommends we run the onboarding play to get started. Want to do it?</div>
+                                        <div class="chat-bubble user">Yes.</div>
+                                        <div class="chat-bubble agent">Great. First question: which tools should Bonsai use for your weekly business snapshot?</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                    </div>
                 </div>
             </div>
         </section>
