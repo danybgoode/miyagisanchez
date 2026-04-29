@@ -47,89 +47,157 @@
         <section id="hero" class="hero-section container">
             <div class="split-hero">
                 <div class="hero-content">
-                    <h1 class="hero-title" data-i18n="hero_title">[PLACEHOLDER_MAIN_HEADLINE]</h1>
-                    <p class="hero-subtitle text-muted" data-i18n="hero_subtitle">[PLACEHOLDER_SUBHEADLINE_EXPLAINING_VALUE_PROPOSITION]</p>
+                    <h1 class="hero-title" data-i18n="hero_title">If you sell online, you already know.</h1>
+                    <p class="hero-subtitle text-muted" data-i18n="hero_subtitle">Customers on every channel at all hours. A business to run on top of that. There's an AI for both — and it starts free.</p>
                     <div>
-                        <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" id="hero-cta-button" data-i18n="hero_cta_free">Start For Free</a>
-                        
-                    </div>
-                    
-                    <!-- Visibility Example -->
-                    <div data-lang-visible="en" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
-                        <span data-i18n="en_only_msg">This is only visible in English!</span>
-                    </div>
-                    <div data-lang-visible="es" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
-                        <span data-i18n="es_only_msg">¡Esto solo es visible en español!</span>
+                        <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" id="hero-cta-button" data-i18n="hero_cta_free">Start free — no card</a>
                     </div>
                 </div>
                 
                 <div class="hero-image">
-                    <div class="hero-image-placeholder" aria-label="Bonsai dashboard showing unified inbox and content calendar side by side">
-                        <video 
-                          autoplay 
-                          muted 
-                          playsinline  
-                          poster="hero.jpg" 
-                          class="hero-video" 
-                          preload="auto">
-                            <source src="hero.webm" type="video/webm">
-                            <source src="hero.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <div class="hero-animation-wrapper">
+                        <div class="hero-animation-scaler">
+                            <div class="pa-stage">
 
-        <section id="trust-bar" class="container trust-bar-section">
-            <div class="trust-bar-shell">
-                <span class="trust-bar-label" data-i18n="trust_bar_label">Conecta con los canales donde ya están tus clientes:</span>
-                <div class="trust-bar-chips" aria-label="Messaging and sales channels">
-                    <button type="button" class="trust-channel-key whatsapp" data-trust-key>WhatsApp</button>
-                    <button type="button" class="trust-channel-key instagram" data-trust-key>Instagram</button>
-                    <button type="button" class="trust-channel-key facebook" data-trust-key>Facebook</button>
-                    <button type="button" class="trust-channel-key email" data-trust-key>Email</button>
-                    <button type="button" class="trust-channel-key telegram" data-trust-key>Telegram</button>
-                    <button type="button" class="trust-channel-key sms" data-trust-key>SMS</button>
+                                <!-- Connector lines -->
+                                <svg class="pa-connectors" viewBox="0 0 500 850" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <line class="pa-connector-line" x1="250" y1="774" x2="182" y2="362"/>
+                                    <line class="pa-connector-line" x1="250" y1="774" x2="318" y2="362"/>
+                                    <line class="pa-connector-line" x1="250" y1="774" x2="77"  y2="450"/>
+                                    <line class="pa-connector-line" x1="250" y1="774" x2="423" y2="450"/>
+                                </svg>
+
+                                <!-- Widget: Analytics -->
+                                <div class="pa-widget" id="pa-w-analytics" style="left:125px;top:312px;">
+                                    <div class="pa-widget-front">
+                                        <div class="pa-widget-icon">📊</div>
+                                        <div class="pa-widget-name">Analytics</div>
+                                    </div>
+                                    <div class="pa-widget-back">
+                                        <div class="pa-widget-stat">2,441</div>
+                                        <div class="pa-widget-stat-label">Sessions · Ready</div>
+                                    </div>
+                                </div>
+
+                                <!-- Widget: Buffer -->
+                                <div class="pa-widget" id="pa-w-buffer" style="left:261px;top:312px;">
+                                    <div class="pa-widget-front">
+                                        <div class="pa-widget-icon">🗓️</div>
+                                        <div class="pa-widget-name">Buffer</div>
+                                    </div>
+                                    <div class="pa-widget-back">
+                                        <div class="pa-posts">
+                                            <div class="pa-post-row pa-post-ig">IG · 10am</div>
+                                            <div class="pa-post-row pa-post-wa">WA · 12pm</div>
+                                            <div class="pa-post-row pa-post-fb">FB · 3pm</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Widget: HubSpot -->
+                                <div class="pa-widget" id="pa-w-hubspot" style="left:20px;top:400px;">
+                                    <div class="pa-widget-front">
+                                        <div class="pa-widget-icon">🧲</div>
+                                        <div class="pa-widget-name">HubSpot</div>
+                                    </div>
+                                    <div class="pa-widget-back">
+                                        <div class="pa-status-badge">● Active</div>
+                                        <div class="pa-widget-stat-label">Campaign live</div>
+                                    </div>
+                                </div>
+
+                                <!-- Widget: Calendar -->
+                                <div class="pa-widget" id="pa-w-calendar" style="left:366px;top:400px;">
+                                    <div class="pa-widget-front">
+                                        <div class="pa-widget-icon">📆</div>
+                                        <div class="pa-widget-name">Calendar</div>
+                                    </div>
+                                    <div class="pa-widget-back">
+                                        <div class="pa-widget-stat">Tue 3pm</div>
+                                        <div class="pa-widget-stat-label">Scheduled ✓</div>
+                                    </div>
+                                </div>
+
+                                <!-- Travelling pulse orb -->
+                                <div class="pa-pulse-orb" id="pa-pulse-orb"></div>
+
+                                <!-- Chat bar -->
+                                <div class="pa-chat-bar" id="pa-chat-bar">
+                                    <div class="pa-chat-inner">
+                                        <div class="pa-chat-input-wrap">
+                                            <span id="pa-typed-text"></span><span class="pa-cursor" id="pa-cursor">|</span>
+                                        </div>
+                                        <div class="pa-send-btn" id="pa-send-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Approval output panel -->
+                                <div class="pa-output-panel" id="pa-output-panel">
+                                    <div class="pa-output-header">
+                                        <div class="pa-output-dot-green"></div>
+                                        <span class="pa-output-title">Ready to post</span>
+                                    </div>
+                                    <div class="pa-output-items">
+                                        <div class="pa-output-item">
+                                            <span class="pa-ch pa-ch-ig">IG</span>
+                                            <span class="pa-item-text">Tue 10am · "Traffic was down. Here's what we're doing about it →"</span>
+                                        </div>
+                                        <div class="pa-output-item">
+                                            <span class="pa-ch pa-ch-wa">WA</span>
+                                            <span class="pa-item-text">Tue 12pm · "🎁 Oferta especial — solo hoy. Link en bio."</span>
+                                        </div>
+                                        <div class="pa-output-item">
+                                            <span class="pa-ch pa-ch-fb">FB</span>
+                                            <span class="pa-item-text">Tue 3pm · Campaign boosted · 45–55 audience</span>
+                                        </div>
+                                    </div>
+                                    <div class="pa-output-actions">
+                                        <button class="pa-btn-approve" id="pa-btn-approve">Approve &amp; Schedule</button>
+                                        <button class="pa-btn-edit">Edit first</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="pain" class="container pain-section">
             <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="pain_title">Si vendes por WhatsApp, ya sabes de lo que hablamos.</h2>
+                <h2 class="section-title text-on-dark" data-i18n="pain_title">Here's what we mean.</h2>
             </div>
-            <div class="grid-3 pain-grid">
+            <div class="grid-2 pain-grid">
                 <div class="card pain-card">
                     <div class="pain-index">01</div>
-                    <p class="card-text pain-copy" data-i18n="pain_point_1">Clientes que preguntan a las 11pm y nadie responde.</p>
+                    <p class="card-text pain-copy" data-i18n="pain_1_problem">Customers message on 6 channels at all hours. Someone has to reply.</p>
+                    <p class="card-text text-muted" style="margin-top: 12px;" data-i18n="pain_1_solution">Your AI agent does. Across WhatsApp, Instagram, Facebook, email, and more — instantly, 24/7.</p>
                 </div>
                 <div class="card pain-card">
                     <div class="pain-index">02</div>
-                    <p class="card-text pain-copy" data-i18n="pain_point_2">Mensajes perdidos entre el celular personal y la cuenta del negocio.</p>
-                </div>
-                <div class="card pain-card">
-                    <div class="pain-index">03</div>
-                    <p class="card-text pain-copy" data-i18n="pain_point_3">El mismo equipo atendiendo Instagram, WhatsApp y email al mismo tiempo.</p>
+                    <p class="card-text pain-copy" data-i18n="pain_2_problem">Running the business means checking Analytics, updating Buffer, following up in HubSpot. Every day.</p>
+                    <p class="card-text text-muted" style="margin-top: 12px;" data-i18n="pain_2_solution">Ask your personal agent. One conversation handles all of it — no tab-switching required.</p>
                 </div>
             </div>
-            <p class="pain-closer text-muted" data-i18n="pain_closer">Eso no es un problema de actitud. Es un problema de herramientas.</p>
         </section>
 
-        <!-- Features Section -->
+        <!-- Features Section — Support Agent -->
         <section id="features" class="container">
             <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="features_title">[PLACEHOLDER_FEATURES_TITLE]</h2>
-                <p class="text-muted" data-i18n="features_subtitle">[PLACEHOLDER_FEATURES_SUBTITLE]</p>
+                <h2 class="section-title text-on-dark" data-i18n="support_section_title">Your customers, handled.</h2>
+                <p class="text-muted" data-i18n="support_section_subtitle">80% of customer questions are always the same. The agent handles those. You handle the other 20%.</p>
             </div>
             <div class="feature-pairs">
                 <div class="feature-pair-card card">
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
                             <div class="pain-index">01</div>
-                            <h3 class="card-title feature-story-title" data-i18n="feature_1_name">[PLACEHOLDER_FEATURE_1_NAME]</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="feature_1_benefit">[PLACEHOLDER_FEATURE_1_BENEFIT]</p>
-                            <p class="card-text pain-copy" data-i18n="feature_1_description">[PLACEHOLDER_FEATURE_1_DESCRIPTION]</p>
+                            <h3 class="card-title feature-story-title" data-i18n="feature_1_name">One inbox. Every channel.</h3>
+                            <p class="card-text feature-story-benefit" data-i18n="feature_1_benefit">Stop checking 6 different apps to see if someone wrote.</p>
+                            <p class="card-text pain-copy" data-i18n="feature_1_description">WhatsApp, Instagram, Facebook, email, Telegram — every customer conversation in one place. Your team responds from here. Nothing falls through.</p>
                         </div>
                         <figure class="feature-visual feature-visual-inbox" aria-hidden="true">
                             <div class="feature-panel-lights">
@@ -185,9 +253,9 @@
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
                             <div class="pain-index">02</div>
-                            <h3 class="card-title feature-story-title" data-i18n="feature_2_name">[PLACEHOLDER_FEATURE_2_NAME]</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="feature_2_benefit">[PLACEHOLDER_FEATURE_2_BENEFIT]</p>
-                            <p class="card-text pain-copy" data-i18n="feature_2_description">[PLACEHOLDER_FEATURE_2_DESCRIPTION]</p>
+                            <h3 class="card-title feature-story-title" data-i18n="feature_2_name">Your AI agent, always on.</h3>
+                            <p class="card-text feature-story-benefit" data-i18n="feature_2_benefit">Responds instantly. Escalates when it counts.</p>
+                            <p class="card-text pain-copy" data-i18n="feature_2_description">The agent handles the routine — hours, prices, availability, payment links. When a conversation needs a human, it escalates immediately with full context. You decide how it behaves and how it sounds.</p>
                         </div>
                         <figure class="feature-visual feature-visual-agent" aria-hidden="true">
                             <div class="feature-panel-lights">
@@ -225,9 +293,9 @@
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
                             <div class="pain-index">03</div>
-                            <h3 class="card-title feature-story-title" data-i18n="feature_3_name">[PLACEHOLDER_FEATURE_3_NAME]</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="feature_3_benefit">[PLACEHOLDER_FEATURE_3_BENEFIT]</p>
-                            <p class="card-text pain-copy" data-i18n="feature_3_description">[PLACEHOLDER_FEATURE_3_DESCRIPTION]</p>
+                            <h3 class="card-title feature-story-title" data-i18n="feature_3_name">Your team, in sync.</h3>
+                            <p class="card-text feature-story-benefit" data-i18n="feature_3_benefit">Everyone sees everything. Nobody drops the ball.</p>
+                            <p class="card-text pain-copy" data-i18n="feature_3_description">Assign conversations, leave internal notes, use saved replies for what always comes up. Everyone sees the same picture. Nobody answers the same message twice. Customers feel known.</p>
                         </div>
                         <figure class="feature-visual feature-visual-team" aria-hidden="true">
                             <div class="feature-panel-lights">
@@ -264,142 +332,50 @@
             </div>
         </section>
 
-        <section id="ai-explanation" class="container ai-section">
-            <div class="split-hero ai-split">
-                <div class="hero-content">
-                    <div class="section-header ai-header">
-                        <h2 class="section-title text-on-dark" data-i18n="ai_section_title">El 80% de las preguntas de tus clientes son siempre las mismas.</h2>
-                        <p class="text-muted" data-i18n="ai_section_subtitle">El agente las responde. Tú atiendes el otro 20%.</p>
-                    </div>
-                    <div class="ai-copy-stack">
-                        <div class="card ai-copy-card">
-                            <h3 class="card-title" data-i18n="ai_classifier_title">Primero entiende. Luego responde.</h3>
-                            <p class="card-text pain-copy" data-i18n="ai_classifier_description">Antes de responder cualquier cosa, el sistema analiza la intención del mensaje: ¿es una pregunta de precios? ¿una queja? ¿una solicitud urgente? Dependiendo de eso, decide si responde solo o pasa la conversación a tu equipo.</p>
-                        </div>
-                        <div class="card ai-copy-card">
-                            <h3 class="card-title" data-i18n="ai_escalation_title">Escala de inmediato cuando importa.</h3>
-                            <p class="card-text pain-copy" data-i18n="ai_escalation_description">Si detecta frustración, urgencia o una solicitud fuera de su alcance, transfiere al instante — sin hacer esperar al cliente, sin perder el hilo de la conversación. Tu agente humano llega con todo el contexto ya disponible.</p>
-                        </div>
-                        <div class="card ai-copy-card">
-                            <h3 class="card-title" data-i18n="ai_control_title">Tú defines hasta dónde llega.</h3>
-                            <p class="card-text pain-copy" data-i18n="ai_control_description">No hay magia negra ni decisiones que toman vida propia. El agente actúa dentro de los límites que tú le das. Si prefieres que solo responda preguntas frecuentes y todo lo demás lo atienda tu equipo — así funciona.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="ai-diagram card" role="img" data-i18n-aria-label="ai_diagram_alt">
-                        <div class="ai-diagram-node ai-node-message">
-                            <span class="ai-node-kicker" data-i18n="ai_diagram_incoming">Mensaje entrante</span>
-                            <div class="ai-bubble">
-                                <span class="ai-message-pill" data-i18n="ai_diagram_example_one">precio</span>
-                                <span class="ai-message-pill" data-i18n="ai_diagram_example_two">horario</span>
-                                <span class="ai-message-pill urgent" data-i18n="ai_diagram_example_three">urgente</span>
-                            </div>
-                        </div>
-                        <div class="ai-diagram-connector vertical"></div>
-                        <div class="ai-diagram-node ai-node-intent">
-                            <span class="ai-node-kicker" data-i18n="ai_diagram_intent">¿Qué necesita?</span>
-                            <div class="ai-intent-tags">
-                                <span class="ai-intent-tag" data-i18n="ai_diagram_tag_auto">pregunta repetida</span>
-                                <span class="ai-intent-tag urgent" data-i18n="ai_diagram_tag_handoff">caso delicado</span>
-                            </div>
-                        </div>
-                        <div class="ai-diagram-branches">
-                            <div class="ai-branch">
-                                <div class="ai-diagram-connector horizontal"></div>
-                                <div class="ai-diagram-node ai-node-bot">
-                                    <span class="ai-node-kicker" data-i18n="ai_diagram_auto">Pregunta repetida</span>
-                                    <div class="ai-agent-icon">AI</div>
-                                    <p class="ai-branch-copy" data-i18n="ai_diagram_auto_note">FAQ, pagos, disponibilidad</p>
-                                </div>
-                            </div>
-                            <div class="ai-branch">
-                                <div class="ai-diagram-connector horizontal"></div>
-                                <div class="ai-diagram-node ai-node-human">
-                                    <span class="ai-node-kicker" data-i18n="ai_diagram_handoff">Urgente o complejo</span>
-                                    <div class="ai-agent-icon human">H</div>
-                                    <p class="ai-branch-copy" data-i18n="ai_diagram_handoff_note">pasa con contexto y sin espera</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works Section -->
-        <section id="how-it-works" class="container">
+        <!-- Section 4 — Personal Agent -->
+        <section id="personal-agent" class="container">
             <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="hiw_title">[PLACEHOLDER_HOW_IT_WORKS_TITLE]</h2>
+                <h2 class="section-title text-on-dark" data-i18n="personal_section_title">Now for the other half.</h2>
+                <p class="text-muted" data-i18n="personal_section_subtitle">Connect the AI you already use to the tools you already have. Free, forever.</p>
             </div>
-            <div class="how-steps">
-                <div class="card hiw-step-card">
-                    <div class="hiw-step-layout">
-                        <figure class="hiw-visual hiw-visual-channels" role="img" data-i18n-aria-label="hiw_step_1_img_alt">
-                            <div class="visual-panel-tag">01</div>
-                            <div class="channel-switch-grid">
-                                <div class="channel-pill on whatsapp">WhatsApp</div>
-                                <div class="channel-pill on instagram">Instagram</div>
-                                <div class="channel-pill on facebook">Facebook</div>
-                                <div class="channel-pill on email">Email</div>
-                                <div class="channel-pill on telegram">Telegram</div>
-                                <div class="channel-pill on sms">SMS</div>
-                            </div>
-                            <figcaption class="visual-caption text-secondary" data-i18n="hiw_step_1_img_alt">Panel mostrando la lista de canales disponibles para conectar: WhatsApp, Instagram, Facebook, email, Telegram</figcaption>
-                        </figure>
-                        <div class="hiw-copy">
-                            <h3 class="card-title"><span data-i18n="hiw_step_1">1. [PLACEHOLDER_STEP_1]</span></h3>
-                            <p class="card-text pain-copy" data-i18n="hiw_step_1_details">[PLACEHOLDER_STEP_1_DETAILS]</p>
+            <div class="feature-pairs">
+                <div class="feature-pair-card card">
+                    <div class="feature-pair-layout">
+                        <div class="feature-story-card">
+                            <h3 class="card-title feature-story-title" data-i18n="personal_feature_title">Ask. It figures out the rest.</h3>
+                            <p class="card-text feature-story-benefit" data-i18n="personal_feature_benefit">Plan, schedule, analyze, and follow up — without switching apps.</p>
+                            <p class="card-text pain-copy" data-i18n="personal_feature_description">Connect Google Calendar, HubSpot, Buffer, and Google Analytics to Claude, ChatGPT, or Gemini. Then just ask. Schedule next week's posts, check last month's pipeline, pull a performance report — all in one conversation.</p>
+                            <a href="https://dashboard.despachobonsai.com/sign-up?plan=personal" class="btn-secondary" style="margin-top: 24px; display: inline-block;" data-i18n="cta_personal">Get started free</a>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card hiw-step-card hiw-step-card-reverse">
-                    <div class="hiw-step-layout">
-                        <figure class="hiw-visual hiw-visual-agent" role="img" data-i18n-aria-label="hiw_step_2_img_alt">
-                            <div class="visual-panel-tag">02</div>
-                            <div class="agent-brief">
-                                <div class="agent-chip">AI</div>
-                                <div class="agent-sheet">
-                                    <div class="sheet-title">Mi Negocio</div>
-                                    <span class="sheet-line long"></span>
-                                    <span class="sheet-line medium"></span>
-                                    <span class="sheet-line short"></span>
+                        <figure class="feature-visual" aria-hidden="true">
+                            <div class="feature-panel-lights">
+                                <span class="panel-light green"></span>
+                                <span class="panel-light amber"></span>
+                                <span class="panel-light blue"></span>
+                            </div>
+                            <div class="visual-ribbon" data-i18n="personal_visual_ribbon">Your AI. Your tools.</div>
+                            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:24px; flex:1;">
+                                <!-- AI platform chips — logos to replace in visual pass -->
+                                <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+                                    <span style="padding:6px 16px; background:rgba(139,92,246,0.2); border:1px solid rgba(139,92,246,0.5); border-radius:20px; font-size:13px; font-weight:600; color:#c4b5fd;">Claude</span>
+                                    <span style="padding:6px 16px; background:rgba(16,185,129,0.2); border:1px solid rgba(16,185,129,0.5); border-radius:20px; font-size:13px; font-weight:600; color:#6ee7b7;">ChatGPT</span>
+                                    <span style="padding:6px 16px; background:rgba(59,130,246,0.2); border:1px solid rgba(59,130,246,0.5); border-radius:20px; font-size:13px; font-weight:600; color:#93c5fd;">Gemini</span>
+                                </div>
+                                <!-- Connector -->
+                                <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
+                                    <span style="width:2px; height:10px; background:rgba(255,255,255,0.15); border-radius:1px; display:block;"></span>
+                                    <span style="width:2px; height:10px; background:rgba(255,255,255,0.15); border-radius:1px; display:block;"></span>
+                                    <span style="width:2px; height:10px; background:rgba(255,255,255,0.15); border-radius:1px; display:block;"></span>
+                                </div>
+                                <!-- Tool logos -->
+                                <div class="tool-logos-row" style="justify-content:center; margin:0;">
+                                    <div class="tool-logo-tile" aria-label="Google Calendar"><img src="bonsai-logo-assets/socialmediaicons/google-calendar-96.png" alt="Google Calendar"></div>
+                                    <div class="tool-logo-tile" aria-label="HubSpot"><img src="bonsai-logo-assets/socialmediaicons/hubspot-96.png" alt="HubSpot"></div>
+                                    <div class="tool-logo-tile" aria-label="Buffer"><img src="bonsai-logo-assets/socialmediaicons/buffer-96.png" alt="Buffer"></div>
+                                    <div class="tool-logo-tile" aria-label="Google Analytics"><img src="bonsai-logo-assets/socialmediaicons/google-analytics-96.png" alt="Google Analytics"></div>
                                 </div>
                             </div>
-                            <div class="agent-notes">
-                                <span class="note-pill">Prompt</span>
-                                <span class="note-pill">FAQs</span>
-                                <span class="note-pill">Tono</span>
-                            </div>
-                            <figcaption class="visual-caption text-secondary" data-i18n="hiw_step_2_img_alt">Pantalla de configuración del agente de IA con campo para instrucciones personalizadas del negocio</figcaption>
                         </figure>
-                        <div class="hiw-copy">
-                            <h3 class="card-title"><span data-i18n="hiw_step_2">2. [PLACEHOLDER_STEP_2]</span></h3>
-                            <p class="card-text pain-copy" data-i18n="hiw_step_2_details">[PLACEHOLDER_STEP_2_DETAILS]</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card hiw-step-card">
-                    <div class="hiw-step-layout">
-                        <figure class="hiw-visual hiw-visual-tools" role="img" data-i18n-aria-label="hiw_step_3_img_alt">
-                            <div class="visual-panel-tag">03</div>
-                            <div class="tools-core">
-                                <div class="agent-chip cape">AI</div>
-                            </div>
-                            <div class="tools-ring">
-                                <span class="tool-badge">Calendly</span>
-                                <span class="tool-badge">Pago</span>
-                                <span class="tool-badge">Catálogo</span>
-                                <span class="tool-badge">FAQ</span>
-                            </div>
-                            <figcaption class="visual-caption text-secondary" data-i18n="hiw_step_3_img_alt">Panel de respuestas guardadas con ejemplos: link de pago, link de cita, información de envíos</figcaption>
-                        </figure>
-                        <div class="hiw-copy">
-                            <h3 class="card-title"><span data-i18n="hiw_step_3">3. [PLACEHOLDER_STEP_3]</span></h3>
-                            <p class="card-text pain-copy" data-i18n="hiw_step_3_details">[PLACEHOLDER_STEP_3_DETAILS]</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -408,105 +384,74 @@
         <!-- Pricing Section -->
         <section id="pricing" class="container">
             <div class="section-header">
-                    <h2 class="section-title text-on-dark" data-i18n="pricing_title">[PLACEHOLDER_PRICING_TITLE]</h2>
-                    <div data-lang-visible="en" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
-                        <span data-i18n="en_only_msg">This is only visible in English!</span>
-                    </div>
-                    <div data-lang-visible="es" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
-                        <span data-i18n="es_only_msg">¡Esto solo es visible en español!</span>
-                    </div>
+                    <h2 class="section-title text-on-dark" data-i18n="pricing_title">One price. No surprises.</h2>
                 </div>
             <div class="grid-3">
-                <!-- Disabled Pricing Card -->
+                <!-- Personal Card -->
                 <div class="card pricing-card">
-                    <div class="card-header" data-i18n="plan_basic_name">Growth</div>
-                    <div class="pricing-price" data-i18n="plan_basic_price" style="color: #888;">$399 mxn/mes</div>
-                    <ul class="pricing-features" style="color: #999;">
-                        <li data-i18n="plan_feature_basic_seats">Unlimited Team Seats</li>
-                        <li data-i18n="plan_feature_brands_standard">Up to 5 Client Brands</li>
-                        <li data-i18n="plan_feature_inbox">Unified Omnichannel Inbox</li>
-                        <li data-i18n="plan_feature_approval">Client Approval Workflows</li>
-                        <li data-i18n="plan_starter_feature_social">Multi-Platform Social Scheduling</li>
-                        <li data-i18n="plan_feature_analytics">Consolidated Team Analytics</li>
+                    <div class="card-header" data-i18n="plan_personal_name">Personal</div>
+                    <div class="pricing-price" data-i18n="plan_personal_price">Free. Forever.</div>
+                    <div class="pricing-subline text-muted" data-i18n="plan_personal_subline">Bring your own Claude, ChatGPT, or Gemini.</div>
+                    <hr class="pricing-divider">
+                    <ul class="pricing-features">
+                        <li data-i18n="plan_personal_feature_1">Personal AI agent connected to your tools</li>
+                        <li data-i18n="plan_personal_feature_2">Works on Claude, ChatGPT, and Gemini — desktop and mobile</li>
+                        <li data-i18n="plan_personal_feature_3">On-demand cross-tool reports via conversation</li>
+                        <li data-i18n="plan_personal_feature_4">No conversation limits. No credit card, ever.</li>
                     </ul>
-                    <a href="https://dashboard.despachobonsai.com/sign-up?plan=starter" class="btn-secondary" data-i18n="cta_basic">Choose Starter</a>
-
+                    <div class="tool-logos-row">
+                        <div class="tool-logo-tile" aria-label="Google Calendar"><img src="bonsai-logo-assets/socialmediaicons/google-calendar-96.png" alt=""></div>
+                        <div class="tool-logo-tile" aria-label="HubSpot"><img src="bonsai-logo-assets/socialmediaicons/hubspot-96.png" alt=""></div>
+                        <div class="tool-logo-tile" aria-label="Buffer"><img src="bonsai-logo-assets/socialmediaicons/buffer-96.png" alt=""></div>
+                        <div class="tool-logo-tile" aria-label="Google Analytics"><img src="bonsai-logo-assets/socialmediaicons/google-analytics-96.png" alt=""></div>
+                    </div>
+                    <div class="tool-logos-label text-muted" data-i18n="plan_personal_tools_label">Connected tools</div>
+                    <a href="https://dashboard.despachobonsai.com/sign-up?plan=personal" class="btn-secondary pricing-cta" data-i18n="cta_personal">Get started free</a>
                 </div>
 
+                <!-- Pro Card -->
                 <div class="card pricing-card featured">
-                    <div class="card-header" data-i18n="plan_pro_name">Full Stack</div>
-                    <div class="pricing-price" data-i18n="plan_pro_price">[PLACEHOLDER_$29]/mo</div>
+                    <div class="most-popular-badge" data-i18n="plan_pro_badge">Most popular</div>
+                    <div class="card-header" data-i18n="plan_pro_name">Pro</div>
+                    <div class="pricing-price" data-i18n="plan_pro_price">$399 MXN/mo</div>
+                    <div class="pricing-subline text-muted" data-i18n="plan_pro_subline">30 days free. No credit card.</div>
+                    <hr class="pricing-divider">
                     <ul class="pricing-features">
-                        <li data-i18n="plan_feature_seats"><b>Unlimited</b> Team Seats</li>
-                        <li data-i18n="plan_feature_brands_founder"><b>Up to 10</b> Client Brands</li>
-                        <li data-i18n="plan_feature_inbox">Unified Omnichannel Inbox</li>
-                        <li data-i18n="plan_feature_social">Multi-Platform Social Scheduling</li>
-                        <li data-i18n="plan_feature_pro_support">Client Approval Workflows</li>
-                        <li data-i18n="plan_feature_analytics">Consolidated Team Analytics</li>
+                        <li data-i18n="plan_pro_feature_1">Everything in Personal</li>
+                        <li data-i18n="plan_pro_feature_2">Support bots on WhatsApp, Instagram, Facebook, email, Telegram, and web</li>
+                        <li data-i18n="plan_pro_feature_3">Unified inbox — your team and the bot, one place</li>
+                        <li data-i18n="plan_pro_feature_4">Google Calendar and HubSpot for your bots</li>
+                        <li data-i18n="plan_pro_feature_5">Priority support</li>
                     </ul>
-                    <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="cta_pro">Choose Pro</a>
+                    <div class="stat-block">
+                        <div class="stat-number" data-i18n="plan_pro_conversations_number">3,000</div>
+                        <div class="stat-label">
+                            <span data-i18n="plan_pro_conversations_label">AI-handled conversations / month</span>
+                            <div class="stat-tooltip-container">
+                                <span class="stat-tooltip-trigger">ⓘ</span>
+                                <div class="stat-tooltip" data-i18n="plan_pro_conversations_tooltip">We'll email you if you get close. We don't cut the bot off — we have a conversation about it.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-anchor text-muted" data-i18n="plan_pro_conversations_anchor">That's 100 conversations a day, every day of the month.</div>
+                    <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary pricing-cta" data-i18n="cta_pro">Start free trial</a>
                 </div>
-                <div class="card pricing-card">
-                    <div class="card-header" data-i18n="plan_enterprise_name">Custom</div>
-                    <div class="pricing-price" data-i18n="plan_enterprise_price">[PLACEHOLDER_CUSTOM]</div>
-                    <ul class="pricing-features">
-                        <li data-i18n="plan_feature_custom_brands">Unlimited Client Brands</li>
-                        <li data-i18n="plan_feature_migration">Dedicated Migration Support</li>
-                        <li data-i18n="plan_feature_training">1-on-1 Team Training</li>
-                        <li data-i18n="plan_feature_dedicated_support">1-on-1 Team Training</li>
-                    </ul>
-                    <a href="https://cal.com/miyagisan/30min" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display: block; text-align: center; text-decoration: none;" data-i18n="cta_book_call">Book a Demo</a>
-                </div>
-            </div>
-        </section>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="container">
-            <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="testimonials_title">[PLACEHOLDER_TESTIMONIALS_TITLE]</h2>
-            </div>
-            <div class="grid-2">
-                <div class="card">
-                    <p class="card-text pain-copy" style="font-style: italic;">"<span data-i18n="quote_3">[PLACEHOLDER_QUOTE_1]</span>"</p>
-                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
-                        <div class="testimonial-avatar"><img src="unicorn.png"></div>
-                        <div>
-                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_3">[PLACEHOLDER_AUTHOR_1]</div>
-                            <div class="text-secondary" data-i18n="company_3">[PLACEHOLDER_COMPANY_1]</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <p class="card-text pain-copy" style="font-style: italic;">"<span data-i18n="quote_2">[PLACEHOLDER_QUOTE_2]</span>"</p>
-                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
-                        <div class="testimonial-avatar"><img src="bull.png"></div>
-                        <div>
-                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_2">[PLACEHOLDER_AUTHOR_2]</div>
-                            <div class="text-secondary" data-i18n="company_2">[PLACEHOLDER_COMPANY_2]</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-2">
-                <div class="card">
-                    <p class="card-text pain-copy" style="font-style: italic;">"<span data-i18n="quote_1">[PLACEHOLDER_QUOTE_1]</span>"</p>
-                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
-                        <div class="testimonial-avatar"><img src="chicken.png"></div>
-                        <div>
-                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_1">[PLACEHOLDER_AUTHOR_1]</div>
-                            <div class="text-secondary" data-i18n="company_1">[PLACEHOLDER_COMPANY_1]</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <p class="card-text pain-copy" style="font-style: italic;">"<span data-i18n="quote_5">[PLACEHOLDER_QUOTE_2]</span>"</p>
-                    <div style="display:flex; align-items:center; gap: 12px; margin-top:20px;">
-                        <div class="testimonial-avatar"><img src="cow.png"></div>
-                        <div>
-                            <div class="card-title" style="margin-bottom:0; font-size:16px;" data-i18n="author_5">[PLACEHOLDER_AUTHOR_2]</div>
-                            <div class="text-secondary" data-i18n="company_5">[PLACEHOLDER_COMPANY_2]</div>
-                        </div>
-                    </div>
+                <!-- Bespoke Card -->
+                <div class="card pricing-card">
+                    <div class="card-header" data-i18n="plan_bespoke_name">Bespoke</div>
+                    <div class="pricing-price" data-i18n="plan_bespoke_price">Let's talk</div>
+                    <div class="pricing-subline text-muted">&nbsp;</div>
+                    <hr class="pricing-divider">
+                    <ul class="pricing-features">
+                        <li data-i18n="plan_bespoke_feature_1">Unlimited agents</li>
+                        <li data-i18n="plan_bespoke_feature_2">Unlimited tool connections</li>
+                        <li data-i18n="plan_bespoke_feature_3">Unlimited conversations</li>
+                        <li data-i18n="plan_bespoke_feature_4">Custom onboarding and setup</li>
+                        <li data-i18n="plan_bespoke_feature_5">Dedicated support</li>
+                        <li data-i18n="plan_bespoke_feature_6">Custom integrations on request</li>
+                    </ul>
+                    <a href="https://cal.com/miyagisan/30min" target="_blank" rel="noopener noreferrer" class="btn-secondary pricing-cta" data-i18n="cta_bespoke">Book a call</a>
                 </div>
             </div>
         </section>
@@ -532,26 +477,19 @@
                 </div>
                 <div class="card-image-placeholder">
                     <div class="section-header">
-                        <h1 class="hero-title text-on-dark" data-i18n="cta_title">[PLACEHOLDER_FEATURES_TITLE]</h1><br>
-                        
+                        <h2 class="hero-title text-on-dark" data-i18n="cta_title">Your business doesn't stop. Your customer support shouldn't either.</h2>
                         <div>
-                            <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="hero_cta_free">Start For Free</a>
+                            <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="hero_cta_free">Start free — no card</a>
                         </div>
                     </div>
                 </div>
-            </div>
-             <!-- Visibility Example -->
-            <div data-lang-visible="en" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
-                <span data-i18n="en_only_msg">This is only visible in English!</span>
-            </div>
-            <div data-lang-visible="es" style="margin-top: 20px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff; text-align: center;">
-                <span data-i18n="es_only_msg">¡Esto solo es visible en español!</span>
             </div>
         </section>
     </main>
 
     <div data-shared-footer></div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/hero-animation.js"></script>
     <script src="js/shared-shell.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>

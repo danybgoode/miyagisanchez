@@ -53,8 +53,76 @@
                 </div>
                 
                 <div class="hero-image">
-                    <div class="hero-image-placeholder" aria-label="Bonsai dashboard showing unified inbox and content calendar side by side">
-                        <video autoplay muted loop playsinline src="hero.mp4" class="hero-video"></video>
+                    <div class="hero-animation-wrapper">
+                        <div class="hero-animation-scaler">
+                            <div class="bubble" id="b-wa" style="position:absolute; left:80px; top:120px; display:flex; flex-direction:column; align-items:center; gap:7px;">
+                                <div class="clay-bubble" style="width:78px;height:78px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(145deg,#6ee7a0,#22c55e);">💬</div>
+                                <span class="bubble-label" style="color:#15803d;">WhatsApp</span>
+                            </div>
+
+                            <div class="bubble" id="b-ig" style="position:absolute; left:340px; top:90px; display:flex; flex-direction:column; align-items:center; gap:7px;">
+                                <div class="clay-bubble" style="width:78px;height:78px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(145deg,#f9a8d4,#a855f7);">📸</div>
+                                <span class="bubble-label" style="color:#86198f;">Instagram</span>
+                            </div>
+
+                            <div class="bubble" id="b-fb" style="position:absolute; left:140px; top:220px; display:flex; flex-direction:column; align-items:center; gap:7px;">
+                                <div class="clay-bubble" style="width:78px;height:78px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(145deg,#93c5fd,#2563eb);">👤</div>
+                                <span class="bubble-label" style="color:#1e40af;">Facebook</span>
+                            </div>
+
+                            <div class="bubble" id="b-email" style="position:absolute; left:310px; top:250px; display:flex; flex-direction:column; align-items:center; gap:7px;">
+                                <div class="clay-bubble" style="width:78px;height:78px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(145deg,#fde68a,#f59e0b);">✉️</div>
+                                <span class="bubble-label" style="color:#92400e;">Email</span>
+                            </div>
+
+                            <div class="bubble" id="b-tg" style="position:absolute; left:230px; top:140px; display:flex; flex-direction:column; align-items:center; gap:7px;">
+                                <div class="clay-bubble" style="width:78px;height:78px;display:flex;align-items:center;justify-content:center;font-size:30px;background:linear-gradient(145deg,#67e8f9,#0284c7);">✈️</div>
+                                <span class="bubble-label" style="color:#075985;">Telegram</span>
+                            </div>
+
+                            <!-- ── Central Sphere ── -->
+                            <div id="sphere-wrap" style="position:relative;display:flex;align-items:center;justify-content:center;z-index:10;flex-shrink:0;">
+                                <div class="pulse-ring" id="pr1" style="width:250px;height:250px;border:3px solid rgba(167,139,250,0.38);"></div>
+                                <div class="pulse-ring" id="pr2" style="width:300px;height:300px;border:3px solid rgba(167,139,250,0.2);"></div>
+
+                                <div id="sphere" class="clay-sphere" style="
+                                    width:192px; height:192px;
+                                    background:linear-gradient(140deg, #c4b5fd 0%, #8b5cf6 55%, #6d28d9 100%);
+                                    display:flex; flex-direction:column; align-items:center; justify-content:center;
+                                    flex-shrink:0; position:relative; z-index:2;
+                                ">
+                                    <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai" style="width:118px; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28));" />
+                                    <span style="color:rgba(255,255,255,0.7);font-size:10px;font-weight:600;letter-spacing:0.14em;margin-top:6px;text-transform:uppercase;">AI Agent</span>
+                                </div>
+                            </div>
+
+                            <!-- ── Outcome Cards ── -->
+                            <div id="cards" style="position:absolute;bottom:60px;left:136px;display:flex;flex-direction:column;gap:14px;z-index:10;">
+                                <div id="c-sale" class="clay-card" style="display:flex;align-items:center;gap:13px;padding:15px 20px;width:228px;background:linear-gradient(140deg,#d1fae5,#6ee7b7);opacity:0;">
+                                    <span style="font-size:26px;flex-shrink:0;">✅</span>
+                                    <div>
+                                        <div style="font-size:10px;font-weight:700;color:#065f46;text-transform:uppercase;letter-spacing:0.09em;opacity:0.75;">Outcome</div>
+                                        <div style="font-size:14px;font-weight:800;color:#064e3b;margin-top:1px;">Sale Closed</div>
+                                    </div>
+                                </div>
+
+                                <div id="c-support" class="clay-card" style="display:flex;align-items:center;gap:13px;padding:15px 20px;width:228px;background:linear-gradient(140deg,#dbeafe,#93c5fd);opacity:0;">
+                                    <span style="font-size:26px;flex-shrink:0;">🎫</span>
+                                    <div>
+                                        <div style="font-size:10px;font-weight:700;color:#1e3a8a;text-transform:uppercase;letter-spacing:0.09em;opacity:0.75;">Outcome</div>
+                                        <div style="font-size:14px;font-weight:800;color:#1e3a8a;margin-top:1px;">Support Resolved</div>
+                                    </div>
+                                </div>
+
+                                <div id="c-meeting" class="clay-card" style="display:flex;align-items:center;gap:13px;padding:15px 20px;width:228px;background:linear-gradient(140deg,#fef3c7,#fde68a);opacity:0;">
+                                    <span style="font-size:26px;flex-shrink:0;">📅</span>
+                                    <div>
+                                        <div style="font-size:10px;font-weight:700;color:#78350f;text-transform:uppercase;letter-spacing:0.09em;opacity:0.75;">Outcome</div>
+                                        <div style="font-size:14px;font-weight:800;color:#78350f;margin-top:1px;">Meeting Booked</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,9 +186,12 @@
                     <div class="card-header" data-i18n="plan_basic_name">[PLACEHOLDER_BASIC_PLAN]</div>
                     <div class="pricing-price" data-i18n="plan_basic_price">[PLACEHOLDER_$9]/mo</div>
                     <ul class="pricing-features">
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li style="color:var(--text-secondary);" data-i18n="plan_feature_excluded">[PLACEHOLDER_FEATURE_EXCLUDED]</li>
+                        <li data-i18n="plan_basic_bot_count">2 AI agents</li>
+                        <li data-i18n="plan_basic_bot_types">1 customer support + 1 personal</li>
+                        <li data-i18n="plan_basic_tool_connections">1 tool connection</li>
+                        <li data-i18n="plan_basic_ai_capability">Base AI responses</li>
+                        <li data-i18n="plan_basic_inboxes">Unlimited inboxes</li>
+                        <li data-i18n="plan_basic_trial">30-day free trial</li>
                     </ul>
                     <button class="btn-secondary" data-i18n="cta_basic">Choose Basic</button>
                 </div>
@@ -128,9 +199,12 @@
                     <div class="card-header" data-i18n="plan_pro_name">[PLACEHOLDER_PRO_PLAN]</div>
                     <div class="pricing-price" data-i18n="plan_pro_price">[PLACEHOLDER_$29]/mo</div>
                     <ul class="pricing-features">
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
-                        <li data-i18n="plan_feature_included">[PLACEHOLDER_FEATURE_INCLUDED]</li>
+                        <li data-i18n="plan_pro_bot_count">5 AI agents</li>
+                        <li data-i18n="plan_pro_bot_types">any mix of types</li>
+                        <li data-i18n="plan_pro_tool_connections">5 tool connections</li>
+                        <li data-i18n="plan_pro_ai_capability">Enhanced AI</li>
+                        <li data-i18n="plan_pro_inboxes">Unlimited inboxes</li>
+                        <li data-i18n="plan_pro_support">Priority support</li>
                     </ul>
                     <a href="https://dashboard.despachobonsai.com/sign-up" class="btn-primary" data-i18n="cta_pro">Choose Pro</a>
                 </div>
@@ -138,9 +212,11 @@
                     <div class="card-header" data-i18n="plan_enterprise_name">[PLACEHOLDER_ENTERPRISE_PLAN]</div>
                     <div class="pricing-price" data-i18n="plan_enterprise_price">[PLACEHOLDER_CUSTOM]</div>
                     <ul class="pricing-features">
-                        <li data-i18n="plan_pro_everything">[PLACEHOLDER_EVERYTHING_IN_PRO]</li>
-                        <li data-i18n="plan_sso">[PLACEHOLDER_SSO_SAML]</li>
-                        <li data-i18n="plan_support">[PLACEHOLDER_DEDICATED_SUPPORT]</li>
+                        <li data-i18n="plan_enterprise_bot_count">Unlimited agents</li>
+                        <li data-i18n="plan_enterprise_tool_connections">Unlimited tool connections</li>
+                        <li data-i18n="plan_enterprise_onboarding">Custom onboarding and setup</li>
+                        <li data-i18n="plan_enterprise_support">Dedicated support</li>
+                        <li data-i18n="plan_enterprise_integrations">Custom integrations on request</li>
                     </ul>
                     <button class="btn-secondary" data-i18n="cta_contact">Contact Us</button>
                 </div>
@@ -189,6 +265,8 @@
 
     <div data-shared-footer></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="js/hero-animation.js"></script>
     <script src="js/shared-shell.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
