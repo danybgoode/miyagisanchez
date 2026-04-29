@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai — Feature: Personal Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(148deg, #f5f0ff 0%, #ede8fb 30%, #e8f0ff 65%, #f0fff8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 40px 24px;
+    }
+
+    /* ═══════════════════════════════════════════
+       DOUGHY CLAY SYSTEM
+       Every pressable thing has:
+       • 3-layer outer drop shadow
+       • Bright white top-rim (inset 0 Npx 0 white)
+       • Specular blob (::before)
+       • White border edge catch-light
+    ═══════════════════════════════════════════ */
+
+    /* Deep surfaces (phone frame, dark elements) */
+    .clay-deep {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.14);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.35),
+        0 18px 45px rgba(0,0,0,0.38),
+        0 40px 80px rgba(0,0,0,0.22),
+        inset 0 5px 0 rgba(255,255,255,0.10),
+        inset 5px 5px 18px rgba(255,255,255,0.06),
+        inset -5px -5px 18px rgba(0,0,0,0.25);
+    }
+    .clay-deep::before {
+      content: '';
+      position: absolute;
+      top: 5%; left: 8%;
+      width: 54%; height: 40%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 40% 35%,
+        rgba(255,255,255,0.12) 0%,
+        transparent 65%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Light surfaces (cards, bubbles) */
+    .clay-light {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.68);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.11),
+        0 12px 30px rgba(0,0,0,0.11),
+        0 24px 52px rgba(0,0,0,0.06),
+        -6px -6px 16px rgba(255,255,255,0.92),
+        inset 0 5px 0 rgba(255,255,255,0.84),
+        inset 5px 5px 16px rgba(255,255,255,0.50),
+        inset -5px -5px 16px rgba(0,0,0,0.10);
+    }
+    .clay-light::before {
+      content: '';
+      position: absolute;
+      top: 7%; left: 9%;
+      width: 50%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255,255,255,0.56) 0%,
+        rgba(255,255,255,0.10) 55%,
+        transparent 72%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Pill / badge variant */
+    .clay-pill {
+      position: relative;
+      isolation: isolate;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.62);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.13),
+        -2px -2px 6px rgba(255,255,255,0.9),
+        inset 0 3px 0 rgba(255,255,255,0.72),
+        inset 2px 2px 7px rgba(255,255,255,0.42),
+        inset -2px -2px 7px rgba(0,0,0,0.10);
+    }
+
+    /* Circle button — the "pressable" archetype */
+    .clay-btn {
+      position: relative;
+      isolation: isolate;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      cursor: pointer;
+      box-shadow:
+        0 5px 10px rgba(0,0,0,0.22),
+        0 12px 28px rgba(0,0,0,0.18),
+        -3px -3px 8px rgba(255,255,255,0.82),
+        inset 0 4px 0 rgba(255,255,255,0.68),
+        inset 3px 3px 10px rgba(255,255,255,0.40),
+        inset -3px -3px 10px rgba(0,0,0,0.16);
+      transition: transform 80ms ease, box-shadow 80ms ease;
+    }
+    .clay-btn:active {
+      transform: translateY(2px) scale(0.96);
+      box-shadow:
+        0 2px 5px rgba(0,0,0,0.22),
+        0 5px 14px rgba(0,0,0,0.16),
+        -1px -1px 4px rgba(255,255,255,0.7),
+        inset 0 2px 0 rgba(255,255,255,0.55),
+        inset 2px 2px 6px rgba(255,255,255,0.30),
+        inset -4px -4px 10px rgba(0,0,0,0.22);
+    }
+    .clay-btn::before {
+      content: '';
+      position: absolute;
+      top: 8%; left: 10%;
+      width: 50%; height: 48%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,0.52) 0%,
+        transparent 68%);
+      pointer-events: none;
+    }
+
+    /* Chat bubble variant */
+    .clay-bubble {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.60);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.10),
+        -3px -3px 8px rgba(255,255,255,0.88),
+        inset 0 4px 0 rgba(255,255,255,0.76),
+        inset 3px 3px 10px rgba(255,255,255,0.46),
+        inset -3px -3px 10px rgba(0,0,0,0.09);
+    }
+    .clay-bubble::before {
+      content: '';
+      position: absolute;
+      top: 4px; left: 9px;
+      width: 44%; height: 50%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,0.46) 0%,
+        transparent 68%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Side button (physical phone button) */
+    .phone-side-btn {
+      position: absolute;
+      border-radius: 3px 0 0 3px;
+      background: linear-gradient(to left,
+        #1a0b45 0%,
+        #27115e 40%,
+        #1e0d50 100%);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-left: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(0,0,0,0.4);
+      box-shadow:
+        -3px 2px 6px rgba(0,0,0,0.5),
+        inset 1px 1px 3px rgba(255,255,255,0.07),
+        inset -1px -1px 2px rgba(0,0,0,0.3);
+    }
+    .phone-side-btn.right {
+      border-radius: 0 3px 3px 0;
+      background: linear-gradient(to right,
+        #1a0b45 0%,
+        #27115e 40%,
+        #1e0d50 100%);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-right: 1px solid rgba(255,255,255,0.10);
+      border-bottom: 1px solid rgba(0,0,0,0.4);
+      box-shadow:
+        3px 2px 6px rgba(0,0,0,0.5),
+        inset -1px 1px 3px rgba(255,255,255,0.07),
+        inset 1px -1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* ═══════════════════════════════════════════
+       PHONE LAYOUT
+    ═══════════════════════════════════════════ */
+
+    .scene {
+      display: flex;
+      align-items: center;
+      gap: 52px;
+      position: relative;
+    }
+
+    /* 3D perspective wrapper */
+    .phone-tilt {
+      transform: perspective(1100px) rotateY(-8deg) rotateX(2deg);
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    /* Ground shadow */
+    .phone-tilt::after {
+      content: '';
+      position: absolute;
+      bottom: -28px; left: 8%; right: -2%;
+      height: 28px;
+      background: radial-gradient(ellipse at 55% 50%,
+        rgba(80, 20, 180, 0.28) 0%,
+        transparent 70%);
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    /* The physical phone body */
+    .phone {
+      width: 306px;
+      border-radius: 50px;
+      background: radial-gradient(ellipse at 30% 18%,
+        #3d1c80 0%,
+        #250d5a 45%,
+        #150637 100%);
+      padding: 18px 14px 24px;
+      overflow: visible;
+      position: relative;
+    }
+
+    /* Notch bar */
+    .phone-notch {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+    .notch-speaker {
+      width: 56px; height: 5px;
+      border-radius: 100px;
+      background: rgba(0,0,0,0.55);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .notch-cam {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #1a1a2e, #000);
+      box-shadow: 0 0 0 1.5px #111, 0 0 6px rgba(80,120,255,0.25);
+      flex-shrink: 0;
+    }
+
+    /* The screen bezel area */
+    .phone-screen {
+      border-radius: 32px;
+      overflow: hidden;
+      background: #f0eeff;
+      position: relative;
+    }
+
+    /* Home bar */
+    .phone-home-bar {
+      display: flex;
+      justify-content: center;
+      padding: 14px 0 0;
+    }
+    .home-bar-pill {
+      width: 110px; height: 5px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.22);
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    /* ── STATUS BAR ── */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2e1065;
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(6px);
+    }
+    .status-icons { display: flex; align-items: center; gap: 5px; }
+
+    /* ── TELEGRAM HEADER ── */
+    .tg-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px 10px;
+      background: linear-gradient(160deg, #ede9fe, #ddd6fe);
+      border-bottom: 1px solid rgba(167,139,250,0.2);
+      position: relative;
+    }
+    .tg-back {
+      font-size: 18px; color: #7c3aed; cursor: pointer;
+      line-height: 1; flex-shrink: 0;
+      font-weight: 800;
+    }
+    .avatar-wrap { position: relative; flex-shrink: 0; }
+    .tg-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, #a78bfa, #6d28d9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+    }
+
+    /* Google Analytics notification badge */
+    #ga-badge {
+      position: absolute;
+      top: -7px; right: -8px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid white;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      opacity: 0;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.22);
+      z-index: 10;
+    }
+    /* GA logo — 3 bars */
+    .ga-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 1.5px;
+      height: 12px;
+      padding-bottom: 1px;
+    }
+    .ga-bar {
+      width: 3px;
+      border-radius: 1px 1px 0 0;
+    }
+
+    .tg-contact { flex: 1; min-width: 0; }
+    .tg-name {
+      font-size: 14px; font-weight: 800; color: #2e1065;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .tg-status {
+      font-size: 11px; color: #7c3aed; opacity: 0.8;
+      display: flex; align-items: center; gap: 4px; margin-top: 1px;
+    }
+    .tg-actions { display: flex; gap: 14px; flex-shrink: 0; }
+    .tg-action-icon { font-size: 16px; color: #7c3aed; cursor: pointer; opacity: 0.8; }
+
+    /* ── MESSAGES AREA ── */
+    .messages-area {
+      min-height: 318px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%);
+      /* Subtle dot wallpaper */
+      background-image:
+        radial-gradient(circle, rgba(167,139,250,0.18) 1px, transparent 1px),
+        linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%);
+      background-size: 22px 22px, 100% 100%;
+      position: relative;
+    }
+
+    /* Date chip */
+    .date-chip {
+      display: flex; justify-content: center;
+    }
+    .date-chip span {
+      font-size: 11px; font-weight: 600;
+      color: #6d28d9; opacity: 0.65;
+      background: rgba(255,255,255,0.6);
+      padding: 3px 12px;
+      border-radius: 100px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* User message (right) */
+    .msg-out {
+      display: flex;
+      justify-content: flex-end;
+      opacity: 0;
+    }
+    .bubble-out {
+      max-width: 78%;
+      padding: 10px 13px;
+      border-radius: 18px 18px 5px 18px;
+      font-size: 13.5px; font-weight: 600; color: #fff;
+      background: linear-gradient(140deg, #c4b5fd, #7c3aed);
+    }
+
+    /* AI message (left) */
+    .msg-in {
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      opacity: 0;
+    }
+    .msg-in-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(140deg, #a78bfa, #6d28d9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .bubble-in {
+      max-width: 82%;
+      padding: 10px 13px;
+      border-radius: 18px 18px 18px 5px;
+      font-size: 13.5px; font-weight: 600; color: #2e1065;
+      background: linear-gradient(140deg, #f5f3ff, #ede9fe);
+    }
+
+    /* Typing indicator */
+    #typing-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      opacity: 0;
+    }
+    .typing-bubble {
+      padding: 12px 15px;
+      border-radius: 18px 18px 18px 5px;
+      background: linear-gradient(140deg, #f0eeff, #e9e3ff);
+      display: flex; gap: 5px; align-items: center;
+    }
+    .t-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(109,40,217,0.4);
+    }
+
+    /* ── ANALYTICS CARD (inside AI bubble) ── */
+    #analytics-card {
+      opacity: 0;
+    }
+    .analytics-inner {
+      background: linear-gradient(160deg, #f9f6ff, #ede9fe 60%, #e3deff);
+      border-radius: 16px 16px 16px 5px;
+      overflow: hidden;
+      min-width: 212px;
+    }
+    .card-top-bar {
+      background: linear-gradient(90deg, #6d28d9, #4c1d95);
+      padding: 9px 13px;
+      display: flex; align-items: center; gap: 7px;
+    }
+
+    /* Mini sparkline bars */
+    .sparkline {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 32px;
+      padding: 0 2px;
+    }
+    .spark-bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(180deg, #a78bfa, #7c3aed);
+      transform-origin: bottom;
+    }
+
+    /* ── INPUT BAR ── */
+    .tg-input-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(167,139,250,0.18);
+    }
+    .tg-input-field {
+      flex: 1;
+      height: 36px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.72);
+      border: 1.5px solid rgba(167,139,250,0.3);
+      padding: 0 14px;
+      font-size: 13px;
+      color: #4c1d95;
+      display: flex;
+      align-items: center;
+      box-shadow:
+        inset 0 2px 6px rgba(109,40,217,0.08),
+        inset -1px -1px 3px rgba(255,255,255,0.8),
+        0 1px 0 rgba(255,255,255,0.9);
+    }
+    .tg-input-placeholder {
+      font-size: 13px;
+      color: rgba(109,40,217,0.38);
+      font-weight: 500;
+      pointer-events: none;
+    }
+    #typed-text {
+      font-size: 13px;
+      color: #3b0764;
+      font-weight: 600;
+    }
+    .cursor-blink {
+      display: inline-block;
+      width: 2px; height: 14px;
+      background: #7c3aed;
+      border-radius: 1px;
+      vertical-align: middle;
+      margin-left: 1px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Send button — chunky and pressable */
+    .send-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #a78bfa, #6d28d9);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 15px;
+      color: white;
+      /* The "actually pressable" shadow stack */
+      border: 1.5px solid rgba(255,255,255,0.4);
+      box-shadow:
+        0 4px 8px rgba(109,40,217,0.40),
+        0 10px 22px rgba(109,40,217,0.28),
+        -2px -2px 5px rgba(255,255,255,0.55),
+        inset 0 3px 0 rgba(255,255,255,0.55),
+        inset 2px 2px 6px rgba(255,255,255,0.28),
+        inset -2px -2px 6px rgba(0,0,0,0.22);
+      transition: transform 80ms ease, box-shadow 80ms ease;
+      position: relative;
+      isolation: isolate;
+    }
+    .send-btn::before {
+      content: '';
+      position: absolute;
+      top: 5px; left: 7px;
+      width: 46%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .send-btn:active {
+      transform: translateY(2px) scale(0.94);
+      box-shadow:
+        0 2px 4px rgba(109,40,217,0.35),
+        0 4px 10px rgba(109,40,217,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 1px 1px 3px rgba(255,255,255,0.20),
+        inset -2px -2px 8px rgba(0,0,0,0.28);
+    }
+
+    /* ── CAPTION PANEL (right of phone) ── */
+    .caption-panel {
+      max-width: 240px;
+      opacity: 0;
+    }
+
+    /* ── Tool indicator bubble ── */
+    .tool-bubble {
+      background: linear-gradient(140deg, #fffbeb, #fef3c7);
+      border-radius: 18px 18px 18px 5px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    /* Equalizer bars */
+    .eq-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    .eq-bar {
+      width: 3.5px;
+      height: 6px;
+      border-radius: 2px 2px 1px 1px;
+      transform-origin: bottom;
+    }
+
+    /* Scrollable tg area */
+    .messages-area {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scene">
+
+    <!-- ══════════════════════════
+         PHONE
+    ══════════════════════════ -->
+    <div class="phone-tilt">
+
+      <!-- Left side buttons (volume) -->
+      <div class="phone-side-btn" style="left:-6px; top:22%; width:5px; height:38px;"></div>
+      <div class="phone-side-btn" style="left:-6px; top:32%; width:5px; height:64px;"></div>
+      <div class="phone-side-btn" style="left:-6px; top:44%; width:5px; height:64px;"></div>
+
+      <!-- Right side button (power) -->
+      <div class="phone-side-btn right" style="right:-6px; top:28%; width:5px; height:72px;"></div>
+
+      <!-- Phone body -->
+      <div class="phone clay-deep">
+
+        <!-- Notch -->
+        <div class="phone-notch">
+          <div class="notch-cam"></div>
+          <div class="notch-speaker"></div>
+        </div>
+
+        <!-- Screen -->
+        <div class="phone-screen">
+
+          <!-- Status bar -->
+          <div class="status-bar">
+            <span style="font-weight:800;">9:41</span>
+            <div class="status-icons">
+              <!-- Signal bars -->
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                <rect x="0" y="8" width="3" height="4" rx="1" fill="#4c1d95" opacity="0.9"/>
+                <rect x="4.5" y="5" width="3" height="7" rx="1" fill="#4c1d95" opacity="0.9"/>
+                <rect x="9" y="2" width="3" height="10" rx="1" fill="#4c1d95" opacity="0.9"/>
+                <rect x="13.5" y="0" width="2.5" height="12" rx="1" fill="#4c1d95" opacity="0.4"/>
+              </svg>
+              <!-- Battery -->
+              <svg width="22" height="12" viewBox="0 0 22 12" fill="none">
+                <rect x="0.5" y="0.5" width="18" height="11" rx="2.5" stroke="#4c1d95" stroke-opacity="0.8"/>
+                <rect x="2" y="2" width="12" height="8" rx="1.5" fill="#4c1d95" opacity="0.85"/>
+                <rect x="19" y="3.5" width="2.5" height="5" rx="1" fill="#4c1d95" opacity="0.6"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Telegram Header -->
+          <div class="tg-header">
+            <span class="tg-back">‹</span>
+
+            <!-- Avatar with GA badge -->
+            <div class="avatar-wrap">
+              <div class="tg-avatar">
+                <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai"
+                     style="width:22px; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
+              </div>
+              <!-- GA notification badge -->
+              <div id="ga-badge">
+                <div class="ga-bars">
+                  <div class="ga-bar" style="height:5px;  background:#F9AB00;"></div>
+                  <div class="ga-bar" style="height:9px;  background:#E37400;"></div>
+                  <div class="ga-bar" style="height:12px; background:#1A73E8;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tg-contact">
+              <div class="tg-name">Personal Agent</div>
+              <div class="tg-status">
+                <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;
+                             box-shadow:0 0 5px #22c55e;flex-shrink:0;"></span>
+                online
+              </div>
+            </div>
+
+            <div class="tg-actions">
+              <span class="tg-action-icon">📞</span>
+              <span class="tg-action-icon">⋮</span>
+            </div>
+          </div>
+
+          <!-- Messages area -->
+          <div class="messages-area" id="messages-area">
+
+            <!-- Date chip -->
+            <div class="date-chip"><span>Today</span></div>
+
+            <!-- User message -->
+            <div class="msg-out" id="msg-user">
+              <div class="clay-bubble bubble-out">
+                How did our website do today?
+              </div>
+            </div>
+
+            <!-- Tool indicator — agent fetching Analytics -->
+            <div id="tool-indicator" style="display:flex; align-items:flex-end; gap:7px; opacity:0;">
+              <div class="msg-in-avatar">
+                <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt=""
+                     style="width:14px; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+              </div>
+              <div class="clay-bubble tool-bubble">
+                <!-- Equalizer bars in GA palette -->
+                <div class="eq-wrap">
+                  <div class="eq-bar" id="eq1" style="background:#F9AB00;"></div>
+                  <div class="eq-bar" id="eq2" style="background:#E37400;"></div>
+                  <div class="eq-bar" id="eq3" style="background:#1A73E8;"></div>
+                  <div class="eq-bar" id="eq4" style="background:#E37400;"></div>
+                  <div class="eq-bar" id="eq5" style="background:#F9AB00;"></div>
+                </div>
+                <div>
+                  <div style="font-size:9.5px;font-weight:700;color:#b45309;text-transform:uppercase;
+                              letter-spacing:0.09em;opacity:0.75;margin-bottom:2px;">Agent active</div>
+                  <div style="font-size:12.5px;font-weight:700;color:#1c1917;">Getting metrics from Analytics...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Analytics card reply -->
+            <div class="msg-in" id="analytics-card">
+              <div class="msg-in-avatar">
+                <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt=""
+                     style="width:14px; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+              </div>
+
+              <div class="clay-light analytics-inner">
+                <!-- Card header bar -->
+                <div class="card-top-bar">
+                  <!-- Inline GA mini icon -->
+                  <div class="ga-bars" style="height:14px;">
+                    <div class="ga-bar" style="height:6px;  background:#fbbf24;width:4px;"></div>
+                    <div class="ga-bar" style="height:10px; background:#f97316;width:4px;"></div>
+                    <div class="ga-bar" style="height:14px; background:#60a5fa;width:4px;"></div>
+                  </div>
+                  <span style="font-size:12px;font-weight:800;color:rgba(255,255,255,0.95);letter-spacing:0.04em;">Analytics · Today</span>
+                </div>
+
+                <div style="padding:12px 14px; display:flex; flex-direction:column; gap:10px;">
+
+                  <!-- Big number -->
+                  <div style="display:flex; align-items:flex-end; gap:8px;">
+                    <div>
+                      <div style="font-size:10px;font-weight:700;color:#6d28d9;opacity:0.7;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;">Visitors</div>
+                      <div style="display:flex; align-items:baseline; gap:5px;">
+                        <span id="visitor-count" style="font-size:28px;font-weight:900;color:#2e1065;line-height:1;font-variant-numeric:tabular-nums;">0</span>
+                        <span style="font-size:12px;font-weight:700;color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 7px;border-radius:100px;">↑ 12%</span>
+                      </div>
+                    </div>
+
+                    <!-- Sparkline (bars animate up) -->
+                    <div class="sparkline" style="margin-left:auto;">
+                      <div class="spark-bar" id="sb1" style="height:0%; opacity:0.6;"></div>
+                      <div class="spark-bar" id="sb2" style="height:0%; opacity:0.7;"></div>
+                      <div class="spark-bar" id="sb3" style="height:0%; opacity:0.8;"></div>
+                      <div class="spark-bar" id="sb4" style="height:0%;"></div>
+                      <div class="spark-bar" id="sb5" style="height:0%; background:linear-gradient(180deg,#c4b5fd,#a78bfa);"></div>
+                    </div>
+                  </div>
+
+                  <!-- Divider -->
+                  <div style="height:1px; background:rgba(167,139,250,0.2);"></div>
+
+                  <!-- Stats rows -->
+                  <div style="display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                      <span style="font-size:11.5px;font-weight:600;color:#6b7280;">Top source</span>
+                      <span style="font-size:11.5px;font-weight:800;color:#2e1065;">𝕏 / Twitter</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                      <span style="font-size:11.5px;font-weight:600;color:#6b7280;">Avg. session</span>
+                      <span style="font-size:11.5px;font-weight:800;color:#2e1065;">3m 42s</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                      <span style="font-size:11.5px;font-weight:600;color:#6b7280;">Bounce rate</span>
+                      <span style="font-size:11.5px;font-weight:800;color:#2e1065;">38%</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end messages -->
+
+          <!-- Input bar -->
+          <div class="tg-input-bar">
+            <div class="clay-btn" style="
+              width:34px; height:34px;
+              background:linear-gradient(145deg,#f5f3ff,#ede9fe);
+              display:flex; align-items:center; justify-content:center;
+              font-size:15px; flex-shrink:0;
+            ">🎤</div>
+
+            <div class="tg-input-field">
+              <span id="typed-text"></span>
+              <span class="cursor-blink" id="cursor"></span>
+              <span class="tg-input-placeholder" id="placeholder">Message</span>
+            </div>
+
+            <div class="send-btn" id="send-btn">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M7 12V2M2.5 6.5L7 2L11.5 6.5" stroke="white" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+        </div><!-- end screen -->
+
+        <!-- Home bar -->
+        <div class="phone-home-bar">
+          <div class="home-bar-pill"></div>
+        </div>
+
+      </div><!-- end phone -->
+    </div><!-- end tilt -->
+
+    <!-- ══════════════════════════
+         CAPTION PANEL
+    ══════════════════════════ -->
+    <div class="caption-panel" id="caption-panel">
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.16em;color:#7c3aed;
+                text-transform:uppercase;margin-bottom:10px;">Personal Agent</p>
+      <h2 style="font-size:1.9rem;font-weight:900;color:#1e0e3e;line-height:1.1;margin-bottom:12px;">
+        Ask anything.<br/>
+        <span style="color:#7c3aed;">Get real data.</span>
+      </h2>
+      <p style="font-size:0.92rem;color:#6b7280;line-height:1.6;">
+        Your personal AI operator lives in Telegram. Ask about traffic, post on socials, book meetings — it handles it all through conversation.
+      </p>
+
+      <!-- Feature chips -->
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px;" id="feature-chips">
+        <span class="clay-pill" style="
+          font-size:11px; font-weight:700; color:#1d4ed8;
+          background:linear-gradient(135deg,#dbeafe,#bfdbfe);
+          padding:5px 12px; display:inline-block;
+        ">📊 Google Analytics</span>
+        <span class="clay-pill" style="
+          font-size:11px; font-weight:700; color:#065f46;
+          background:linear-gradient(135deg,#d1fae5,#a7f3d0);
+          padding:5px 12px; display:inline-block;
+        ">📅 Calendar</span>
+        <span class="clay-pill" style="
+          font-size:11px; font-weight:700; color:#7c2d12;
+          background:linear-gradient(135deg,#fed7aa,#fdba74);
+          padding:5px 12px; display:inline-block;
+        ">🔶 HubSpot</span>
+        <span class="clay-pill" style="
+          font-size:11px; font-weight:700; color:#4c1d95;
+          background:linear-gradient(135deg,#ede9fe,#ddd6fe);
+          padding:5px 12px; display:inline-block;
+        ">✉️ Buffer</span>
+      </div>
+    </div>
+
+  </div><!-- end scene -->
+
+  <script>
+    /* ─────────────────────────────────────────
+       Equalizer bars (GA palette)
+    ───────────────────────────────────────── */
+    let eqTweens = [];
+    function startEqualizer() {
+      eqTweens.forEach(t => t.kill());
+      eqTweens = [];
+      const cfg = [
+        { id: '#eq1', max: 18, dur: 0.40, delay: 0.00 },
+        { id: '#eq2', max: 14, dur: 0.55, delay: 0.12 },
+        { id: '#eq3', max: 20, dur: 0.38, delay: 0.06 },
+        { id: '#eq4', max: 12, dur: 0.50, delay: 0.20 },
+        { id: '#eq5', max: 16, dur: 0.44, delay: 0.09 },
+      ];
+      cfg.forEach(c => {
+        const t = gsap.to(c.id, {
+          height: c.max + 'px',
+          duration: c.dur,
+          ease: 'sine.inOut',
+          repeat: -1,
+          yoyo: true,
+          delay: c.delay,
+        });
+        eqTweens.push(t);
+      });
+    }
+    function stopEqualizer() {
+      eqTweens.forEach(t => t.kill());
+      eqTweens = [];
+      gsap.set(['#eq1','#eq2','#eq3','#eq4','#eq5'], { height: '6px' });
+    }
+
+    /* ─────────────────────────────────────────
+       Typewriter for input field
+    ───────────────────────────────────────── */
+    const MSG = 'How did our website do today?';
+    function typeMessage(onDone) {
+      const el = document.getElementById('typed-text');
+      const placeholder = document.getElementById('placeholder');
+      const cursor = document.getElementById('cursor');
+      gsap.set(placeholder, { opacity: 0 });
+      gsap.set(cursor, { opacity: 1 });
+      el.textContent = '';
+      let i = 0;
+      const interval = setInterval(() => {
+        el.textContent += MSG[i];
+        i++;
+        if (i >= MSG.length) {
+          clearInterval(interval);
+          if (onDone) onDone();
+        }
+      }, 48);
+    }
+
+    function clearInput() {
+      document.getElementById('typed-text').textContent = '';
+      gsap.set('#placeholder', { opacity: 1 });
+      gsap.set('#cursor', { opacity: 0 });
+    }
+
+    /* ─────────────────────────────────────────
+       Counter roll-up
+    ───────────────────────────────────────── */
+    function rollCount(target, duration, el) {
+      const obj = { n: 0 };
+      gsap.to(obj, {
+        n: target,
+        duration,
+        ease: 'power2.out',
+        onUpdate() {
+          el.textContent = Math.round(obj.n).toLocaleString('en-US');
+        },
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       Sparkline bars animation
+    ───────────────────────────────────────── */
+    const sparkHeights = ['45%', '62%', '55%', '80%', '100%'];
+    function animateSpark() {
+      ['#sb1','#sb2','#sb3','#sb4','#sb5'].forEach((id, i) => {
+        gsap.to(id, {
+          height: sparkHeights[i],
+          duration: 0.55,
+          ease: 'back.out(1.4)',
+          delay: i * 0.08,
+        });
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       Main loop
+    ───────────────────────────────────────── */
+    function runLoop() {
+      stopEqualizer();
+
+      /* Reset */
+      gsap.set('#msg-user',        { opacity: 0, y: 12, scale: 0.95 });
+      gsap.set('#tool-indicator',  { opacity: 0 });
+      gsap.set('#analytics-card',  { opacity: 0, y: 14, scale: 0.93 });
+      gsap.set('#ga-badge',        { opacity: 0, scale: 0 });
+      document.getElementById('visitor-count').textContent = '0';
+      ['#sb1','#sb2','#sb3','#sb4','#sb5'].forEach(id => gsap.set(id, { height: '0%' }));
+      clearInput();
+
+      const tl = gsap.timeline({
+        onComplete: () => gsap.delayedCall(0.8, runLoop),
+      });
+
+      /* 0.3s — typewriter */
+      tl.add(() => typeMessage(null), 0.3);
+
+      /* 1.42s — send squish, msg bounces in, input clears */
+      tl.to('#send-btn', { scale: 0.88, duration: 0.08, ease: 'power2.in' }, 1.42);
+      tl.to('#send-btn', { scale: 1,    duration: 0.28, ease: 'elastic.out(1,0.4)' }, 1.50);
+      tl.add(() => clearInput(), 1.52);
+      tl.to('#msg-user', { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: 'back.out(1.8)' }, 1.54);
+
+      /* 2.1s — tool indicator slides in + equalizer starts */
+      tl.to('#tool-indicator', { opacity: 1, duration: 0.32, ease: 'power2.out' }, 2.1);
+      tl.add(startEqualizer, 2.1);
+
+      /* 2.55s — GA badge pops on avatar */
+      tl.to('#ga-badge', { opacity: 1, scale: 1, duration: 0.48, ease: 'elastic.out(1, 0.45)' }, 2.55);
+
+      /* 4.1s — GA badge fades out */
+      tl.to('#ga-badge', { opacity: 0, scale: 0.7, duration: 0.3, ease: 'power2.in' }, 4.1);
+
+      /* 4.3s — tool indicator fades, equalizer stops */
+      tl.add(stopEqualizer, 4.3);
+      tl.to('#tool-indicator', { opacity: 0, duration: 0.25 }, 4.3);
+
+      /* 4.5s — analytics card slides in */
+      tl.to('#analytics-card', {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.55, ease: 'back.out(1.6)',
+      }, 4.5);
+
+      /* 4.85s — counter rolls (2.2s) + sparkline */
+      tl.add(() => {
+        rollCount(1200, 2.2, document.getElementById('visitor-count'));
+        animateSpark();
+      }, 4.85);
+
+      /* Caption panel fades in */
+      tl.to('#caption-panel', { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' }, 4.6);
+
+      /* Hold card on screen — timeline idles until t=12.5 */
+      tl.to({}, { duration: 1 }, 11.5);
+    }
+
+    /* Caption starts slightly right */
+    gsap.set('#caption-panel', { x: 24 });
+
+    gsap.delayedCall(0.3, runLoop);
+  </script>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai — Easy Agent Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(148deg, #f8f5ff 0%, #f0edfb 35%, #edf4ff 70%, #f0fdf6 100%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      padding: 40px 24px;
+    }
+
+    /* ════════════════════════════════════════
+       CLAY SYSTEM
+    ════════════════════════════════════════ */
+    .clay {
+      position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.72);
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.09),
+        0 14px 36px rgba(0,0,0,0.09),
+        0 28px 60px rgba(0,0,0,0.05),
+        -6px -6px 16px rgba(255,255,255,0.94),
+        inset 0 5px 0 rgba(255,255,255,0.85),
+        inset 5px 5px 16px rgba(255,255,255,0.52),
+        inset -5px -5px 16px rgba(0,0,0,0.09);
+    }
+    .clay::before {
+      content: '';
+      position: absolute; top: 7%; left: 9%;
+      width: 50%; height: 44%; border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255,255,255,0.58) 0%, rgba(255,255,255,0.10) 55%, transparent 72%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Pressable pill / badge */
+    .clay-pill {
+      position: relative; isolation: isolate;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.65);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.12),
+        -2px -2px 6px rgba(255,255,255,0.92),
+        inset 0 3px 0 rgba(255,255,255,0.75),
+        inset 2px 2px 6px rgba(255,255,255,0.44),
+        inset -2px -2px 6px rgba(0,0,0,0.09);
+    }
+
+    /* Avatar badge */
+    .clay-avatar {
+      position: relative; isolation: isolate;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.7);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.16),
+        -3px -3px 7px rgba(255,255,255,0.9),
+        inset 0 3px 0 rgba(255,255,255,0.65),
+        inset 3px 3px 9px rgba(255,255,255,0.38),
+        inset -3px -3px 9px rgba(0,0,0,0.14);
+    }
+    .clay-avatar::before {
+      content: '';
+      position: absolute; top: 3px; left: 5px;
+      width: 44%; height: 44%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.5) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════════════
+       AGENT CARDS
+    ════════════════════════════════════════ */
+    .agent-slot {
+      position: relative;
+      width: 224px;
+    }
+
+    .agent-card {
+      border-radius: 20px;
+      padding: 18px 16px 16px;
+      cursor: grab;
+      user-select: none;
+      width: 100%;
+    }
+    .agent-card:active { cursor: grabbing; }
+
+    /* Ghost placeholder while card is flying */
+    .agent-ghost {
+      position: absolute; inset: 0;
+      border-radius: 20px;
+      border: 2px dashed rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.3);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .agent-top {
+      display: flex; align-items: center; gap: 11px; margin-bottom: 10px;
+    }
+    .agent-emoji-wrap {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.12),
+        inset 0 3px 0 rgba(255,255,255,0.65),
+        inset 2px 2px 7px rgba(255,255,255,0.38),
+        inset -2px -2px 7px rgba(0,0,0,0.14);
+    }
+    .agent-name { font-size: 14px; font-weight: 800; }
+    .agent-role { font-size: 10.5px; font-weight: 600; opacity: 0.65; margin-top: 1px; }
+    .agent-desc { font-size: 11.5px; font-weight: 500; line-height: 1.45; opacity: 0.75; }
+
+    /* Drag handle hint dots */
+    .drag-hint {
+      display: flex; justify-content: center; gap: 4px; margin-top: 11px;
+    }
+    .drag-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: rgba(0,0,0,0.18);
+    }
+
+    /* Deployed badge (shows after assignment) */
+    .deployed-badge {
+      position: absolute;
+      top: -8px; right: -8px;
+      font-size: 9.5px; font-weight: 800;
+      padding: 3px 9px; border-radius: 100px;
+      background: linear-gradient(135deg, #bbf7d0, #4ade80);
+      color: #14532d;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      box-shadow: 0 2px 8px rgba(34,197,94,0.35);
+      opacity: 0;
+    }
+
+    /* ════════════════════════════════════════
+       CONNECTOR ARROW
+    ════════════════════════════════════════ */
+    .connector-row {
+      display: flex; justify-content: center;
+      gap: 0; margin: 10px 0;
+    }
+    .connector-slot {
+      width: 224px;
+      display: flex; justify-content: center;
+    }
+    .connector-slot + .connector-slot { margin-left: 20px; }
+
+    /* ════════════════════════════════════════
+       INBOX ZONES
+    ════════════════════════════════════════ */
+    .inbox-zone {
+      border-radius: 20px;
+      padding: 16px;
+      width: 224px;
+      min-height: 130px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      text-align: center;
+      position: relative;
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Empty state */
+    .zone-empty {
+      border: 2.5px dashed rgba(0,0,0,0.12) !important;
+      background: rgba(255,255,255,0.5) !important;
+      box-shadow: none !important;
+    }
+    .zone-empty::before { display: none; }
+
+    .zone-icon-wrap {
+      width: 44px; height: 44px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .zone-label { font-size: 13px; font-weight: 800; }
+    .zone-hint { font-size: 11px; font-weight: 500; opacity: 0.5; }
+
+    /* Agent-in-zone (shown after drop) */
+    .zone-agent-row {
+      display: flex; align-items: center; gap: 8px;
+      opacity: 0;
+    }
+    .zone-agent-emoji {
+      width: 26px; height: 26px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.10), inset 0 2px 0 rgba(255,255,255,0.5);
+    }
+    .zone-agent-name { font-size: 12px; font-weight: 800; }
+
+    /* Active glow badge */
+    .active-badge {
+      font-size: 9.5px; font-weight: 800; padding: 2px 9px; border-radius: 100px;
+      background: linear-gradient(135deg, #bbf7d0, #4ade80); color: #14532d;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 8px rgba(34,197,94,0.4);
+      opacity: 0;
+    }
+
+    /* ════════════════════════════════════════
+       CURSOR
+    ════════════════════════════════════════ */
+    #sim-cursor {
+      position: absolute;
+      z-index: 200;
+      pointer-events: none;
+      opacity: 0;
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    }
+
+    /* Flying card (cloned, position:fixed, moves freely) */
+    #flying-card {
+      position: fixed;
+      z-index: 150;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 20px;
+      width: 224px;
+    }
+
+    /* Rows layout */
+    .agents-row, .inboxes-row {
+      display: flex; gap: 20px; justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+<div style="max-width:740px; width:100%; position:relative;" id="scene">
+
+  <!-- Section header -->
+  
+
+  <!-- ═══════════ AGENTS ROW ═══════════ -->
+  <div class="agents-row" id="agents-row">
+
+    <!-- Support Lead -->
+    <div class="agent-slot" id="slot-support">
+      <div class="clay agent-card" id="card-support"
+           style="background:radial-gradient(ellipse at 28% 20%,#f0fdf4,#dcfce7 50%,#bbf7d0);">
+        <div class="deployed-badge" id="deployed-badge">✓ Deployed</div>
+        <div class="agent-top">
+          <div class="clay-avatar agent-emoji-wrap"
+               style="background:linear-gradient(145deg,#86efac,#22c55e);">🎧</div>
+          <div>
+            <div class="agent-name" style="color:#14532d;">Support Lead</div>
+            <div class="agent-role" style="color:#15803d;">Customer Agent</div>
+          </div>
+        </div>
+        <div class="agent-desc" style="color:#166534;">
+          Handles inbound queries, resolves tickets &amp; escalates to humans.
+        </div>
+        <div class="drag-hint">
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+        </div>
+      </div>
+      <!-- Ghost -->
+      <div class="agent-ghost" id="ghost-support"></div>
+    </div>
+
+    <!-- Sales Rep -->
+    <div class="agent-slot">
+      <div class="clay agent-card"
+           style="background:radial-gradient(ellipse at 28% 20%,#fffbeb,#fef3c7 50%,#fde68a);">
+        <div class="agent-top">
+          <div class="clay-avatar agent-emoji-wrap"
+               style="background:linear-gradient(145deg,#fde68a,#f59e0b);">📈</div>
+          <div>
+            <div class="agent-name" style="color:#78350f;">Sales Rep</div>
+            <div class="agent-role" style="color:#92400e;">Conversion Agent</div>
+          </div>
+        </div>
+        <div class="agent-desc" style="color:#92400e;">
+          Qualifies leads, answers pricing questions &amp; closes deals.
+        </div>
+        <div class="drag-hint">
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Guru -->
+    <div class="agent-slot">
+      <div class="clay agent-card"
+           style="background:radial-gradient(ellipse at 28% 20%,#eff6ff,#dbeafe 50%,#bfdbfe);">
+        <div class="agent-top">
+          <div class="clay-avatar agent-emoji-wrap"
+               style="background:linear-gradient(145deg,#93c5fd,#2563eb);">🔧</div>
+          <div>
+            <div class="agent-name" style="color:#1e3a8a;">Tech Guru</div>
+            <div class="agent-role" style="color:#1d4ed8;">Technical Agent</div>
+          </div>
+        </div>
+        <div class="agent-desc" style="color:#1e40af;">
+          Handles technical questions, bugs &amp; integration troubleshooting.
+        </div>
+        <div class="drag-hint">
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+          <span class="drag-dot"></span><span class="drag-dot"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Connector arrows -->
+  <div class="connector-row" style="margin:16px 0;">
+    <div class="connector-slot">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none" id="arrow-support">
+        <path d="M12 2 L12 22 M6 16 L12 24 L18 16"
+              stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="connector-slot">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+        <path d="M12 2 L12 22 M6 16 L12 24 L18 16"
+              stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="connector-slot">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+        <path d="M12 2 L12 22 M6 16 L12 24 L18 16"
+              stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              opacity="0.3"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ═══════════ INBOXES ROW ═══════════ -->
+  <div class="inboxes-row" id="inboxes-row">
+
+    <!-- WhatsApp -->
+    <div class="inbox-zone zone-empty" id="zone-wa">
+      <div class="zone-icon-wrap clay-avatar"
+           id="wa-icon"
+           style="background:linear-gradient(145deg,#86efac,#22c55e);">💬</div>
+      <div class="zone-label" style="color:#1f2937;" id="wa-label">WhatsApp</div>
+      <div class="zone-hint" id="wa-hint">Drop an agent here</div>
+
+      <!-- Revealed after drop -->
+      <div class="zone-agent-row" id="wa-agent-row">
+        <div class="zone-agent-emoji"
+             style="background:linear-gradient(145deg,#86efac,#22c55e);">🎧</div>
+        <div class="zone-agent-name" style="color:#14532d;">Support Lead</div>
+      </div>
+      <div class="active-badge" id="wa-active">● Active</div>
+    </div>
+
+    <!-- Instagram -->
+    <div class="inbox-zone zone-empty" id="zone-ig">
+      <div class="zone-icon-wrap clay-avatar"
+           style="background:linear-gradient(135deg,#f9a8d4,#a855f7);">📸</div>
+      <div class="zone-label" style="color:#1f2937;">Instagram</div>
+      <div class="zone-hint">Drop an agent here</div>
+    </div>
+
+    <!-- Website Widget -->
+    <div class="inbox-zone zone-empty" id="zone-web">
+      <div class="zone-icon-wrap clay-avatar"
+           style="background:linear-gradient(145deg,#93c5fd,#2563eb);">🌐</div>
+      <div class="zone-label" style="color:#1f2937;">Website Chat</div>
+      <div class="zone-hint">Drop an agent here</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ CURSOR ═══════════ -->
+  <div id="sim-cursor">
+    <!-- Normal arrow -->
+    <svg id="cursor-arrow" width="22" height="28" viewBox="0 0 22 28" fill="none">
+      <path d="M3 1 L3 22 L7.5 17 L11 24.5 L14 23.2 L10.5 15.5 L17 15.5 Z"
+            fill="white" stroke="#222" stroke-width="1.4" stroke-linejoin="round"/>
+    </svg>
+    <!-- Grabbing hand (shown during drag) -->
+    <svg id="cursor-grab" width="24" height="26" viewBox="0 0 24 26" style="display:none;" fill="none">
+      <rect x="4" y="10" width="16" height="13" rx="4" fill="white" stroke="#222" stroke-width="1.4"/>
+      <rect x="7" y="4" width="3.5" height="10" rx="1.75" fill="white" stroke="#222" stroke-width="1.2"/>
+      <rect x="11" y="2.5" width="3.5" height="11" rx="1.75" fill="white" stroke="#222" stroke-width="1.2"/>
+      <rect x="15" y="4" width="3.5" height="10" rx="1.75" fill="white" stroke="#222" stroke-width="1.2"/>
+      <rect x="3" y="7" width="3.5" height="9" rx="1.75" fill="white" stroke="#222" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <!-- Flying card (clone, fixed position) -->
+  <div id="flying-card" class="clay"
+       style="background:radial-gradient(ellipse at 28% 20%,#f0fdf4,#dcfce7 50%,#bbf7d0);
+              padding:18px 16px 16px;">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:10px;">
+      <div style="width:44px;height:44px;border-radius:14px;
+                  display:flex;align-items:center;justify-content:center;font-size:22px;
+                  background:linear-gradient(145deg,#86efac,#22c55e);
+                  border:1.5px solid rgba(255,255,255,0.6);
+                  box-shadow:0 3px 8px rgba(0,0,0,0.12),inset 0 3px 0 rgba(255,255,255,0.65);">🎧</div>
+      <div>
+        <div style="font-size:14px;font-weight:800;color:#14532d;">Support Lead</div>
+        <div style="font-size:10.5px;font-weight:600;color:#15803d;opacity:0.75;margin-top:1px;">Customer Agent</div>
+      </div>
+    </div>
+    <div style="font-size:11.5px;font-weight:500;color:#166534;opacity:0.75;line-height:1.45;">
+      Handles inbound queries, resolves tickets &amp; escalates to humans.
+    </div>
+    <div style="display:flex;justify-content:center;gap:4px;margin-top:11px;">
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,0.18);display:inline-block;"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,0.18);display:inline-block;"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,0.18);display:inline-block;"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,0.18);display:inline-block;"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,0.18);display:inline-block;"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,0.18);display:inline-block;"></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* ─────────────────────────────────────
+     Swap cursor SVGs
+  ───────────────────────────────────── */
+  function setCursorState(state) {
+    document.getElementById('cursor-arrow').style.display = state === 'arrow' ? 'block' : 'none';
+    document.getElementById('cursor-grab').style.display  = state === 'grab'  ? 'block' : 'none';
+  }
+
+  /* ─────────────────────────────────────
+     Reset all elements
+  ───────────────────────────────────── */
+  function resetAll() {
+    const card    = document.getElementById('card-support');
+    const ghost   = document.getElementById('ghost-support');
+    const flying  = document.getElementById('flying-card');
+    const cursor  = document.getElementById('sim-cursor');
+    const zone    = document.getElementById('zone-wa');
+
+    gsap.set(card,   { opacity: 1, scale: 1, x: 0, y: 0, rotation: 0, zIndex: 'auto' });
+    gsap.set(ghost,  { opacity: 0 });
+    gsap.set(flying, { opacity: 0, scale: 1, rotation: 0 });
+    gsap.set(cursor, { opacity: 0, x: 0, y: 0 });
+
+    // Zone back to empty
+    zone.className = 'inbox-zone zone-empty';
+    gsap.set(zone, { scale: 1, boxShadow: 'none', clearProps: 'box-shadow' });
+    gsap.set('#wa-hint',      { opacity: 1 });
+    gsap.set('#wa-agent-row', { opacity: 0 });
+    gsap.set('#wa-active',    { opacity: 0 });
+    gsap.set('#deployed-badge', { opacity: 0 });
+
+    setCursorState('arrow');
+  }
+
+  /* ─────────────────────────────────────
+     Main animation loop
+  ───────────────────────────────────── */
+  function runLoop() {
+    resetAll();
+
+    const scene   = document.getElementById('scene');
+    const card    = document.getElementById('card-support');
+    const ghost   = document.getElementById('ghost-support');
+    const flying  = document.getElementById('flying-card');
+    const cursor  = document.getElementById('sim-cursor');
+    const zone    = document.getElementById('zone-wa');
+
+    /* ── Measure real positions ── */
+    const sr = scene.getBoundingClientRect();   // scene origin
+    const cr = card.getBoundingClientRect();    // card
+    const zr = zone.getBoundingClientRect();    // target zone
+
+    // Cursor start: slightly top-right of scene
+    const curStartX = cr.right  - sr.left + 60;
+    const curStartY = cr.top    - sr.top  - 30;
+
+    // Cursor hover point: over card's drag dots (bottom center)
+    const curHoverX = cr.left   - sr.left + cr.width  * 0.5 - 2;
+    const curHoverY = cr.top    - sr.top  + cr.height * 0.78;
+
+    // Flying card starts exactly where the real card is
+    const flyStartX = cr.left;
+    const flyStartY = cr.top;
+
+    // Drop target: center of zone
+    const dropX = zr.left + zr.width  * 0.5 - cr.width  * 0.5;
+    const dropY = zr.top  + zr.height * 0.5 - cr.height * 0.4;
+
+    // Cursor at drop: just above drop center
+    const curDropX = zr.left - sr.left + zr.width  * 0.5 - 4;
+    const curDropY = zr.top  - sr.top  + zr.height * 0.42;
+
+    /* ── Position flying card & cursor ── */
+    gsap.set(flying, {
+      left: 0, top: 0,
+      x: flyStartX, y: flyStartY,
+    });
+    gsap.set(cursor, {
+      x: curStartX, y: curStartY,
+    });
+
+    const tl = gsap.timeline({
+      onComplete: () => gsap.delayedCall(1.0, runLoop),
+    });
+
+    /* 0.4s — cursor fades in */
+    tl.to(cursor, { opacity: 1, duration: 0.3 }, 0.4);
+
+    /* 0.7s — cursor glides to card */
+    tl.to(cursor, {
+      x: curHoverX, y: curHoverY,
+      duration: 0.75, ease: 'power2.inOut',
+    }, 0.7);
+
+    /* 1.45s — hover pause + cursor change to grab */
+    tl.add(() => setCursorState('grab'), 1.45);
+
+    /* 1.55s — card lifts, ghost fades in, flying card appears */
+    tl.to(card, {
+      opacity: 0, duration: 0.15,
+    }, 1.55);
+    tl.to(ghost, {
+      opacity: 1, duration: 0.2,
+    }, 1.55);
+    tl.to(flying, {
+      opacity: 1, scale: 1.05,
+      rotation: 3,
+      duration: 0.22,
+      ease: 'back.out(1.5)',
+    }, 1.55);
+
+    /* 1.78s — drag: cursor + flying card move together to zone */
+    tl.to(cursor, {
+      x: curDropX, y: curDropY,
+      duration: 0.95, ease: 'power2.inOut',
+    }, 1.78);
+    tl.to(flying, {
+      x: dropX, y: dropY,
+      rotation: 0,
+      duration: 0.95, ease: 'power2.inOut',
+    }, 1.78);
+
+    /* 2.73s — release: cursor back to arrow */
+    tl.add(() => setCursorState('arrow'), 2.73);
+
+    /* 2.78s — SQUISH the zone, flying card fades out */
+    tl.to(flying, {
+      opacity: 0, scale: 0.92, y: dropY + 8,
+      duration: 0.22, ease: 'power2.in',
+    }, 2.78);
+
+    // Squish sequence: compress → spring back
+    tl.to(zone, {
+      scaleY: 0.86, scaleX: 1.06,
+      duration: 0.14, ease: 'power3.in',
+    }, 2.78);
+    tl.to(zone, {
+      scaleY: 1.07, scaleX: 0.97,
+      duration: 0.18, ease: 'power2.out',
+    }, 2.92);
+    tl.to(zone, {
+      scaleY: 1, scaleX: 1,
+      duration: 0.38, ease: 'elastic.out(1, 0.45)',
+    }, 3.10);
+
+    /* 2.82s — zone transforms to active style */
+    tl.add(() => {
+      // Remove empty style, apply filled clay style
+      zone.classList.remove('zone-empty');
+      zone.classList.add('clay');
+
+      // Apply green-tinted background
+      gsap.set(zone, {
+        background: 'radial-gradient(ellipse at 28% 20%,#f0fdf4,#dcfce7 50%,#bbf7d0)',
+      });
+
+      // Green glow box-shadow override
+      gsap.to(zone, {
+        duration: 0.35, ease: 'power2.out',
+        boxShadow: [
+          '0 0 0 3px rgba(34,197,94,0.35)',
+          '0 0 24px rgba(34,197,94,0.45)',
+          '0 4px 10px rgba(0,0,0,0.09)',
+          '0 14px 36px rgba(0,0,0,0.09)',
+          '-6px -6px 16px rgba(255,255,255,0.94)',
+          'inset 0 5px 0 rgba(255,255,255,0.85)',
+          'inset 5px 5px 16px rgba(255,255,255,0.52)',
+          'inset -5px -5px 16px rgba(0,0,0,0.09)',
+        ].join(','),
+      });
+    }, 2.82);
+
+    /* 2.90s — hint fades out, agent row + active badge fade in */
+    tl.to('#wa-hint',      { opacity: 0, duration: 0.18 }, 2.90);
+    tl.to('#wa-agent-row', {
+      opacity: 1, y: 0,
+      duration: 0.38, ease: 'back.out(1.8)',
+    }, 3.0);
+    tl.to('#wa-active', {
+      opacity: 1, scale: 1,
+      duration: 0.38, ease: 'elastic.out(1, 0.5)',
+    }, 3.18);
+
+    /* 3.2s — deployed badge on original card slot */
+    tl.to('#deployed-badge', {
+      opacity: 1, scale: 1,
+      duration: 0.4, ease: 'elastic.out(1, 0.5)',
+    }, 3.28);
+
+    /* 3.5s — cursor drifts away and fades */
+    tl.to(cursor, {
+      x: curDropX + 55, y: curDropY - 20,
+      opacity: 0,
+      duration: 0.55, ease: 'power2.in',
+    }, 3.5);
+
+    /* Hold until t=9.5 */
+    tl.to({}, { duration: 1 }, 8.5);
+  }
+
+  gsap.delayedCall(0.3, runLoop);
+</script>
+</body>
+</html>

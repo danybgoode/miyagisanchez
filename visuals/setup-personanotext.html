@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai — Customize Persona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(148deg, #fdf8ff 0%, #f5f0ff 35%, #fff8f0 70%, #f0f7ff 100%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding: 40px 24px;
+    }
+
+    /* ══════════════════════════════════════
+       CLAY SYSTEM
+    ══════════════════════════════════════ */
+    .clay {
+      position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.72);
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.09),
+        0 16px 40px rgba(0,0,0,0.09),
+        0 30px 64px rgba(0,0,0,0.05),
+        -6px -6px 18px rgba(255,255,255,0.95),
+        inset 0 5px 0 rgba(255,255,255,0.86),
+        inset 5px 5px 18px rgba(255,255,255,0.52),
+        inset -5px -5px 18px rgba(0,0,0,0.09);
+    }
+    .clay::before {
+      content: '';
+      position: absolute; top: 7%; left: 9%; width: 50%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.10) 55%, transparent 72%);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Chat bubble clay */
+    .clay-bubble {
+      position: relative; isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.65);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.10),
+        -3px -3px 8px rgba(255,255,255,0.90),
+        inset 0 4px 0 rgba(255,255,255,0.78),
+        inset 3px 3px 10px rgba(255,255,255,0.48),
+        inset -3px -3px 10px rgba(0,0,0,0.09);
+    }
+    .clay-bubble::before {
+      content: '';
+      position: absolute; top: 4px; left: 9px;
+      width: 44%; height: 52%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.48) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════ */
+    .two-col {
+      display: flex; gap: 24px; align-items: flex-start;
+      max-width: 860px; width: 100%;
+    }
+
+    /* ══════════════════════════════════════
+       CONFIG PANEL
+    ══════════════════════════════════════ */
+    #config-panel {
+      flex: 0 0 440px;
+      border-radius: 28px;
+      background: radial-gradient(ellipse at 25% 15%, #fefcff 0%, #f9f5ff 50%, #f3edff 100%);
+      padding: 0 0 24px;
+      overflow: hidden;
+    }
+
+    /* Panel header bar */
+    .panel-header {
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid rgba(167,139,250,0.15);
+      background: rgba(255,255,255,0.40); backdrop-filter: blur(6px);
+      display: flex; align-items: center; gap: 14px;
+    }
+
+    .agent-avatar-wrap {
+      position: relative; isolation: isolate;
+      width: 48px; height: 48px; border-radius: 16px; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.75);
+      box-shadow:
+        0 4px 12px rgba(109,40,217,0.22),
+        -3px -3px 7px rgba(255,255,255,0.92),
+        inset 0 3px 0 rgba(255,255,255,0.65),
+        inset 3px 3px 9px rgba(255,255,255,0.38),
+        inset -3px -3px 9px rgba(109,40,217,0.16);
+    }
+    .agent-avatar-wrap::before {
+      content: '';
+      position: absolute; top: 4px; left: 5px; width: 44%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.5) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .panel-title { font-size: 15px; font-weight: 900; color: #1e0e3e; }
+    .panel-sub   { font-size: 11px; font-weight: 600; color: #7c3aed; opacity: 0.75; margin-top: 2px; }
+
+    .panel-tag {
+      margin-left: auto; flex-shrink: 0;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+      color: #5b21b6; padding: 4px 11px; border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.65);
+      box-shadow: 0 2px 6px rgba(109,40,217,0.14),
+        inset 0 2px 0 rgba(255,255,255,0.6);
+    }
+
+    /* Controls area */
+    .controls-body { padding: 22px 24px 0; display: flex; flex-direction: column; gap: 26px; }
+
+    /* ── Single control group ── */
+    .ctrl-group {}
+
+    .ctrl-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .ctrl-label {
+      font-size: 13px; font-weight: 800; color: #2e1065;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .ctrl-icon {
+      width: 22px; height: 22px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.10), inset 0 2px 0 rgba(255,255,255,0.55);
+    }
+    .ctrl-val-pill {
+      font-size: 10.5px; font-weight: 700; padding: 3px 10px;
+      border-radius: 100px; color: #5b21b6;
+      background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      box-shadow: 0 2px 5px rgba(109,40,217,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+      min-width: 80px; text-align: center;
+      transition: background 0.4s;
+    }
+
+    /* ── Slider ── */
+    .slider-row {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .slider-end {
+      font-size: 10px; font-weight: 600; color: #9ca3af;
+      white-space: nowrap; min-width: 68px;
+    }
+    .slider-end.right { text-align: right; }
+
+    .slider-track-outer {
+      flex: 1; height: 14px; border-radius: 100px; position: relative;
+      background: rgba(0,0,0,0.07);
+      box-shadow:
+        inset 0 3px 7px rgba(0,0,0,0.15),
+        inset 0 -2px 3px rgba(255,255,255,0.65);
+    }
+
+    .slider-fill {
+      height: 100%; border-radius: 100px; width: 0%;
+      background: linear-gradient(90deg, #818cf8, #7c3aed);
+      pointer-events: none;
+    }
+
+    /* The clay marble thumb */
+    .slider-thumb {
+      position: absolute; top: 50%;
+      width: 30px; height: 30px; border-radius: 50%;
+      transform: translate(-50%, -50%);
+      left: 0%;
+      cursor: grab;
+      /* The spherical clay look */
+      background: radial-gradient(circle at 36% 28%, #ffffff 0%, #ede9fe 28%, #c4b5fd 65%, #a78bfa 100%);
+      border: 2px solid rgba(255,255,255,0.92);
+      box-shadow:
+        0 5px 12px rgba(109,40,217,0.32),
+        0 12px 24px rgba(109,40,217,0.18),
+        -3px -3px 6px rgba(255,255,255,0.95),
+        inset 0 3px 0 rgba(255,255,255,0.85),
+        inset 3px 3px 9px rgba(255,255,255,0.55),
+        inset -3px -3px 9px rgba(109,40,217,0.22);
+      z-index: 2;
+    }
+    .slider-thumb::before {
+      content: '';
+      position: absolute; top: 4px; left: 5px;
+      width: 44%; height: 42%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.7) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    /* Active/dragging state */
+    .slider-thumb.active {
+      box-shadow:
+        0 7px 18px rgba(109,40,217,0.45),
+        0 18px 36px rgba(109,40,217,0.25),
+        -3px -3px 8px rgba(255,255,255,0.95),
+        inset 0 3px 0 rgba(255,255,255,0.85),
+        inset 3px 3px 9px rgba(255,255,255,0.55),
+        inset -3px -3px 9px rgba(109,40,217,0.22);
+      transform: translate(-50%, -55%) scale(1.12);
+    }
+
+    /* ── Toggle ── */
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .toggle-info {}
+    .toggle-title { font-size: 13px; font-weight: 800; color: #2e1065; }
+    .toggle-desc  { font-size: 11px; font-weight: 500; color: #6b7280; margin-top: 2px; }
+
+    .toggle-track {
+      width: 64px; height: 36px; border-radius: 100px;
+      position: relative; cursor: pointer; flex-shrink: 0;
+      background: radial-gradient(ellipse at 30% 30%, #e5e7eb, #d1d5db);
+      border: 1.5px solid rgba(255,255,255,0.7);
+      box-shadow:
+        inset 0 3px 7px rgba(0,0,0,0.15),
+        inset 0 -2px 4px rgba(255,255,255,0.55),
+        0 2px 5px rgba(0,0,0,0.08);
+      transition: background 0.4s ease;
+    }
+    .toggle-track.on {
+      background: radial-gradient(ellipse at 30% 30%, #4ade80, #16a34a);
+    }
+
+    .toggle-knob {
+      position: absolute; top: 4px; left: 4px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: radial-gradient(circle at 36% 28%, #fff 0%, #f8fafc 40%, #f1f5f9 100%);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.20),
+        0 8px 20px rgba(0,0,0,0.12),
+        -2px -2px 5px rgba(255,255,255,0.92),
+        inset 0 3px 0 rgba(255,255,255,0.80),
+        inset 2px 2px 6px rgba(255,255,255,0.55),
+        inset -2px -2px 6px rgba(0,0,0,0.12);
+    }
+    .toggle-knob::before {
+      content: '';
+      position: absolute; top: 3px; left: 4px;
+      width: 44%; height: 42%; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.65) 0%, transparent 68%);
+    }
+
+    /* Divider */
+    .ctrl-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,92,246,0.15), transparent);
+    }
+
+    /* ══════════════════════════════════════
+       PREVIEW PANEL
+    ══════════════════════════════════════ */
+    #preview-panel {
+      flex: 1; min-width: 0;
+      border-radius: 28px;
+      background: radial-gradient(ellipse at 24% 18%, #f5f3ff 0%, #ede9fe 50%, #e4dff8 100%);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+
+    .preview-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(167,139,250,0.18);
+      background: rgba(255,255,255,0.38); backdrop-filter: blur(5px);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .preview-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e; box-shadow: 0 0 6px #22c55e;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 4px #22c55e; }
+      50% { box-shadow: 0 0 10px #22c55e, 0 0 18px rgba(34,197,94,0.4); }
+    }
+    .preview-title { font-size: 12px; font-weight: 800; color: #2e1065; }
+    .preview-sub   { font-size: 10.5px; color: #7c3aed; opacity: 0.75; margin-left: 2px; }
+
+    /* Chat area */
+    .preview-chat {
+      padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+      background-image:
+        radial-gradient(circle, rgba(167,139,250,0.14) 1px, transparent 1px),
+        linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%);
+      background-size: 20px 20px, 100% 100%;
+      flex: 1;
+    }
+
+    /* User bubble */
+    .chat-user {
+      display: flex; justify-content: flex-end;
+    }
+    .user-bubble {
+      max-width: 85%; padding: 9px 13px;
+      border-radius: 16px 16px 4px 16px;
+      background: linear-gradient(140deg, #c4b5fd, #7c3aed);
+      font-size: 12.5px; font-weight: 600; color: #fff;
+    }
+
+    /* AI bubble */
+    .chat-ai {
+      display: flex; align-items: flex-end; gap: 7px;
+    }
+    .ai-av {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      box-shadow: 0 2px 6px rgba(109,40,217,0.25), inset 0 2px 0 rgba(255,255,255,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+    }
+    #preview-bubble {
+      max-width: 88%; padding: 10px 13px;
+      border-radius: 16px 16px 16px 4px;
+      font-size: 12.5px; font-weight: 600; line-height: 1.5;
+    }
+
+    /* Escalate notice */
+    #escalate-notice {
+      display: flex; align-items: center; gap: 7px;
+      padding: 8px 12px;
+      border-radius: 12px; font-size: 11px; font-weight: 700;
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      color: #78350f;
+      border: 1.5px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 8px rgba(251,191,36,0.25);
+      opacity: 0;
+      margin-top: 2px;
+    }
+
+    /* Tone states for preview bubble */
+    .bubble-professional {
+      background: linear-gradient(140deg, #eff6ff, #dbeafe);
+      color: #1e3a8a;
+    }
+    .bubble-playful {
+      background: linear-gradient(140deg, #fdf4ff, #f0d9ff);
+      color: #4c1d95;
+    }
+  </style>
+</head>
+
+<body>
+<div style="max-width:900px; width:100%;">
+
+  <!-- Section header -->
+ 
+
+  <div class="two-col">
+
+    <!-- ══════════════════════════════
+         CONFIG PANEL
+    ══════════════════════════════ -->
+    <div id="config-panel" class="clay">
+
+      <!-- Header -->
+      <div class="panel-header">
+        <div class="agent-avatar-wrap"
+             style="background:linear-gradient(145deg,#a78bfa,#6d28d9);">
+          <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai"
+               style="width:26px;position:relative;z-index:2;
+                      filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
+        </div>
+        <div>
+          <div class="panel-title">Support Agent</div>
+          <div class="panel-sub">Persona Configuration</div>
+        </div>
+        <div class="panel-tag">Live Config</div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls-body">
+
+        <!-- ── TONE ── -->
+        <div class="ctrl-group">
+          <div class="ctrl-header">
+            <div class="ctrl-label">
+              <div class="ctrl-icon"
+                   style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🎭</div>
+              Tone
+            </div>
+            <div class="ctrl-val-pill" id="tone-val">Professional</div>
+          </div>
+          <div class="slider-row">
+            <span class="slider-end">Professional</span>
+            <div class="slider-track-outer" id="tone-track">
+              <div class="slider-fill" id="tone-fill"
+                   style="background:linear-gradient(90deg,#818cf8,#7c3aed);"></div>
+              <div class="slider-thumb" id="tone-thumb"></div>
+            </div>
+            <span class="slider-end right">Playful</span>
+          </div>
+        </div>
+
+        <div class="ctrl-divider"></div>
+
+        <!-- ── VERBOSITY ── -->
+        <div class="ctrl-group">
+          <div class="ctrl-header">
+            <div class="ctrl-label">
+              <div class="ctrl-icon"
+                   style="background:linear-gradient(135deg,#dbeafe,#93c5fd);">📝</div>
+              Verbosity
+            </div>
+            <div class="ctrl-val-pill" id="verb-val" style="color:#1d4ed8;
+              background:linear-gradient(135deg,#dbeafe,#bfdbfe);">Concise</div>
+          </div>
+          <div class="slider-row">
+            <span class="slider-end">Concise</span>
+            <div class="slider-track-outer" id="verb-track">
+              <div class="slider-fill" id="verb-fill"
+                   style="background:linear-gradient(90deg,#60a5fa,#2563eb);"></div>
+              <div class="slider-thumb" id="verb-thumb"
+                   style="background:radial-gradient(circle at 36% 28%,#fff 0%,#dbeafe 28%,#93c5fd 65%,#3b82f6 100%);
+                          box-shadow:0 5px 12px rgba(37,99,235,0.32),0 12px 24px rgba(37,99,235,0.18),
+                            -3px -3px 6px rgba(255,255,255,0.95),
+                            inset 0 3px 0 rgba(255,255,255,0.85),
+                            inset 3px 3px 9px rgba(255,255,255,0.55),
+                            inset -3px -3px 9px rgba(37,99,235,0.22);"></div>
+            </div>
+            <span class="slider-end right">Detailed</span>
+          </div>
+        </div>
+
+        <div class="ctrl-divider"></div>
+
+        <!-- ── ESCALATE TOGGLE ── -->
+        <div class="ctrl-group">
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="ctrl-label" style="margin-bottom:4px;">
+                <div class="ctrl-icon"
+                     style="background:linear-gradient(135deg,#fef3c7,#fde68a);">⚡</div>
+                Escalate Complaints
+              </div>
+              <div class="toggle-desc">Route sensitive issues to a human agent</div>
+            </div>
+            <div class="toggle-track" id="toggle-track">
+              <div class="toggle-knob" id="toggle-knob"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         LIVE PREVIEW
+    ══════════════════════════════ -->
+    <div id="preview-panel" class="clay">
+
+      <div class="preview-header">
+        <div class="preview-dot"></div>
+        <span class="preview-title">Live Preview</span>
+        <span class="preview-sub">— updates as you configure</span>
+      </div>
+
+      <div class="preview-chat">
+
+        <!-- Static user message -->
+        <div class="chat-user">
+          <div class="clay-bubble user-bubble">
+            Hi, I need help with my account.
+          </div>
+        </div>
+
+        <!-- AI response — changes with tone/verbosity -->
+        <div class="chat-ai">
+          <div class="ai-av"
+               style="background:linear-gradient(145deg,#a78bfa,#6d28d9);">
+            <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt=""
+                 style="width:14px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+          </div>
+          <div class="clay-bubble bubble-professional" id="preview-bubble">
+            Greetings. How may I assist you today?
+          </div>
+        </div>
+
+        <!-- Escalation notice (appears when toggle on) -->
+        <div id="escalate-notice">
+          <span style="font-size:14px;">⚡</span>
+          <span>Escalation active — complaints routed to your team.</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* ──────────────────────────────────────
+     Preview text states
+  ────────────────────────────────────── */
+  const STATES = {
+    profConcise:  { text: 'Greetings. How may I assist you today?',           cls: 'bubble-professional' },
+    playfulShort: { text: 'Hey there! 👋 What\'s up? Happy to help!',         cls: 'bubble-playful'      },
+    playfulLong:  { text: 'Hey there! 👋 So happy you reached out! I\'m totally here for you — let\'s sort this out together. What\'s going on with your account? 🚀', cls: 'bubble-playful' },
+  };
+
+  /* ──────────────────────────────────────
+     Slider update helpers
+  ────────────────────────────────────── */
+  function setSlider(thumbId, fillId, val) {
+    const pct = val * 100;
+    document.getElementById(thumbId).style.left = pct + '%';
+    document.getElementById(fillId).style.width = pct + '%';
+  }
+
+  function getToneLabel(val) {
+    if (val < 0.2) return 'Professional';
+    if (val < 0.45) return 'Balanced';
+    if (val < 0.75) return 'Friendly';
+    return 'Playful';
+  }
+
+  function getVerbLabel(val) {
+    if (val < 0.25) return 'Concise';
+    if (val < 0.55) return 'Moderate';
+    if (val < 0.80) return 'Detailed';
+    return 'Thorough';
+  }
+
+  /* ──────────────────────────────────────
+     Swap preview bubble text
+  ────────────────────────────────────── */
+  function swapPreview(stateKey) {
+    const bubble = document.getElementById('preview-bubble');
+    const state  = STATES[stateKey];
+    gsap.to(bubble, {
+      opacity: 0, y: -6, scale: 0.97,
+      duration: 0.28, ease: 'power2.in',
+      onComplete() {
+        bubble.textContent = state.text;
+        bubble.className = 'clay-bubble ' + state.cls;
+        gsap.fromTo(bubble,
+          { opacity: 0, y: 6, scale: 0.97 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.38, ease: 'back.out(1.6)' }
+        );
+      }
+    });
+  }
+
+  /* ──────────────────────────────────────
+     Reset everything
+  ────────────────────────────────────── */
+  function resetAll() {
+    // Sliders to 0
+    setSlider('tone-thumb', 'tone-fill', 0);
+    setSlider('verb-thumb', 'verb-fill', 0);
+
+    // Thumb lift classes
+    document.getElementById('tone-thumb').classList.remove('active');
+    document.getElementById('verb-thumb').classList.remove('active');
+
+    // Val pills
+    document.getElementById('tone-val').textContent = 'Professional';
+    document.getElementById('verb-val').textContent  = 'Concise';
+
+    // Toggle off
+    const track = document.getElementById('toggle-track');
+    track.classList.remove('on');
+    gsap.set('#toggle-knob', { x: 0 });
+
+    // Preview
+    const bubble = document.getElementById('preview-bubble');
+    bubble.textContent = STATES.profConcise.text;
+    bubble.className   = 'clay-bubble ' + STATES.profConcise.cls;
+    bubble.style.opacity = '1';
+    gsap.set(bubble, { clearProps: 'opacity,y,scale' });
+
+    // Escalate notice
+    gsap.set('#escalate-notice', { opacity: 0, y: 6 });
+  }
+
+  /* ──────────────────────────────────────
+     Main animation loop
+  ────────────────────────────────────── */
+  function runLoop() {
+    resetAll();
+
+    const toneObj = { v: 0 };
+    const verbObj = { v: 0 };
+    let toneTextSwapped  = false;
+    let verbTextSwapped  = false;
+
+    const tl = gsap.timeline({
+      onComplete: () => gsap.delayedCall(1.0, runLoop),
+    });
+
+    /* ── Tone slider moves ── */
+    // Thumb lifts up
+    tl.add(() => {
+      document.getElementById('tone-thumb').classList.add('active');
+    }, 0.6);
+
+    tl.to(toneObj, {
+      v: 1,
+      duration: 2.0,
+      delay: 0.6,
+      ease: 'power1.inOut',
+      onUpdate() {
+        setSlider('tone-thumb', 'tone-fill', toneObj.v);
+        document.getElementById('tone-val').textContent = getToneLabel(toneObj.v);
+
+        // Swap preview text at 55%
+        if (toneObj.v >= 0.55 && !toneTextSwapped) {
+          toneTextSwapped = true;
+          swapPreview('playfulShort');
+        }
+
+        // Fade fill from indigo to pink/purple as it moves
+        const fillEl = document.getElementById('tone-fill');
+        fillEl.style.background =
+          `linear-gradient(90deg, #818cf8, hsl(${270 + toneObj.v * 60}deg, 80%, 55%))`;
+      },
+    }, 0.6);
+
+    // Thumb settles back
+    tl.add(() => {
+      document.getElementById('tone-thumb').classList.remove('active');
+    }, 2.65);
+
+    /* ── Verbosity slider moves ── */
+    tl.add(() => {
+      document.getElementById('verb-thumb').classList.add('active');
+    }, 3.2);
+
+    tl.to(verbObj, {
+      v: 0.82,
+      duration: 1.7,
+      delay: 3.2,
+      ease: 'power1.inOut',
+      onUpdate() {
+        setSlider('verb-thumb', 'verb-fill', verbObj.v);
+        document.getElementById('verb-val').textContent = getVerbLabel(verbObj.v);
+
+        if (verbObj.v >= 0.50 && !verbTextSwapped) {
+          verbTextSwapped = true;
+          swapPreview('playfulLong');
+        }
+      },
+    }, 3.2);
+
+    tl.add(() => {
+      document.getElementById('verb-thumb').classList.remove('active');
+    }, 4.94);
+
+    /* ── Toggle turns ON ── */
+    tl.add(() => {
+      document.getElementById('toggle-track').classList.add('on');
+      gsap.to('#toggle-knob', {
+        x: 28,
+        duration: 0.48,
+        ease: 'elastic.out(1, 0.50)',
+      });
+    }, 5.6);
+
+    /* ── Escalate notice bounces in ── */
+    tl.to('#escalate-notice', {
+      opacity: 1, y: 0,
+      duration: 0.42, ease: 'back.out(1.7)',
+    }, 6.1);
+
+    /* Hold until t = 11.5 */
+    tl.to({}, { duration: 1 }, 10.5);
+  }
+
+  gsap.delayedCall(0.3, runLoop);
+</script>
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai — MCP Content Machine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(148deg, #0d0b14 0%, #110d1e 50%, #0e1220 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 36px 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       DOUGHY CLAY — dark & light variants
+    ══════════════════════════════════════════ */
+
+    /* Dark panel (Claude Desktop) */
+    .clay-dark {
+      position: relative;
+      isolation: isolate;
+      border: 1px solid rgba(167, 139, 250, 0.14);
+      box-shadow:
+        0 4px 12px rgba(0,0,0,0.55),
+        0 18px 48px rgba(0,0,0,0.50),
+        0 36px 80px rgba(0,0,0,0.30),
+        inset 0 1px 0 rgba(167,139,250,0.12),
+        inset 4px 4px 16px rgba(167,139,250,0.04),
+        inset -4px -4px 16px rgba(0,0,0,0.35);
+    }
+    .clay-dark::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent, rgba(167,139,250,0.28), transparent);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Light panel (Calendar) */
+    .clay-light {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255,255,255,0.68);
+      box-shadow:
+        0 4px 10px rgba(0,0,0,0.10),
+        0 14px 38px rgba(0,0,0,0.10),
+        0 28px 60px rgba(0,0,0,0.06),
+        -6px -6px 16px rgba(255,255,255,0.92),
+        inset 0 5px 0 rgba(255,255,255,0.82),
+        inset 5px 5px 16px rgba(255,255,255,0.50),
+        inset -5px -5px 16px rgba(0,0,0,0.10);
+    }
+    .clay-light::before {
+      content: '';
+      position: absolute;
+      top: 7%; left: 9%; width: 50%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.10) 55%, transparent 72%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Calendar content block */
+    .clay-block {
+      position: relative;
+      isolation: isolate;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255,255,255,0.55);
+      box-shadow:
+        0 3px 8px rgba(0,0,0,0.14),
+        -2px -2px 5px rgba(255,255,255,0.85),
+        inset 0 3px 0 rgba(255,255,255,0.65),
+        inset 2px 2px 6px rgba(255,255,255,0.38),
+        inset -2px -2px 6px rgba(0,0,0,0.12);
+    }
+    .clay-block::before {
+      content: '';
+      position: absolute;
+      top: 3px; left: 5px; width: 42%; height: 50%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,0.44) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Dark chat bubble */
+    .clay-bubble-dark {
+      position: relative;
+      isolation: isolate;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow:
+        0 3px 10px rgba(0,0,0,0.35),
+        inset 0 2px 0 rgba(255,255,255,0.07),
+        inset 2px 2px 8px rgba(255,255,255,0.04),
+        inset -2px -2px 8px rgba(0,0,0,0.25);
+    }
+    .clay-bubble-dark::before {
+      content: '';
+      position: absolute;
+      top: 3px; left: 8px; width: 44%; height: 48%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════════ */
+
+    .scene {
+      width: 100%;
+      max-width: 1020px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    #main-layout {
+      display: flex;
+      gap: 28px;
+      align-items: stretch;
+      position: relative;
+    }
+
+    /* ══════════════════════════════════════════
+       CLAUDE DESKTOP CHAT
+    ══════════════════════════════════════════ */
+
+    #claude-panel {
+      flex: 0 0 400px;
+      border-radius: 20px;
+      background: linear-gradient(160deg, #0f0c1a 0%, #130e22 60%, #0e0c1a 100%);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .claude-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(167,139,250,0.12);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .claude-logo-mark {
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #c084fc, #a855f7, #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 3px 10px rgba(168,85,247,0.4),
+        inset 0 2px 0 rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    .claude-title {
+      font-size: 14px; font-weight: 700; color: #e2d9f3;
+      letter-spacing: 0.01em;
+    }
+
+    .mcp-badge {
+      margin-left: auto;
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10.5px; font-weight: 700;
+      color: #a78bfa;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.25);
+      padding: 3px 9px;
+      border-radius: 100px;
+    }
+    .mcp-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 5px #22c55e;
+      flex-shrink: 0;
+    }
+
+    .claude-messages {
+      flex: 1;
+      padding: 16px 16px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 280px;
+    }
+
+    /* User message */
+    .msg-user-wrap {
+      display: flex; justify-content: flex-end; opacity: 0;
+    }
+    .msg-user-bubble {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 16px 16px 4px 16px;
+      background: linear-gradient(140deg, #7c3aed, #5b21b6);
+      font-size: 13.5px; font-weight: 600; color: #f0ebff;
+      line-height: 1.5;
+    }
+
+    /* AI message */
+    .msg-ai-wrap {
+      display: flex; align-items: flex-start; gap: 9px; opacity: 0;
+    }
+    .ai-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg, #c084fc, #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 2px 6px rgba(124,58,237,0.4);
+    }
+    .msg-ai-bubble {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 4px 16px 16px 16px;
+      background: linear-gradient(140deg, #1c1630, #201840);
+      font-size: 13.5px; font-weight: 500; color: #c4b5fd;
+      line-height: 1.55;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .ai-check { color: #4ade80; font-weight: 700; }
+
+    /* Tool call indicator */
+    .tool-row {
+      display: flex; align-items: center; gap: 7px;
+      padding: 6px 10px;
+      background: rgba(99,102,241,0.08);
+      border: 1px solid rgba(99,102,241,0.18);
+      border-radius: 10px;
+      opacity: 0;
+    }
+    .tool-spinner {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid rgba(139,92,246,0.3);
+      border-top-color: #a78bfa;
+    }
+
+    /* Input bar */
+    .claude-input-bar {
+      padding: 12px 14px;
+      border-top: 1px solid rgba(167,139,250,0.1);
+      background: rgba(255,255,255,0.015);
+    }
+    .input-field-dark {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(167,139,250,0.18);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+    .input-text {
+      flex: 1; font-size: 13px; color: rgba(255,255,255,0.3);
+      font-family: 'Inter', sans-serif;
+    }
+    .input-actions { display: flex; gap: 8px; align-items: center; }
+
+    /* ══════════════════════════════════════════
+       SVG WIRE OVERLAY
+    ══════════════════════════════════════════ */
+
+    #wire-svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 20;
+    }
+
+    /* ══════════════════════════════════════════
+       CONTENT CALENDAR
+    ══════════════════════════════════════════ */
+
+    #calendar-panel {
+      flex: 1;
+      border-radius: 20px;
+      background: radial-gradient(ellipse at 24% 18%, #fafafe 0%, #f0ecff 45%, #e8e4f8 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cal-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(167,139,250,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .cal-title {
+      font-size: 13px; font-weight: 800; color: #2e1065;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    .cal-month {
+      font-size: 11.5px; font-weight: 600; color: #7c3aed; opacity: 0.75;
+    }
+
+    /* Grid */
+    .cal-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      padding: 14px 14px 16px;
+    }
+
+    .day-col {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .day-label-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 4px;
+    }
+
+    .day-name {
+      font-size: 10px; font-weight: 700;
+      color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    .day-num {
+      font-size: 18px; font-weight: 900;
+      color: #4b5563;
+      line-height: 1;
+    }
+
+    .day-col.today .day-name { color: #7c3aed; }
+    .day-col.today .day-num {
+      color: white;
+      background: linear-gradient(140deg, #a78bfa, #7c3aed);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 3px 8px rgba(124,58,237,0.4),
+        inset 0 2px 0 rgba(255,255,255,0.3);
+    }
+
+    /* Tomorrow column highlight */
+    .day-col.tomorrow {
+      position: relative;
+    }
+    .day-col.tomorrow::before {
+      content: '';
+      position: absolute;
+      inset: -4px -4px;
+      border-radius: 14px;
+      border: 1.5px dashed rgba(139,92,246,0.3);
+      pointer-events: none;
+    }
+    .day-col.tomorrow .day-name { color: #7c3aed; }
+    .day-col.tomorrow .day-num { color: #4c1d95; }
+
+    /* Content block */
+    .content-block {
+      padding: 5px 7px;
+      border-radius: 9px;
+      font-size: 10px; font-weight: 700;
+      display: flex; align-items: center; gap: 5px;
+      white-space: nowrap; overflow: hidden;
+    }
+
+    .block-icon {
+      width: 16px; height: 16px;
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 800;
+      flex-shrink: 0;
+      color: white;
+    }
+
+    /* New blocks (arrive via animation) */
+    #block-li, #block-x { opacity: 0; }
+
+    /* Platform icon buttons in input bar */
+    .input-icon-btn {
+      width: 26px; height: 26px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; cursor: pointer;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background 80ms;
+    }
+
+    /* Packet dots that travel the wire */
+    .packet-dot {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #e0d0ff, #a78bfa);
+      box-shadow: 0 0 8px #a78bfa, 0 0 16px rgba(167,139,250,0.5);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 25;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+<div class="scene">
+
+  <!-- Section header -->
+  
+
+  <!-- Main two-column layout -->
+  <div id="main-layout">
+
+    <!-- SVG wire overlay -->
+    <svg id="wire-svg" width="100%" height="100%">
+      <defs>
+        <filter id="wire-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+          <feFlood flood-color="#a78bfa" flood-opacity="0.7" result="col"/>
+          <feComposite in="col" in2="blur" operator="in" result="glow"/>
+          <feMerge>
+            <feMergeNode in="glow"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="wire-glow-strong" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="blur"/>
+          <feFlood flood-color="#c084fc" flood-opacity="0.9" result="col"/>
+          <feComposite in="col" in2="blur" operator="in" result="glow"/>
+          <feMerge>
+            <feMergeNode in="glow"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Base wire (persistent after reveal) -->
+      <path id="wire-base" fill="none" stroke="rgba(167,139,250,0.22)"
+            stroke-width="1.5" opacity="0"/>
+
+      <!-- Glow wire (the main animated line) -->
+      <path id="wire-main" fill="none" stroke="#a78bfa" stroke-width="2.5"
+            stroke-linecap="round" opacity="0" filter="url(#wire-glow)"/>
+
+      <!-- Flowing dash layer (data streaming) -->
+      <path id="wire-flow" fill="none" stroke="#c084fc" stroke-width="2"
+            stroke-linecap="round" stroke-dasharray="5 12" opacity="0"
+            filter="url(#wire-glow-strong)"/>
+
+      <!-- MCP label -->
+      <g id="mcp-label" opacity="0">
+        <rect id="mcp-label-bg" rx="6" fill="#1a1228"
+              stroke="rgba(167,139,250,0.35)" stroke-width="1"/>
+        <text id="mcp-label-text" fill="#a78bfa"
+              font-family="JetBrains Mono, monospace"
+              font-size="10" font-weight="600"
+              text-anchor="middle" dominant-baseline="middle">MCP</text>
+      </g>
+    </svg>
+
+    <!-- Packet dots (positioned in JS) -->
+    <div class="packet-dot" id="p1"></div>
+    <div class="packet-dot" id="p2"></div>
+    <div class="packet-dot" id="p3"></div>
+
+    <!-- ════════════════
+         CLAUDE DESKTOP
+    ════════════════ -->
+    <div id="claude-panel" class="clay-dark">
+
+      <!-- Header -->
+      <div class="claude-header">
+        <div class="claude-logo-mark">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 2C4.68 2 2 4.68 2 8s2.68 6 6 6 6-2.68 6-6-2.68-6-6-6z" fill="rgba(255,255,255,0.9)"/>
+            <path d="M5.5 8a2.5 2.5 0 005 0" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="claude-title">Claude Desktop</span>
+        <div class="mcp-badge">
+          <span class="mcp-dot"></span>
+          MCP · Buffer
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="claude-messages">
+
+        <!-- Tool row (MCP activating) -->
+        <div class="tool-row" id="tool-row">
+          <div class="tool-spinner" id="spinner"></div>
+          <span style="font-size:11px;font-weight:600;color:#8b7ab8;
+                       font-family:'JetBrains Mono',monospace;">
+            buffer.schedule_post <span style="color:#a78bfa;">×2</span>
+          </span>
+        </div>
+
+        <!-- User message -->
+        <div class="msg-user-wrap" id="msg-user">
+          <div class="clay-bubble-dark msg-user-bubble">
+            Schedule a post about our new feature on LinkedIn and X for tomorrow morning.
+          </div>
+        </div>
+
+        <!-- AI reply -->
+        <div class="msg-ai-wrap" id="msg-ai">
+          <div class="ai-avatar">✦</div>
+          <div class="clay-bubble-dark msg-ai-bubble">
+            <span class="ai-check">✓</span> Scheduled to <strong style="color:#e0d0ff;">LinkedIn</strong>
+            and <strong style="color:#e0d0ff;">X</strong><br/>
+            Tomorrow · 9:00 AM<br/>
+            <span style="font-size:11.5px;color:#6b5ea8;">via Buffer MCP</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Input bar -->
+      <div class="claude-input-bar">
+        <div class="input-field-dark">
+          <span class="input-text">Reply to Claude...</span>
+          <div class="input-actions">
+            <div class="input-icon-btn">⌘</div>
+            <div class="input-icon-btn" style="background:rgba(167,139,250,0.12);
+                 border-color:rgba(167,139,250,0.25);">↑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════
+         CONTENT CALENDAR
+    ════════════════ -->
+    <div id="calendar-panel" class="clay-light">
+
+      <div class="cal-header">
+        <div class="cal-title">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="1" y="3" width="14" height="12" rx="2.5" stroke="#7c3aed" stroke-width="1.5"/>
+            <path d="M1 7h14" stroke="#7c3aed" stroke-width="1.5"/>
+            <path d="M5 1v4M11 1v4" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Content Calendar
+        </div>
+        <span class="cal-month">April 2025</span>
+      </div>
+
+      <div class="cal-grid">
+
+        <!-- MON 21 -->
+        <div class="day-col">
+          <div class="day-label-wrap">
+            <span class="day-name">Mon</span>
+            <span class="day-num">21</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#fde68a,#fbbf24);">
+            <div class="block-icon" style="background:#d97706;">IG</div>
+            <span style="color:#78350f;font-size:9.5px;">Reel</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#dbeafe,#93c5fd);">
+            <div class="block-icon" style="background:#1d4ed8;">f</div>
+            <span style="color:#1e3a8a;font-size:9.5px;">Post</span>
+          </div>
+        </div>
+
+        <!-- TUE 22 -->
+        <div class="day-col">
+          <div class="day-label-wrap">
+            <span class="day-name">Tue</span>
+            <span class="day-num">22</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#f3e8ff,#d8b4fe);">
+            <div class="block-icon" style="background:#7c3aed;">TK</div>
+            <span style="color:#4c1d95;font-size:9.5px;">Video</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#d1fae5,#6ee7b7);">
+            <div class="block-icon" style="background:#059669;">✉</div>
+            <span style="color:#064e3b;font-size:9.5px;">Newsletter</span>
+          </div>
+        </div>
+
+        <!-- WED 23 — Today -->
+        <div class="day-col today">
+          <div class="day-label-wrap">
+            <span class="day-name">Today</span>
+            <span class="day-num">23</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd);">
+            <div class="block-icon" style="background:#6d28d9;">𝕏</div>
+            <span style="color:#3b0764;font-size:9.5px;">Thread</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#fce7f3,#f9a8d4);">
+            <div class="block-icon" style="background:#be185d;">IG</div>
+            <span style="color:#831843;font-size:9.5px;">Story</span>
+          </div>
+        </div>
+
+        <!-- THU 24 — Tomorrow -->
+        <div class="day-col tomorrow" id="col-tomorrow">
+          <div class="day-label-wrap">
+            <span class="day-name">Tomorrow</span>
+            <span class="day-num">24</span>
+          </div>
+
+          <!-- LinkedIn block — arrives via animation -->
+          <div class="clay-block content-block" id="block-li"
+               style="background:linear-gradient(135deg,#dbeafe,#60a5fa);">
+            <div class="block-icon" style="background:#0077B5;">in</div>
+            <span style="color:#1e3a8a;font-size:9.5px;">9 AM</span>
+          </div>
+
+          <!-- X block — arrives via animation -->
+          <div class="clay-block content-block" id="block-x"
+               style="background:linear-gradient(135deg,#1c1c1e,#2d2d30);
+                      border-color:rgba(255,255,255,0.25);">
+            <div class="block-icon" style="background:#000;border:1px solid rgba(255,255,255,0.2);">
+              <svg width="9" height="9" viewBox="0 0 300 300" fill="white">
+                <path d="M178.57 127.15 290.27 0h-26.46l-97.03 112.68L89.34 0H0l117.13 170.31L0 300h26.46l102.4-118.96L204.66 300H294L178.57 127.15Zm-36.26 42.11-11.87-16.99L36.66 19.49h40.67l76.2 109.03 11.87 16.99 99.09 141.7h-40.67l-81.5-116.56z"/>
+              </svg>
+            </div>
+            <span style="color:rgba(255,255,255,0.8);font-size:9.5px;">9 AM</span>
+          </div>
+        </div>
+
+        <!-- FRI 25 -->
+        <div class="day-col">
+          <div class="day-label-wrap">
+            <span class="day-name">Fri</span>
+            <span class="day-num">25</span>
+          </div>
+          <div class="clay-block content-block" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">
+            <div class="block-icon" style="background:#d97706;">LI</div>
+            <span style="color:#78350f;font-size:9.5px;">Article</span>
+          </div>
+        </div>
+
+        <!-- SAT 26 -->
+        <div class="day-col">
+          <div class="day-label-wrap">
+            <span class="day-name">Sat</span>
+            <span class="day-num">26</span>
+          </div>
+          <!-- Empty — weekend rest -->
+          <div style="height:28px;border-radius:8px;background:rgba(0,0,0,0.03);
+                      border:1.5px dashed rgba(0,0,0,0.08);"></div>
+        </div>
+
+      </div>
+    </div><!-- end calendar -->
+  </div><!-- end main-layout -->
+</div><!-- end scene -->
+
+<script>
+  /* ─────────────────────────────────────────
+     Wire geometry — computed from DOM rects
+  ───────────────────────────────────────── */
+  function getWirePoints() {
+    const layout   = document.getElementById('main-layout');
+    const claude   = document.getElementById('claude-panel');
+    const tomorrow = document.getElementById('col-tomorrow');
+    const lr = claude.getBoundingClientRect();
+    const pr = layout.getBoundingClientRect();
+    const tr = tomorrow.getBoundingClientRect();
+
+    const x1 = lr.right  - pr.left;
+    const y1 = lr.top    - pr.top + lr.height * 0.52;
+    const x2 = tr.left   - pr.left + tr.width * 0.5;
+    const y2 = tr.top    - pr.top  + 68; // aim at the block area
+
+    const cpx = (x1 + x2) / 2;
+    return { x1, y1, x2, y2, cpx };
+  }
+
+  function buildPath(p) {
+    return `M ${p.x1} ${p.y1} C ${p.cpx} ${p.y1}, ${p.cpx} ${p.y2}, ${p.x2} ${p.y2}`;
+  }
+
+  /* ─────────────────────────────────────────
+     Point along a cubic bezier (for packets)
+  ───────────────────────────────────────── */
+  function bezierPt(t, p) {
+    const mt = 1 - t;
+    const cp1 = { x: p.cpx, y: p.y1 };
+    const cp2 = { x: p.cpx, y: p.y2 };
+    return {
+      x: mt*mt*mt*p.x1 + 3*mt*mt*t*cp1.x + 3*mt*t*t*cp2.x + t*t*t*p.x2,
+      y: mt*mt*mt*p.y1 + 3*mt*mt*t*cp1.y + 3*mt*t*t*cp2.y + t*t*t*p.y2,
+    };
+  }
+
+  /* ─────────────────────────────────────────
+     Animate a packet dot along the wire
+  ───────────────────────────────────────── */
+  function sendPacket(id, pts, delay, onArrive) {
+    const el = document.getElementById(id);
+    const obj = { t: 0 };
+    gsap.set(el, { opacity: 1 });
+    gsap.to(obj, {
+      t: 1,
+      duration: 0.65,
+      delay,
+      ease: 'power2.inOut',
+      onUpdate() {
+        const pos = bezierPt(obj.t, pts);
+        gsap.set(el, { x: pos.x, y: pos.y });
+      },
+      onComplete() {
+        gsap.to(el, { opacity: 0, scale: 2, duration: 0.25, ease: 'power2.out' });
+        if (onArrive) onArrive();
+      },
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     Typewriter
+  ───────────────────────────────────────── */
+  const USER_MSG = 'Schedule a post about our new feature on LinkedIn and X for tomorrow morning.';
+  let typingInterval = null;
+
+  function typeMessage(el, msg, speed, onDone) {
+    el.textContent = '';
+    let i = 0;
+    typingInterval = setInterval(() => {
+      el.textContent += msg[i++];
+      if (i >= msg.length) {
+        clearInterval(typingInterval);
+        if (onDone) onDone();
+      }
+    }, speed);
+  }
+
+  function clearTyping() {
+    if (typingInterval) clearInterval(typingInterval);
+  }
+
+  /* ─────────────────────────────────────────
+     Spinner rotation (continuous)
+  ───────────────────────────────────────── */
+  gsap.to('#spinner', { rotation: 360, duration: 0.9, repeat: -1, ease: 'none' });
+
+  /* ─────────────────────────────────────────
+     Main animation loop
+  ───────────────────────────────────────── */
+  function runLoop() {
+    clearTyping();
+
+    /* Reset */
+    const msgBubble = document.querySelector('.msg-user-bubble');
+    msgBubble.textContent = '';
+    gsap.set('#msg-user',   { opacity: 0, y: 10, scale: 0.95 });
+    gsap.set('#msg-ai',     { opacity: 0, y: 8,  scale: 0.95 });
+    gsap.set('#tool-row',   { opacity: 0 });
+    gsap.set('#block-li',   { opacity: 0, scale: 0.5, y: -8 });
+    gsap.set('#block-x',    { opacity: 0, scale: 0.5, y: -8 });
+    gsap.set(['#wire-base','#wire-main','#wire-flow','#mcp-label'], { opacity: 0 });
+    gsap.set(['#p1','#p2','#p3'], { opacity: 0, scale: 1 });
+
+    const tl = gsap.timeline({
+      onComplete: () => gsap.delayedCall(1.2, runLoop),
+    });
+
+    /* 0.4s — user bubble appears, typewriter starts */
+    tl.to('#msg-user', {
+      opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.8)',
+    }, 0.4);
+    tl.add(() => typeMessage(msgBubble, USER_MSG, 36, null), 0.4);
+
+    /* 2.8s — MCP wire draws */
+    tl.add(() => {
+      const pts = getWirePoints();
+      const d   = buildPath(pts);
+
+      /* Set all wire paths to the same geometry */
+      ['#wire-base','#wire-main','#wire-flow'].forEach(id => {
+        document.querySelector(id).setAttribute('d', d);
+      });
+
+      const mainEl = document.getElementById('wire-main');
+      const len = mainEl.getTotalLength();
+      mainEl.style.strokeDasharray  = len;
+      mainEl.style.strokeDashoffset = len;
+
+      /* Position MCP label at midpoint */
+      const mid = bezierPt(0.5, pts);
+      const bg  = document.getElementById('mcp-label-bg');
+      const txt = document.getElementById('mcp-label-text');
+      bg.setAttribute('x',  mid.x - 22);
+      bg.setAttribute('y',  mid.y - 11);
+      bg.setAttribute('width', 44);
+      bg.setAttribute('height', 22);
+      txt.setAttribute('x', mid.x);
+      txt.setAttribute('y', mid.y + 0.5);
+
+      /* Draw the main wire */
+      gsap.set('#wire-main', { opacity: 1 });
+      gsap.to('#wire-main', {
+        strokeDashoffset: 0, duration: 0.55, ease: 'power2.inOut',
+        onComplete() {
+          /* Reveal base + flowing dashes */
+          gsap.set('#wire-base', { opacity: 1 });
+          gsap.set('#wire-flow', {
+            opacity: 1,
+            strokeDasharray: '5 12',
+            strokeDashoffset: 0,
+          });
+          /* Continuously stream the dashes */
+          gsap.to('#wire-flow', {
+            strokeDashoffset: -510,
+            duration: 3,
+            repeat: -1,
+            ease: 'none',
+          });
+          /* MCP label fade in */
+          gsap.to('#mcp-label', { opacity: 1, duration: 0.3 });
+          /* Pulse the glow */
+          gsap.to('#wire-main', {
+            opacity: 0.4, duration: 1.2, repeat: -1, yoyo: true, ease: 'sine.inOut',
+          });
+        }
+      });
+
+      /* Send packets along the wire */
+      const onFirstArrive = () => {
+        /* block-li pops in */
+        gsap.to('#block-li', {
+          opacity: 1, scale: 1, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.55)',
+        });
+      };
+      const onSecondArrive = () => {
+        /* block-x pops in */
+        gsap.to('#block-x', {
+          opacity: 1, scale: 1, y: 0, duration: 0.45, ease: 'elastic.out(1, 0.55)',
+        });
+      };
+
+      sendPacket('p1', pts, 0.58, onFirstArrive);
+      sendPacket('p2', pts, 0.80, onSecondArrive);
+      sendPacket('p3', pts, 1.05, null);
+
+    }, 2.8);
+
+    /* 3.0s — tool row flashes in Claude */
+    tl.to('#tool-row', { opacity: 1, duration: 0.3 }, 3.0);
+
+    /* 4.2s — AI reply */
+    tl.to('#msg-ai', {
+      opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(1.7)',
+    }, 4.2);
+
+    /* Hold until t=11 before next loop */
+    tl.to({}, { duration: 1 }, 10.0);
+  }
+
+  gsap.delayedCall(0.3, runLoop);
+</script>
+</body>
+</html>

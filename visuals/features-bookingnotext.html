@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai — Feature: Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(158deg, #f0eeff 0%, #f7f0ff 35%, #fff8f2 70%, #f0f7ff 100%);
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       DOUGHY CLAYMORPHISM — upgraded system
+       Key upgrades vs hero:
+       • ::before specular blob on every surface
+       • Bright top-rim via inset 0 5px 0 white
+       • Radial bg gradient for 3D curvature feel
+       • 3-layer outer shadow (near, mid, ambient)
+       • White border for edge highlight
+    ══════════════════════════════════════════ */
+
+    .dough {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      box-shadow:
+        /* near sharp shadow */
+        0 4px 10px rgba(0, 0, 0, 0.13),
+        /* mid soft shadow */
+        0 14px 36px rgba(0, 0, 0, 0.13),
+        /* ambient lift */
+        0 28px 60px rgba(0, 0, 0, 0.07),
+        /* outer highlight (top-left lift) */
+        -6px -6px 16px rgba(255, 255, 255, 0.92),
+        /* inner bright top rim */
+        inset 0 5px 0 rgba(255, 255, 255, 0.82),
+        /* inner highlight quadrant */
+        inset 5px 5px 16px rgba(255, 255, 255, 0.5),
+        /* inner shadow quadrant */
+        inset -5px -5px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Specular highlight — the "doughy" blob of light on surface */
+    .dough::before {
+      content: '';
+      position: absolute;
+      top: 7%; left: 9%;
+      width: 50%; height: 44%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 38% 32%,
+        rgba(255, 255, 255, 0.58) 0%,
+        rgba(255, 255, 255, 0.12) 55%,
+        transparent 72%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Pill variant (smaller elements) */
+    .dough-pill {
+      position: relative;
+      isolation: isolate;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.13),
+        -2px -2px 6px rgba(255, 255, 255, 0.9),
+        inset 0 3px 0 rgba(255, 255, 255, 0.72),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.42),
+        inset -2px -2px 6px rgba(0, 0, 0, 0.10);
+      border-radius: 100px;
+    }
+
+    /* Chat bubble variant — asymmetric radius handled inline */
+    .dough-bubble {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      box-shadow:
+        0 5px 14px rgba(0, 0, 0, 0.12),
+        -3px -3px 8px rgba(255, 255, 255, 0.88),
+        inset 0 4px 0 rgba(255, 255, 255, 0.78),
+        inset 3px 3px 10px rgba(255, 255, 255, 0.48),
+        inset -3px -3px 10px rgba(0, 0, 0, 0.10);
+    }
+
+    .dough-bubble::before {
+      content: '';
+      position: absolute;
+      top: 4px; left: 10px;
+      width: 44%; height: 48%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(255, 255, 255, 0.48) 0%,
+        transparent 68%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Icon badge (avatar style) */
+    .dough-badge {
+      position: relative;
+      isolation: isolate;
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.18),
+        -3px -3px 7px rgba(255, 255, 255, 0.88),
+        inset 0 3px 0 rgba(255, 255, 255, 0.7),
+        inset 3px 3px 8px rgba(255, 255, 255, 0.38),
+        inset -3px -3px 8px rgba(0, 0, 0, 0.14);
+    }
+
+    /* ── Connecting line SVG ── */
+    #lines-svg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 20;
+    }
+
+    /* ── Superpower badge ── */
+    #sp-badge-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px 18px;
+    }
+    #sp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #fef3c7, #fde68a 60%, #fcd34d);
+      font-size: 12px;
+      font-weight: 800;
+      color: #78350f;
+      letter-spacing: 0.04em;
+      opacity: 0;
+    }
+
+    /* ── Chat messages initially hidden ── */
+    .chat-msg { opacity: 0; }
+
+    /* ── Typing dots ── */
+    .t-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(109, 40, 217, 0.45);
+      flex-shrink: 0;
+    }
+
+    /* ── Calendar slot ── */
+    .cal-slot-block {
+      border-left: 4px solid;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="max-width:980px; width:100%;">
+
+    <!-- Section header -->
+    
+
+    <!-- ── Two-column layout ── -->
+    <div id="layout" style="position:relative; display:flex; gap:28px; align-items:flex-start;">
+
+      <!-- SVG overlay for connecting lines -->
+      <svg id="lines-svg" width="100%" height="100%">
+        <defs>
+          <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3.5" result="blur"/>
+            <feFlood flood-color="#8b5cf6" flood-opacity="0.55" result="col"/>
+            <feComposite in="col" in2="blur" operator="in" result="glow"/>
+            <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-orange" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3.5" result="blur"/>
+            <feFlood flood-color="#f97316" flood-opacity="0.55" result="col"/>
+            <feComposite in="col" in2="blur" operator="in" result="glow"/>
+            <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0,1 L9,5 L0,9 Z" fill="#8b5cf6"/>
+          </marker>
+          <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M0,1 L9,5 L0,9 Z" fill="#f97316"/>
+          </marker>
+        </defs>
+        <path id="line-cal" fill="none" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round" opacity="0" filter="url(#glow-purple)" marker-end="url(#arrow-purple)"/>
+        <path id="line-hub" fill="none" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" opacity="0" filter="url(#glow-orange)" marker-end="url(#arrow-orange)"/>
+      </svg>
+
+      <!-- ════════════════════════════
+           LEFT: Chat Panel
+      ════════════════════════════ -->
+      <div id="chat-col" style="flex:1; min-width:0; position:relative;">
+
+        <div id="chat-panel" class="dough" style="
+          border-radius:24px;
+          background: radial-gradient(ellipse at 28% 18%, #f3f0ff 0%, #ede9fe 45%, #ddd6fe 100%);
+          overflow:hidden;
+        ">
+
+          <!-- Chat header -->
+          <div style="
+            padding:15px 18px;
+            border-bottom:1px solid rgba(167,139,250,0.22);
+            background:rgba(255,255,255,0.35);
+            backdrop-filter:blur(6px);
+            display:flex; align-items:center; gap:12px;
+            position:relative; z-index:2;
+          ">
+            <!-- Avatar -->
+            <div class="dough-badge" style="
+              width:38px; height:38px; border-radius:50%;
+              background:linear-gradient(140deg, #a78bfa, #6d28d9);
+              display:flex; align-items:center; justify-content:center;
+              flex-shrink:0;
+            ">
+              <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai" style="width:22px; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:#2e1065;">AI Agent · Bonsai</div>
+              <div style="font-size:11px;color:#7c3aed;display:flex;align-items:center;gap:5px;margin-top:1px;">
+                <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;box-shadow:0 0 6px #22c55e;"></span>
+                <span style="opacity:0.8;">Active now</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages area -->
+          <div id="messages" style="padding:18px; display:flex; flex-direction:column; gap:11px; min-height:252px; position:relative; z-index:2;">
+
+            <!-- Customer → "I'd like a demo." -->
+            <div class="chat-msg" id="msg-1" style="display:flex; justify-content:flex-end;">
+              <div class="dough-bubble" style="
+                background:linear-gradient(140deg,#c4b5fd,#8b5cf6);
+                border-radius:18px 18px 5px 18px;
+                padding:10px 15px;
+                max-width:74%;
+                font-size:14px; font-weight:600; color:#fff;
+              ">I'd like a demo.</div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div id="typing-ind" style="display:flex; justify-content:flex-start; opacity:0;">
+              <div class="dough-bubble" style="
+                background:linear-gradient(140deg,#f0eeff,#ddd6fe);
+                border-radius:18px 18px 18px 5px;
+                padding:12px 16px;
+                display:flex; gap:5px; align-items:center;
+              ">
+                <span class="t-dot" id="td1"></span>
+                <span class="t-dot" id="td2"></span>
+                <span class="t-dot" id="td3"></span>
+              </div>
+            </div>
+
+            <!-- AI → reply -->
+            <div class="chat-msg" id="msg-2" style="display:flex; justify-content:flex-start;">
+              <div class="dough-bubble" style="
+                background:linear-gradient(140deg,#f5f3ff,#ede9fe);
+                border-radius:18px 18px 18px 5px;
+                padding:10px 15px;
+                max-width:84%;
+                font-size:14px; font-weight:600; color:#2e1065;
+              ">I can help! How does tomorrow at&nbsp;2&nbsp;PM&nbsp;sound?</div>
+            </div>
+
+            <!-- Customer → "Perfect." -->
+            <div class="chat-msg" id="msg-3" style="display:flex; justify-content:flex-end;">
+              <div class="dough-bubble" style="
+                background:linear-gradient(140deg,#c4b5fd,#8b5cf6);
+                border-radius:18px 18px 5px 18px;
+                padding:10px 15px;
+                max-width:74%;
+                font-size:14px; font-weight:600; color:#fff;
+              ">Perfect.</div>
+            </div>
+
+          </div>
+
+          <!-- Superpower badge -->
+          <div id="sp-badge-wrap">
+            <div id="sp-badge" class="dough-pill">
+              <span style="font-size:15px;">⚡</span>
+              <span>Superpower Activated</span>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- end chat col -->
+
+      <!-- ════════════════════════════
+           RIGHT: Tool Cards
+      ════════════════════════════ -->
+      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px;">
+
+        <!-- ── Google Calendar Widget ── -->
+        <div id="cal-widget" class="dough" style="
+          border-radius:24px;
+          background: radial-gradient(ellipse at 25% 20%, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+        ">
+          <div style="padding:18px 20px 20px; position:relative; z-index:2;">
+
+            <!-- Header -->
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">
+              <div class="dough-badge" style="
+                width:36px; height:36px; border-radius:12px; flex-shrink:0;
+                background:linear-gradient(140deg,#4ade80,#16a34a);
+                display:flex; align-items:center; justify-content:center; font-size:18px;
+              ">📅</div>
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#14532d;">Google Calendar</div>
+                <div style="font-size:10.5px;color:#15803d;opacity:0.85;">Tomorrow · Wednesday</div>
+              </div>
+              <div style="margin-left:auto; flex-shrink:0;">
+                <span class="dough-pill" style="
+                  font-size:10px; font-weight:700; color:#15803d;
+                  background:linear-gradient(135deg,#bbf7d0,#86efac);
+                  padding:3px 11px; display:inline-block;
+                ">Connected</span>
+              </div>
+            </div>
+
+            <!-- Time slots -->
+            <div style="display:flex; flex-direction:column; gap:7px;">
+
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:11px;font-weight:600;color:#9ca3af;width:40px;text-align:right;flex-shrink:0;">10 AM</span>
+                <div style="flex:1;height:30px;border-radius:8px;background:rgba(0,0,0,0.04);"></div>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:11px;font-weight:600;color:#9ca3af;width:40px;text-align:right;flex-shrink:0;">12 PM</span>
+                <div class="cal-slot-block" style="
+                  flex:1; height:30px; border-left-color:#6366f1;
+                  background:linear-gradient(90deg,rgba(99,102,241,0.14),rgba(99,102,241,0.03));
+                  padding:0 11px; display:flex; align-items:center;
+                ">
+                  <span style="font-size:11px;font-weight:700;color:#3730a3;">Team Standup</span>
+                </div>
+              </div>
+
+              <!-- Demo slot — animated in -->
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:11px;font-weight:600;color:#9ca3af;width:40px;text-align:right;flex-shrink:0;">2 PM</span>
+                <div id="cal-demo-slot" class="cal-slot-block dough-pill" style="
+                  flex:1; height:36px; border-left-color:#8b5cf6; border-radius:10px;
+                  background:linear-gradient(90deg,rgba(139,92,246,0.2),rgba(139,92,246,0.06));
+                  padding:0 11px; display:flex; align-items:center; gap:8px;
+                  opacity:0; transform:scaleX(0); transform-origin:left center;
+                ">
+                  <span style="font-size:14px; flex-shrink:0;">📌</span>
+                  <span style="font-size:12.5px;font-weight:800;color:#4c1d95;">Demo Booked</span>
+                  <span class="dough-pill" style="
+                    font-size:9px;font-weight:700;color:#6d28d9;
+                    background:rgba(139,92,246,0.18); padding:2px 8px;
+                    margin-left:auto; flex-shrink:0;
+                  ">New ✦</span>
+                </div>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:11px;font-weight:600;color:#9ca3af;width:40px;text-align:right;flex-shrink:0;">4 PM</span>
+                <div style="flex:1;height:30px;border-radius:8px;background:rgba(0,0,0,0.04);"></div>
+              </div>
+
+            </div>
+          </div>
+        </div><!-- end calendar -->
+
+        <!-- ── HubSpot CRM Card ── -->
+        <div id="hub-widget" class="dough" style="
+          border-radius:24px;
+          background: radial-gradient(ellipse at 25% 20%, #fff7ed 0%, #ffedd5 50%, #fed7aa 100%);
+        ">
+          <div style="padding:18px 20px 20px; position:relative; z-index:2;">
+
+            <!-- Header -->
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+              <div class="dough-badge" style="
+                width:36px; height:36px; border-radius:12px; flex-shrink:0;
+                background:linear-gradient(140deg,#fb923c,#c2410c);
+                display:flex; align-items:center; justify-content:center; font-size:18px;
+              ">🔶</div>
+              <div>
+                <div style="font-size:13px;font-weight:800;color:#7c2d12;">HubSpot CRM</div>
+                <div style="font-size:10.5px;color:#c2410c;opacity:0.85;">Contacts &amp; Deals</div>
+              </div>
+              <div style="margin-left:auto; flex-shrink:0;">
+                <span class="dough-pill" style="
+                  font-size:10px;font-weight:700;color:#9a3412;
+                  background:linear-gradient(135deg,#fed7aa,#fdba74);
+                  padding:3px 11px; display:inline-block;
+                ">Connected</span>
+              </div>
+            </div>
+
+            <!-- Contact card -->
+            <div style="
+              background:rgba(255,255,255,0.46);
+              border-radius:16px;
+              padding:13px 15px;
+              border:1px solid rgba(251,146,60,0.25);
+            ">
+              <!-- Contact row -->
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:11px;">
+                <div class="dough-badge" style="
+                  width:36px; height:36px; border-radius:50%; flex-shrink:0;
+                  background:linear-gradient(140deg,#fed7aa,#fb923c);
+                  display:flex; align-items:center; justify-content:center;
+                  font-size:15px; font-weight:800; color:#7c2d12;
+                ">M</div>
+                <div>
+                  <div style="font-size:13px;font-weight:700;color:#431407;">Maria García</div>
+                  <div style="font-size:11px;color:#9a3412;opacity:0.8;">maria@example.com</div>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;" id="tags-row">
+                <span class="dough-pill" style="
+                  font-size:10px;font-weight:700;color:#1d4ed8;
+                  background:linear-gradient(135deg,#dbeafe,#bfdbfe);
+                  padding:3px 10px; display:inline-block;
+                ">Lead</span>
+                <span class="dough-pill" style="
+                  font-size:10px;font-weight:700;color:#065f46;
+                  background:linear-gradient(135deg,#d1fae5,#a7f3d0);
+                  padding:3px 10px; display:inline-block;
+                ">Inbound</span>
+
+                <!-- Deal tag — animated in -->
+                <span id="deal-tag" class="dough-pill" style="
+                  font-size:10px; font-weight:800;
+                  color:#7c2d12; background:linear-gradient(135deg,#fed7aa,#fb923c);
+                  padding:4px 11px; display:inline-flex; align-items:center; gap:4px;
+                  opacity:0;
+                ">✦ Deal Created</span>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- end hubspot -->
+
+      </div><!-- end right col -->
+    </div><!-- end layout -->
+  </div><!-- end section wrapper -->
+
+  <script>
+    /* ─────────────────────────────────────────
+       Helpers
+    ───────────────────────────────────────── */
+    function relRect(el, parent) {
+      const er = el.getBoundingClientRect();
+      const pr = parent.getBoundingClientRect();
+      return {
+        left:   er.left   - pr.left,
+        right:  er.right  - pr.left,
+        top:    er.top    - pr.top,
+        bottom: er.bottom - pr.top,
+        cx:     er.left   - pr.left + er.width  / 2,
+        cy:     er.top    - pr.top  + er.height / 2,
+        w:      er.width,
+        h:      er.height,
+      };
+    }
+
+    /* Animate a bezier path being drawn */
+    function drawPath(pathEl, x1, y1, x2, y2, duration = 0.5) {
+      const cpx = (x1 + x2) / 2;
+      const d   = `M ${x1} ${y1} C ${cpx} ${y1}, ${cpx} ${y2}, ${x2} ${y2}`;
+      pathEl.setAttribute('d', d);
+      const len = pathEl.getTotalLength();
+      pathEl.style.strokeDasharray  = len;
+      pathEl.style.strokeDashoffset = len;
+      gsap.set(pathEl, { opacity: 1 });
+      return gsap.to(pathEl, {
+        strokeDashoffset: 0,
+        duration,
+        ease: 'power2.inOut',
+      });
+    }
+
+    /* ─────────────────────────────────────────
+       Typing dots (infinite until killed)
+    ───────────────────────────────────────── */
+    let dotTween = null;
+    function startDots() {
+      dotTween = gsap.to(['#td1', '#td2', '#td3'], {
+        y: -6,
+        duration: 0.38,
+        ease: 'power1.inOut',
+        stagger: 0.13,
+        repeat: -1,
+        yoyo: true,
+      });
+    }
+    function stopDots() {
+      if (dotTween) { dotTween.kill(); dotTween = null; }
+      gsap.set(['#td1', '#td2', '#td3'], { y: 0 });
+    }
+
+    /* ─────────────────────────────────────────
+       Main animation loop
+    ───────────────────────────────────────── */
+    function runLoop() {
+      const layout   = document.getElementById('layout');
+      const chatPanel = document.getElementById('chat-panel');
+      const calSlot  = document.getElementById('cal-demo-slot');
+      const dealTag  = document.getElementById('deal-tag');
+      const spBadge  = document.getElementById('sp-badge');
+      const typingEl = document.getElementById('typing-ind');
+      const lineCal  = document.getElementById('line-cal');
+      const lineHub  = document.getElementById('line-hub');
+
+      stopDots();
+
+      /* ── Reset ── */
+      gsap.set(['#msg-1','#msg-2','#msg-3'], { opacity: 0, y: 14, scale: 0.94 });
+      gsap.set(typingEl,  { opacity: 0 });
+      gsap.set(spBadge,   { opacity: 0, scale: 0 });
+      gsap.set(calSlot,   { opacity: 0, scaleX: 0, transformOrigin: 'left center' });
+      gsap.set(dealTag,   { opacity: 0, x: -12, scale: 0.82 });
+      gsap.set([lineCal, lineHub], { opacity: 0 });
+
+      const tl = gsap.timeline({
+        onComplete: () => gsap.delayedCall(1.0, runLoop),
+      });
+
+      /* 1 — Customer: "I'd like a demo." */
+      tl.to('#msg-1', {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.42, ease: 'back.out(1.9)',
+      }, 0.35);
+
+      /* 2 — Typing indicator */
+      tl.to(typingEl, { opacity: 1, duration: 0.28 }, 1.1);
+      tl.add(startDots, 1.1);
+
+      /* 3 — AI reply */
+      tl.add(stopDots, 2.45);
+      tl.to(typingEl, { opacity: 0, duration: 0.2 }, 2.45);
+      tl.to('#msg-2', {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.42, ease: 'back.out(1.9)',
+      }, 2.58);
+
+      /* 4 — Customer: "Perfect." */
+      tl.to('#msg-3', {
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.42, ease: 'back.out(1.9)',
+      }, 3.6);
+
+      /* 5 — Superpower badge */
+      tl.to(spBadge, {
+        opacity: 1, scale: 1,
+        duration: 0.55, ease: 'elastic.out(1, 0.48)',
+      }, 4.35);
+
+      /* 6 — Line chat → calendar  */
+      tl.add(() => {
+        const cr = relRect(chatPanel, layout);
+        const sr = relRect(calSlot,   layout);
+        drawPath(
+          lineCal,
+          cr.right,          cr.top + cr.h * 0.42,
+          sr.left,           sr.cy,
+          0.52
+        );
+      }, 5.15);
+
+      /* Calendar slot bounce in */
+      tl.to(calSlot, {
+        opacity: 1, scaleX: 1,
+        duration: 0.55, ease: 'elastic.out(1, 0.58)',
+      }, 5.72);
+
+      /* 7 — Line calendar → HubSpot */
+      tl.add(() => {
+        const sr = relRect(calSlot, layout);
+        const dr = relRect(dealTag,  layout);
+        drawPath(
+          lineHub,
+          sr.right, sr.cy,
+          dr.left,  dr.cy,
+          0.48
+        );
+      }, 6.35);
+
+      /* Deal Created tag pops in */
+      tl.to(dealTag, {
+        opacity: 1, x: 0, scale: 1,
+        duration: 0.48, ease: 'back.out(2.2)',
+      }, 6.88);
+
+      /* ── Hold, then fade lines before restart ── */
+      tl.to([lineCal, lineHub], {
+        opacity: 0, duration: 0.55, stagger: 0.12, ease: 'power2.in',
+      }, 10.0);
+    }
+
+    gsap.delayedCall(0.25, runLoop);
+  </script>
+</body>
+</html>
