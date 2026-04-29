@@ -620,15 +620,6 @@
 
                         </div><!-- main-layout -->
 
-                        <!-- Cursor -->
-                        <div id="sim-cursor"
-                             style="position:absolute;width:44px;height:44px;pointer-events:none;z-index:50;
-                                    opacity:0;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.28));">
-                            <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)" stroke="#333" stroke-width="1.5">
-                                <path d="M4 4l16 6-7 2-2 7z"/>
-                            </svg>
-                        </div>
-
                         <!-- Packet container -->
                         <div id="packets-container"
                              style="position:absolute;inset:0;pointer-events:none;z-index:40;"></div>
@@ -1128,7 +1119,7 @@
             ['#pa-sb1','#pa-sb2','#pa-sb3','#pa-sb4','#pa-sb5'].forEach(id => gsap.set(id, { height:'0%' }));
             paClearInput();
 
-            const tl = gsap.timeline({ onComplete: () => gsap.delayedCall(0.8, paRunLoop) });
+            const tl = gsap.timeline();
             tl.add(() => paType(null), 0.3);
             tl.to('#pa-send-btn', { scale:0.88, duration:0.08, ease:'power2.in' }, 1.42);
             tl.to('#pa-send-btn', { scale:1,    duration:0.28, ease:'elastic.out(1,0.4)' }, 1.50);
@@ -1164,7 +1155,7 @@
               .set(".inner-line",         { scaleX: 0 })
               .set("#blue-hub",           { opacity: 0, scale: 0.92, x: 36 })
               .set("#action-btn",         { scale: 0.9, opacity: 0 })
-              .set("#sim-cursor",         { x: window.innerWidth, y: window.innerHeight, opacity: 0 });
+              ;
 
             tl.to(".db-clay-container", { opacity: 1, scale: 1, y: 0, duration: 0.95, ease: "elastic.out(1, 0.7)" })
               .to("#top-dots div", { scale: 1, duration: 0.45, stagger: 0.09, ease: "back.out(2.5)" }, "-=0.55")
@@ -1212,36 +1203,10 @@
               .to(".inner-line", { scaleX: 1, duration: 0.65, stagger: 0.18, ease: "power2.out" }, "-=0.35");
             tl.to("#action-btn", { scale: 1, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, "+=0.18");
 
-            tl.to("#sim-cursor", { opacity: 1, duration: 0.20 }, "+=0.40")
-              .to("#sim-cursor", {
-                  x: () => {
-                      const b = document.getElementById("action-btn").getBoundingClientRect();
-                      const c = document.querySelector(".db-clay-container").getBoundingClientRect();
-                      return b.left - c.left + b.width / 2;
-                  },
-                  y: () => {
-                      const b = document.getElementById("action-btn").getBoundingClientRect();
-                      const c = document.querySelector(".db-clay-container").getBoundingClientRect();
-                      return b.top - c.top + b.height / 2;
-                  },
-                  duration: 0.85, ease: "power2.inOut"
-              })
-              .call(() => document.getElementById("action-btn").classList.add("pressed"))
-              .to("#sim-cursor", { scale: 1.0, duration: 0.14, yoyo: true, repeat: 1 })
-              .to("#sim-cursor", { opacity: 0, duration: 0.28 }, "+=0.08")
+            tl.call(() => document.getElementById("action-btn").classList.add("pressed"))
               .call(() => {
-                  const btn = document.getElementById("action-btn");
-                  btn.classList.remove("pressed");
-                  gsap.fromTo(btn,
-                      { boxShadow: "0 0 28px rgba(255,255,255,0.85)" },
-                      { boxShadow: "0 10px 20px rgba(109,40,217,0.28),-3px -3px 8px rgba(255,255,255,0.35),inset 0 5px 10px rgba(255,255,255,0.35),inset -4px -4px 10px rgba(0,0,0,0.12)",
-                        duration: 0.55, ease: "power2.out" });
-              });
-
-            tl.to([".channel-card", ".timeline-node", "#blue-hub", "#top-dots div",
-                   "#top-badge", "#timeline-line"], {
-                opacity: 0, duration: 0.60, delay: 2.60
-            }).call(() => setTimeout(buildAndPlay, 320));
+                  setTimeout(() => document.getElementById("action-btn").classList.remove("pressed"), 200);
+              }, [], "+=0.18");
         }
         setTimeout(buildAndPlay, 500);
     });
