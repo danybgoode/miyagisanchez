@@ -38,12 +38,14 @@
         .db-clay-container {
             background: rgba(255,255,255,0.55);
             border-radius: 36px;
-            border: 1.5px solid rgba(255,255,255,0.80);
+            border: 1.5px solid rgba(255,255,255,0.68);
             box-shadow:
-                0 30px 60px rgba(60,20,120,0.08),
-                -10px -10px 25px rgba(255,255,255,1),
-                inset 0 12px 25px rgba(255,255,255,0.9),
-                inset -6px -6px 20px rgba(60,20,120,0.03);
+                0 3px 8px rgba(0,0,0,0.10),
+                0 16px 40px rgba(0,0,0,0.10),
+                0 32px 64px rgba(0,0,0,0.06),
+                inset 0 5px 0 rgba(255,255,255,0.84),
+                inset 5px 5px 18px rgba(255,255,255,0.50),
+                inset -5px -5px 18px rgba(0,0,0,0.04);
             position: relative;
             backdrop-filter: blur(2px);
             font-family: 'Inter', system-ui, sans-serif;
@@ -51,13 +53,13 @@
         .db-clay-card {
             background: #ffffff;
             border-radius: 20px;
-            border: 1.5px solid rgba(255,255,255,0.90);
+            border: 1.5px solid rgba(255,255,255,0.68);
             box-shadow:
-                0 4px 10px rgba(0,0,0,0.08),
-                0 14px 32px rgba(0,0,0,0.07),
-                -5px -5px 14px rgba(255,255,255,0.92),
-                inset 0 5px 0 rgba(255,255,255,0.88),
-                inset 4px 4px 10px rgba(255,255,255,0.55),
+                0 3px 8px rgba(0,0,0,0.11),
+                0 12px 30px rgba(0,0,0,0.11),
+                0 24px 52px rgba(0,0,0,0.06),
+                inset 0 5px 0 rgba(255,255,255,0.84),
+                inset 4px 4px 10px rgba(255,255,255,0.50),
                 inset -4px -4px 10px rgba(0,0,0,0.05);
             position: relative;
             transform-origin: center left;
@@ -75,11 +77,11 @@
             border-radius: 28px;
             border: 1px solid rgba(200,180,255,0.35);
             box-shadow:
-                0 20px 40px rgba(109,40,217,0.35),
-                -6px -6px 20px rgba(255,255,255,0.9),
-                inset 0 10px 18px rgba(255,255,255,0.35),
-                inset 4px 4px 12px rgba(255,255,255,0.22),
-                inset -6px -6px 18px rgba(0,0,0,0.15);
+                0 6px 16px rgba(109,40,217,0.28),
+                0 18px 36px rgba(109,40,217,0.18),
+                inset 0 5px 0 rgba(255,255,255,0.22),
+                inset 4px 4px 12px rgba(255,255,255,0.18),
+                inset -6px -6px 18px rgba(0,0,0,0.18);
             color: white;
             transform-origin: center right;
         }
@@ -89,7 +91,7 @@
             box-shadow:
                 inset 0 8px 16px rgba(0,0,0,0.22),
                 inset -3px -3px 10px rgba(255,255,255,0.10),
-                0 2px 5px rgba(255,255,255,0.18);
+                0 2px 5px rgba(0,0,0,0.12);
         }
         .db-clay-btn {
             background: linear-gradient(145deg, #c4b5fd, #7c3aed);
@@ -100,8 +102,8 @@
             font-family: 'Inter', sans-serif;
             text-shadow: 0 1px 2px rgba(0,0,0,0.18);
             box-shadow:
-                0 10px 20px rgba(109,40,217,0.28),
-                -3px -3px 8px rgba(255,255,255,0.35),
+                0 4px 8px rgba(109,40,217,0.30),
+                0 10px 22px rgba(109,40,217,0.18),
                 inset 0 5px 10px rgba(255,255,255,0.35),
                 inset -4px -4px 10px rgba(0,0,0,0.12);
             border: 1.5px solid rgba(200,180,255,0.40);
@@ -138,8 +140,8 @@
             background: rgba(255,255,255,0.60);
             box-shadow:
                 inset 0 2px 5px rgba(0,0,0,0.04),
-                0 2px 5px rgba(255,255,255,0.9);
-            border: 1.5px solid rgba(255,255,255,0.85);
+                0 2px 5px rgba(0,0,0,0.06);
+            border: 1.5px solid rgba(255,255,255,0.75);
         }
         .db-top-dot {
             box-shadow:
@@ -152,7 +154,7 @@
             border-radius: 50%;
             border: 1.5px solid rgba(255,255,255,0.50);
             box-shadow:
-                0 0 14px rgba(139,92,246,0.70),
+                0 4px 10px rgba(109,40,217,0.35),
                 inset 2px 2px 4px rgba(255,255,255,0.85),
                 inset -2px -2px 4px rgba(0,0,0,0.15);
             position: absolute;
@@ -642,14 +644,12 @@
             </div>
             <div class="grid-2 pain-grid">
                 <div class="card pain-card">
-                    <div class="pain-index">01</div>
                     <p class="card-text pain-copy" data-i18n="pain_1_problem">Customers message on 6 channels at all hours. Someone has to reply.</p>
-                    <p class="card-text text-muted" style="margin-top: 12px;" data-i18n="pain_1_solution">Your AI agent does. Across WhatsApp, Instagram, Facebook, email, and more — instantly, 24/7.</p>
+                    <p class="card-text" style="margin-top: 12px;" data-i18n="pain_1_solution">Your AI agent does. Across WhatsApp, Instagram, Facebook, email, and more — instantly, 24/7.</p>
                 </div>
                 <div class="card pain-card">
-                    <div class="pain-index">02</div>
-                    <p class="card-text pain-copy" data-i18n="pain_2_problem">Running the business means checking Analytics, updating Buffer, following up in HubSpot. Every day.</p>
-                    <p class="card-text text-muted" style="margin-top: 12px;" data-i18n="pain_2_solution">Ask your personal agent. One conversation handles all of it — no tab-switching required.</p>
+                    <p class="card-text pain-copy" data-i18n="pain_2_problem">Running the business means checking Analytics, updating socials, following up in HubSpot. Every day.</p>
+                    <p class="card-text" style="margin-top: 12px;" data-i18n="pain_2_solution">Ask your personal agent. One conversation handles all of it — no tab-switching required.</p>
                 </div>
             </div>
         </section>
@@ -664,9 +664,7 @@
                 <div class="feature-pair-card card">
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
-                            <div class="pain-index">01</div>
                             <h3 class="card-title feature-story-title" data-i18n="feature_1_name">One inbox. Every channel.</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="feature_1_benefit">Stop checking 6 different apps to see if someone wrote.</p>
                             <p class="card-text pain-copy" data-i18n="feature_1_description">WhatsApp, Instagram, Facebook, email, Telegram — every customer conversation in one place. Your team responds from here. Nothing falls through.</p>
                         </div>
                         <figure class="feature-visual feature-visual-inbox" aria-hidden="true">
@@ -722,9 +720,7 @@
                 <div class="feature-pair-card card feature-pair-card-reverse">
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
-                            <div class="pain-index">02</div>
                             <h3 class="card-title feature-story-title" data-i18n="feature_2_name">Your AI agent, always on.</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="feature_2_benefit">Responds instantly. Escalates when it counts.</p>
                             <p class="card-text pain-copy" data-i18n="feature_2_description">The agent handles the routine — hours, prices, availability, payment links. When a conversation needs a human, it escalates immediately with full context. You decide how it behaves and how it sounds.</p>
                         </div>
                         <figure class="feature-visual feature-visual-agent" aria-hidden="true">
@@ -762,9 +758,7 @@
                 <div class="feature-pair-card card">
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
-                            <div class="pain-index">03</div>
                             <h3 class="card-title feature-story-title" data-i18n="feature_3_name">Your team, in sync.</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="feature_3_benefit">Everyone sees everything. Nobody drops the ball.</p>
                             <p class="card-text pain-copy" data-i18n="feature_3_description">Assign conversations, leave internal notes, use saved replies for what always comes up. Everyone sees the same picture. Nobody answers the same message twice. Customers feel known.</p>
                         </div>
                         <figure class="feature-visual feature-visual-team" aria-hidden="true">
@@ -813,7 +807,6 @@
                     <div class="feature-pair-layout">
                         <div class="feature-story-card">
                             <h3 class="card-title feature-story-title" data-i18n="personal_feature_title">Ask. It figures out the rest.</h3>
-                            <p class="card-text feature-story-benefit" data-i18n="personal_feature_benefit">Plan, schedule, analyze, and follow up — without switching apps.</p>
                             <p class="card-text pain-copy" data-i18n="personal_feature_description">Connect Google Calendar, HubSpot, Buffer, and Google Analytics to Claude, ChatGPT, or Gemini. Then just ask. Schedule next week's posts, check last month's pipeline, pull a performance report — all in one conversation.</p>
                             <a href="https://dashboard.despachobonsai.com/sign-up?plan=personal" class="btn-secondary" style="margin-top: 24px; display: inline-block;" data-i18n="cta_personal">Get started free</a>
                         </div>
@@ -984,7 +977,7 @@
                 <div class="card pricing-card">
                     <div class="card-header" data-i18n="plan_personal_name">Personal</div>
                     <div class="pricing-price" data-i18n="plan_personal_price">Free. Forever.</div>
-                    <div class="pricing-subline text-muted" data-i18n="plan_personal_subline">Bring your own Claude, ChatGPT, or Gemini.</div>
+                    <div class="pricing-subline" data-i18n="plan_personal_subline">Bring your own Claude, ChatGPT, or Gemini.</div>
                     <hr class="pricing-divider">
                     <ul class="pricing-features">
                         <li data-i18n="plan_personal_feature_1">Personal AI agent connected to your tools</li>
@@ -1007,7 +1000,7 @@
                     <div class="most-popular-badge" data-i18n="plan_pro_badge">Most popular</div>
                     <div class="card-header" data-i18n="plan_pro_name">Pro</div>
                     <div class="pricing-price" data-i18n="plan_pro_price">$399 MXN/mo</div>
-                    <div class="pricing-subline text-muted" data-i18n="plan_pro_subline">30 days free. No credit card.</div>
+                    <div class="pricing-subline" data-i18n="plan_pro_subline">30 days free. No credit card.</div>
                     <hr class="pricing-divider">
                     <ul class="pricing-features">
                         <li data-i18n="plan_pro_feature_1">Everything in Personal</li>
