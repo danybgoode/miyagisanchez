@@ -197,6 +197,290 @@
             .db-clay-inner-box { padding: 12px 14px !important; margin-bottom: 12px !important; }
         }
     </style>
+    <style>
+        /* ── Personal Agent Visual — Clay System ── */
+        .feature-visual-personal-agent {
+            overflow: visible !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 540px !important;
+        }
+        .feature-visual-personal-agent::before,
+        .feature-visual-personal-agent::after { display: none !important; }
+
+        .clay-deep {
+            position: relative; isolation: isolate;
+            border: 1.5px solid rgba(255,255,255,0.14);
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.35),
+                0 18px 45px rgba(0,0,0,0.38),
+                0 40px 80px rgba(0,0,0,0.22),
+                inset 0 5px 0 rgba(255,255,255,0.10),
+                inset 5px 5px 18px rgba(255,255,255,0.06),
+                inset -5px -5px 18px rgba(0,0,0,0.25);
+        }
+        .clay-deep::before {
+            content: ''; position: absolute; top: 5%; left: 8%;
+            width: 54%; height: 40%; border-radius: 50%;
+            background: radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.12) 0%, transparent 65%);
+            pointer-events: none; z-index: 1;
+        }
+        .clay-light {
+            position: relative; isolation: isolate;
+            border: 1.5px solid rgba(255,255,255,0.68);
+            box-shadow:
+                0 3px 8px rgba(0,0,0,0.11), 0 12px 30px rgba(0,0,0,0.11),
+                0 24px 52px rgba(0,0,0,0.06),
+                -6px -6px 16px rgba(255,255,255,0.92),
+                inset 0 5px 0 rgba(255,255,255,0.84),
+                inset 5px 5px 16px rgba(255,255,255,0.50),
+                inset -5px -5px 16px rgba(0,0,0,0.10);
+        }
+        .clay-light::before {
+            content: ''; position: absolute; top: 7%; left: 9%;
+            width: 50%; height: 44%; border-radius: 50%;
+            background: radial-gradient(ellipse at 38% 32%, rgba(255,255,255,0.56) 0%, rgba(255,255,255,0.10) 55%, transparent 72%);
+            pointer-events: none; z-index: 1;
+        }
+        .clay-pill {
+            position: relative; isolation: isolate; border-radius: 100px;
+            border: 1.5px solid rgba(255,255,255,0.62);
+            box-shadow:
+                0 3px 8px rgba(0,0,0,0.13), -2px -2px 6px rgba(255,255,255,0.9),
+                inset 0 3px 0 rgba(255,255,255,0.72),
+                inset 2px 2px 7px rgba(255,255,255,0.42),
+                inset -2px -2px 7px rgba(0,0,0,0.10);
+        }
+        .clay-btn-pa {
+            position: relative; isolation: isolate; border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.55); cursor: pointer;
+            box-shadow:
+                0 5px 10px rgba(0,0,0,0.22), 0 12px 28px rgba(0,0,0,0.18),
+                -3px -3px 8px rgba(255,255,255,0.82),
+                inset 0 4px 0 rgba(255,255,255,0.68),
+                inset 3px 3px 10px rgba(255,255,255,0.40),
+                inset -3px -3px 10px rgba(0,0,0,0.16);
+            transition: transform 80ms ease, box-shadow 80ms ease;
+        }
+        .clay-btn-pa::before {
+            content: ''; position: absolute; top: 8%; left: 10%;
+            width: 50%; height: 48%; border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.52) 0%, transparent 68%);
+            pointer-events: none;
+        }
+        .clay-bubble {
+            position: relative; isolation: isolate;
+            border: 1.5px solid rgba(255,255,255,0.60);
+            box-shadow:
+                0 4px 12px rgba(0,0,0,0.10), -3px -3px 8px rgba(255,255,255,0.88),
+                inset 0 4px 0 rgba(255,255,255,0.76),
+                inset 3px 3px 10px rgba(255,255,255,0.46),
+                inset -3px -3px 10px rgba(0,0,0,0.09);
+        }
+        .clay-bubble::before {
+            content: ''; position: absolute; top: 4px; left: 9px;
+            width: 44%; height: 50%; border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.46) 0%, transparent 68%);
+            pointer-events: none; z-index: 1;
+        }
+        .phone-side-btn-pa {
+            position: absolute; border-radius: 3px 0 0 3px;
+            background: linear-gradient(to left, #1a0b45 0%, #27115e 40%, #1e0d50 100%);
+            border-top: 1px solid rgba(255,255,255,0.12);
+            border-left: 1px solid rgba(255,255,255,0.10);
+            border-bottom: 1px solid rgba(0,0,0,0.4);
+            box-shadow: -3px 2px 6px rgba(0,0,0,0.5), inset 1px 1px 3px rgba(255,255,255,0.07), inset -1px -1px 2px rgba(0,0,0,0.3);
+        }
+        .phone-side-btn-pa.right {
+            border-radius: 0 3px 3px 0;
+            background: linear-gradient(to right, #1a0b45 0%, #27115e 40%, #1e0d50 100%);
+            border-right: 1px solid rgba(255,255,255,0.10); border-left: none;
+            box-shadow: 3px 2px 6px rgba(0,0,0,0.5), inset -1px 1px 3px rgba(255,255,255,0.07), inset 1px -1px 2px rgba(0,0,0,0.3);
+        }
+        .pa-phone-scene { display: flex; align-items: center; justify-content: center; }
+        .phone-tilt {
+            transform: perspective(1100px) rotateY(-8deg) rotateX(2deg);
+            transform-style: preserve-3d; position: relative;
+        }
+        .phone-tilt::after {
+            content: ''; position: absolute; bottom: -28px; left: 8%; right: -2%; height: 28px;
+            background: radial-gradient(ellipse at 55% 50%, rgba(80,20,180,0.28) 0%, transparent 70%);
+            filter: blur(10px); z-index: -1;
+        }
+        .pa-phone {
+            width: 306px; border-radius: 50px;
+            background: radial-gradient(ellipse at 30% 18%, #3d1c80 0%, #250d5a 45%, #150637 100%);
+            padding: 18px 14px 24px; overflow: visible; position: relative;
+        }
+        .pa-phone-notch {
+            width: 100%; display: flex; align-items: center; justify-content: center;
+            gap: 8px; padding-bottom: 14px; position: relative; z-index: 2;
+        }
+        .pa-notch-speaker {
+            width: 56px; height: 5px; border-radius: 100px;
+            background: rgba(0,0,0,0.55);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .pa-notch-cam {
+            width: 10px; height: 10px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #1a1a2e, #000);
+            box-shadow: 0 0 0 1.5px #111, 0 0 6px rgba(80,120,255,0.25); flex-shrink: 0;
+        }
+        .pa-screen { border-radius: 32px; overflow: hidden; background: #f0eeff; position: relative; }
+        .pa-home-bar { display: flex; justify-content: center; padding: 14px 0 0; }
+        .pa-home-pill {
+            width: 110px; height: 5px; border-radius: 100px;
+            background: rgba(255,255,255,0.22);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.08);
+        }
+        .pa-status-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 18px 6px; font-size: 12px; font-weight: 700; color: #2e1065;
+            background: rgba(255,255,255,0.45); backdrop-filter: blur(6px);
+            font-family: 'Inter', sans-serif;
+        }
+        .pa-status-icons { display: flex; align-items: center; gap: 5px; }
+        .pa-tg-header {
+            display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            background: linear-gradient(160deg, #ede9fe, #ddd6fe);
+            border-bottom: 1px solid rgba(167,139,250,0.2); position: relative;
+        }
+        .pa-tg-back { font-size: 18px; color: #7c3aed; cursor: pointer; line-height: 1; flex-shrink: 0; font-weight: 800; font-family: 'Inter', sans-serif; }
+        .pa-avatar-wrap { position: relative; flex-shrink: 0; }
+        .pa-tg-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: linear-gradient(140deg, #a78bfa, #6d28d9);
+            display: flex; align-items: center; justify-content: center; font-size: 11px;
+        }
+        #pa-ga-badge {
+            position: absolute; top: -7px; right: -8px; width: 22px; height: 22px;
+            border-radius: 50%; background: #fff; border: 2px solid white;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+            opacity: 0; box-shadow: 0 3px 8px rgba(0,0,0,0.22); z-index: 10;
+        }
+        .pa-ga-bars { display: flex; align-items: flex-end; gap: 1.5px; height: 12px; padding-bottom: 1px; }
+        .pa-ga-bar { width: 3px; border-radius: 1px 1px 0 0; }
+        .pa-tg-contact { flex: 1; min-width: 0; }
+        .pa-tg-name { font-size: 14px; font-weight: 800; color: #2e1065; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Inter', sans-serif; }
+        .pa-tg-status { font-size: 11px; color: #7c3aed; opacity: 0.8; display: flex; align-items: center; gap: 4px; margin-top: 1px; font-family: 'Inter', sans-serif; }
+        .pa-tg-actions { display: flex; gap: 14px; flex-shrink: 0; }
+        .pa-tg-action-icon { font-size: 16px; color: #7c3aed; cursor: pointer; opacity: 0.8; }
+        .pa-messages-area {
+            min-height: 318px; padding: 14px 12px;
+            display: flex; flex-direction: column; gap: 10px;
+            background-image:
+                radial-gradient(circle, rgba(167,139,250,0.18) 1px, transparent 1px),
+                linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%);
+            background-size: 22px 22px, 100% 100%;
+            position: relative; overflow: hidden;
+        }
+        .pa-date-chip { display: flex; justify-content: center; }
+        .pa-date-chip span {
+            font-size: 11px; font-weight: 600; color: #6d28d9; opacity: 0.65;
+            background: rgba(255,255,255,0.6); padding: 3px 12px; border-radius: 100px;
+            backdrop-filter: blur(4px); font-family: 'Inter', sans-serif;
+        }
+        .pa-msg-out { display: flex; justify-content: flex-end; opacity: 0; }
+        .pa-bubble-out {
+            max-width: 78%; padding: 10px 13px; border-radius: 18px 18px 5px 18px;
+            font-size: 13.5px; font-weight: 600; color: #fff;
+            background: linear-gradient(140deg, #c4b5fd, #7c3aed);
+            font-family: 'Inter', sans-serif;
+        }
+        .pa-msg-in { display: flex; align-items: flex-end; gap: 7px; opacity: 0; }
+        .pa-msg-in-avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: linear-gradient(140deg, #a78bfa, #6d28d9);
+            display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0;
+        }
+        .pa-bubble-in {
+            max-width: 82%; padding: 10px 13px; border-radius: 18px 18px 18px 5px;
+            font-size: 13.5px; font-weight: 600; color: #2e1065;
+            background: linear-gradient(140deg, #f5f3ff, #ede9fe);
+            font-family: 'Inter', sans-serif;
+        }
+        #pa-typing-row { display: flex; align-items: flex-end; gap: 7px; opacity: 0; }
+        .pa-typing-bubble {
+            padding: 12px 15px; border-radius: 18px 18px 18px 5px;
+            background: linear-gradient(140deg, #f0eeff, #e9e3ff);
+            display: flex; gap: 5px; align-items: center;
+        }
+        .pa-t-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(109,40,217,0.4); }
+        #pa-analytics-card { opacity: 0; }
+        .pa-analytics-inner {
+            background: linear-gradient(160deg, #f9f6ff, #ede9fe 60%, #e3deff);
+            border-radius: 16px 16px 16px 5px; overflow: hidden; min-width: 212px;
+        }
+        .pa-card-top-bar {
+            background: linear-gradient(90deg, #6d28d9, #4c1d95);
+            padding: 9px 13px; display: flex; align-items: center; gap: 7px;
+        }
+        .pa-sparkline { display: flex; align-items: flex-end; gap: 3px; height: 32px; padding: 0 2px; }
+        .pa-spark-bar { flex: 1; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #a78bfa, #7c3aed); transform-origin: bottom; }
+        .pa-input-bar {
+            display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+            background: rgba(255,255,255,0.6); backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(167,139,250,0.18);
+        }
+        .pa-input-field {
+            flex: 1; height: 36px; border-radius: 100px;
+            background: rgba(255,255,255,0.72); border: 1.5px solid rgba(167,139,250,0.3);
+            padding: 0 14px; font-size: 13px; color: #4c1d95;
+            display: flex; align-items: center;
+            box-shadow: inset 0 2px 6px rgba(109,40,217,0.08), inset -1px -1px 3px rgba(255,255,255,0.8), 0 1px 0 rgba(255,255,255,0.9);
+        }
+        .pa-input-placeholder { font-size: 13px; color: rgba(109,40,217,0.38); font-weight: 500; pointer-events: none; font-family: 'Inter', sans-serif; }
+        #pa-typed-text { font-size: 13px; color: #3b0764; font-weight: 600; font-family: 'Inter', sans-serif; }
+        .pa-cursor-blink {
+            display: inline-block; width: 2px; height: 14px; background: #7c3aed;
+            border-radius: 1px; vertical-align: middle; margin-left: 1px;
+            animation: pa-blink 1s step-end infinite;
+        }
+        @keyframes pa-blink { 50% { opacity: 0; } }
+        .pa-send-btn {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(145deg, #a78bfa, #6d28d9);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; flex-shrink: 0; color: white;
+            border: 1.5px solid rgba(255,255,255,0.4);
+            box-shadow:
+                0 4px 8px rgba(109,40,217,0.40), 0 10px 22px rgba(109,40,217,0.28),
+                -2px -2px 5px rgba(255,255,255,0.55),
+                inset 0 3px 0 rgba(255,255,255,0.55),
+                inset 2px 2px 6px rgba(255,255,255,0.28),
+                inset -2px -2px 6px rgba(0,0,0,0.22);
+            transition: transform 80ms ease, box-shadow 80ms ease;
+            position: relative; isolation: isolate;
+        }
+        .pa-send-btn::before {
+            content: ''; position: absolute; top: 5px; left: 7px; width: 46%; height: 44%;
+            border-radius: 50%; background: radial-gradient(ellipse, rgba(255,255,255,0.5) 0%, transparent 70%); pointer-events: none;
+        }
+        .pa-eq-wrap { display: flex; align-items: flex-end; gap: 3px; height: 20px; flex-shrink: 0; }
+        .pa-eq-bar { width: 3.5px; height: 6px; border-radius: 2px 2px 1px 1px; transform-origin: bottom; }
+        .pa-tool-bubble {
+            background: linear-gradient(140deg, #fffbeb, #fef3c7);
+            border-radius: 18px 18px 18px 5px; padding: 10px 14px;
+            display: flex; align-items: center; gap: 11px;
+        }
+
+        /* ── Mobile responsive — phone scale ── */
+        @media (max-width: 900px) {
+            .phone-tilt { transform: perspective(1100px) rotateY(-5deg) rotateX(1deg) scale(0.92); }
+        }
+        @media (max-width: 768px) {
+            .feature-visual-personal-agent { min-height: 480px !important; }
+            .phone-tilt { transform: perspective(1100px) rotateY(0deg) rotateX(0deg); }
+            .pa-phone { width: 280px; }
+        }
+        @media (max-width: 480px) {
+            .feature-visual-personal-agent { min-height: 420px !important; padding: 10px !important; }
+            .pa-phone { width: 256px; border-radius: 42px; }
+            .pa-screen { border-radius: 28px; }
+            .pa-messages-area { min-height: 260px; }
+        }
+    </style>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -533,34 +817,157 @@
                             <p class="card-text pain-copy" data-i18n="personal_feature_description">Connect Google Calendar, HubSpot, Buffer, and Google Analytics to Claude, ChatGPT, or Gemini. Then just ask. Schedule next week's posts, check last month's pipeline, pull a performance report — all in one conversation.</p>
                             <a href="https://dashboard.despachobonsai.com/sign-up?plan=personal" class="btn-secondary" style="margin-top: 24px; display: inline-block;" data-i18n="cta_personal">Get started free</a>
                         </div>
-                        <figure class="feature-visual" aria-hidden="true">
-                            <div class="feature-panel-lights">
-                                <span class="panel-light green"></span>
-                                <span class="panel-light amber"></span>
-                                <span class="panel-light blue"></span>
-                            </div>
-                            <div class="visual-ribbon" data-i18n="personal_visual_ribbon">Your AI. Your tools.</div>
-                            <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; padding:24px; flex:1;">
-                                <!-- AI platform chips — logos to replace in visual pass -->
-                                <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-                                    <span style="padding:6px 16px; background:rgba(139,92,246,0.2); border:1px solid rgba(139,92,246,0.5); border-radius:20px; font-size:13px; font-weight:600; color:#c4b5fd;">Claude</span>
-                                    <span style="padding:6px 16px; background:rgba(16,185,129,0.2); border:1px solid rgba(16,185,129,0.5); border-radius:20px; font-size:13px; font-weight:600; color:#6ee7b7;">ChatGPT</span>
-                                    <span style="padding:6px 16px; background:rgba(59,130,246,0.2); border:1px solid rgba(59,130,246,0.5); border-radius:20px; font-size:13px; font-weight:600; color:#93c5fd;">Gemini</span>
-                                </div>
-                                <!-- Connector -->
-                                <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
-                                    <span style="width:2px; height:10px; background:rgba(255,255,255,0.15); border-radius:1px; display:block;"></span>
-                                    <span style="width:2px; height:10px; background:rgba(255,255,255,0.15); border-radius:1px; display:block;"></span>
-                                    <span style="width:2px; height:10px; background:rgba(255,255,255,0.15); border-radius:1px; display:block;"></span>
-                                </div>
-                                <!-- Tool logos -->
-                                <div class="tool-logos-row" style="justify-content:center; margin:0;">
-                                    <div class="tool-logo-tile" aria-label="Google Calendar"><img src="bonsai-logo-assets/socialmediaicons/google-calendar-96.png" alt="Google Calendar"></div>
-                                    <div class="tool-logo-tile" aria-label="HubSpot"><img src="bonsai-logo-assets/socialmediaicons/hubspot-96.png" alt="HubSpot"></div>
-                                    <div class="tool-logo-tile" aria-label="Buffer"><img src="bonsai-logo-assets/socialmediaicons/buffer-96.png" alt="Buffer"></div>
-                                    <div class="tool-logo-tile" aria-label="Google Analytics"><img src="bonsai-logo-assets/socialmediaicons/google-analytics-96.png" alt="Google Analytics"></div>
-                                </div>
-                            </div>
+                        <figure class="feature-visual feature-visual-personal-agent" aria-hidden="true">
+                            <div class="pa-phone-scene">
+                                <div class="phone-tilt">
+                                    <!-- Side buttons -->
+                                    <div class="phone-side-btn-pa" style="left:-6px;top:22%;width:5px;height:38px;"></div>
+                                    <div class="phone-side-btn-pa" style="left:-6px;top:32%;width:5px;height:64px;"></div>
+                                    <div class="phone-side-btn-pa" style="left:-6px;top:44%;width:5px;height:64px;"></div>
+                                    <div class="phone-side-btn-pa right" style="right:-6px;top:28%;width:5px;height:72px;"></div>
+
+                                    <div class="pa-phone clay-deep">
+                                        <div class="pa-phone-notch">
+                                            <div class="pa-notch-cam"></div>
+                                            <div class="pa-notch-speaker"></div>
+                                        </div>
+                                        <div class="pa-screen">
+                                            <!-- Status bar -->
+                                            <div class="pa-status-bar">
+                                                <span style="font-weight:800;font-family:'Inter',sans-serif;">9:41</span>
+                                                <div class="pa-status-icons">
+                                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                                                        <rect x="0" y="8" width="3" height="4" rx="1" fill="#4c1d95" opacity="0.9"/>
+                                                        <rect x="4.5" y="5" width="3" height="7" rx="1" fill="#4c1d95" opacity="0.9"/>
+                                                        <rect x="9" y="2" width="3" height="10" rx="1" fill="#4c1d95" opacity="0.9"/>
+                                                        <rect x="13.5" y="0" width="2.5" height="12" rx="1" fill="#4c1d95" opacity="0.4"/>
+                                                    </svg>
+                                                    <svg width="22" height="12" viewBox="0 0 22 12" fill="none">
+                                                        <rect x="0.5" y="0.5" width="18" height="11" rx="2.5" stroke="#4c1d95" stroke-opacity="0.8"/>
+                                                        <rect x="2" y="2" width="12" height="8" rx="1.5" fill="#4c1d95" opacity="0.85"/>
+                                                        <rect x="19" y="3.5" width="2.5" height="5" rx="1" fill="#4c1d95" opacity="0.6"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <!-- Telegram header -->
+                                            <div class="pa-tg-header">
+                                                <span class="pa-tg-back">‹</span>
+                                                <div class="pa-avatar-wrap">
+                                                    <div class="pa-tg-avatar">
+                                                        <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai" style="width:22px;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
+                                                    </div>
+                                                    <div id="pa-ga-badge">
+                                                        <div class="pa-ga-bars">
+                                                            <div class="pa-ga-bar" style="height:5px;background:#F9AB00;"></div>
+                                                            <div class="pa-ga-bar" style="height:9px;background:#E37400;"></div>
+                                                            <div class="pa-ga-bar" style="height:12px;background:#1A73E8;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pa-tg-contact">
+                                                    <div class="pa-tg-name">Personal Agent</div>
+                                                    <div class="pa-tg-status">
+                                                        <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;box-shadow:0 0 5px #22c55e;flex-shrink:0;"></span>
+                                                        online
+                                                    </div>
+                                                </div>
+                                                <div class="pa-tg-actions">
+                                                    <span class="pa-tg-action-icon">📞</span>
+                                                    <span class="pa-tg-action-icon">⋮</span>
+                                                </div>
+                                            </div>
+                                            <!-- Messages -->
+                                            <div class="pa-messages-area" id="pa-messages-area">
+                                                <div class="pa-date-chip"><span>Today</span></div>
+                                                <div class="pa-msg-out" id="pa-msg-user">
+                                                    <div class="clay-bubble pa-bubble-out">How did our website do today?</div>
+                                                </div>
+                                                <div id="pa-tool-indicator" style="display:flex;align-items:flex-end;gap:7px;opacity:0;">
+                                                    <div class="pa-msg-in-avatar">
+                                                        <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="" style="width:14px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+                                                    </div>
+                                                    <div class="clay-bubble pa-tool-bubble">
+                                                        <div class="pa-eq-wrap">
+                                                            <div class="pa-eq-bar" id="pa-eq1" style="background:#F9AB00;"></div>
+                                                            <div class="pa-eq-bar" id="pa-eq2" style="background:#E37400;"></div>
+                                                            <div class="pa-eq-bar" id="pa-eq3" style="background:#1A73E8;"></div>
+                                                            <div class="pa-eq-bar" id="pa-eq4" style="background:#E37400;"></div>
+                                                            <div class="pa-eq-bar" id="pa-eq5" style="background:#F9AB00;"></div>
+                                                        </div>
+                                                        <div>
+                                                            <div style="font-size:9.5px;font-weight:700;color:#b45309;text-transform:uppercase;letter-spacing:0.09em;opacity:0.75;margin-bottom:2px;font-family:'Inter',sans-serif;">Agent active</div>
+                                                            <div style="font-size:12.5px;font-weight:700;color:#1c1917;font-family:'Inter',sans-serif;">Getting metrics from Analytics...</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pa-msg-in" id="pa-analytics-card">
+                                                    <div class="pa-msg-in-avatar">
+                                                        <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="" style="width:14px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
+                                                    </div>
+                                                    <div class="clay-light pa-analytics-inner">
+                                                        <div class="pa-card-top-bar">
+                                                            <div class="pa-ga-bars" style="height:14px;">
+                                                                <div class="pa-ga-bar" style="height:6px;background:#fbbf24;width:4px;"></div>
+                                                                <div class="pa-ga-bar" style="height:10px;background:#f97316;width:4px;"></div>
+                                                                <div class="pa-ga-bar" style="height:14px;background:#60a5fa;width:4px;"></div>
+                                                            </div>
+                                                            <span style="font-size:12px;font-weight:800;color:rgba(255,255,255,0.95);letter-spacing:0.04em;font-family:'Inter',sans-serif;">Analytics · Today</span>
+                                                        </div>
+                                                        <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+                                                            <div style="display:flex;align-items:flex-end;gap:8px;">
+                                                                <div>
+                                                                    <div style="font-size:10px;font-weight:700;color:#6d28d9;opacity:0.7;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;font-family:'Inter',sans-serif;">Visitors</div>
+                                                                    <div style="display:flex;align-items:baseline;gap:5px;">
+                                                                        <span id="pa-visitor-count" style="font-size:28px;font-weight:900;color:#2e1065;line-height:1;font-variant-numeric:tabular-nums;font-family:'Inter',sans-serif;">0</span>
+                                                                        <span style="font-size:12px;font-weight:700;color:#22c55e;background:rgba(34,197,94,0.12);padding:2px 7px;border-radius:100px;font-family:'Inter',sans-serif;">↑ 12%</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="pa-sparkline" style="margin-left:auto;">
+                                                                    <div class="pa-spark-bar" id="pa-sb1" style="height:0%;opacity:0.6;"></div>
+                                                                    <div class="pa-spark-bar" id="pa-sb2" style="height:0%;opacity:0.7;"></div>
+                                                                    <div class="pa-spark-bar" id="pa-sb3" style="height:0%;opacity:0.8;"></div>
+                                                                    <div class="pa-spark-bar" id="pa-sb4" style="height:0%;"></div>
+                                                                    <div class="pa-spark-bar" id="pa-sb5" style="height:0%;background:linear-gradient(180deg,#c4b5fd,#a78bfa);"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div style="height:1px;background:rgba(167,139,250,0.2);"></div>
+                                                            <div style="display:flex;flex-direction:column;gap:6px;">
+                                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                                    <span style="font-size:11.5px;font-weight:600;color:#6b7280;font-family:'Inter',sans-serif;">Top source</span>
+                                                                    <span style="font-size:11.5px;font-weight:800;color:#2e1065;font-family:'Inter',sans-serif;">𝕏 / Twitter</span>
+                                                                </div>
+                                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                                    <span style="font-size:11.5px;font-weight:600;color:#6b7280;font-family:'Inter',sans-serif;">Avg. session</span>
+                                                                    <span style="font-size:11.5px;font-weight:800;color:#2e1065;font-family:'Inter',sans-serif;">3m 42s</span>
+                                                                </div>
+                                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                                    <span style="font-size:11.5px;font-weight:600;color:#6b7280;font-family:'Inter',sans-serif;">Bounce rate</span>
+                                                                    <span style="font-size:11.5px;font-weight:800;color:#2e1065;font-family:'Inter',sans-serif;">38%</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Input bar -->
+                                            <div class="pa-input-bar">
+                                                <div class="clay-btn-pa" style="width:34px;height:34px;background:linear-gradient(145deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🎤</div>
+                                                <div class="pa-input-field">
+                                                    <span id="pa-typed-text"></span>
+                                                    <span class="pa-cursor-blink" id="pa-cursor"></span>
+                                                    <span class="pa-input-placeholder" id="pa-placeholder">Message</span>
+                                                </div>
+                                                <div class="pa-send-btn" id="pa-send-btn">
+                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                        <path d="M7 12V2M2.5 6.5L7 2L11.5 6.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div><!-- pa-screen -->
+                                        <div class="pa-home-bar"><div class="pa-home-pill"></div></div>
+                                    </div><!-- pa-phone -->
+                                </div><!-- phone-tilt -->
+                            </div><!-- pa-phone-scene -->
                         </figure>
                     </div>
                 </div>
@@ -679,6 +1086,74 @@
     <script src="js/shared-shell.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
+    <script>
+    /* ── Personal Agent Animation ── */
+    (function() {
+        let paEqTweens = [];
+        function paStartEq() {
+            paEqTweens.forEach(t => t.kill()); paEqTweens = [];
+            [{ id:'#pa-eq1',max:18,dur:0.40,delay:0.00 },
+             { id:'#pa-eq2',max:14,dur:0.55,delay:0.12 },
+             { id:'#pa-eq3',max:20,dur:0.38,delay:0.06 },
+             { id:'#pa-eq4',max:12,dur:0.50,delay:0.20 },
+             { id:'#pa-eq5',max:16,dur:0.44,delay:0.09 }].forEach(c => {
+                paEqTweens.push(gsap.to(c.id, { height:c.max+'px', duration:c.dur, ease:'sine.inOut', repeat:-1, yoyo:true, delay:c.delay }));
+            });
+        }
+        function paStopEq() {
+            paEqTweens.forEach(t => t.kill()); paEqTweens = [];
+            gsap.set(['#pa-eq1','#pa-eq2','#pa-eq3','#pa-eq4','#pa-eq5'], { height:'6px' });
+        }
+        const PA_MSG = 'How did our website do today?';
+        function paType(onDone) {
+            const el = document.getElementById('pa-typed-text');
+            gsap.set('#pa-placeholder', { opacity:0 }); gsap.set('#pa-cursor', { opacity:1 });
+            el.textContent = ''; let i = 0;
+            const iv = setInterval(() => { el.textContent += PA_MSG[i]; i++; if (i >= PA_MSG.length) { clearInterval(iv); if (onDone) onDone(); } }, 48);
+        }
+        function paClearInput() {
+            document.getElementById('pa-typed-text').textContent = '';
+            gsap.set('#pa-placeholder', { opacity:1 }); gsap.set('#pa-cursor', { opacity:0 });
+        }
+        function paRollCount(target, dur, el) {
+            const obj = { n:0 };
+            gsap.to(obj, { n:target, duration:dur, ease:'power2.out', onUpdate() { el.textContent = Math.round(obj.n).toLocaleString('en-US'); } });
+        }
+        function paSpark() {
+            ['#pa-sb1','#pa-sb2','#pa-sb3','#pa-sb4','#pa-sb5'].forEach((id,i) => {
+                gsap.to(id, { height:['45%','62%','55%','80%','100%'][i], duration:0.55, ease:'back.out(1.4)', delay:i*0.08 });
+            });
+        }
+        function paRunLoop() {
+            paStopEq();
+            gsap.set('#pa-msg-user',       { opacity:0, y:12, scale:0.95 });
+            gsap.set('#pa-tool-indicator', { opacity:0 });
+            gsap.set('#pa-analytics-card', { opacity:0, y:14, scale:0.93 });
+            gsap.set('#pa-ga-badge',       { opacity:0, scale:0 });
+            const vc = document.getElementById('pa-visitor-count');
+            if (vc) vc.textContent = '0';
+            ['#pa-sb1','#pa-sb2','#pa-sb3','#pa-sb4','#pa-sb5'].forEach(id => gsap.set(id, { height:'0%' }));
+            paClearInput();
+
+            const tl = gsap.timeline({ onComplete: () => gsap.delayedCall(0.8, paRunLoop) });
+            tl.add(() => paType(null), 0.3);
+            tl.to('#pa-send-btn', { scale:0.88, duration:0.08, ease:'power2.in' }, 1.42);
+            tl.to('#pa-send-btn', { scale:1,    duration:0.28, ease:'elastic.out(1,0.4)' }, 1.50);
+            tl.add(() => paClearInput(), 1.52);
+            tl.to('#pa-msg-user', { opacity:1, y:0, scale:1, duration:0.42, ease:'back.out(1.8)' }, 1.54);
+            tl.to('#pa-tool-indicator', { opacity:1, duration:0.32, ease:'power2.out' }, 2.1);
+            tl.add(paStartEq, 2.1);
+            tl.to('#pa-ga-badge', { opacity:1, scale:1, duration:0.48, ease:'elastic.out(1, 0.45)' }, 2.55);
+            tl.to('#pa-ga-badge', { opacity:0, scale:0.7, duration:0.3, ease:'power2.in' }, 4.1);
+            tl.add(paStopEq, 4.3);
+            tl.to('#pa-tool-indicator', { opacity:0, duration:0.25 }, 4.3);
+            tl.to('#pa-analytics-card', { opacity:1, y:0, scale:1, duration:0.55, ease:'back.out(1.6)' }, 4.5);
+            tl.add(() => { paRollCount(1200, 2.2, document.getElementById('pa-visitor-count')); paSpark(); }, 4.85);
+            tl.to({}, { duration:1 }, 11.5);
+        }
+        gsap.delayedCall(0.5, paRunLoop);
+    })();
+    </script>
     <script>
     /* ── Omni Inbox Animation ── */
     document.addEventListener("DOMContentLoaded", () => {
