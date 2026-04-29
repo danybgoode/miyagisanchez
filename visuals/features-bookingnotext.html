@@ -14,13 +14,13 @@
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: linear-gradient(158deg, #f0eeff 0%, #f7f0ff 35%, #fff8f2 70%, #f0f7ff 100%);
-      min-height: 100vh;
+      background: transparent;
+      min-height: 0;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px 24px;
+      padding: 0;
     }
 
     /* ══════════════════════════════════════════
@@ -166,16 +166,57 @@
       border-left: 4px solid;
       border-radius: 10px;
     }
+
+    .scene {
+      max-width: 100%;
+      width: 100%;
+      transform: scale(0.88);
+      transform-origin: top left;
+      width: 113.64%;
+    }
+
+    #layout {
+      flex-direction: column;
+      gap: 18px !important;
+      align-items: stretch !important;
+    }
+
+    #chat-col,
+    #tools-col {
+      flex: none !important;
+      width: 100%;
+    }
+
+    #messages {
+      min-height: 214px !important;
+    }
+
+    #tools-col {
+      gap: 14px !important;
+    }
+
+    @media (max-width: 560px) {
+      #messages {
+        min-height: 204px !important;
+        padding: 16px !important;
+      }
+
+      #chat-panel,
+      #cal-widget,
+      #hub-widget {
+        border-radius: 20px !important;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div style="max-width:980px; width:100%;">
+  <div class="scene">
 
     <!-- Section header -->
     
 
-    <!-- ── Two-column layout ── -->
+    <!-- ── One-column layout ── -->
     <div id="layout" style="position:relative; display:flex; gap:28px; align-items:flex-start;">
 
       <!-- SVG overlay for connecting lines -->
@@ -231,13 +272,13 @@
               display:flex; align-items:center; justify-content:center;
               flex-shrink:0;
             ">
-              <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai" style="width:22px; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
+              <img src="../bonsai-logo-white-assets/bonsai-logo-white.svg" alt="Bonsai" style="width:22px; filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
             </div>
             <div>
               <div style="font-size:13px;font-weight:800;color:#2e1065;">AI Agent · Bonsai</div>
               <div style="font-size:11px;color:#7c3aed;display:flex;align-items:center;gap:5px;margin-top:1px;">
                 <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;box-shadow:0 0 6px #22c55e;"></span>
-                <span style="opacity:0.8;">Active now</span>
+                <span style="opacity:0.8;" data-visual-i18n="active_now">Active now</span>
               </div>
             </div>
           </div>
@@ -253,7 +294,7 @@
                 padding:10px 15px;
                 max-width:74%;
                 font-size:14px; font-weight:600; color:#fff;
-              ">I'd like a demo.</div>
+              " data-visual-i18n="msg_1">I'd like a demo.</div>
             </div>
 
             <!-- Typing indicator -->
@@ -278,7 +319,7 @@
                 padding:10px 15px;
                 max-width:84%;
                 font-size:14px; font-weight:600; color:#2e1065;
-              ">I can help! How does tomorrow at&nbsp;2&nbsp;PM&nbsp;sound?</div>
+              " data-visual-i18n="msg_2">I can help! How does tomorrow at&nbsp;2&nbsp;PM&nbsp;sound?</div>
             </div>
 
             <!-- Customer → "Perfect." -->
@@ -289,7 +330,7 @@
                 padding:10px 15px;
                 max-width:74%;
                 font-size:14px; font-weight:600; color:#fff;
-              ">Perfect.</div>
+              " data-visual-i18n="msg_3">Perfect.</div>
             </div>
 
           </div>
@@ -298,7 +339,7 @@
           <div id="sp-badge-wrap">
             <div id="sp-badge" class="dough-pill">
               <span style="font-size:15px;">⚡</span>
-              <span>Superpower Activated</span>
+              <span data-visual-i18n="superpower">Superpower Activated</span>
             </div>
           </div>
 
@@ -308,7 +349,7 @@
       <!-- ════════════════════════════
            RIGHT: Tool Cards
       ════════════════════════════ -->
-      <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px;">
+      <div id="tools-col" style="flex:1; min-width:0; display:flex; flex-direction:column; gap:18px;">
 
         <!-- ── Google Calendar Widget ── -->
         <div id="cal-widget" class="dough" style="
@@ -326,14 +367,14 @@
               ">📅</div>
               <div>
                 <div style="font-size:13px;font-weight:800;color:#14532d;">Google Calendar</div>
-                <div style="font-size:10.5px;color:#15803d;opacity:0.85;">Tomorrow · Wednesday</div>
+                <div style="font-size:10.5px;color:#15803d;opacity:0.85;" data-visual-i18n="calendar_date">Tomorrow · Wednesday</div>
               </div>
               <div style="margin-left:auto; flex-shrink:0;">
                 <span class="dough-pill" style="
                   font-size:10px; font-weight:700; color:#15803d;
                   background:linear-gradient(135deg,#bbf7d0,#86efac);
                   padding:3px 11px; display:inline-block;
-                ">Connected</span>
+                " data-visual-i18n="connected">Connected</span>
               </div>
             </div>
 
@@ -352,7 +393,7 @@
                   background:linear-gradient(90deg,rgba(99,102,241,0.14),rgba(99,102,241,0.03));
                   padding:0 11px; display:flex; align-items:center;
                 ">
-                  <span style="font-size:11px;font-weight:700;color:#3730a3;">Team Standup</span>
+                  <span style="font-size:11px;font-weight:700;color:#3730a3;" data-visual-i18n="standup">Team Standup</span>
                 </div>
               </div>
 
@@ -366,12 +407,12 @@
                   opacity:0; transform:scaleX(0); transform-origin:left center;
                 ">
                   <span style="font-size:14px; flex-shrink:0;">📌</span>
-                  <span style="font-size:12.5px;font-weight:800;color:#4c1d95;">Demo Booked</span>
+                  <span style="font-size:12.5px;font-weight:800;color:#4c1d95;" data-visual-i18n="demo_booked">Demo Booked</span>
                   <span class="dough-pill" style="
                     font-size:9px;font-weight:700;color:#6d28d9;
                     background:rgba(139,92,246,0.18); padding:2px 8px;
                     margin-left:auto; flex-shrink:0;
-                  ">New ✦</span>
+                  " data-visual-i18n="new">New ✦</span>
                 </div>
               </div>
 
@@ -400,14 +441,14 @@
               ">🔶</div>
               <div>
                 <div style="font-size:13px;font-weight:800;color:#7c2d12;">HubSpot CRM</div>
-                <div style="font-size:10.5px;color:#c2410c;opacity:0.85;">Contacts &amp; Deals</div>
+                <div style="font-size:10.5px;color:#c2410c;opacity:0.85;" data-visual-i18n="crm_subtitle">Contacts &amp; Deals</div>
               </div>
               <div style="margin-left:auto; flex-shrink:0;">
                 <span class="dough-pill" style="
                   font-size:10px;font-weight:700;color:#9a3412;
                   background:linear-gradient(135deg,#fed7aa,#fdba74);
                   padding:3px 11px; display:inline-block;
-                ">Connected</span>
+                " data-visual-i18n="connected">Connected</span>
               </div>
             </div>
 
@@ -438,12 +479,12 @@
                   font-size:10px;font-weight:700;color:#1d4ed8;
                   background:linear-gradient(135deg,#dbeafe,#bfdbfe);
                   padding:3px 10px; display:inline-block;
-                ">Lead</span>
+                " data-visual-i18n="lead">Lead</span>
                 <span class="dough-pill" style="
                   font-size:10px;font-weight:700;color:#065f46;
                   background:linear-gradient(135deg,#d1fae5,#a7f3d0);
                   padding:3px 10px; display:inline-block;
-                ">Inbound</span>
+                " data-visual-i18n="inbound">Inbound</span>
 
                 <!-- Deal tag — animated in -->
                 <span id="deal-tag" class="dough-pill" style="
@@ -451,7 +492,7 @@
                   color:#7c2d12; background:linear-gradient(135deg,#fed7aa,#fb923c);
                   padding:4px 11px; display:inline-flex; align-items:center; gap:4px;
                   opacity:0;
-                ">✦ Deal Created</span>
+                " data-visual-i18n="deal_created">✦ Deal Created</span>
               </div>
             </div>
 
@@ -463,6 +504,59 @@
   </div><!-- end section wrapper -->
 
   <script>
+    const VISUAL_COPY = {
+      en: {
+        active_now: 'Active now',
+        msg_1: "I'd like a demo.",
+        msg_2: 'I can help! How does tomorrow at&nbsp;2&nbsp;PM&nbsp;sound?',
+        msg_3: 'Perfect.',
+        superpower: 'Superpower Activated',
+        calendar_date: 'Tomorrow · Wednesday',
+        connected: 'Connected',
+        standup: 'Team Standup',
+        demo_booked: 'Demo Booked',
+        new: 'New ✦',
+        crm_subtitle: 'Contacts &amp; Deals',
+        lead: 'Lead',
+        inbound: 'Inbound',
+        deal_created: '✦ Deal Created',
+      },
+      es: {
+        active_now: 'Activo ahora',
+        msg_1: 'Quiero una demo.',
+        msg_2: 'Claro. ¿Te queda mañana a las&nbsp;2&nbsp;PM?',
+        msg_3: 'Perfecto.',
+        superpower: 'Superpoder activado',
+        calendar_date: 'Mañana · miércoles',
+        connected: 'Conectado',
+        standup: 'Junta de equipo',
+        demo_booked: 'Demo agendada',
+        new: 'Nuevo ✦',
+        crm_subtitle: 'Contactos y negocios',
+        lead: 'Lead',
+        inbound: 'Entrante',
+        deal_created: '✦ Negocio creado',
+      },
+    };
+
+    function applyVisualLanguage(lang) {
+      const copy = VISUAL_COPY[lang] || VISUAL_COPY.en;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-visual-i18n]').forEach(el => {
+        const key = el.getAttribute('data-visual-i18n');
+        if (copy[key]) el.innerHTML = copy[key];
+      });
+    }
+
+    applyVisualLanguage(localStorage.getItem('selected_language') === 'es' ? 'es' : 'en');
+    window.addEventListener('message', event => {
+      if (event.origin !== window.location.origin) return;
+      if (event.data?.type === 'bonsai:set-language') applyVisualLanguage(event.data.lang);
+    });
+    window.addEventListener('storage', event => {
+      if (event.key === 'selected_language') applyVisualLanguage(event.newValue === 'es' ? 'es' : 'en');
+    });
+
     /* ─────────────────────────────────────────
        Helpers
     ───────────────────────────────────────── */
@@ -579,8 +673,8 @@
         const sr = relRect(calSlot,   layout);
         drawPath(
           lineCal,
-          cr.right,          cr.top + cr.h * 0.42,
-          sr.left,           sr.cy,
+          cr.cx,             cr.bottom,
+          sr.cx,             sr.top,
           0.52
         );
       }, 5.15);
@@ -597,8 +691,8 @@
         const dr = relRect(dealTag,  layout);
         drawPath(
           lineHub,
-          sr.right, sr.cy,
-          dr.left,  dr.cy,
+          sr.cx,     sr.bottom,
+          dr.cx,     dr.top,
           0.48
         );
       }, 6.35);

@@ -32,6 +32,7 @@ const i18n = {
     await this.loadTranslations(this.currentLanguage);
     this.applyTranslations();
     this.updateSwitcherUI();
+    this.syncEmbeddedVisuals();
     
     // 3. Expose to window for global access
     window.setLanguage = (lang) => this.setLanguage(lang);
@@ -40,7 +41,8 @@ const i18n = {
   async loadTranslations(lang) {
     try {
       // Determine current page from URL
-      let page = window.location.pathname.split('/').pop().replace('.html', '');
+      const pathSegments = window.location.pathname.split('/').filter(Boolean);
+      let page = pathSegments.length ? pathSegments[pathSegments.length - 1].replace('.html', '') : 'index';
       if (!page || page === '/') {
         page = 'index';
       }
@@ -78,9 +80,23 @@ const i18n = {
     
     this.applyTranslations();
     this.updateSwitcherUI();
+    this.syncEmbeddedVisuals();
     
     // Update HTML lang attribute
     document.documentElement.lang = lang;
+  },
+
+  syncEmbeddedVisuals() {
+    document.querySelectorAll('[data-visual-locale-frame]').forEach(frame => {
+      try {
+        frame.contentWindow?.postMessage(
+          { type: 'bonsai:set-language', lang: this.currentLanguage },
+          window.location.origin
+        );
+      } catch (error) {
+        console.warn('Could not sync embedded visual language', error);
+      }
+    });
   },
 
   applyTranslations() {

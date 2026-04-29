@@ -319,6 +319,18 @@ section:not(:last-child)::after {
   .pain-closer {
     font-size: 18px;
   }
+  .pain-pair {
+    gap: 16px;
+  }
+  .pain-visual-shell {
+    padding: 14px;
+  }
+  .pain-visual-frame-booking {
+    height: 800px;
+  }
+  .pain-visual-frame-social {
+    height: 620px;
+  }
 }
 
 /* Grid Layouts for Sections */

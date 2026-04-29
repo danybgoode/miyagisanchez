@@ -13,13 +13,13 @@
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: linear-gradient(148deg, #0d0b14 0%, #110d1e 50%, #0e1220 100%);
-      min-height: 100vh;
+      background: transparent;
+      min-height: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 36px 24px;
+      padding: 0;
     }
 
     /* ══════════════════════════════════════════
@@ -125,7 +125,7 @@
 
     .scene {
       width: 100%;
-      max-width: 1020px;
+      max-width: 100%;
     }
 
     .section-header {
@@ -135,6 +135,7 @@
 
     #main-layout {
       display: flex;
+      flex-direction: column;
       gap: 28px;
       align-items: stretch;
       position: relative;
@@ -145,7 +146,8 @@
     ══════════════════════════════════════════ */
 
     #claude-panel {
-      flex: 0 0 400px;
+      flex: none;
+      width: 100%;
       border-radius: 20px;
       background: linear-gradient(160deg, #0f0c1a 0%, #130e22 60%, #0e0c1a 100%);
       display: flex;
@@ -203,7 +205,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      min-height: 280px;
+      min-height: 240px;
     }
 
     /* User message */
@@ -294,7 +296,8 @@
     ══════════════════════════════════════════ */
 
     #calendar-panel {
-      flex: 1;
+      flex: none;
+      width: 100%;
       border-radius: 20px;
       background: radial-gradient(ellipse at 24% 18%, #fafafe 0%, #f0ecff 45%, #e8e4f8 100%);
       overflow: hidden;
@@ -423,6 +426,25 @@
       z-index: 25;
       transform: translate(-50%, -50%);
     }
+
+    @media (max-width: 560px) {
+      #main-layout {
+        gap: 18px;
+      }
+
+      .claude-messages {
+        min-height: 224px;
+      }
+
+      .cal-grid {
+        gap: 6px;
+        padding: 12px 10px 14px;
+      }
+
+      .content-block {
+        padding: 5px 6px;
+      }
+    }
   </style>
 </head>
 
@@ -513,15 +535,15 @@
         <!-- Tool row (MCP activating) -->
         <div class="tool-row" id="tool-row">
           <div class="tool-spinner" id="spinner"></div>
-          <span style="font-size:11px;font-weight:600;color:#8b7ab8;
-                       font-family:'JetBrains Mono',monospace;">
+        <span style="font-size:11px;font-weight:600;color:#8b7ab8;
+                       font-family:'JetBrains Mono',monospace;" data-visual-i18n="tool_call">
             buffer.schedule_post <span style="color:#a78bfa;">×2</span>
           </span>
         </div>
 
         <!-- User message -->
         <div class="msg-user-wrap" id="msg-user">
-          <div class="clay-bubble-dark msg-user-bubble">
+          <div class="clay-bubble-dark msg-user-bubble" data-visual-i18n="user_msg">
             Schedule a post about our new feature on LinkedIn and X for tomorrow morning.
           </div>
         </div>
@@ -529,7 +551,7 @@
         <!-- AI reply -->
         <div class="msg-ai-wrap" id="msg-ai">
           <div class="ai-avatar">✦</div>
-          <div class="clay-bubble-dark msg-ai-bubble">
+          <div class="clay-bubble-dark msg-ai-bubble" data-visual-i18n="ai_msg">
             <span class="ai-check">✓</span> Scheduled to <strong style="color:#e0d0ff;">LinkedIn</strong>
             and <strong style="color:#e0d0ff;">X</strong><br/>
             Tomorrow · 9:00 AM<br/>
@@ -542,7 +564,7 @@
       <!-- Input bar -->
       <div class="claude-input-bar">
         <div class="input-field-dark">
-          <span class="input-text">Reply to Claude...</span>
+          <span class="input-text" data-visual-i18n="input_placeholder">Reply to Claude...</span>
           <div class="input-actions">
             <div class="input-icon-btn">⌘</div>
             <div class="input-icon-btn" style="background:rgba(167,139,250,0.12);
@@ -564,9 +586,9 @@
             <path d="M1 7h14" stroke="#7c3aed" stroke-width="1.5"/>
             <path d="M5 1v4M11 1v4" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
-          Content Calendar
+          <span data-visual-i18n="calendar_title">Content Calendar</span>
         </div>
-        <span class="cal-month">April 2025</span>
+        <span class="cal-month" data-visual-i18n="month">April 2025</span>
       </div>
 
       <div class="cal-grid">
@@ -606,7 +628,7 @@
         <!-- WED 23 — Today -->
         <div class="day-col today">
           <div class="day-label-wrap">
-            <span class="day-name">Today</span>
+            <span class="day-name" data-visual-i18n="today">Today</span>
             <span class="day-num">23</span>
           </div>
           <div class="clay-block content-block" style="background:linear-gradient(135deg,#ede9fe,#c4b5fd);">
@@ -622,7 +644,7 @@
         <!-- THU 24 — Tomorrow -->
         <div class="day-col tomorrow" id="col-tomorrow">
           <div class="day-label-wrap">
-            <span class="day-name">Tomorrow</span>
+            <span class="day-name" data-visual-i18n="tomorrow">Tomorrow</span>
             <span class="day-num">24</span>
           </div>
 
@@ -675,6 +697,58 @@
 </div><!-- end scene -->
 
 <script>
+  let typingInterval = null;
+
+  const VISUAL_COPY = {
+    en: {
+      tool_call: 'buffer.schedule_post <span style="color:#a78bfa;">×2</span>',
+      user_msg: 'Schedule a post about our new feature on LinkedIn and X for tomorrow morning.',
+      ai_msg: '<span class="ai-check">✓</span> Scheduled to <strong style="color:#e0d0ff;">LinkedIn</strong> and <strong style="color:#e0d0ff;">X</strong><br/>Tomorrow · 9:00 AM<br/><span style="font-size:11.5px;color:#6b5ea8;">via Buffer MCP</span>',
+      input_placeholder: 'Reply to Claude...',
+      calendar_title: 'Content Calendar',
+      month: 'April 2025',
+      today: 'Today',
+      tomorrow: 'Tomorrow',
+    },
+    es: {
+      tool_call: 'buffer.schedule_post <span style="color:#a78bfa;">×2</span>',
+      user_msg: 'Programa un post sobre nuestra nueva función en LinkedIn y X para mañana en la mañana.',
+      ai_msg: '<span class="ai-check">✓</span> Programado en <strong style="color:#e0d0ff;">LinkedIn</strong> y <strong style="color:#e0d0ff;">X</strong><br/>Mañana · 9:00 AM<br/><span style="font-size:11.5px;color:#6b5ea8;">vía Buffer MCP</span>',
+      input_placeholder: 'Responder a Claude...',
+      calendar_title: 'Calendario de contenido',
+      month: 'Abril 2025',
+      today: 'Hoy',
+      tomorrow: 'Mañana',
+    },
+  };
+
+  let visualLanguage = localStorage.getItem('selected_language') === 'es' ? 'es' : 'en';
+
+  function applyVisualLanguage(lang) {
+    visualLanguage = VISUAL_COPY[lang] ? lang : 'en';
+    const copy = VISUAL_COPY[visualLanguage];
+    document.documentElement.lang = visualLanguage;
+    document.querySelectorAll('[data-visual-i18n]').forEach(el => {
+      const key = el.getAttribute('data-visual-i18n');
+      if (copy[key]) el.innerHTML = copy[key];
+    });
+    if (typingInterval) {
+      clearInterval(typingInterval);
+      typingInterval = null;
+    }
+    const msgBubble = document.querySelector('.msg-user-bubble');
+    if (msgBubble) msgBubble.textContent = copy.user_msg;
+  }
+
+  applyVisualLanguage(visualLanguage);
+  window.addEventListener('message', event => {
+    if (event.origin !== window.location.origin) return;
+    if (event.data?.type === 'bonsai:set-language') applyVisualLanguage(event.data.lang);
+  });
+  window.addEventListener('storage', event => {
+    if (event.key === 'selected_language') applyVisualLanguage(event.newValue === 'es' ? 'es' : 'en');
+  });
+
   /* ─────────────────────────────────────────
      Wire geometry — computed from DOM rects
   ───────────────────────────────────────── */
@@ -686,8 +760,8 @@
     const pr = layout.getBoundingClientRect();
     const tr = tomorrow.getBoundingClientRect();
 
-    const x1 = lr.right  - pr.left;
-    const y1 = lr.top    - pr.top + lr.height * 0.52;
+    const x1 = lr.left   - pr.left + lr.width * 0.5;
+    const y1 = lr.bottom - pr.top;
     const x2 = tr.left   - pr.left + tr.width * 0.5;
     const y2 = tr.top    - pr.top  + 68; // aim at the block area
 
@@ -738,9 +812,6 @@
   /* ─────────────────────────────────────────
      Typewriter
   ───────────────────────────────────────── */
-  const USER_MSG = 'Schedule a post about our new feature on LinkedIn and X for tomorrow morning.';
-  let typingInterval = null;
-
   function typeMessage(el, msg, speed, onDone) {
     el.textContent = '';
     let i = 0;
@@ -787,7 +858,7 @@
     tl.to('#msg-user', {
       opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.8)',
     }, 0.4);
-    tl.add(() => typeMessage(msgBubble, USER_MSG, 36, null), 0.4);
+    tl.add(() => typeMessage(msgBubble, VISUAL_COPY[visualLanguage].user_msg, 36, null), 0.4);
 
     /* 2.8s — MCP wire draws */
     tl.add(() => {
