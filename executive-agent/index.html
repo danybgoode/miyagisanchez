@@ -302,6 +302,21 @@
 
         .executive-agent-hero { text-align: left; }
         .executive-hero-content { max-width: 720px; }
+        .executive-orchestrator-hero {
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+        .executive-orchestrator-frame {
+            width: 100%;
+            height: 720px;
+            border: 0;
+            display: block;
+            border-radius: 24px;
+            background: transparent;
+        }
         .executive-pain-section .feature-pairs { margin-top: 24px; }
         .executive-placeholder-visual {
             display: flex;
@@ -439,11 +454,15 @@
             .phone-tilt { transform: perspective(1100px) rotateY(-5deg) rotateX(1deg) scale(0.92); }
         }
         @media (max-width: 768px) {
+            .executive-orchestrator-hero { min-height: 760px; }
+            .executive-orchestrator-frame { height: 760px; }
             .feature-visual-personal-agent { min-height: 480px !important; }
             .phone-tilt { transform: perspective(1100px) rotateY(0deg) rotateX(0deg); }
             .pa-phone { width: 280px; }
         }
         @media (max-width: 480px) {
+            .executive-orchestrator-hero { min-height: 720px; }
+            .executive-orchestrator-frame { height: 720px; }
             .feature-visual-personal-agent { min-height: 420px !important; padding: 10px !important; }
             .pa-phone { width: 256px; border-radius: 42px; }
             .pa-screen { border-radius: 28px; }
@@ -478,121 +497,12 @@
                     </div>
                 </div>
 
-                <div class="hero-image omni-inbox-hero">
-                    <div class="db-clay-container" style="padding:28px 32px 32px;">
-
-                        <!-- Top bar -->
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;" id="top-bar">
-                            <div style="display:flex;gap:8px;" id="top-dots">
-                                <div style="width:14px;height:14px;border-radius:50%;background:#20d472;" class="db-top-dot"></div>
-                                <div style="width:14px;height:14px;border-radius:50%;background:#fac827;" class="db-top-dot"></div>
-                                <div style="width:14px;height:14px;border-radius:50%;background:#53a1ff;" class="db-top-dot"></div>
-                            </div>
-                            <div class="db-top-badge" style="padding:6px 18px;border-radius:100px;" id="top-badge">
-                                <span style="font-size:11px;font-weight:800;color:#54627a;letter-spacing:0.16em;text-transform:uppercase;font-family:'Inter',sans-serif;" data-i18n="hero_visual_badge">
-                                    MESSAGES FROM EVERYWHERE
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Main layout -->
-                        <div style="display:flex;flex-direction:row;align-items:stretch;gap:24px;
-                                    position:relative;min-height:380px;" id="main-layout">
-
-                            <!-- Left: Channel cards -->
-                            <div style="display:flex;flex-direction:column;justify-content:space-between;
-                                        width:220px;flex-shrink:0;position:relative;z-index:10;padding:6px 0;">
-
-                                <div class="db-clay-card channel-card" style="padding:18px 20px;">
-                                    <p style="font-size:9.5px;font-weight:800;color:#7987a1;text-transform:uppercase;
-                                               letter-spacing:0.14em;margin-bottom:6px;font-family:'Inter',sans-serif;">WHATSAPP</p>
-                                    <p class="card-text" style="font-size:18px;font-weight:900;color:#2e3a59;line-height:1.2;font-family:'Inter',sans-serif;margin-bottom:0;" data-i18n="hero_visual_msg_1">
-                                        Are you<br>still open?
-                                    </p>
-                                </div>
-
-                                <div class="db-clay-card channel-card" style="padding:18px 20px;">
-                                    <p style="font-size:9.5px;font-weight:800;color:#7987a1;text-transform:uppercase;
-                                               letter-spacing:0.14em;margin-bottom:6px;font-family:'Inter',sans-serif;">INSTAGRAM</p>
-                                    <p class="card-text" style="font-size:18px;font-weight:900;color:#2e3a59;line-height:1.2;font-family:'Inter',sans-serif;margin-bottom:0;" data-i18n="hero_visual_msg_2">
-                                        Do you have stock?
-                                    </p>
-                                </div>
-
-                                <div class="db-clay-card channel-card" style="padding:18px 20px;">
-                                    <p style="font-size:9.5px;font-weight:800;color:#7987a1;text-transform:uppercase;
-                                               letter-spacing:0.14em;margin-bottom:6px;font-family:'Inter',sans-serif;">EMAIL</p>
-                                    <p class="card-text" style="font-size:18px;font-weight:900;color:#2e3a59;line-height:1.2;font-family:'Inter',sans-serif;margin-bottom:0;" data-i18n="hero_visual_msg_3">
-                                        I need an invoice
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Center: Timeline -->
-                            <div style="position:relative;width:28px;display:flex;flex-direction:column;
-                                        align-items:center;flex-shrink:0;">
-                                <div class="db-timeline-line" id="timeline-line"
-                                     style="position:absolute;top:10%;bottom:10%;"></div>
-                                <div style="flex:1;display:flex;align-items:center;justify-content:center;
-                                            position:relative;z-index:10;width:100%;">
-                                    <div style="width:22px;height:22px;border-radius:50%;" class="db-timeline-node timeline-node"></div>
-                                </div>
-                                <div style="flex:1;display:flex;align-items:center;justify-content:center;
-                                            position:relative;z-index:10;width:100%;">
-                                    <div style="width:22px;height:22px;border-radius:50%;" class="db-timeline-node timeline-node"></div>
-                                </div>
-                                <div style="flex:1;display:flex;align-items:center;justify-content:center;
-                                            position:relative;z-index:10;width:100%;">
-                                    <div style="width:22px;height:22px;border-radius:50%;" class="db-timeline-node timeline-node"></div>
-                                </div>
-                            </div>
-
-                            <!-- Right: Purple hub -->
-                            <div style="flex:1;display:flex;align-items:center;position:relative;z-index:10;">
-                                <div class="db-clay-hub" style="width:100%;padding:22px 26px;" id="blue-hub">
-                                    <h3 style="font-size:11px;font-weight:800;color:rgba(255,255,255,0.82);
-                                                letter-spacing:0.16em;text-transform:uppercase;
-                                                margin-bottom:20px;text-align:center;font-family:'Inter',sans-serif;" data-i18n="hero_visual_hub">EVERYTHING LANDS HERE</h3>
-
-                                    <div class="db-clay-inner-box" style="padding:18px 20px;margin-bottom:22px;
-                                                                           display:flex;flex-direction:column;gap:16px;">
-                                        <div style="display:flex;align-items:center;gap:14px;">
-                                            <div style="width:16px;height:16px;border-radius:50%;background:#54d787;
-                                                        box-shadow:inset 1px 1px 3px rgba(255,255,255,0.6);flex-shrink:0;"
-                                                 class="inner-dot"></div>
-                                            <div style="height:14px;background:#ffffff;border-radius:100px;width:85%;
-                                                        box-shadow:0 1px 3px rgba(0,0,0,0.10);transform-origin:left;"
-                                                 class="inner-line"></div>
-                                        </div>
-                                        <div style="display:flex;align-items:center;gap:14px;">
-                                            <div style="width:16px;height:16px;border-radius:50%;background:#f9709d;
-                                                        box-shadow:inset 1px 1px 3px rgba(255,255,255,0.6);flex-shrink:0;"
-                                                 class="inner-dot"></div>
-                                            <div style="height:14px;background:#ffffff;border-radius:100px;width:65%;
-                                                        box-shadow:0 1px 3px rgba(0,0,0,0.10);transform-origin:left;"
-                                                 class="inner-line"></div>
-                                        </div>
-                                        <div style="display:flex;align-items:center;gap:14px;">
-                                            <div style="width:16px;height:16px;border-radius:50%;background:#d7e3f9;
-                                                        box-shadow:inset 1px 1px 3px rgba(255,255,255,0.6);flex-shrink:0;"
-                                                 class="inner-dot"></div>
-                                            <div style="height:14px;background:#ffffff;border-radius:100px;width:50%;
-                                                        box-shadow:0 1px 3px rgba(0,0,0,0.10);transform-origin:left;"
-                                                 class="inner-line"></div>
-                                        </div>
-                                    </div>
-
-                                    <button class="db-clay-btn" id="action-btn" data-i18n="hero_visual_reply">Reply once</button>
-                                </div>
-                            </div>
-
-                        </div><!-- main-layout -->
-
-                        <!-- Packet container -->
-                        <div id="packets-container"
-                             style="position:absolute;inset:0;pointer-events:none;z-index:40;"></div>
-
-                    </div><!-- db-clay-container -->
+                <div class="hero-image executive-orchestrator-hero">
+                    <iframe
+                        class="executive-orchestrator-frame"
+                        src="visuals/strategic-orchestrator-notext.html"
+                        title="Strategic orchestrator executive agent visual"
+                        loading="eager"></iframe>
                 </div>
             </div>
         </section>

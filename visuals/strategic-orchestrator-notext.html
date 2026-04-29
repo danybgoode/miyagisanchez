@@ -306,6 +306,110 @@
         .post-copy {
             font-size: 11px; font-weight: 600; color: #2e1065; line-height: 1.45; flex: 1;
         }
+
+        @media (max-width: 430px) {
+            body {
+                min-height: auto;
+                padding: 16px 8px 24px;
+                align-items: flex-start;
+                overflow: hidden;
+            }
+            #main-scene {
+                flex-direction: column !important;
+                gap: 14px !important;
+                flex-wrap: nowrap !important;
+            }
+            #tool-stack {
+                order: 1;
+                width: min(100%, 340px) !important;
+                flex-direction: row !important;
+                gap: 8px !important;
+            }
+            .db-tool-card {
+                flex: 1 1 0;
+                min-width: 0;
+                padding: 10px 6px;
+                border-radius: 14px;
+            }
+            .db-tool-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 9px;
+                font-size: 10px;
+            }
+            .db-tool-card span {
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 7.5px !important;
+            }
+            #tool-stack + div {
+                order: 2;
+                width: min(100%, 320px) !important;
+                height: 24px !important;
+            }
+            .neural-path {
+                width: 100% !important;
+                height: 8px !important;
+            }
+            #phone-container {
+                order: 3;
+                transform: none !important;
+            }
+            .db-phone-frame {
+                width: min(286px, calc(100vw - 40px));
+                border-radius: 42px;
+                padding: 13px 11px 18px;
+            }
+            .db-phone-screen {
+                height: 468px;
+                border-radius: 28px;
+            }
+            .claude-bubble,
+            .user-bubble {
+                font-size: 11.5px;
+            }
+            #sim-cursor {
+                width: 40px !important;
+                height: 40px !important;
+            }
+        }
+
+        @media (min-width: 431px) and (max-width: 980px) {
+            body {
+                padding: 28px 8px;
+            }
+            #main-scene {
+                gap: 16px !important;
+                flex-wrap: nowrap !important;
+            }
+            #tool-stack {
+                width: 76px !important;
+                gap: 10px !important;
+            }
+            .db-tool-card {
+                padding: 10px 6px;
+                border-radius: 14px;
+            }
+            .db-tool-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 9px;
+            }
+            .db-tool-card span {
+                font-size: 7.2px !important;
+            }
+            #tool-stack + div {
+                width: 18px !important;
+                height: 400px !important;
+            }
+            .db-phone-frame {
+                width: 270px;
+            }
+            .db-phone-screen {
+                height: 520px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -458,12 +562,12 @@
 
                         <!-- Claude confirmation -->
                         <div class="claude-bubble" id="msg-3"
-                             style="opacity:0;transform:translateY(10px);">
+                             style="display:none;">
                             Ready to push everything to Buffer — just say the word. 🚀
                         </div>
 
                         <!-- CTA -->
-                        <div id="btn-container" style="opacity:0;transform:translateY(10px);padding-bottom:6px;">
+                        <div id="btn-container" style="display:none;">
                             <button class="db-btn-primary" id="btn-approve">Approve &amp; Schedule</button>
                         </div>
                     </div><!-- chat -->
@@ -526,10 +630,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const tl = gsap.timeline();
 
         /* ── 0. RESET ── */
-        tl.set("#msg-1,#msg-2,#msg-3,#btn-container", { opacity: 0, y: 10 })
+        tl.set("#msg-1", { opacity: 0, y: 10 })
+          .set(["#msg-2", "#social-grid-card"], { opacity: 0, y: 10 })
           .set(".db-tool-card",  { scale: 1, boxShadow: CARD_REST, filter: "none" })
           .set("#neural-path",   { background: PATH_REST, boxShadow: PATH_SHADOW_REST })
-          .set("#social-grid-card", { opacity: 0, y: 10 })
           .set("#sim-cursor",    { opacity: 0, x: window.innerWidth * 0.65, y: window.innerHeight * 0.75 });
 
         /* ── 1. USER MESSAGE ── */
@@ -590,60 +694,13 @@ document.addEventListener("DOMContentLoaded", () => {
         tl.to(["#tool-ga", "#tool-hubspot"], { scale: 1, boxShadow: CARD_REST, duration: 0.38 })
           .to("#neural-path", { background: PATH_REST, boxShadow: PATH_SHADOW_REST, duration: 0.38 }, "-=0.38");
 
-        /* ── 5. SYNTHESIS MESSAGE ── */
-        tl.to("#msg-2", { opacity: 1, y: 0, duration: 0.52, ease: "back.out(1.8)" }, "-=0.20")
+        /* ── 5. CLAUDE RESPONSE ── */
+        tl.to("#msg-2", { opacity: 1, y: 0, duration: 0.52, ease: "back.out(1.8)" }, "-=0.10")
           .call(scrollChat);
 
         /* ── 6. STRATEGY CARD ── */
-        tl.to("#social-grid-card", { opacity: 1, y: 0, duration: 0.75, ease: "back.out(1.5)" }, "+=0.80")
+        tl.to("#social-grid-card", { opacity: 1, y: 0, duration: 0.75, ease: "back.out(1.5)" }, "+=0.65")
           .call(scrollChat);
-
-        tl.to({}, { duration: 3.50 }); /* read the card */
-
-        /* ── 7. CONFIRMATION ── */
-        tl.to("#msg-3", { opacity: 1, y: 0, duration: 0.48, ease: "back.out(1.8)" })
-          .call(scrollChat)
-          .to("#btn-container", { opacity: 1, y: 0, duration: 0.48, ease: "back.out(1.8)" }, "+=0.18")
-          .call(scrollChat);
-
-        /* ── 8. CURSOR CLICK ── */
-        tl.to("#sim-cursor", { opacity: 1, duration: 0.18 }, "+=0.40")
-          .to("#sim-cursor", {
-              x: () => {
-                  const b = document.getElementById("btn-approve").getBoundingClientRect();
-                  const s = document.getElementById("main-scene").getBoundingClientRect();
-                  return b.left - s.left + b.width / 2;
-              },
-              y: () => {
-                  const b = document.getElementById("btn-approve").getBoundingClientRect();
-                  const s = document.getElementById("main-scene").getBoundingClientRect();
-                  return b.top - s.top + b.height / 2;
-              },
-              duration: 0.80, ease: "power2.inOut"
-          })
-          .call(() => document.getElementById("btn-approve").classList.add("pressed"))
-          .to("#sim-cursor", { scale: 1.0, duration: 0.14, yoyo: true, repeat: 1 })
-          .to("#sim-cursor", { opacity: 0, duration: 0.20 })
-          .call(() => {
-              const btn = document.getElementById("btn-approve");
-              btn.classList.remove("pressed");
-              btn.textContent = "Scheduled ✓";
-              gsap.to("#tool-buffer", {
-                  boxShadow: CARD_SUCCESS,
-                  duration: 0.18, yoyo: true, repeat: 3
-              });
-          });
-
-        /* ── 9. LOOP ── */
-        tl.to(["#tool-stack", "#neural-path", "#phone-container"], {
-            opacity: 0, duration: 0.65, delay: 2.60
-        })
-          .call(() => {
-              gsap.set(["#tool-stack", "#neural-path", "#phone-container"], { opacity: 1 });
-              document.getElementById("btn-approve").textContent = "Approve & Schedule";
-              document.getElementById("chat-scroll-container").scrollTop = 0;
-              setTimeout(buildAndPlay, 150);
-          });
     }
 
     function scrollChat() {
