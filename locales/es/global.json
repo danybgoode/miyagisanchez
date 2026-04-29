@@ -40,8 +40,8 @@
   "pain_1_problem": "Tus clientes escriben en 6 canales a cualquier hora. Alguien tiene que responder.",
   "pain_1_solution": "Tu agente de IA lo hace. En WhatsApp, Instagram, Facebook, email y más — al instante, las 24 horas.",
   "pain_2_problem": "Manejar el negocio es revisar Analytics, actualizar redes, darle seguimiento al CRM.",
-  "pain_2_solution": "Pídele a tu agente personal. Una sola conversación lo maneja todo — sin cambiar de pestaña.",
-  "pain_2_cta": "Conoce al asistente ejecutivo",
+  "pain_2_solution": "Pídele a tu agente ejecutivo. Una sola conversación lo maneja todo — sin cambiar de pestaña.",
+  "pain_2_cta": "Conoce al agente ejecutivo",
 
   "personal_section_title": "Ahora la otra mitad.",
   "personal_section_subtitle": "Conecta la IA que ya usas con las herramientas que ya tienes. Gratis, para siempre.",
@@ -89,7 +89,7 @@
   "feature_visual_3_saved_chip_1": "Pago",
   "feature_visual_3_saved_chip_2": "Catálogo",
 
-  "personal_visual_contact": "Agente Personal",
+  "personal_visual_contact": "Agente Ejecutivo",
   "personal_visual_status": "en línea",
   "personal_visual_today": "Hoy",
   "personal_visual_user_question": "¿Cómo estuvo nuestro sitio hoy?",
@@ -142,11 +142,12 @@
   "plan_personal_price": "Gratis. Para siempre.",
   "plan_personal_subline": "Conecta tu propio Claude, ChatGPT o Gemini.",
   "plan_personal_tools_label": "Herramientas conectadas",
-  "plan_personal_feature_1": "Agente de IA personal conectado a tus herramientas",
+  "plan_personal_feature_1": "Agente ejecutivo conectado a tus herramientas",
   "plan_personal_feature_2": "Funciona en Claude, ChatGPT y Gemini — escritorio y móvil",
   "plan_personal_feature_3": "Reportes bajo demanda entre herramientas vía chat",
   "plan_personal_feature_4": "Sin límite de conversaciones. Sin tarjeta, nunca.",
   "cta_personal": "Empezar gratis",
+  "cta_executive_agent_learn": "Conocer al agente ejecutivo",
 
   "plan_pro_name": "Pro",
   "plan_pro_price": "$399 MXN/mes",

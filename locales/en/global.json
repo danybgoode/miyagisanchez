@@ -40,8 +40,8 @@
   "pain_1_problem": "Customers message on 6 channels at all hours. Someone has to reply.",
   "pain_1_solution": "Your AI agent does. Across WhatsApp, Instagram, Facebook, email, and more — instantly, 24/7.",
   "pain_2_problem": "Running the business means checking Analytics, updating socials, follow up CRM.",
-  "pain_2_solution": "Ask your personal agent. One conversation handles all of it — no tab-switching required.",
-  "pain_2_cta": "Meet the executive assistant",
+  "pain_2_solution": "Ask your executive agent. One conversation handles all of it — no tab-switching required.",
+  "pain_2_cta": "Meet the executive agent",
 
   "personal_section_title": "Now for the other half.",
   "personal_section_subtitle": "Connect the AI you already use to the tools you already have. Free, forever.",
@@ -89,7 +89,7 @@
   "feature_visual_3_saved_chip_1": "Payment",
   "feature_visual_3_saved_chip_2": "Catalog",
 
-  "personal_visual_contact": "Personal Agent",
+  "personal_visual_contact": "Executive Agent",
   "personal_visual_status": "online",
   "personal_visual_today": "Today",
   "personal_visual_user_question": "How did our website do today?",
@@ -142,11 +142,12 @@
   "plan_personal_price": "Free. Forever.",
   "plan_personal_subline": "Bring your own Claude, ChatGPT, or Gemini.",
   "plan_personal_tools_label": "Connected tools",
-  "plan_personal_feature_1": "Personal AI agent connected to your tools",
+  "plan_personal_feature_1": "Executive agent connected to your tools",
   "plan_personal_feature_2": "Works on Claude, ChatGPT, and Gemini — desktop and mobile",
   "plan_personal_feature_3": "On-demand cross-tool reports via conversation",
   "plan_personal_feature_4": "No conversation limits. No credit card, ever.",
   "cta_personal": "Get started free",
+  "cta_executive_agent_learn": "Learn more about executive agent",
 
   "plan_pro_name": "Pro",
   "plan_pro_price": "$399 MXN/mo",

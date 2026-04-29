@@ -1170,20 +1170,13 @@
 }
 .pricing-features li {
   position: relative;
-  padding: 8px 0 8px 24px;
+  padding: 8px 0;
   border-bottom: 1px solid rgba(0,0,0,0.05);
   box-shadow: 0 1px 0 rgba(255,255,255,0.8);
   color: var(--text-primary);
   font-weight: 500;
   font-size: 15px;
   line-height: 1.4;
-}
-.pricing-features li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--primary-blue);
-  font-weight: 800;
 }
 .pricing-features li:last-child {
   border-bottom: none;
@@ -1193,17 +1186,26 @@
   margin-top: auto;
   width: 100%;
 }
+.pricing-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pricing-actions .pricing-cta {
+  margin-top: 0;
+}
 
 /* Tool Logos */
 .tool-logos-row {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .tool-logo-tile {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -1223,8 +1225,10 @@
   object-fit: contain;
 }
 .tool-logos-label {
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 24px;
+  color: var(--text-primary);
+  text-shadow: none;
 }
 
 /* Stat Block */
@@ -1316,6 +1320,8 @@
   font-size: 12px;
   margin-bottom: 24px;
   line-height: 1.4;
+  color: var(--text-primary);
+  text-shadow: none;
 }
 
 /* Testimonial Author Image */
@@ -1502,7 +1508,7 @@
 }
 
 /* ────────────────────────────────────────────────
-   PA Hero Stage — Personal Agent animation
+   PA Hero Stage — Executive Agent animation
    Coordinate space: 500 × 850 px (scaled by JS)
 ──────────────────────────────────────────────── */
 .pa-stage {
