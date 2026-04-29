@@ -269,17 +269,17 @@
         </div>
         <div class="space-y-4 text-[15px] font-medium text-gray-600 relative z-10">
             <div class="flex justify-between items-center p-3 rounded-lg">
-                <span>Active Users</span><span class="font-bold text-gray-900 text-lg">1,245</span>
+                <span data-visual-i18n="active_users">Active Users</span><span class="font-bold text-gray-900 text-lg">1,245</span>
             </div>
             <div class="flex justify-between items-center p-3 rounded-lg" id="ga-target">
-                <span>Traffic Status</span>
-                <span class="font-bold text-green-600 bg-green-100 px-2 py-1 rounded-md text-sm">Stable</span>
+                <span data-visual-i18n="traffic_status">Traffic Status</span>
+                <span class="font-bold text-green-600 bg-green-100 px-2 py-1 rounded-md text-sm" data-visual-i18n="stable">Stable</span>
             </div>
             <div class="flex justify-between items-center p-3 rounded-lg">
-                <span>Bounce Rate</span><span class="font-bold text-gray-900 text-lg">42%</span>
+                <span data-visual-i18n="bounce_rate">Bounce Rate</span><span class="font-bold text-gray-900 text-lg">42%</span>
             </div>
             <div class="flex justify-between items-center p-3 rounded-lg">
-                <span>Avg Session</span><span class="font-bold text-gray-900 text-lg">2m 14s</span>
+                <span data-visual-i18n="avg_session">Avg Session</span><span class="font-bold text-gray-900 text-lg">2m 14s</span>
             </div>
         </div>
     </div>
@@ -296,8 +296,8 @@
                   <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </div>
                 <div>
-                    <h3 class="font-bold text-base leading-tight">Personal Agent</h3>
-                    <p class="text-xs text-purple-200 font-medium">Data Synthesis Active</p>
+                    <h3 class="font-bold text-base leading-tight" data-visual-i18n="personal_agent">Personal Agent</h3>
+                    <p class="text-xs text-purple-200 font-medium" data-visual-i18n="synthesis_active">Data Synthesis Active</p>
                 </div>
             </div>
         </div>
@@ -307,7 +307,7 @@
             <!-- User Msg -->
             <div class="self-end max-w-[85%]">
                 <div class="clay-bubble bg-gradient-to-br from-[#a78bfa] to-[#7c3aed] text-white p-4 rounded-2xl rounded-tr-sm text-[15px] font-semibold shadow-sm leading-snug">
-                    Why did revenue dip this week?
+                    <span data-visual-i18n="user_question">Why did revenue dip this week?</span>
                 </div>
             </div>
             
@@ -322,7 +322,7 @@
                         <div class="typing-dot"></div>
                         <div class="typing-dot"></div>
                     </div>
-                    <div class="text-xs font-bold text-amber-700 uppercase tracking-wide" id="thinking-text">Correlating Sources</div>
+                    <div class="text-xs font-bold text-amber-700 uppercase tracking-wide" id="thinking-text" data-visual-i18n="correlating_sources">Correlating Sources</div>
                 </div>
             </div>
 
@@ -333,15 +333,15 @@
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
                     </div>
                     <div class="clay-bubble bg-white text-gray-800 p-5 rounded-2xl rounded-tl-sm text-[15px] font-medium leading-relaxed shadow-sm w-full border border-purple-100/50">
-                        <div class="mb-3"><span class="font-bold text-purple-900 text-base">Analysis:</span></div>
+                        <div class="mb-3"><span class="font-bold text-purple-900 text-base" data-visual-i18n="analysis_label">Analysis:</span></div>
                         <ul class="mb-4 space-y-2">
                             <li class="flex gap-2">
                                 <span class="text-yellow-500 mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg></span>
-                                <span><span class="font-bold text-gray-900">Analytics:</span> Traffic volume is highly stable.</span>
+                                <span data-visual-i18n="analysis_analytics"><span class="font-bold text-gray-900">Analytics:</span> Traffic volume is highly stable.</span>
                             </li>
                             <li class="flex gap-2">
                                 <span class="text-orange-500 mt-1 shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg></span>
-                                <span><span class="font-bold text-gray-900">HubSpot:</span> Leads are stalling significantly at the "Demo" stage.</span>
+                                <span data-visual-i18n="analysis_hubspot"><span class="font-bold text-gray-900">HubSpot:</span> Leads are stalling significantly at the "Demo" stage.</span>
                             </li>
                         </ul>
                     </div>
@@ -356,9 +356,9 @@
                     </div>
                     <div class="clay-bubble bg-gradient-to-br from-purple-50 to-indigo-50 p-4 rounded-2xl rounded-tl-sm border border-purple-200/60 shadow-sm w-full">
                         <span class="font-bold text-purple-800 flex items-center gap-2 mb-1.5">
-                            Strategy Suggestion
+                            <span data-visual-i18n="strategy_label">Strategy Suggestion</span>
                         </span>
-                        <span class="text-purple-950 font-semibold text-sm">Trigger a targeted re-engagement email sequence to all "Demo Scheduled" contacts, then report back with reply rate and recovered pipeline.</span>
+                        <span class="text-purple-950 font-semibold text-sm" data-visual-i18n="strategy_copy">Trigger a targeted re-engagement email sequence to all "Demo Scheduled" contacts, then report back with reply rate and recovered pipeline.</span>
                     </div>
                 </div>
             </div>
@@ -378,20 +378,20 @@
         </div>
         <div class="space-y-4 text-[15px] font-medium text-gray-600 relative z-10">
             <div class="flex justify-between items-center p-3 rounded-lg">
-                <span>New Leads</span><span class="font-bold text-gray-900 text-lg">142</span>
+                <span data-visual-i18n="new_leads">New Leads</span><span class="font-bold text-gray-900 text-lg">142</span>
             </div>
             <div class="flex justify-between items-center p-3 rounded-lg">
-                <span>Demos Booked</span><span class="font-bold text-gray-900 text-lg">28</span>
+                <span data-visual-i18n="demos_booked">Demos Booked</span><span class="font-bold text-gray-900 text-lg">28</span>
             </div>
             <div class="flex justify-between items-center p-3 rounded-lg" id="hs-target">
-                <span>Deal Close Rate</span>
+                <span data-visual-i18n="deal_close_rate">Deal Close Rate</span>
                 <span class="font-bold text-red-600 bg-red-50 px-2 py-1 rounded-md text-sm flex items-center gap-1">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
                     12%
                 </span>
             </div>
             <div class="flex justify-between items-center p-3 rounded-lg">
-                <span>Revenue Impact</span><span class="font-bold text-red-600 text-lg">-$4,200</span>
+                <span data-visual-i18n="revenue_impact">Revenue Impact</span><span class="font-bold text-red-600 text-lg">-$4,200</span>
             </div>
         </div>
     </div>
@@ -400,6 +400,65 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    const visualTranslations = {
+        en: {
+            active_users: "Active Users",
+            traffic_status: "Traffic Status",
+            stable: "Stable",
+            bounce_rate: "Bounce Rate",
+            avg_session: "Avg Session",
+            personal_agent: "Personal Agent",
+            synthesis_active: "Data Synthesis Active",
+            user_question: "Why did revenue dip this week?",
+            correlating_sources: "Correlating Sources",
+            analysis_label: "Analysis:",
+            analysis_analytics: '<span class="font-bold text-gray-900">Analytics:</span> Traffic volume is highly stable.',
+            analysis_hubspot: '<span class="font-bold text-gray-900">HubSpot:</span> Leads are stalling significantly at the "Demo" stage.',
+            strategy_label: "Strategy Suggestion",
+            strategy_copy: 'Trigger a targeted re-engagement email sequence to all "Demo Scheduled" contacts, then report back with reply rate and recovered pipeline.',
+            new_leads: "New Leads",
+            demos_booked: "Demos Booked",
+            deal_close_rate: "Deal Close Rate",
+            revenue_impact: "Revenue Impact"
+        },
+        es: {
+            active_users: "Usuarios activos",
+            traffic_status: "Estado del trafico",
+            stable: "Estable",
+            bounce_rate: "Tasa de rebote",
+            avg_session: "Sesion promedio",
+            personal_agent: "Agente personal",
+            synthesis_active: "Sintesis de datos activa",
+            user_question: "Por que bajo el ingreso esta semana?",
+            correlating_sources: "Correlacionando fuentes",
+            analysis_label: "Analisis:",
+            analysis_analytics: '<span class="font-bold text-gray-900">Analytics:</span> El volumen de trafico se mantiene muy estable.',
+            analysis_hubspot: '<span class="font-bold text-gray-900">HubSpot:</span> Los leads se estan atorando claramente en la etapa "Demo".',
+            strategy_label: "Sugerencia estrategica",
+            strategy_copy: 'Activa una secuencia de re-engagement para todos los contactos en "Demo Scheduled" y reporta la tasa de respuesta junto con el pipeline recuperado.',
+            new_leads: "Nuevos leads",
+            demos_booked: "Demos agendadas",
+            deal_close_rate: "Tasa de cierre",
+            revenue_impact: "Impacto en ingresos"
+        }
+    };
+
+    function applyVisualLanguage(lang) {
+        const dictionary = visualTranslations[lang] || visualTranslations.en;
+        document.querySelectorAll("[data-visual-i18n]").forEach((element) => {
+            const key = element.getAttribute("data-visual-i18n");
+            if (dictionary[key]) element.innerHTML = dictionary[key];
+        });
+    }
+
+    applyVisualLanguage(localStorage.getItem("selected_language") === "es" ? "es" : "en");
+
+    window.addEventListener("message", (event) => {
+        if (event.data?.type === "bonsai:set-language") {
+            applyVisualLanguage(event.data.lang);
+        }
+    });
+
     
     function buildAndPlay() {
         // Clean up any old packets

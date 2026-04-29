@@ -555,9 +555,9 @@
                    style="width:20px;filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));"/>
             </div>
             <div class="tg-contact-info">
-              <div class="tg-name">Personal Agent</div>
+              <div class="tg-name" data-visual-i18n="personal_agent">Personal Agent</div>
               <div class="tg-status">
-                <span class="online-dot"></span>online
+                <span class="online-dot"></span><span data-visual-i18n="online">online</span>
               </div>
             </div>
             <span style="font-size:15px;color:#7c3aed;opacity:0.75;">⋮</span>
@@ -565,11 +565,11 @@
 
           <!-- Messages -->
           <div class="tg-messages" id="tg-messages">
-            <div class="date-chip"><span>Today</span></div>
+            <div class="date-chip"><span data-visual-i18n="today">Today</span></div>
 
             <!-- User message -->
             <div class="msg-out" id="msg-user">
-              <div class="clay-bubble bubble-out" id="user-bubble">
+              <div class="clay-bubble bubble-out" id="user-bubble" data-visual-i18n="user_request">
                 Hey, schedule a post for tomorrow morning on all channels: "Big update coming to Despacho Bonsai! 🚀"
               </div>
             </div>
@@ -588,7 +588,7 @@
                   <div class="eq-b" id="eq4" style="background:#a855f7;"></div>
                   <div class="eq-b" id="eq5" style="background:#fbbf24;"></div>
                 </div>
-                <span style="font-size:11.5px;font-weight:700;color:#92400e;">Queuing to Buffer...</span>
+                <span style="font-size:11.5px;font-weight:700;color:#92400e;" data-visual-i18n="queuing">Queuing to Buffer...</span>
               </div>
             </div>
 
@@ -598,7 +598,7 @@
                 <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" alt=""
                      style="width:12px;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));"/>
               </div>
-              <div class="clay-bubble bubble-in">
+              <div class="clay-bubble bubble-in" data-visual-i18n="agent_reply">
                 Done! 🎉 Your post is queued for<br/>
                 <strong>tomorrow at 9:00 AM</strong><br/>
                 <span style="font-size:11px;color:#7c3aed;opacity:0.8;">LinkedIn · X · Instagram</span>
@@ -608,7 +608,7 @@
 
           <!-- Input bar -->
           <div class="tg-input">
-            <div class="tg-field">Message</div>
+            <div class="tg-field" data-visual-i18n="message_placeholder">Message</div>
             <div class="send-btn">
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                 <path d="M6.5 11V2M2.5 6L6.5 2L10.5 6" stroke="white" stroke-width="2"
@@ -637,8 +637,8 @@
             </svg>
           </div>
           <div>
-            <div class="buf-title">Buffer Queue</div>
-            <div class="buf-sub" id="buf-sub">2 posts scheduled</div>
+            <div class="buf-title" data-visual-i18n="buffer_queue">Buffer Queue</div>
+            <div class="buf-sub" id="buf-sub" data-visual-i18n="posts_scheduled_2">2 posts scheduled</div>
           </div>
         </div>
         <span class="queue-count" id="queue-count">2</span>
@@ -651,14 +651,14 @@
           <div style="position:absolute;top:-1px;right:14px;">
             <span class="clay-pill" style="font-size:9px;font-weight:800;color:#7c2d12;
               background:linear-gradient(135deg,#fed7aa,#fb923c);
-              padding:2px 8px;display:inline-block;">New ✦</span>
+              padding:2px 8px;display:inline-block;" data-visual-i18n="new_badge">New ✦</span>
           </div>
           <div class="qcard-inner">
             <div class="qcard-top">
-              <div class="qcard-text">
+              <div class="qcard-text" data-visual-i18n="new_post">
                 Big update coming to Despacho Bonsai! 🚀
               </div>
-              <div class="qcard-time">Tomorrow<br/>9:00 AM</div>
+              <div class="qcard-time" data-visual-i18n="tomorrow_time">Tomorrow<br/>9:00 AM</div>
             </div>
             <div class="qcard-divider"></div>
             <div class="qcard-bottom">
@@ -672,7 +672,7 @@
               </div>
               <!-- Instagram -->
               <div class="platform-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">IG</div>
-              <span style="font-size:10px;font-weight:600;color:#9ca3af;margin-left:3px;">All channels</span>
+              <span style="font-size:10px;font-weight:600;color:#9ca3af;margin-left:3px;" data-visual-i18n="all_channels">All channels</span>
             </div>
           </div>
         </div>
@@ -681,10 +681,10 @@
         <div class="clay-card">
           <div class="qcard-inner">
             <div class="qcard-top">
-              <div class="qcard-text">
+              <div class="qcard-text" data-visual-i18n="existing_post_1">
                 Product launch countdown — only 3 days left. Are you ready?
               </div>
-              <div class="qcard-time">Thu Apr 24<br/>10:00 AM</div>
+              <div class="qcard-time" data-visual-i18n="existing_time_1">Thu Apr 24<br/>10:00 AM</div>
             </div>
             <div class="qcard-divider"></div>
             <div class="qcard-bottom">
@@ -702,10 +702,10 @@
         <div class="clay-card">
           <div class="qcard-inner">
             <div class="qcard-top">
-              <div class="qcard-text">
+              <div class="qcard-text" data-visual-i18n="existing_post_2">
                 Behind the scenes: meet the team building Despacho Bonsai ✨
               </div>
-              <div class="qcard-time">Fri Apr 25<br/>2:00 PM</div>
+              <div class="qcard-time" data-visual-i18n="existing_time_2">Fri Apr 25<br/>2:00 PM</div>
             </div>
             <div class="qcard-divider"></div>
             <div class="qcard-bottom">
@@ -721,6 +721,74 @@
 </div>
 
 <script>
+  const visualTranslations = {
+    en: {
+      personal_agent: 'Personal Agent',
+      online: 'online',
+      today: 'Today',
+      user_request: 'Hey, schedule a post for tomorrow morning on all channels: "Big update coming to Despacho Bonsai! 🚀"',
+      queuing: 'Queuing to Buffer...',
+      agent_reply: 'Done! 🎉 Your post is queued for<br/><strong>tomorrow at 9:00 AM</strong><br/><span style="font-size:11px;color:#7c3aed;opacity:0.8;">LinkedIn · X · Instagram</span>',
+      message_placeholder: 'Message',
+      buffer_queue: 'Buffer Queue',
+      posts_scheduled_2: '2 posts scheduled',
+      posts_scheduled_3: '3 posts scheduled',
+      new_badge: 'New ✦',
+      new_post: 'Big update coming to Despacho Bonsai! 🚀',
+      tomorrow_time: 'Tomorrow<br/>9:00 AM',
+      all_channels: 'All channels',
+      existing_post_1: 'Product launch countdown - only 3 days left. Are you ready?',
+      existing_time_1: 'Thu Apr 24<br/>10:00 AM',
+      existing_post_2: 'Behind the scenes: meet the team building Despacho Bonsai ✨',
+      existing_time_2: 'Fri Apr 25<br/>2:00 PM'
+    },
+    es: {
+      personal_agent: 'Agente personal',
+      online: 'en linea',
+      today: 'Hoy',
+      user_request: 'Hey, programa una publicacion para manana en todos los canales: "Gran novedad en Despacho Bonsai! 🚀"',
+      queuing: 'Agendando en Buffer...',
+      agent_reply: 'Listo! 🎉 Tu publicacion quedo agendada para<br/><strong>manana a las 9:00 AM</strong><br/><span style="font-size:11px;color:#7c3aed;opacity:0.8;">LinkedIn · X · Instagram</span>',
+      message_placeholder: 'Mensaje',
+      buffer_queue: 'Cola de Buffer',
+      posts_scheduled_2: '2 publicaciones agendadas',
+      posts_scheduled_3: '3 publicaciones agendadas',
+      new_badge: 'Nuevo ✦',
+      new_post: 'Gran novedad en Despacho Bonsai! 🚀',
+      tomorrow_time: 'Manana<br/>9:00 AM',
+      all_channels: 'Todos los canales',
+      existing_post_1: 'Cuenta regresiva del lanzamiento - solo faltan 3 dias. Estas listo?',
+      existing_time_1: 'Jue 24 abr<br/>10:00 AM',
+      existing_post_2: 'Detras de escena: conoce al equipo que construye Despacho Bonsai ✨',
+      existing_time_2: 'Vie 25 abr<br/>2:00 PM'
+    }
+  };
+
+  let visualLanguage = localStorage.getItem('selected_language') === 'es' ? 'es' : 'en';
+
+  function visualText(key) {
+    return (visualTranslations[visualLanguage] || visualTranslations.en)[key] || visualTranslations.en[key] || '';
+  }
+
+  function applyVisualLanguage(lang) {
+    visualLanguage = visualTranslations[lang] ? lang : 'en';
+    document.querySelectorAll('[data-visual-i18n]').forEach((element) => {
+      const key = element.getAttribute('data-visual-i18n');
+      if (visualText(key)) element.innerHTML = visualText(key);
+    });
+    const queueCount = document.getElementById('queue-count');
+    const bufferSub = document.getElementById('buf-sub');
+    if (queueCount && bufferSub) {
+      bufferSub.innerHTML = visualText(queueCount.textContent === '3' ? 'posts_scheduled_3' : 'posts_scheduled_2');
+    }
+  }
+
+  applyVisualLanguage(visualLanguage);
+
+  window.addEventListener('message', (event) => {
+    if (event.data?.type === 'bonsai:set-language') applyVisualLanguage(event.data.lang);
+  });
+
   /* ──────────────────────────────────────
      Cubic bezier point helper
   ────────────────────────────────────── */
@@ -806,7 +874,7 @@
     gsap.set('#magic-packet', { opacity: 0, scale: 1, x: 0, y: 0, rotation: 0 });
     gsap.set(['#sp1','#sp2','#sp3','#sp4'], { opacity: 0 });
     document.getElementById('queue-count').textContent = '2';
-    document.getElementById('buf-sub').textContent = '2 posts scheduled';
+    document.getElementById('buf-sub').innerHTML = visualText('posts_scheduled_2');
 
     const tl = gsap.timeline({ onComplete: () => gsap.delayedCall(1.0, runLoop) });
 
@@ -846,7 +914,7 @@
           });
           // Update count
           document.getElementById('queue-count').textContent = '3';
-          document.getElementById('buf-sub').textContent = '3 posts scheduled';
+          document.getElementById('buf-sub').innerHTML = visualText('posts_scheduled_3');
         }
       );
 

@@ -497,12 +497,12 @@
                         <!-- User msg -->
                         <div style="display:flex;justify-content:flex-end;opacity:0;transform:translateY(10px);"
                              id="msg-1">
-                            <div class="user-bubble">Let's plan next week's social media.</div>
+                            <div class="user-bubble" data-visual-i18n="user_request">Let's plan next week's social media.</div>
                         </div>
 
                         <!-- Claude synthesis -->
                         <div class="claude-bubble" id="msg-2"
-                             style="opacity:0;transform:translateY(10px);">
+                             style="opacity:0;transform:translateY(10px);" data-visual-i18n="claude_synthesis">
                             Based on the
                             <strong style="color:#d97706;">20% traffic spike in Analytics</strong>
                             and
@@ -521,11 +521,11 @@
                                                 background:linear-gradient(135deg,#ede9fe,#ddd6fe);
                                                 display:flex;align-items:center;justify-content:center;
                                                 font-size:13px;">✨</div>
-                                    <span style="font-weight:800;color:#1e0e3e;font-size:12px;">Next Week's Strategy</span>
+                                    <span style="font-weight:800;color:#1e0e3e;font-size:12px;" data-visual-i18n="strategy_title">Next Week's Strategy</span>
                                 </div>
                                 <span style="font-size:8.5px;background:linear-gradient(135deg,#fed7aa,#fb923c);
                                              color:#7c2d12;padding:3px 8px;border-radius:100px;font-weight:800;
-                                             border:1.5px solid rgba(255,255,255,0.5);">Awareness Push</span>
+                                             border:1.5px solid rgba(255,255,255,0.5);" data-visual-i18n="strategy_badge">Awareness Push</span>
                             </div>
                             <div style="padding:10px 12px 12px;display:flex;flex-direction:column;gap:7px;">
                                 <!-- Mon / X -->
@@ -538,7 +538,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <p class="post-copy">"Traffic is up 20%! Here's what's driving our growth..."</p>
+                                    <p class="post-copy" data-visual-i18n="post_traffic">"Traffic is up 20%! Here's what's driving our growth..."</p>
                                 </div>
                                 <!-- Wed / LinkedIn -->
                                 <div class="post-row">
@@ -546,7 +546,7 @@
                                         <span class="day-label">WED</span>
                                         <div class="platform-icon" style="background:#0077B5;">in</div>
                                     </div>
-                                    <p class="post-copy">"We just closed 5 new deals — here's what we learned about scaling fast."</p>
+                                    <p class="post-copy" data-visual-i18n="post_deals">"We just closed 5 new deals — here's what we learned about scaling fast."</p>
                                 </div>
                                 <!-- Fri / Instagram -->
                                 <div class="post-row">
@@ -555,7 +555,7 @@
                                         <div class="platform-icon"
                                              style="background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);">IG</div>
                                     </div>
-                                    <p class="post-copy"><strong style="color:#1e0e3e;">[Carousel]</strong> "5 Tips for Scaling Fast"</p>
+                                    <p class="post-copy" data-visual-i18n="post_carousel"><strong style="color:#1e0e3e;">[Carousel]</strong> "5 Tips for Scaling Fast"</p>
                                 </div>
                             </div>
                         </div>
@@ -596,6 +596,42 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    const visualTranslations = {
+        en: {
+            user_request: "Let's plan next week's social media.",
+            claude_synthesis: "Based on the <strong style=\"color:#d97706;\">20% traffic spike in Analytics</strong> and <strong style=\"color:#ea580c;\">5 new deals in HubSpot</strong> last week, here's an awareness-first plan:",
+            strategy_title: "Next Week's Strategy",
+            strategy_badge: "Awareness Push",
+            post_traffic: "\"Traffic is up 20%! Here's what's driving our growth...\"",
+            post_deals: "\"We just closed 5 new deals - here's what we learned about scaling fast.\"",
+            post_carousel: '<strong style="color:#1e0e3e;">[Carousel]</strong> "5 Tips for Scaling Fast"'
+        },
+        es: {
+            user_request: "Planifiquemos las redes sociales de la proxima semana.",
+            claude_synthesis: 'Con base en el <strong style="color:#d97706;">aumento de 20% en trafico de Analytics</strong> y <strong style="color:#ea580c;">5 nuevos deals en HubSpot</strong> la semana pasada, aqui va un plan enfocado en awareness:',
+            strategy_title: "Estrategia de la proxima semana",
+            strategy_badge: "Impulso de awareness",
+            post_traffic: '"El trafico subio 20%! Esto es lo que esta impulsando nuestro crecimiento..."',
+            post_deals: '"Cerramos 5 nuevos deals - esto aprendimos sobre escalar rapido."',
+            post_carousel: '<strong style="color:#1e0e3e;">[Carrusel]</strong> "5 consejos para escalar rapido"'
+        }
+    };
+
+    function applyVisualLanguage(lang) {
+        const dictionary = visualTranslations[lang] || visualTranslations.en;
+        document.querySelectorAll("[data-visual-i18n]").forEach((element) => {
+            const key = element.getAttribute("data-visual-i18n");
+            if (dictionary[key]) element.innerHTML = dictionary[key];
+        });
+    }
+
+    applyVisualLanguage(localStorage.getItem("selected_language") === "es" ? "es" : "en");
+
+    window.addEventListener("message", (event) => {
+        if (event.data?.type === "bonsai:set-language") {
+            applyVisualLanguage(event.data.lang);
+        }
+    });
 
     /* Shadow helpers — avoids repeating huge strings */
     const CARD_REST =

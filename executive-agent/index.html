@@ -619,6 +619,41 @@
             color: #4c1d95;
             font-size: 11.5px;
         }
+        .guided-options {
+            align-self: flex-start;
+            width: min(92%, 236px);
+            display: grid;
+            gap: 7px;
+            padding: 8px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.48);
+            border: 1px solid rgba(167,139,250,0.14);
+            box-shadow:
+                inset 0 2px 3px rgba(255,255,255,0.55),
+                0 4px 10px rgba(109,40,217,0.06);
+        }
+        .guided-option {
+            min-height: 34px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 13px;
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(167,139,250,0.16);
+            color: #2e1065;
+            font-size: 11.5px;
+            font-weight: 800;
+            box-shadow: 0 2px 6px rgba(109,40,217,0.06);
+        }
+        .guided-option-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124,58,237,0.10);
+            flex-shrink: 0;
+        }
         .guided-workflow-section .feature-pair-card {
             padding: 28px;
         }
@@ -690,6 +725,7 @@
                     <iframe
                         class="executive-orchestrator-frame"
                         src="visuals/strategic-orchestrator-notext.html"
+                        data-visual-locale-frame
                         title="Strategic orchestrator executive agent visual"
                         loading="eager"></iframe>
                 </div>
@@ -874,6 +910,7 @@
                             <iframe
                                 class="executive-data-synthesis-frame"
                                 src="visuals/data-synthesis.html"
+                                data-visual-locale-frame
                                 title="Cross-tool data synthesis report visual"
                                 loading="lazy"></iframe>
                         </figure>
@@ -890,6 +927,7 @@
                             <iframe
                                 class="executive-buffer-frame"
                                 src="visuals/features-telegram-bufferNOTEXT.html"
+                                data-visual-locale-frame
                                 title="Executive agent social strategy to Buffer visual"
                                 loading="lazy"></iframe>
                         </figure>
@@ -901,8 +939,8 @@
         <!-- How It Works Section -->
         <section id="how-it-works" class="container">
             <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="executive_hiw_title">How it works.</h2>
-                <p class="text-muted" data-i18n="executive_hiw_subtitle">Three simple steps, each paired with a visual.</p>
+                <h2 class="section-title text-on-dark" data-i18n="executive_hiw_title">From scattered tools to one executive agent.</h2>
+                <p class="text-muted" data-i18n="executive_hiw_subtitle">Connect Bonsai once, add it to the AI you already use, then ask for the work you used to do across tabs.</p>
             </div>
             <div class="grid-3 executive-steps-grid">
                 <div class="card executive-step-card">
@@ -910,10 +948,10 @@
                     <p class="card-text" data-i18n="executive_hiw_step_1_copy">Pick the tools you already use and connect them with one click or tap.</p>
                     <div class="executive-step-visual" aria-hidden="true">
                         <div class="quick-connect-visual">
-                            <div class="quick-connect-pill"><span>Google Analytics</span><strong>Connect</strong></div>
-                            <div class="quick-connect-pill"><span>HubSpot</span><strong>Connect</strong></div>
-                            <div class="quick-connect-pill"><span>Buffer</span><strong>Connect</strong></div>
-                            <div class="quick-connect-pill"><span>Calendar</span><strong>Connect</strong></div>
+                            <div class="quick-connect-pill"><span>Google Analytics</span><strong data-i18n="executive_hiw_visual_connect">Connect</strong></div>
+                            <div class="quick-connect-pill"><span>HubSpot</span><strong data-i18n="executive_hiw_visual_connect">Connect</strong></div>
+                            <div class="quick-connect-pill"><span>Buffer</span><strong data-i18n="executive_hiw_visual_connect">Connect</strong></div>
+                            <div class="quick-connect-pill"><span>Calendar</span><strong data-i18n="executive_hiw_visual_connect">Connect</strong></div>
                         </div>
                     </div>
                 </div>
@@ -922,9 +960,9 @@
                     <p class="card-text" data-i18n="executive_hiw_step_2_copy">Paste the Bonsai MCP address into Claude, ChatGPT, Gemini, or the assistant you use.</p>
                     <div class="executive-step-visual" aria-hidden="true">
                         <div class="mcp-form-visual">
-                            <div class="mcp-form-label">claude.ai / connectors</div>
+                            <div class="mcp-form-label" data-i18n="executive_hiw_visual_connectors">claude.ai / connectors</div>
                             <div class="mcp-address-field">https://mcp.despachobonsai.com</div>
-                            <div class="mcp-add-button">Add MCP server</div>
+                            <div class="mcp-add-button" data-i18n="executive_hiw_visual_add_mcp">Add MCP server</div>
                         </div>
                     </div>
                 </div>
@@ -936,13 +974,13 @@
                             <div class="claude-screen">
                                 <div class="claude-bar">Claude</div>
                                 <div class="claude-chat">
-                                    <div class="chat-bubble user">Hey Claude, I just added Bonsai. Can you get me set up?</div>
+                                    <div class="chat-bubble user" data-i18n="executive_hiw_visual_user_setup">Hey Claude, I just added Bonsai. Can you get me set up?</div>
                                     <div class="brain-card">
-                                        Claude brains
-                                        <span class="brain-line">Connecting to Bonsai...</span>
-                                        <span class="brain-line">Reading available toolset...</span>
+                                        <span data-i18n="executive_hiw_visual_brains">Claude brains</span>
+                                        <span class="brain-line" data-i18n="executive_hiw_visual_connecting">Connecting to Bonsai...</span>
+                                        <span class="brain-line" data-i18n="executive_hiw_visual_reading">Reading available toolset...</span>
                                     </div>
-                                    <div class="chat-bubble agent">This is truly an amazing setup. Now that I have connected to Bonsai, I can orchestrate social accounts through Buffer, get performance analytics, work with HubSpot, and read your calendar.</div>
+                                    <div class="chat-bubble agent" data-i18n="executive_hiw_visual_setup_reply">This is truly an amazing setup. Now that I have connected to Bonsai, I can orchestrate social accounts through Buffer, get performance analytics, work with HubSpot, and read your calendar.</div>
                                 </div>
                             </div>
                         </div>
@@ -953,6 +991,10 @@
 
         <!-- Guided Workflows Section -->
         <section id="guided-workflows" class="container guided-workflow-section">
+            <div class="section-header">
+                <h2 class="section-title text-on-dark" data-i18n="executive_guided_section_title">Guided workflows for real business moments.</h2>
+                <p class="text-muted" data-i18n="executive_guided_section_subtitle">Bonsai gives your AI a starting point when the next best step should be structured, not guessed.</p>
+            </div>
             <div class="feature-pairs">
                 <div class="feature-pair-card card">
                     <div class="feature-pair-layout">
@@ -965,9 +1007,14 @@
                                 <div class="claude-screen">
                                     <div class="claude-bar">Claude</div>
                                     <div class="claude-chat">
-                                        <div class="chat-bubble agent">Bonsai recommends we run the onboarding play to get started. Want to do it?</div>
-                                        <div class="chat-bubble user">Yes.</div>
-                                        <div class="chat-bubble agent">Great. First question: which tools should Bonsai use for your weekly business snapshot?</div>
+                                        <div class="chat-bubble agent" data-i18n="executive_guided_visual_intro">It is great to see you here. Since we are just getting started and I can access Analytics, HubSpot, Buffer, and Calendar, we can create an overall business snapshot and take it from there. Sound good?</div>
+                                        <div class="chat-bubble user" data-i18n="executive_guided_visual_yes">Yes.</div>
+                                        <div class="chat-bubble agent" data-i18n="executive_guided_visual_question">Great. First onboarding question: which business outcome should we optimize for first?</div>
+                                        <div class="guided-options" aria-hidden="true">
+                                            <div class="guided-option"><span class="guided-option-dot"></span><span data-i18n="executive_guided_option_1">Recover stalled pipeline</span></div>
+                                            <div class="guided-option"><span class="guided-option-dot"></span><span data-i18n="executive_guided_option_2">Grow qualified traffic</span></div>
+                                            <div class="guided-option"><span class="guided-option-dot"></span><span data-i18n="executive_guided_option_3">Plan next week's content</span></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
