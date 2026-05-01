@@ -381,6 +381,48 @@ section:not(:last-child)::after {
   font-size: 14px;
 }
 
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.social-icon-link {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.social-icon-link:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+.social-icon-img {
+  width: 24px;
+  height: 24px;
+  image-rendering: pixelated;
+  display: block;
+}
+/* Header social icons — desktop only */
+.social-icons-header-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+.social-icons-header-wrapper .social-icon-img {
+  width: 22px;
+  height: 22px;
+}
+/* Footer social icons */
+.main-footer .social-icons {
+  margin-top: 20px;
+}
+.main-footer .social-icon-img {
+  width: 28px;
+  height: 28px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   section {
@@ -512,6 +554,9 @@ section:not(:last-child)::after {
   .logo-mark {
     width: 104px;
     height: auto;
+  }
+  .social-icons-header-wrapper {
+    display: none;
   }
   .lang-switcher {
     flex: 0 0 auto;

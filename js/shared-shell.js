@@ -22,6 +22,26 @@
       </div>
     `;
 
+    const socialIcons = `
+      <div class="social-icons">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Facebook">
+          <img src="social_media/icons8-facebook-64.png" alt="Facebook" class="social-icon-img">
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
+          <img src="social_media/icons8-instagram-64.png" alt="Instagram" class="social-icon-img">
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="TikTok">
+          <img src="social_media/icons8-tiktok-64.png" alt="TikTok" class="social-icon-img">
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Twitter">
+          <img src="social_media/icons8-twitter-bird-64.png" alt="Twitter" class="social-icon-img">
+        </a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="WhatsApp">
+          <img src="social_media/icons8-whatsapp-64.png" alt="WhatsApp" class="social-icon-img">
+        </a>
+      </div>
+    `;
+
     const navSets = {
       home: `
         <a href="#features" data-i18n="nav_features">Features</a>
@@ -45,6 +65,7 @@
             <div class="container nav-container">
               ${logo}
               ${languageSwitcher}
+              <div class="social-icons-header-wrapper">${socialIcons}</div>
               <button class="btn-secondary mobile-menu-btn" data-i18n-aria-label="nav_menu" aria-label="Menu">
                 <span class="hamburger-lines" aria-hidden="true">
                   <span></span>
@@ -67,6 +88,7 @@
         <footer class="main-footer">
           <div class="container">
             ${logo}
+            ${socialIcons}
             <div class="footer-links">
               <a href="privacy.html" class="text-muted" data-i18n="footer_privacy">Privacy Policy</a>
               <a href="terms.html" class="text-muted" data-i18n="footer_terms">Terms of Service</a>
