@@ -43,8 +43,9 @@ const i18n = {
       // Determine current page from URL
       const pathSegments = window.location.pathname.split('/').filter(Boolean);
       let page = pathSegments.length ? pathSegments[pathSegments.length - 1].replace('.html', '') : 'index';
-      if (!page || page === '/') {
-        page = 'index';
+      if (!page || page === '/' || page === 'index') {
+        // For directory-style URLs (e.g. executive-agent/index.html), use the parent dir name
+        page = pathSegments.length >= 2 ? pathSegments[pathSegments.length - 2] : 'index';
       }
 
       // Load global translations
