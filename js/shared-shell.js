@@ -46,18 +46,18 @@
       home: `
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent/index.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `,
       marketing: `
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#how-it-works" data-i18n="nav_how_it_works">How It Works</a>
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent/index.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `,
       legal: `
         <a href="index.html#features" data-i18n="nav_features">Features</a>
         <a href="index.html#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent/index.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `
     };
 
