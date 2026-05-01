@@ -465,6 +465,9 @@ section:not(:last-child)::after {
     justify-content: space-between;
     align-items: center;
   }
+  .nav-links a.nav-executive {
+    color: #7c3aed !important;
+  }
   .nav-links a.btn-primary {
     display: inline-flex;
     justify-content: center;

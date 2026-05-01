@@ -46,15 +46,18 @@
       home: `
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="executive-agent/index.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `,
       marketing: `
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#how-it-works" data-i18n="nav_how_it_works">How It Works</a>
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="executive-agent/index.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `,
       legal: `
         <a href="index.html#features" data-i18n="nav_features">Features</a>
         <a href="index.html#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="executive-agent/index.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `
     };
 
@@ -65,7 +68,6 @@
             <div class="container nav-container">
               ${logo}
               ${languageSwitcher}
-              <div class="social-icons-header-wrapper">${socialIcons}</div>
               <button class="btn-secondary mobile-menu-btn" data-i18n-aria-label="nav_menu" aria-label="Menu">
                 <span class="hamburger-lines" aria-hidden="true">
                   <span></span>
