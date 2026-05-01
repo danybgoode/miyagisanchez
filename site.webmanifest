@@ -3,17 +3,17 @@
   "short_name": "Bonsai",
   "icons": [
     {
-      "src": "bonsai-logo-assets/favicon-32.png",
+      "src": "assets/brand/favicon-32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "bonsai-logo-assets/favicon-16.png",
+      "src": "assets/brand/favicon-16.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "bonsai-logo-assets/apple-touch-icon.png",
+      "src": "assets/brand/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }

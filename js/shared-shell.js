@@ -10,7 +10,7 @@
     const logo = `
       <a href="index.html" class="logo-link" aria-label="Bonsai home">
         <div class="logo">
-          <img src="bonsai-logo-white-assets/bonsai-logo-white.svg" class="logo-mark" alt="Bonsai">
+          <img src="assets/brand/bonsai-logo-white.svg" class="logo-mark" alt="Bonsai">
         </div>
       </a>
     `;
@@ -25,19 +25,19 @@
     const socialIcons = `
       <div class="social-icons">
         <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Facebook">
-          <img src="social_media/icons8-facebook-64.png" alt="Facebook" class="social-icon-img">
+          <img src="assets/social/icons8-facebook-64.png" alt="Facebook" class="social-icon-img">
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
-          <img src="social_media/icons8-instagram-64.png" alt="Instagram" class="social-icon-img">
+          <img src="assets/social/icons8-instagram-64.png" alt="Instagram" class="social-icon-img">
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="TikTok">
-          <img src="social_media/icons8-tiktok-64.png" alt="TikTok" class="social-icon-img">
+          <img src="assets/social/icons8-tiktok-64.png" alt="TikTok" class="social-icon-img">
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Twitter">
-          <img src="social_media/icons8-twitter-bird-64.png" alt="Twitter" class="social-icon-img">
+          <img src="assets/social/icons8-twitter-bird-64.png" alt="Twitter" class="social-icon-img">
         </a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="WhatsApp">
-          <img src="social_media/icons8-whatsapp-64.png" alt="WhatsApp" class="social-icon-img">
+          <img src="assets/social/icons8-whatsapp-64.png" alt="WhatsApp" class="social-icon-img">
         </a>
       </div>
     `;
