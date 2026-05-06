@@ -24,19 +24,19 @@
 
     const socialIcons = `
       <div class="social-icons">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Facebook">
+        <a href="https://www.facebook.com/people/Despacho-Bonsai/61572082478661/" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Facebook">
           <img src="assets/social/icons8-facebook-64.png" alt="Facebook" class="social-icon-img">
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
+        <a href="https://www.instagram.com/miyagi_sanchez" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Instagram">
           <img src="assets/social/icons8-instagram-64.png" alt="Instagram" class="social-icon-img">
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="TikTok">
+        <a href="https://www.tiktok.com/@miyagi_sanchez" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="TikTok">
           <img src="assets/social/icons8-tiktok-64.png" alt="TikTok" class="social-icon-img">
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Twitter">
+        <a href="https://x.com/miyagi_sanchez" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="Twitter">
           <img src="assets/social/icons8-twitter-bird-64.png" alt="Twitter" class="social-icon-img">
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="WhatsApp">
+        <a href="https://wa.me/525599629166?text=Hola%2C%20me%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Despacho%20Bonsai%3F" target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label="WhatsApp">
           <img src="assets/social/icons8-whatsapp-64.png" alt="WhatsApp" class="social-icon-img">
         </a>
       </div>
