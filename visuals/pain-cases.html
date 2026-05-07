@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Despacho Bonsai - Pain Cases</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: transparent;
+      color: #172033;
+      overflow: hidden;
+    }
+
+    .scene {
+      height: 100vh;
+      min-height: 800px;
+      padding: 14px;
+    }
+
+    .visual-stage {
+      height: 100%;
+      display: grid;
+      grid-template-rows: 318px 42px minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .pane {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.64);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 24% 12%, rgba(255, 255, 255, 0.78), transparent 46%),
+        linear-gradient(145deg, #f8fbff, #eef4ff 54%, #f7f0ff);
+      box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.72),
+        inset 4px 4px 14px rgba(255, 255, 255, 0.42),
+        inset -4px -4px 14px rgba(38, 54, 85, 0.10),
+        0 6px 0 rgba(184, 191, 205, 0.82),
+        0 18px 30px rgba(23, 32, 51, 0.13);
+    }
+
+    .chat-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(111, 132, 171, 0.16);
+      background: rgba(255, 255, 255, 0.34);
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #8fbaff, #2f83e5);
+      box-shadow:
+        inset 0 3px 0 rgba(255, 255, 255, 0.52),
+        0 4px 10px rgba(47, 131, 229, 0.24);
+      flex: 0 0 auto;
+    }
+
+    .avatar img {
+      width: 22px;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.24));
+    }
+
+    .agent-name {
+      font-size: 13px;
+      font-weight: 850;
+      color: #22304e;
+    }
+
+    .agent-state {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+      color: #3d7f56;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .agent-state::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.72);
+    }
+
+    .messages {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .message-row {
+      display: flex;
+      opacity: 0;
+      transform: translateY(12px) scale(0.96);
+    }
+
+    .message-row.customer {
+      justify-content: flex-end;
+    }
+
+    .message-row.agent {
+      justify-content: flex-start;
+    }
+
+    .bubble {
+      max-width: 82%;
+      padding: 11px 15px;
+      border-radius: 18px;
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.28;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      box-shadow:
+        inset 0 3px 0 rgba(255, 255, 255, 0.54),
+        0 5px 12px rgba(23, 32, 51, 0.13);
+    }
+
+    .customer .bubble {
+      border-bottom-right-radius: 6px;
+      color: #fff;
+      background: linear-gradient(145deg, #6fa9ff, #2f83e5);
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .agent .bubble {
+      border-bottom-left-radius: 6px;
+      color: #22304e;
+      background: linear-gradient(145deg, #fff, #edf4ff);
+    }
+
+    .typing {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      padding: 12px 15px;
+      border-radius: 18px 18px 18px 6px;
+      background: linear-gradient(145deg, #fff, #edf4ff);
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      box-shadow:
+        inset 0 3px 0 rgba(255, 255, 255, 0.54),
+        0 5px 12px rgba(23, 32, 51, 0.13);
+    }
+
+    .typing span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(47, 131, 229, 0.48);
+      animation: dot 0.8s ease-in-out infinite alternate;
+    }
+
+    .typing span:nth-child(2) {
+      animation-delay: 0.12s;
+    }
+
+    .typing span:nth-child(3) {
+      animation-delay: 0.24s;
+    }
+
+    .flow {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .flow::before {
+      content: "";
+      width: 3px;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, rgba(47, 131, 229, 0), rgba(47, 131, 229, 0.62), rgba(47, 131, 229, 0));
+      opacity: 0;
+      transform: scaleY(0.1);
+      transform-origin: top;
+    }
+
+    .flow-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #2f83e5;
+      box-shadow: 0 0 0 6px rgba(47, 131, 229, 0.16), 0 0 18px rgba(47, 131, 229, 0.34);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    .tools-grid {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .tool-card {
+      min-height: 0;
+      padding: 18px;
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      min-width: 0;
+    }
+
+    .tool-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      background: linear-gradient(145deg, var(--accent-light), var(--accent));
+      box-shadow:
+        inset 0 3px 0 rgba(255, 255, 255, 0.42),
+        0 5px 10px color-mix(in srgb, var(--accent) 25%, transparent);
+      flex: 0 0 auto;
+    }
+
+    .tool-name {
+      min-width: 0;
+    }
+
+    .tool-name strong,
+    .result-title {
+      display: block;
+      color: #22304e;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .tool-name span {
+      display: block;
+      margin-top: 2px;
+      color: #687895;
+      font-size: 10.5px;
+      font-weight: 750;
+    }
+
+    .status-pill {
+      margin-left: auto;
+      padding: 4px 9px;
+      border-radius: 999px;
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 13%, white);
+      font-size: 10px;
+      font-weight: 850;
+      white-space: nowrap;
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.62);
+    }
+
+    .tool-body {
+      display: grid;
+      gap: 10px;
+    }
+
+    .tool-row,
+    .result-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      min-height: 40px;
+      padding: 10px 12px;
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(114, 128, 153, 0.12);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.52);
+    }
+
+    .tool-row.hit {
+      background: color-mix(in srgb, var(--accent) 12%, white);
+      border-color: color-mix(in srgb, var(--accent) 30%, white);
+    }
+
+    .tool-row span,
+    .result-row span {
+      min-width: 0;
+      color: #22304e;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.22;
+    }
+
+    .tool-row em,
+    .result-row em {
+      color: var(--accent);
+      font-style: normal;
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .result-card {
+      padding: 18px;
+      opacity: 0;
+      transform: translateY(18px) scale(0.97);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result-title {
+      margin-bottom: 12px;
+    }
+
+    .result-rows {
+      display: grid;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .send-row {
+      margin-top: 14px;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      color: #fff;
+      background: linear-gradient(145deg, var(--accent-light), var(--accent));
+      box-shadow:
+        inset 0 3px 0 rgba(255, 255, 255, 0.26),
+        0 5px 0 color-mix(in srgb, var(--accent) 72%, #0f172a),
+        0 14px 20px color-mix(in srgb, var(--accent) 18%, transparent);
+      font-size: 12px;
+      font-weight: 900;
+      opacity: 0;
+      transform: scale(0.92);
+    }
+
+    .case-product {
+      --accent: #19a463;
+      --accent-light: #5ee79a;
+    }
+
+    .case-policy {
+      --accent: #8b5cf6;
+      --accent-light: #c4b5fd;
+    }
+
+    .case-order {
+      --accent: #2f83e5;
+      --accent-light: #7ab6ff;
+    }
+
+    .case-demo {
+      --accent: #f97316;
+      --accent-light: #fdba74;
+    }
+
+    .visual-stage.is-playing .m1 {
+      animation: pop 0.46s 0.25s cubic-bezier(.2,1.45,.36,1) forwards;
+    }
+
+    .visual-stage.is-playing .typing-row {
+      animation: pop 0.34s 1.1s ease forwards, fadeOut 0.22s 2.25s ease forwards;
+    }
+
+    .visual-stage.is-playing .m2 {
+      animation: pop 0.46s 2.42s cubic-bezier(.2,1.45,.36,1) forwards;
+    }
+
+    .visual-stage.is-playing .flow::before {
+      animation: flowLine 0.66s 3.0s ease forwards;
+    }
+
+    .visual-stage.is-playing .flow-dot {
+      animation: dotPop 0.38s 3.28s ease forwards;
+    }
+
+    .visual-stage.is-playing .main-tool {
+      animation: toolIn 0.56s 3.42s cubic-bezier(.2,1.24,.36,1) forwards;
+    }
+
+    .visual-stage.is-playing .result-card {
+      animation: toolIn 0.56s 4.05s cubic-bezier(.2,1.24,.36,1) forwards;
+    }
+
+    .visual-stage.is-playing .send-row {
+      animation: sendPop 0.42s 4.78s cubic-bezier(.2,1.5,.36,1) forwards;
+    }
+
+    .visual-stage.is-playing .m3 {
+      animation: pop 0.46s 5.15s cubic-bezier(.2,1.45,.36,1) forwards;
+    }
+
+    @keyframes pop {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toolIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes sendPop {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateY(6px) scale(0.96);
+      }
+    }
+
+    @keyframes dot {
+      to {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes flowLine {
+      to {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes dotPop {
+      70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.12);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .scene {
+        min-height: 840px;
+        padding: 10px;
+      }
+
+      .visual-stage {
+        grid-template-rows: 304px 34px minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-card,
+      .result-card {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div id="stage" class="visual-stage case-product"></div>
+  </div>
+
+  <script>
+    const COPY = {
+      en: {
+        connected: 'Connected',
+        active: 'Active now',
+        sent: 'Reply sent',
+        product: {
+          customer: 'Do you have this in medium?',
+          thinking: 'Checking the store now',
+          agent: 'Yes. Green medium is in stock.',
+          toolTitle: 'Shopify catalog',
+          toolSub: 'Products and inventory',
+          icon: 'S',
+          rows: [
+            ['Ribbed tee', 'Product'],
+            ['Green / Medium', 'In stock'],
+            ['Ships today', 'Ready'],
+          ],
+          resultTitle: 'Answer uses live store context',
+          results: [
+            ['Variant matched', 'Green M'],
+            ['Inventory checked', '14 left'],
+            ['Channel ready', 'WhatsApp'],
+          ],
+          final: 'Added size, color, and shipping details.'
+        },
+        policy: {
+          customer: 'Can I return it if it does not fit?',
+          thinking: 'Checking store policies',
+          agent: 'Yes. Returns are open for 30 days.',
+          toolTitle: 'Store policies',
+          toolSub: 'Returns, shipping, invoices',
+          icon: 'P',
+          rows: [
+            ['Returns window', '30 days'],
+            ['Condition', 'Unused'],
+            ['Refund method', 'Original'],
+          ],
+          resultTitle: 'Policy answer assembled',
+          results: [
+            ['Return terms', 'Included'],
+            ['Next step', 'Label link'],
+            ['Tone', 'Helpful'],
+          ],
+          final: 'Clear policy answer, no team handoff.'
+        },
+        order: {
+          customer: 'Where is order #1048?',
+          thinking: 'Looking up the order',
+          agent: 'It is out for delivery today.',
+          toolTitle: 'Shopify orders',
+          toolSub: 'Status and fulfillment',
+          icon: '#',
+          rows: [
+            ['Order #1048', 'Found'],
+            ['Fulfillment', 'Shipped'],
+            ['Carrier ETA', 'Today'],
+          ],
+          resultTitle: 'Customer update ready',
+          results: [
+            ['Tracking status', 'Live'],
+            ['Delivery window', 'Today'],
+            ['Escalation', 'None'],
+          ],
+          final: 'Order status answered with tracking context.'
+        },
+        demo: {
+          customer: 'Can I book a demo?',
+          thinking: 'Checking calendar and CRM',
+          agent: 'Tomorrow at 2 PM is open.',
+          toolTitle: 'Google Calendar',
+          toolSub: 'Availability',
+          icon: 'G',
+          rows: [
+            ['10 AM', 'Busy'],
+            ['2 PM', 'Open'],
+            ['Demo booked', 'New'],
+          ],
+          resultTitle: 'HubSpot updated',
+          results: [
+            ['Contact created', 'Lead'],
+            ['Deal stage', 'Inbound'],
+            ['Owner notified', 'Sales'],
+          ],
+          final: 'Meeting booked and lead created.'
+        },
+      },
+      es: {
+        connected: 'Conectado',
+        active: 'Activo ahora',
+        sent: 'Respuesta enviada',
+        product: {
+          customer: '¿Lo tienen en mediana?',
+          thinking: 'Revisando la tienda',
+          agent: 'Sí. El verde mediano está disponible.',
+          toolTitle: 'Catálogo Shopify',
+          toolSub: 'Productos e inventario',
+          icon: 'S',
+          rows: [
+            ['Playera ribbed', 'Producto'],
+            ['Verde / Mediana', 'Disponible'],
+            ['Sale hoy', 'Listo'],
+          ],
+          resultTitle: 'Respuesta con contexto real',
+          results: [
+            ['Variante encontrada', 'Verde M'],
+            ['Inventario revisado', '14 quedan'],
+            ['Canal listo', 'WhatsApp'],
+          ],
+          final: 'Incluye talla, color y envío.'
+        },
+        policy: {
+          customer: '¿Lo puedo devolver si no me queda?',
+          thinking: 'Revisando políticas',
+          agent: 'Sí. Tienes 30 días para devolverlo.',
+          toolTitle: 'Políticas de tienda',
+          toolSub: 'Devoluciones, envíos, facturas',
+          icon: 'P',
+          rows: [
+            ['Ventana de devolución', '30 días'],
+            ['Condición', 'Sin uso'],
+            ['Reembolso', 'Original'],
+          ],
+          resultTitle: 'Respuesta de política lista',
+          results: [
+            ['Términos', 'Incluidos'],
+            ['Siguiente paso', 'Etiqueta'],
+            ['Tono', 'Útil'],
+          ],
+          final: 'Respuesta clara sin escalar al equipo.'
+        },
+        order: {
+          customer: '¿Dónde va mi pedido #1048?',
+          thinking: 'Buscando el pedido',
+          agent: 'Va en camino y llega hoy.',
+          toolTitle: 'Pedidos Shopify',
+          toolSub: 'Estatus y fulfillment',
+          icon: '#',
+          rows: [
+            ['Pedido #1048', 'Encontrado'],
+            ['Fulfillment', 'Enviado'],
+            ['ETA paquetería', 'Hoy'],
+          ],
+          resultTitle: 'Actualización lista',
+          results: [
+            ['Tracking', 'En vivo'],
+            ['Entrega', 'Hoy'],
+            ['Escalación', 'No'],
+          ],
+          final: 'Estatus respondido con tracking.'
+        },
+        demo: {
+          customer: '¿Puedo agendar una demo?',
+          thinking: 'Revisando calendario y CRM',
+          agent: 'Mañana a las 2 PM está libre.',
+          toolTitle: 'Google Calendar',
+          toolSub: 'Disponibilidad',
+          icon: 'G',
+          rows: [
+            ['10 AM', 'Ocupado'],
+            ['2 PM', 'Libre'],
+            ['Demo agendada', 'Nuevo'],
+          ],
+          resultTitle: 'HubSpot actualizado',
+          results: [
+            ['Contacto creado', 'Lead'],
+            ['Etapa', 'Inbound'],
+            ['Owner avisado', 'Ventas'],
+          ],
+          final: 'Reunión agendada y lead creado.'
+        },
+      },
+    };
+
+    const stage = document.getElementById('stage');
+    let currentCase = 'product';
+    let currentLang = localStorage.getItem('selected_language') === 'es' ? 'es' : 'en';
+
+    function renderRows(rows, hitIndex = 1) {
+      return rows.map((row, index) => `
+        <div class="tool-row ${index === hitIndex ? 'hit' : ''}">
+          <span>${row[0]}</span>
+          <em>${row[1]}</em>
+        </div>
+      `).join('');
+    }
+
+    function renderResultRows(rows) {
+      return rows.map(row => `
+        <div class="result-row">
+          <span>${row[0]}</span>
+          <em>${row[1]}</em>
+        </div>
+      `).join('');
+    }
+
+    function render() {
+      const globalCopy = COPY[currentLang] || COPY.en;
+      const item = globalCopy[currentCase] || globalCopy.product;
+
+      document.documentElement.lang = currentLang;
+      stage.className = `visual-stage case-${currentCase}`;
+      stage.innerHTML = `
+        <section class="pane chat-panel">
+          <div class="chat-head">
+            <div class="avatar">
+              <img src="../assets/brand/bonsai-logo-white.svg" alt="" />
+            </div>
+            <div>
+              <div class="agent-name">Bonsai Agent</div>
+              <div class="agent-state">${globalCopy.active}</div>
+            </div>
+          </div>
+          <div class="messages">
+            <div class="message-row customer m1">
+              <div class="bubble">${item.customer}</div>
+            </div>
+            <div class="message-row agent typing-row">
+              <div class="typing" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="message-row agent m2">
+              <div class="bubble">${item.agent}</div>
+            </div>
+            <div class="message-row customer m3">
+              <div class="bubble">${item.final}</div>
+            </div>
+          </div>
+        </section>
+        <div class="flow" aria-hidden="true"><span class="flow-dot"></span></div>
+        <section class="tools-grid">
+          <div class="pane tool-card main-tool">
+            <div class="tool-head">
+              <div class="tool-icon">${item.icon}</div>
+              <div class="tool-name">
+                <strong>${item.toolTitle}</strong>
+                <span>${item.toolSub}</span>
+              </div>
+              <div class="status-pill">${globalCopy.connected}</div>
+            </div>
+            <div class="tool-body">${renderRows(item.rows)}</div>
+          </div>
+          <div class="pane result-card">
+            <strong class="result-title">${item.resultTitle}</strong>
+            <div class="result-rows">${renderResultRows(item.results)}</div>
+            <div class="send-row">${globalCopy.sent}</div>
+          </div>
+        </section>
+      `;
+
+      requestAnimationFrame(() => {
+        stage.classList.add('is-playing');
+      });
+    }
+
+    window.addEventListener('message', event => {
+      if (event.data?.type === 'bonsai:set-language') {
+        currentLang = event.data.lang === 'es' ? 'es' : 'en';
+        render();
+      }
+
+      if (event.data?.type === 'bonsai:set-pain-case') {
+        currentCase = ['product', 'policy', 'order', 'demo'].includes(event.data.case)
+          ? event.data.case
+          : 'product';
+        render();
+      }
+    });
+
+    window.addEventListener('storage', event => {
+      if (event.key === 'selected_language') {
+        currentLang = event.newValue === 'es' ? 'es' : 'en';
+        render();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>

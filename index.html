@@ -222,7 +222,7 @@
         <section id="hero" class="hero-section container">
             <div class="split-hero">
                 <div class="hero-content">
-                    <h1 class="hero-title" data-i18n="hero_title">If you sell online, you already know.</h1>
+                    <h1 class="hero-title" data-i18n="hero_title">If you sell online, you already know</h1>
                     <p class="hero-subtitle text-muted" data-i18n="hero_subtitle">Customers on every channel at all hours. A business to run on top of that. There's an AI for both — and it starts free.</p>
                     <div>
                         <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" id="hero-cta-button" data-i18n="hero_cta_free">Start free — no card</a>
@@ -238,11 +238,6 @@
                                 <div style="width:14px;height:14px;border-radius:50%;background:#20d472;" class="db-top-dot"></div>
                                 <div style="width:14px;height:14px;border-radius:50%;background:#fac827;" class="db-top-dot"></div>
                                 <div style="width:14px;height:14px;border-radius:50%;background:#53a1ff;" class="db-top-dot"></div>
-                            </div>
-                            <div class="db-top-badge" style="padding:6px 18px;border-radius:100px;" id="top-badge">
-                                <span style="font-size:11px;font-weight:800;color:#54627a;letter-spacing:0.16em;text-transform:uppercase;font-family:'Inter',sans-serif;" data-i18n="hero_visual_badge">
-                                    MESSAGES FROM EVERYWHERE
-                                </span>
                             </div>
                         </div>
 
@@ -348,39 +343,40 @@
             </div>
         </section>
 
-        <!-- Two pains two products section -->
+        <!-- Pain section -->
         <section id="pain" class="container pain-section">
-            <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="pain_title">Here's what we mean.</h2>
+            <div class="section-header pain-redesign-header">
+                <h2 class="section-title text-on-dark" data-i18n="pain_section_title">Here's what we mean</h2>
             </div>
-            <div class="grid-2 pain-grid">
-                <div class="pain-pair">
-                    <div class="card pain-card">
-                        <p class="card-text pain-copy" data-i18n="pain_1_problem">Customers message on 6 channels at all hours. Someone has to reply.</p>
-                        <p class="card-text" style="margin-top: 12px;" data-i18n="pain_1_solution">Your AI agent does. Across WhatsApp, Instagram, Facebook, email, and more — instantly, 24/7.</p>
-                    </div>
-                    <div class="pain-visual-shell">
-                        <iframe
-                            class="pain-visual-frame pain-visual-frame-booking"
-                            src="visuals/features-bookingnotext.html"
-                            title="AI agent booking visual"
-                            data-visual-locale-frame
-                            loading="lazy"></iframe>
+            <div class="pain-redesign-layout">
+                <div class="pain-redesign-copy">
+                    <div class="use-case-grid">
+                        <button type="button" class="card use-case-card pain-case-trigger is-active" data-pain-case="product" aria-pressed="true" aria-controls="pain-case-frame">
+                            <h3 class="card-title" data-i18n="use_case_1_title">“Do you have this in my size?”</h3>
+                            <p class="card-text" data-i18n="use_case_1_desc">Answer product questions with real store context.</p>
+                        </button>
+                        <button type="button" class="card use-case-card pain-case-trigger" data-pain-case="policy" aria-pressed="false" aria-controls="pain-case-frame">
+                            <h3 class="card-title" data-i18n="use_case_2_title">“Can I return it?”</h3>
+                            <p class="card-text" data-i18n="use_case_2_desc">Handle shipping, returns, payments, invoices, and store hours.</p>
+                        </button>
+                        <button type="button" class="card use-case-card pain-case-trigger" data-pain-case="order" aria-pressed="false" aria-controls="pain-case-frame">
+                            <h3 class="card-title" data-i18n="use_case_3_title">“Where is my order?”</h3>
+                            <p class="card-text" data-i18n="use_case_3_desc">Keep customers updated without making your team chase the thread.</p>
+                        </button>
+                        <button type="button" class="card use-case-card pain-case-trigger" data-pain-case="demo" aria-pressed="false" aria-controls="pain-case-frame">
+                            <h3 class="card-title" data-i18n="use_case_4_title">“Can I book a demo?”</h3>
+                            <p class="card-text" data-i18n="use_case_4_desc">Schedule the meeting, create the lead, and hand your team the context.</p>
+                        </button>
                     </div>
                 </div>
-                <div class="pain-pair">
-                    <div class="card pain-card">
-                        <p class="card-text pain-copy" data-i18n="pain_2_problem">Running the business means checking Analytics, updating socials, following up in HubSpot. Every day.</p>
-                        <p class="card-text" style="margin-top: 12px;" data-i18n="pain_2_solution">Ask your personal agent. One conversation handles all of it — no tab-switching required.</p>
-                        <div class="pain-card-actions">
-                            <a href="executive-agent.html" class="btn-purple" data-i18n="pain_2_cta">Meet the executive agent</a>
-                        </div>
-                    </div>
-                    <div class="pain-visual-shell pain-visual-shell-dark">
+
+                <div class="pain-proof">
+                    <div class="pain-visual-shell">
                         <iframe
-                            class="pain-visual-frame pain-visual-frame-social"
-                            src="visuals/features-socialnotext.html"
-                            title="Personal agent social scheduling visual"
+                            id="pain-case-frame"
+                            class="pain-visual-frame pain-visual-frame-cases"
+                            src="visuals/pain-cases.html"
+                            title="AI agent handling customer questions"
                             data-visual-locale-frame
                             loading="lazy"></iframe>
                     </div>
@@ -391,7 +387,7 @@
         <!-- Features Section — Support Agent -->
         <section id="features" class="container">
             <div class="section-header">
-                <h2 class="section-title text-on-dark" data-i18n="support_section_title">Your customers, handled.</h2>
+                <h2 class="section-title text-on-dark" data-i18n="support_section_title">Your customers, handled</h2>
                 <p class="text-muted" data-i18n="support_section_subtitle">80% of customer questions are always the same. The agent handles those. You handle the other 20%.</p>
             </div>
             <div class="feature-pairs">
@@ -407,7 +403,7 @@
                                 <span class="panel-light amber"></span>
                                 <span class="panel-light blue"></span>
                             </div>
-                            <div class="visual-ribbon" data-i18n="feature_visual_1_incoming">Entran por todos lados</div>
+                          
                             <div class="inbox-flow">
                                 <div class="feed-stack">
                                     <div class="feed-card whatsapp">
@@ -463,7 +459,7 @@
                                 <span class="panel-light amber"></span>
                                 <span class="panel-light blue"></span>
                             </div>
-                            <div class="visual-ribbon" data-i18n="feature_visual_2_rules">Tu criterio, en automático</div>
+                            
                             <div class="agent-router">
                                 <div class="router-intake">
                                     <span class="router-tag" data-i18n="feature_visual_2_tag_1">precio</span>
@@ -501,7 +497,7 @@
                                 <span class="panel-light amber"></span>
                                 <span class="panel-light blue"></span>
                             </div>
-                            <div class="visual-ribbon" data-i18n="feature_visual_3_ribbon">Tu equipo ve lo mismo</div>
+                            
                             <div class="team-workflow">
                                 <div class="workflow-column">
                                     <span class="workflow-heading" data-i18n="feature_visual_3_assign">Asignar</span>
@@ -530,35 +526,65 @@
             </div>
         </section>
 
+         <!-- Shopify Section -->
+        <section id="shopify" class="container shopify-section">
+            <div class="section-header shopify-redesign-header">
+                <h2 class="section-title text-on-dark" data-i18n="shopify_section_title">Ecommerce expert</h2>
+            </div>
+            <div class="shopify-redesign-card card">
+                <div class="shopify-redesign-copy">
+                    <h3 class="card-title shopify-card-title" data-i18n="shopify_title">Answers with store context</h3>
+                    <p class="card-text" data-i18n="shopify_description">Connect Shopify so customers can ask about products, policies, inventory, and orders from any channel.</p>
+                </div>
+                <figure class="shopify-visual" aria-hidden="true">
+                    <div class="shopify-window">
+                        <div class="shopify-url-row">
+                            <span data-i18n="shopify_visual_url_label">Store URL</span>
+                            <strong>tienda.myshopify.com</strong>
+                        </div>
+                        <div class="shopify-context-grid">
+                            <div class="shopify-context-card">
+                                <span data-i18n="shopify_visual_products">Products</span>
+                                <strong>1,248</strong>
+                            </div>
+                            <div class="shopify-context-card">
+                                <span data-i18n="shopify_visual_inventory">Inventory</span>
+                                <strong data-i18n="shopify_visual_live">Live</strong>
+                            </div>
+                            <div class="shopify-context-card">
+                                <span data-i18n="shopify_visual_orders">Orders</span>
+                                <strong>86</strong>
+                            </div>
+                        </div>
+                        <div class="shopify-answer-preview">
+                            <span class="answer-dot"></span>
+                            <p data-i18n="shopify_visual_answer">Yes, the green one is in stock. Shipping to CDMX usually takes 2-3 business days.</p>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
         <!-- Pricing Section -->
         <section id="pricing" class="container">
             <div class="section-header">
-                    <h2 class="section-title text-on-dark" data-i18n="pricing_title">One price. No surprises.</h2>
-                </div>
+                <h2 class="section-title text-on-dark" data-i18n="pricing_title">Choose your AI setup</h2>
+            </div>
             <div class="grid-3">
-                <!-- Personal Card -->
+                <!-- Pro Lite Card -->
                 <div class="card pricing-card">
-                    <div class="card-header" data-i18n="plan_personal_name">Personal</div>
-                    <div class="pricing-price" data-i18n="plan_personal_price">Free. Forever.</div>
-                    <div class="pricing-subline" data-i18n="plan_personal_subline">Bring your own Claude, ChatGPT, or Gemini.</div>
+                    <div class="card-header" data-i18n="plan_lite_name">Pro Lite</div>
+                    <div class="pricing-price" data-i18n="plan_lite_price">$99 MXN/mo</div>
+                    <div class="pricing-subline" data-i18n="plan_lite_subline">Use your own OpenAI or Gemini API key.</div>
                     <hr class="pricing-divider">
                     <ul class="pricing-features">
-                        <li data-i18n="plan_personal_feature_1">Executive agent connected to your tools</li>
-                        <li data-i18n="plan_personal_feature_2">Works on Claude, ChatGPT, and Gemini — desktop and mobile</li>
-                        <li data-i18n="plan_personal_feature_3">On-demand cross-tool reports via conversation</li>
-                        <li data-i18n="plan_personal_feature_4">No conversation limits. No credit card, ever.</li>
+                        <li data-i18n="plan_lite_feature_1">Support agents across WhatsApp, Instagram, Facebook, email, Telegram, and web</li>
+                        <li data-i18n="plan_lite_feature_2">Shopify-aware answers</li>
+                        <li data-i18n="plan_lite_feature_3">Unified inbox for your team and AI agent</li>
+                        <li data-i18n="plan_lite_feature_4">Bring your own OpenAI or Gemini key</li>
+                        <li data-i18n="plan_lite_feature_5">30 days free. No credit card.</li>
                     </ul>
-                    <div class="tool-logos-row">
-                        <div class="tool-logo-tile" aria-label="Google Calendar"><img src="assets/integrations/google-calendar-96.png" alt=""></div>
-                        <div class="tool-logo-tile" aria-label="HubSpot"><img src="assets/integrations/hubspot-96.png" alt=""></div>
-                        <div class="tool-logo-tile" aria-label="Buffer"><img src="assets/integrations/buffer-96.png" alt=""></div>
-                        <div class="tool-logo-tile" aria-label="Google Analytics"><img src="assets/integrations/google-analytics-96.png" alt=""></div>
-                    </div>
-                    <div class="tool-logos-label text-muted" data-i18n="plan_personal_tools_label">Connected tools</div>
-                    <div class="pricing-actions">
-                        <a href="https://dashboard.despachobonsai.com/sign-up?plan=personal" class="btn-secondary pricing-cta" data-i18n="cta_personal">Get started free</a>
-                        <a href="executive-agent.html" class="btn-purple" data-i18n="pain_2_cta">Meet the executive agent</a>
-                    </div>
+                    <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro-lite" class="btn-secondary pricing-cta" data-i18n="cta_lite">Start Pro Lite</a>
                 </div>
 
                 <!-- Pro Card -->
@@ -569,23 +595,12 @@
                     <div class="pricing-subline" data-i18n="plan_pro_subline">30 days free. No credit card.</div>
                     <hr class="pricing-divider">
                     <ul class="pricing-features">
-                        <li data-i18n="plan_pro_feature_1">Everything in Personal</li>
-                        <li data-i18n="plan_pro_feature_2">Support bots on WhatsApp, Instagram, Facebook, email, Telegram, and web</li>
-                        <li data-i18n="plan_pro_feature_3">Unified inbox — your team and the bot, one place</li>
-                        <li data-i18n="plan_pro_feature_4">Google Calendar and HubSpot for your bots</li>
+                        <li data-i18n="plan_pro_feature_1">Everything in Pro Lite</li>
+                        <li data-i18n="plan_pro_feature_2">Managed AI usage included</li>
+                        <li data-i18n="plan_pro_feature_3">Shopify, Google Calendar, and HubSpot for your bots</li>
+                        <li data-i18n="plan_pro_feature_4">Unified inbox for your team and AI agent</li>
                         <li data-i18n="plan_pro_feature_5">Priority support</li>
                     </ul>
-                    <div class="stat-block">
-                        <div class="stat-number" data-i18n="plan_pro_conversations_number">3,000</div>
-                        <div class="stat-label">
-                            <span data-i18n="plan_pro_conversations_label">AI-handled conversations / month</span>
-                            <div class="stat-tooltip-container">
-                                <span class="stat-tooltip-trigger">ⓘ</span>
-                                <div class="stat-tooltip" data-i18n="plan_pro_conversations_tooltip">We'll email you if you get close. We don't cut the bot off — we have a conversation about it.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stat-anchor text-muted" data-i18n="plan_pro_conversations_anchor">That's 100 conversations a day, every day of the month.</div>
                     <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary pricing-cta" data-i18n="cta_pro">Start free trial</a>
                 </div>
 
@@ -629,7 +644,7 @@
                 </div>
                 <div class="card-image-placeholder">
                     <div class="section-header">
-                        <h2 class="hero-title text-on-dark" data-i18n="cta_title">Your business doesn't stop. Your customer support shouldn't either.</h2>
+                        <h2 class="hero-title text-on-dark" data-i18n="cta_title">Your business doesn't stop. Your customer support shouldn't either</h2>
                         <div>
                             <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="hero_cta_free">Start free — no card</a>
                         </div>
@@ -716,6 +731,60 @@
               }, [], "+=0.18");
         }
         setTimeout(buildAndPlay, 500);
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const triggers = Array.from(document.querySelectorAll('.pain-case-trigger'));
+        const frame = document.getElementById('pain-case-frame');
+        if (!triggers.length || !frame) return;
+
+        let activeIndex = 0;
+        let userPauseUntil = 0;
+
+        function postToVisual(payload) {
+            try {
+                frame.contentWindow?.postMessage(payload, '*');
+            } catch (error) {
+                console.warn('Could not update pain visual', error);
+            }
+        }
+
+        function setActiveCase(index, userInitiated = false) {
+            activeIndex = index;
+            triggers.forEach((trigger, triggerIndex) => {
+                const isActive = triggerIndex === activeIndex;
+                trigger.classList.toggle('is-active', isActive);
+                trigger.setAttribute('aria-pressed', String(isActive));
+            });
+
+            postToVisual({
+                type: 'bonsai:set-pain-case',
+                case: triggers[activeIndex].dataset.painCase,
+            });
+
+            if (userInitiated) {
+                userPauseUntil = Date.now() + 12000;
+            }
+        }
+
+        triggers.forEach((trigger, index) => {
+            trigger.addEventListener('click', () => setActiveCase(index, true));
+            trigger.addEventListener('focus', () => setActiveCase(index, true));
+        });
+
+        frame.addEventListener('load', () => {
+            setActiveCase(activeIndex);
+            postToVisual({
+                type: 'bonsai:set-language',
+                lang: localStorage.getItem('selected_language') === 'es' ? 'es' : 'en',
+            });
+        });
+
+        window.setInterval(() => {
+            if (Date.now() < userPauseUntil) return;
+            setActiveCase((activeIndex + 1) % triggers.length);
+        }, 6500);
     });
     </script>
     <script>
