@@ -27,14 +27,14 @@
     .scene {
       height: 100vh;
       min-height: 800px;
-      padding: 14px;
+      padding: 12px;
     }
 
     .visual-stage {
       height: 100%;
       display: grid;
-      grid-template-rows: 318px 42px minmax(0, 1fr);
-      gap: 14px;
+      grid-template-rows: 282px 32px minmax(0, 1fr);
+      gap: 12px;
     }
 
     .pane {
@@ -62,7 +62,7 @@
       display: flex;
       align-items: center;
       gap: 11px;
-      padding: 16px 18px;
+      padding: 14px 16px;
       border-bottom: 1px solid rgba(111, 132, 171, 0.16);
       background: rgba(255, 255, 255, 0.34);
     }
@@ -116,7 +116,7 @@
       flex-direction: column;
       gap: 12px;
       justify-content: center;
-      padding: 18px;
+      padding: 14px 16px;
     }
 
     .message-row {
@@ -135,7 +135,7 @@
 
     .bubble {
       max-width: 82%;
-      padding: 11px 15px;
+      padding: 10px 14px;
       border-radius: 18px;
       font-size: 14px;
       font-weight: 750;
@@ -163,7 +163,7 @@
       display: inline-flex;
       gap: 5px;
       align-items: center;
-      padding: 12px 15px;
+      padding: 10px 14px;
       border-radius: 18px 18px 18px 6px;
       background: linear-gradient(145deg, #fff, #edf4ff);
       border: 1px solid rgba(255, 255, 255, 0.58);
@@ -223,12 +223,12 @@
       min-height: 0;
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
 
     .tool-card {
       min-height: 0;
-      padding: 18px;
+      padding: 16px;
       opacity: 0;
       transform: translateY(18px) scale(0.97);
       display: flex;
@@ -239,7 +239,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       min-width: 0;
     }
 
@@ -294,7 +294,7 @@
 
     .tool-body {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
 
     .tool-row,
@@ -303,8 +303,8 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 10px;
       align-items: center;
-      min-height: 40px;
-      padding: 10px 12px;
+      min-height: 36px;
+      padding: 9px 11px;
       border-radius: 13px;
       background: rgba(255, 255, 255, 0.56);
       border: 1px solid rgba(114, 128, 153, 0.12);
@@ -335,7 +335,7 @@
     }
 
     .result-card {
-      padding: 18px;
+      padding: 16px;
       opacity: 0;
       transform: translateY(18px) scale(0.97);
       display: flex;
@@ -343,18 +343,18 @@
     }
 
     .result-title {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .result-rows {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       flex: 1;
     }
 
     .send-row {
-      margin-top: 14px;
-      min-height: 46px;
+      margin-top: 12px;
+      min-height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -479,29 +479,27 @@
       }
     }
 
-    @media (max-width: 560px) {
-      .scene {
-        min-height: 840px;
-        padding: 10px;
-      }
+    body.layout-mobile .scene {
+      min-height: 840px;
+      padding: 10px;
+    }
 
-      .visual-stage {
-        grid-template-rows: 304px 34px minmax(0, 1fr);
-        gap: 10px;
-      }
+    body.layout-mobile .visual-stage {
+      grid-template-rows: 304px 34px minmax(0, 1fr);
+      gap: 10px;
+    }
 
-      .tools-grid {
-        grid-template-columns: 1fr;
-      }
+    body.layout-mobile .tools-grid {
+      grid-template-columns: 1fr;
+    }
 
-      .tool-card,
-      .result-card {
-        padding: 15px;
-      }
+    body.layout-mobile .tool-card,
+    body.layout-mobile .result-card {
+      padding: 15px;
     }
   </style>
 </head>
-<body>
+<body class="layout-desktop">
   <div class="scene">
     <div id="stage" class="visual-stage case-product"></div>
   </div>
@@ -683,6 +681,12 @@
     const stage = document.getElementById('stage');
     let currentCase = 'product';
     let currentLang = localStorage.getItem('selected_language') === 'es' ? 'es' : 'en';
+    let currentLayout = 'desktop';
+
+    function applyLayout() {
+      document.body.classList.toggle('layout-mobile', currentLayout === 'mobile');
+      document.body.classList.toggle('layout-desktop', currentLayout !== 'mobile');
+    }
 
     function renderRows(rows, hitIndex = 1) {
       return rows.map((row, index) => `
@@ -774,6 +778,11 @@
           : 'product';
         render();
       }
+
+      if (event.data?.type === 'bonsai:set-pain-layout') {
+        currentLayout = event.data.layout === 'mobile' ? 'mobile' : 'desktop';
+        applyLayout();
+      }
     });
 
     window.addEventListener('storage', event => {
@@ -783,6 +792,7 @@
       }
     });
 
+    applyLayout();
     render();
   </script>
 </body>

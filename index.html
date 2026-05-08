@@ -750,7 +750,21 @@
             }
         }
 
+        function syncPainVisualLayout() {
+            postToVisual({
+                type: 'bonsai:set-pain-layout',
+                layout: window.matchMedia('(max-width: 768px)').matches ? 'mobile' : 'desktop',
+            });
+        }
+
         function setActiveCase(index, userInitiated = false) {
+            if (index === activeIndex) {
+                if (userInitiated) {
+                    userPauseUntil = Date.now() + 12000;
+                }
+                return;
+            }
+
             activeIndex = index;
             triggers.forEach((trigger, triggerIndex) => {
                 const isActive = triggerIndex === activeIndex;
@@ -770,16 +784,21 @@
 
         triggers.forEach((trigger, index) => {
             trigger.addEventListener('click', () => setActiveCase(index, true));
-            trigger.addEventListener('focus', () => setActiveCase(index, true));
         });
 
         frame.addEventListener('load', () => {
-            setActiveCase(activeIndex);
+            syncPainVisualLayout();
+            postToVisual({
+                type: 'bonsai:set-pain-case',
+                case: triggers[activeIndex].dataset.painCase,
+            });
             postToVisual({
                 type: 'bonsai:set-language',
                 lang: localStorage.getItem('selected_language') === 'es' ? 'es' : 'en',
             });
         });
+
+        window.addEventListener('resize', syncPainVisualLayout);
 
         window.setInterval(() => {
             if (Date.now() < userPauseUntil) return;

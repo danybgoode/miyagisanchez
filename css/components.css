@@ -138,6 +138,9 @@
   gap: 24px 16px;
 }
 .use-case-card {
+  --case-edge: rgba(184, 188, 202, 0.92);
+  --case-shadow: rgba(0, 0, 0, 0.10);
+  --case-active: rgba(47, 131, 229, 0.68);
   appearance: none;
   width: 100%;
   font: inherit;
@@ -147,35 +150,97 @@
   min-height: 206px;
   padding: 22px 20px;
   margin-bottom: 0;
+  background:
+    radial-gradient(ellipse at 24% 12%, rgba(255,255,255,0.86), transparent 48%),
+    linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(239,242,247,0.96));
+  border-color: rgba(215, 216, 222, 0.96);
+  box-shadow:
+    inset 0 5px 0 rgba(255,255,255,0.80),
+    inset 4px 4px 12px rgba(255,255,255,0.48),
+    inset -4px -4px 12px rgba(0,0,0,0.05),
+    0 6px 0 var(--case-edge),
+    0 16px 22px var(--case-shadow);
+  transform: translateY(0);
+  touch-action: manipulation;
+  will-change: transform, box-shadow;
   transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background 180ms ease;
+    transform 260ms cubic-bezier(0.22, 0.9, 0.24, 1),
+    border-color 260ms ease,
+    box-shadow 260ms cubic-bezier(0.22, 0.9, 0.24, 1),
+    background 260ms ease,
+    filter 220ms ease;
 }
-.use-case-card:hover,
-.use-case-card:focus-visible {
+.use-case-card::before {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 24% 8%, rgba(255,255,255,0.46), transparent 58%),
+    linear-gradient(to bottom, rgba(255,255,255,0.13), transparent 44%);
+  opacity: 0.88;
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+.use-case-card::after {
+  content: '';
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(20, 34, 58, 0.08);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.36);
+  opacity: 0.72;
+  pointer-events: none;
+  transition: opacity 260ms ease;
+}
+.use-case-card:hover:not(.is-active) {
   transform: translateY(-2px);
+  filter: brightness(1.01);
+  box-shadow:
+    inset 0 5px 0 rgba(255,255,255,0.84),
+    inset 4px 4px 12px rgba(255,255,255,0.50),
+    inset -4px -4px 12px rgba(0,0,0,0.045),
+    0 8px 0 var(--case-edge),
+    0 20px 28px rgba(0,0,0,0.12);
 }
 .use-case-card:focus-visible {
   outline: 3px solid rgba(47, 131, 229, 0.28);
   outline-offset: 3px;
 }
+.use-case-card:active,
 .use-case-card.is-active {
-  border-color: rgba(47, 131, 229, 0.62);
+  transform: translateY(5px) scale(0.985);
+  border-color: var(--case-active);
   background:
-    linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(239,246,255,0.94));
+    radial-gradient(ellipse at 24% 10%, rgba(255,255,255,0.58), transparent 52%),
+    linear-gradient(to bottom, rgba(248,251,255,0.96), rgba(229,240,255,0.94));
   box-shadow:
-    inset 0 2px 3px rgba(255,255,255,0.82),
-    0 4px 0 rgba(47, 131, 229, 0.38),
-    0 14px 24px rgba(47, 131, 229, 0.16);
+    inset 0 2px 0 rgba(255,255,255,0.52),
+    inset 4px 6px 16px rgba(47, 131, 229, 0.12),
+    inset -3px -3px 10px rgba(255,255,255,0.38),
+    0 1px 0 rgba(47, 131, 229, 0.44),
+    0 7px 12px rgba(47, 131, 229, 0.12);
+}
+.use-case-card.is-active::before {
+  opacity: 0.58;
+  transform: translateY(2px);
+}
+.use-case-card.is-active::after {
+  opacity: 0.38;
 }
 .use-case-card .card-title {
+  position: relative;
+  z-index: 1;
   font-size: 18px;
   line-height: 1.22;
   margin-bottom: 10px;
 }
 .use-case-card .card-text {
+  position: relative;
+  z-index: 1;
   margin-bottom: 0;
   font-size: 14px;
   line-height: 1.45;
@@ -192,10 +257,10 @@
 }
 .pain-proof .pain-visual-frame {
   height: auto;
-  min-height: max(100%, 836px);
+  min-height: max(100%, 920px);
 }
 .pain-visual-frame-cases {
-  height: 836px;
+  height: 920px;
 }
 .shopify-redesign-header {
   margin-bottom: 30px;
