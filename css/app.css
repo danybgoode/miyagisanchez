@@ -12,7 +12,6 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: var(--fw-black);
   color: var(--color-ink);
   line-height: var(--lh-display);
   letter-spacing: 0;
@@ -122,6 +121,7 @@ section:not(:last-child)::after {
 .nav-links { display: flex; gap: 4px; align-items: center; }
 .nav-links a { color: var(--color-ink); font-weight: var(--fw-semibold); font-size: 14px; padding: 7px 12px; border-radius: var(--radius-pill); transition: color var(--dur-hover) ease; }
 .nav-links a:hover { color: var(--color-primary); background: rgba(23,63,53,0.06); }
+.nav-links a.btn-primary { color: var(--color-primary-ink); }
 .mobile-menu-btn { display: none; font-size: 13px; padding: 6px 12px; align-items: center; justify-content: center; }
 .hamburger-lines { display: inline-flex; flex-direction: column; gap: 4px; }
 .hamburger-lines span { display: block; width: 18px; height: 2px; border-radius: 999px; background: currentColor; }
