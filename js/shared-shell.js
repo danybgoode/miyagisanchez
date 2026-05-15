@@ -88,7 +88,7 @@
               </button>
               <nav class="nav-links">
                 ${(navSets[shellNav] || navSets.marketing).trim()}
-                <a href="https://dashboard.despachobonsai.com/sign-up?plan=pro" class="btn-primary" data-i18n="nav_get_started">Get Started</a>
+                <a href="https://cal.com/miyagisan/bonsaitalk" class="glass-button glass-button-primary" target="_blank" rel="noopener noreferrer" data-i18n="nav_get_started">Book a call</a>
               </nav>
             </div>
           </header>
