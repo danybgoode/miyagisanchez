@@ -1,0 +1,229 @@
+/* ── Liquid Glass Booking Modal ──────────────────────────────────────────── */
+
+/* Freeze body scroll while modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Push the page behind the glass — scale + blur mimics depth/refraction */
+body.modal-open main {
+  transform: perspective(1400px) scale(0.96) translateY(10px);
+  filter: blur(1.5px) brightness(0.94);
+  transition:
+    transform 500ms cubic-bezier(0.22, 1.4, 0.36, 1),
+    filter 380ms ease;
+  will-change: transform, filter;
+}
+
+main {
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 300ms ease;
+}
+
+/* ── Full-screen overlay ── */
+.lg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(52px, 7svh, 80px) 1rem 2rem;
+  background: rgba(4, 12, 8, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.lg-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* The heavy-blur frosted layer — this IS the "liquid" material */
+.lg-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(38px) saturate(1.8) brightness(0.93);
+  -webkit-backdrop-filter: blur(38px) saturate(1.8) brightness(0.93);
+  z-index: -1;
+}
+
+/* ── Glass panel ── */
+.lg-panel {
+  position: relative;
+  width: min(calc(100% - 0rem), 740px);
+  max-height: calc(100svh - 80px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 28px;
+
+  /* Tinted glass background — slightly green-tinted to match brand */
+  background: linear-gradient(
+    158deg,
+    rgba(252, 255, 252, 0.86) 0%,
+    rgba(238, 248, 243, 0.78) 45%,
+    rgba(224, 240, 234, 0.72) 100%
+  );
+
+  /* Layered borders: bright top edge (specular), subtle sides */
+  border-top: 1px solid rgba(255, 255, 255, 0.92);
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  border-right: 1px solid rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+
+  /* The specular highlight + drop shadows */
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.95),   /* top inner highlight */
+    inset 2px 0 0 rgba(255, 255, 255, 0.45),    /* left inner highlight */
+    inset -2px 0 0 rgba(255, 255, 255, 0.3),    /* right inner highlight */
+    inset 0 -1px 0 rgba(255, 255, 255, 0.2),    /* bottom inner highlight */
+    0 2px 2px rgba(255, 255, 255, 0.55),        /* outer top glow */
+    0 24px 56px rgba(0, 0, 0, 0.26),
+    0 8px 20px rgba(0, 0, 0, 0.14),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+
+  /* Entry animation */
+  transform: translateY(-28px) scale(0.975);
+  opacity: 0;
+  transition:
+    transform 520ms cubic-bezier(0.22, 1.45, 0.36, 1),
+    opacity 300ms ease;
+}
+
+.lg-overlay.is-open .lg-panel {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* ── Refraction shimmer along the top edge ── */
+.lg-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.18) 40%,
+    transparent 100%
+  );
+  border-radius: 28px 28px 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle animated shimmer — the "liquid" movement */
+.lg-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.16) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: lg-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes lg-shimmer {
+  0%   { left: -60%; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+
+/* ── Close button ── */
+.lg-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(16, 20, 16, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: var(--color-muted);
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  font-family: inherit;
+  transition: background 150ms, color 150ms;
+  flex-shrink: 0;
+}
+
+.lg-close:hover {
+  background: rgba(16, 20, 16, 0.16);
+  color: var(--color-ink);
+}
+
+/* ── Cal.com container ── */
+.lg-cal-wrap {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+  position: relative;
+  z-index: 0;
+  /* Rounded bottom to match panel */
+  border-radius: 0 0 28px 28px;
+}
+
+#cal-inline {
+  width: 100%;
+  min-height: 580px;
+}
+
+/* Cal.com iframe fills container */
+#cal-inline iframe {
+  width: 100% !important;
+  border: 0 !important;
+  min-height: 580px !important;
+}
+
+/* ── Mobile adjustments ── */
+@media (max-width: 699px) {
+  .lg-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .lg-panel {
+    width: 100%;
+    max-height: 94svh;
+    border-radius: 24px 24px 0 0;
+    border-bottom: 0;
+    transform: translateY(40px) scale(0.99);
+  }
+
+  .lg-overlay.is-open .lg-panel {
+    transform: translateY(0) scale(1);
+  }
+
+  body.modal-open main {
+    transform: perspective(1400px) scale(0.98) translateY(4px);
+    filter: blur(1px) brightness(0.94);
+  }
+}

@@ -45,30 +45,24 @@
 
     const navSets = {
       bonsai: `
-        <a href="#bonsai-os">Bonsai OS</a>
+        <a href="bonsai-os.html">Bonsai OS</a>
         <a href="commerce.html">Commerce</a>
-        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `,
       home: `
-        <a href="#features" data-i18n="nav_features">Features</a>
-        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="bonsai-os.html">Bonsai OS</a>
+        <a href="commerce.html">Commerce</a>
       `,
       commerce: `
-        <a href="#features" data-i18n="nav_features">Features</a>
-        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="bonsai-os.html">Bonsai OS</a>
+        <a href="commerce.html">Commerce</a>
       `,
       marketing: `
-        <a href="#features" data-i18n="nav_features">Features</a>
-        <a href="#how-it-works" data-i18n="nav_how_it_works">How It Works</a>
-        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="bonsai-os.html">Bonsai OS</a>
+        <a href="commerce.html">Commerce</a>
       `,
       legal: `
-        <a href="commerce.html#features" data-i18n="nav_features">Features</a>
-        <a href="commerce.html#pricing" data-i18n="nav_pricing">Pricing</a>
-        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+        <a href="bonsai-os.html">Bonsai OS</a>
+        <a href="commerce.html">Commerce</a>
       `
     };
 
@@ -88,7 +82,7 @@
               </button>
               <nav class="nav-links">
                 ${(navSets[shellNav] || navSets.marketing).trim()}
-                <a href="https://cal.com/miyagisan/bonsaitalk" class="glass-button" target="_blank" rel="noopener noreferrer" data-i18n="nav_get_started">Book a call</a>
+                <button class="glass-button" onclick="openBookingModal()" data-i18n="nav_get_started">Book a call</button>
               </nav>
             </div>
           </header>
