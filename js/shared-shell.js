@@ -10,7 +10,7 @@
     const logo = `
       <a href="index.html" class="logo-link" aria-label="Bonsai home">
         <div class="logo">
-          <img src="assets/brand/bonsai-logo-white.svg" class="logo-mark" alt="Bonsai">
+          <img src="assets/brand/bonsai-logo.svg" class="logo-mark" alt="Bonsai">
         </div>
       </a>
     `;
@@ -43,7 +43,17 @@
     `;
 
     const navSets = {
+      bonsai: `
+        <a href="#bonsai-os">Bonsai OS</a>
+        <a href="commerce.html">Commerce</a>
+        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+      `,
       home: `
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
+      `,
+      commerce: `
         <a href="#features" data-i18n="nav_features">Features</a>
         <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
         <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
@@ -55,8 +65,8 @@
         <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `,
       legal: `
-        <a href="index.html#features" data-i18n="nav_features">Features</a>
-        <a href="index.html#pricing" data-i18n="nav_pricing">Pricing</a>
+        <a href="commerce.html#features" data-i18n="nav_features">Features</a>
+        <a href="commerce.html#pricing" data-i18n="nav_pricing">Pricing</a>
         <a href="executive-agent.html" class="nav-executive" data-i18n="nav_executive_agent">Executive Agent</a>
       `
     };
