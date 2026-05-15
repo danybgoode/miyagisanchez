@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
   syncHeaderOffset();
   window.addEventListener('resize', syncHeaderOffset);
 
+  // Glass header: deepen blur/opacity on scroll
+  const header = document.querySelector('.main-header');
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
   // Mobile Menu Toggle
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinks = document.querySelector('.nav-links');

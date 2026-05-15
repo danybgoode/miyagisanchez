@@ -1,0 +1,170 @@
+/*
+ * Despacho Bonsai — Design Token System
+ * Apple Liquid Glass × Calm Japanese Restraint
+ * Source: Claude Design / bonsai-design-system
+ * Reference: https://developer.apple.com/documentation/TechnologyOverviews/adopting-liquid-glass
+ */
+
+:root {
+  /* ─── COLOR PRIMITIVES ─────────────────────────────── */
+  --color-page: #f4f6f2;
+  --color-ink: #101410;
+  --color-muted: #5f675e;
+  --color-hairline: rgba(16, 20, 16, 0.12);
+
+  --color-primary: #173f35;
+  --color-primary-mid: #1a5244;
+  --color-primary-ink: #f7fff7;
+  --color-accent: #b7d7ce;
+  --color-warm: #f2caa7;
+  --color-sky: #b6d5ec;
+
+  /* ─── GLASS MATERIAL VALUES ────────────────────────── */
+  --color-glass: rgba(255, 255, 255, 0.50);
+  --color-glass-strong: rgba(255, 255, 255, 0.68);
+  --color-glass-border: rgba(255, 255, 255, 0.62);
+  --color-glass-border-dim: rgba(255, 255, 255, 0.16);
+
+  /* ─── SEMANTIC ALIASES ─────────────────────────────── */
+  --fg-1: var(--color-ink);
+  --fg-2: var(--color-muted);
+  --fg-on-primary: var(--color-primary-ink);
+  --bg-page: var(--color-page);
+  --bg-glass: var(--color-glass);
+  --border-hairline: var(--color-hairline);
+  --border-glass: var(--color-glass-border);
+
+  /* ─── PAGE GRADIENT ────────────────────────────────── */
+  --page-gradient:
+    linear-gradient(120deg, rgba(183, 215, 206, 0.5), transparent 36%),
+    linear-gradient(290deg, rgba(242, 202, 167, 0.42), transparent 34%),
+    linear-gradient(145deg, #f7f8f4 0%, #eef4ef 48%, #f7f3eb 100%);
+
+  /* ─── TYPOGRAPHY ───────────────────────────────────── */
+  --font-display: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-text:    "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Fluid type scale (Apple-scale) */
+  --fs-h1:     clamp(3.1rem, 6vw, 5.4rem);
+  --fs-h2:     clamp(2rem, 5.2vw, 4.8rem);
+  --fs-h3:     clamp(1.35rem, 3vw, 2.05rem);
+  --fs-h4:     clamp(1.15rem, 2vw, 1.35rem);
+  --fs-lead:   clamp(1.08rem, 2.6vw, 1.45rem);
+  --fs-body:   1rem;
+  --fs-small:  0.9rem;
+  --fs-eyebrow: 0.78rem;
+
+  --lh-display: 0.98;
+  --lh-tight:   1.05;
+  --lh-body:    1.5;
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-black:    800;
+
+  /* ─── RADII ────────────────────────────────────────── */
+  --radius-xs:   8px;
+  --radius-sm:   14px;
+  --radius-md:   20px;
+  --radius-lg:   28px;
+  --radius-xl:   36px;
+  --radius-pill: 999px;
+
+  /* ─── SHADOWS / ELEVATION ──────────────────────────── */
+  /* Liquid Glass: soft drop + inset specular bevel */
+  --shadow-glass:
+    0 18px 50px rgba(34, 49, 37, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+
+  --shadow-glass-dark:
+    0 28px 70px rgba(16, 20, 16, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+
+  --shadow-soft:   0 8px 24px rgba(34, 49, 37, 0.08);
+  --shadow-subtle: 0 2px 8px rgba(34, 49, 37, 0.06);
+
+  /* ─── BLUR / SATURATION (Liquid Glass material) ────── */
+  --blur-glass:        blur(24px) saturate(1.28);
+  --blur-glass-strong: blur(26px) saturate(1.3);
+  --blur-button:       blur(22px) saturate(1.24);
+  --blur-header:       blur(20px) saturate(1.4);
+
+  /* ─── LAYOUT ───────────────────────────────────────── */
+  --max-width: 1160px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --header-offset: 64px;
+
+  /* ─── MOTION ───────────────────────────────────────── */
+  --ease-default: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-hover: 180ms;
+  --dur-panel: 280ms;
+  --dur-press: 90ms;
+
+  /* ─── LEGACY COMPAT ALIASES ────────────────────────── */
+  /* keeps components.css variables working */
+  --primary-blue:           var(--color-primary);
+  --primary-blue-dark:      var(--color-primary-mid);
+  --text-primary:           var(--color-ink);
+  --text-secondary:         var(--color-muted);
+  --text-on-dark:           var(--color-ink);
+  --text-muted-on-dark:     var(--color-muted);
+  --surface-white:          #ffffff;
+  --border-gray:            var(--color-hairline);
+}
+
+/* ─── GLOBAL GLASS UTILITY ──────────────────────────────
+   Apply to any elevated surface that sits on a colored bg.
+   Never stack two glass elements — use a hairline instead.
+──────────────────────────────────────────────────────── */
+.glass {
+  border: 1px solid var(--border-glass);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.34)),
+    rgba(255, 255, 255, 0.40);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+}
+
+.glass-dark {
+  border: 1px solid var(--color-glass-border-dim);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 50%),
+    color-mix(in srgb, var(--color-primary) 42%, var(--color-ink));
+  color: var(--color-primary-ink);
+  box-shadow: var(--shadow-glass-dark);
+}
+
+.glass-panel {
+  border: 1px solid var(--border-glass);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.34)),
+    rgba(255, 255, 255, 0.40);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass,
+  .glass-panel { background: rgba(255, 255, 255, 0.92); }
+}
+
+/* ─── EYEBROW UTILITY ─────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-text);
+  font-size: var(--fs-eyebrow);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin: 0 0 0.75rem;
+  display: block;
+}
+
+/* ─── SELECTION ──────────────────────────────────────── */
+::selection { background: rgba(23, 63, 53, 0.18); }
