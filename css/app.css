@@ -28,9 +28,10 @@ a { color: inherit; text-decoration: none; }
 .text-secondary { color: var(--color-muted); }
 
 /* ─── LOGO ─── */
-.logo { display: flex; align-items: center; gap: 8px; }
+.logo { display: flex; align-items: center; gap: 10px; }
 .logo-link { display: inline-flex; align-items: center; }
-.logo-mark { width: 120px; height: 24px; display: block; }
+.logo-mark { width: 32px; height: 32px; display: block; flex-shrink: 0; }
+.logo-wordmark { font-family: 'Archivo Black', 'Inter', sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.04em; color: #173f35; line-height: 1; }
 
 /* ─── BUTTON: PRIMARY ─── */
 .btn-primary {
@@ -1655,7 +1656,8 @@ section:not(:last-child)::after {
   .grid-3, .grid-2 { grid-template-columns: 1fr; padding: 0 10px; }
   .footer-links { flex-wrap: wrap; gap: 12px 18px; }
   .logo-link { flex: 0 0 auto; }
-  .logo-mark { width: 104px; height: auto; }
+  .logo-mark { width: 26px; height: 26px; }
+  .logo-wordmark { font-size: 18px; }
   .lang-switcher { flex: 0 0 auto; margin-left: auto !important; margin-right: 0 !important; }
   .pricing-card.featured { transform: none; margin: 10px 0; }
   .section-title { font-size: 28px; }

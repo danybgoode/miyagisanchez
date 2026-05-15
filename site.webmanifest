@@ -8,17 +8,18 @@
       "type": "image/png"
     },
     {
-      "src": "assets/brand/favicon-16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
       "src": "assets/brand/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
+    },
+    {
+      "src": "assets/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#3d3d3d",
-  "background_color": "#3d3d3d",
+  "theme_color": "#173f35",
+  "background_color": "#f4f6f2",
   "display": "standalone"
 }

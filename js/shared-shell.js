@@ -10,7 +10,8 @@
     const logo = `
       <a href="index.html" class="logo-link" aria-label="Bonsai home">
         <div class="logo">
-          <img src="assets/brand/bonsai-logo.svg" class="logo-mark" alt="Bonsai">
+          <img src="assets/brand/bonsai-mark.svg" class="logo-mark" alt="">
+          <span class="logo-wordmark">bonsai</span>
         </div>
       </a>
     `;
