@@ -86,6 +86,7 @@
               </nav>
             </div>
           </header>
+          <div class="lg-nav-drip" aria-hidden="true"></div>
         </div>
       `;
     }
