@@ -211,6 +211,126 @@ body.modal-open { overflow: hidden; }
 
 .bm-body::-webkit-scrollbar { width: 0; }
 
+/* ── Claude setup modal ─────────────────────────────────────────────────── */
+.claude-panel {
+  width: min(100%, 460px);
+}
+
+.cm-body {
+  padding: 18px;
+}
+
+.cm-intro {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.cm-steps {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: claude-steps;
+}
+
+.cm-steps li {
+  position: relative;
+  min-height: 58px;
+  padding: 13px 14px 13px 48px;
+  border: 0.5px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.16);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.86rem;
+  line-height: 1.38;
+}
+
+.cm-steps li::before {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  counter-increment: claude-steps;
+  content: counter(claude-steps);
+  border-radius: 999px;
+  background: rgba(183, 215, 206, 0.18);
+  color: rgba(247, 255, 247, 0.9);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.cm-steps a {
+  color: rgba(247, 255, 247, 0.96);
+  text-decoration: underline;
+  text-decoration-color: rgba(247, 255, 247, 0.28);
+  text-underline-offset: 3px;
+}
+
+.cm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.cm-action {
+  min-height: 44px;
+  border-radius: 999px;
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.78);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 650;
+  cursor: pointer;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.cm-action:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.cm-action:active {
+  transform: translateY(2px) scale(0.99);
+}
+
+.cm-action-primary {
+  border-color: rgba(183, 215, 206, 0.26);
+  background: var(--color-primary, #173f35);
+  color: rgba(247, 255, 247, 0.96);
+}
+
+.cm-action-primary:hover {
+  background: #1d4c40;
+}
+
+.cm-note {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 420px) {
+  .cm-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Duration picker ── */
 .bm-duration-row {
   display: flex;
