@@ -21,79 +21,67 @@ document.addEventListener('DOMContentLoaded', () => {
   syncHeaderOffset();
   window.addEventListener('resize', syncHeaderOffset);
 
-  // ── Liquid-Glass Nav (iOS 26 HIG) ──────────────────────────────────────── //
-  // The drip strip below the nav deforms like molten glass as content
-  // scrolls under it. A 9-point wave polygon is driven by scroll velocity
-  // and settles back to flat via spring physics.
+  // ── Liquid-Glass Nav scroll state ─────────────────────────────────────── //
   const header = document.querySelector('.main-header');
-  const drip   = document.querySelector('.lg-nav-drip');
 
   if (header) {
     header.classList.toggle('is-scrolled', window.scrollY > 12);
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    }, { passive: true });
   }
 
-  if (header && drip) {
-    let prevY       = window.scrollY;
-    let rafId       = null;
-    let dripTimer   = null;
+  // ── Footer Aquarium — Oil/Paint Physics ────────────────────────────────── //
+  // Social icons float in a thick viscous liquid. Scroll velocity imparts an
+  // upward impulse (liquid displaced downward, icons ride up), then the slow
+  // spring drags them back. Each icon has a unique mass/phase offset so they
+  // settle at different rates — natural buoyancy variance.
+  const floatIcons = Array.from(document.querySelectorAll('.main-footer .social-icon-link'));
 
-    // 9 control points evenly spaced along the top edge of the drip strip.
-    // Each value is Y% within the strip (0 = top / flush with nav, 100 = bottom).
-    const N  = 9;
-    const PX = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
-    const cur = new Array(N).fill(0);   // current interpolated positions
-    const tgt = new Array(N).fill(0);   // spring targets
+  if (floatIcons.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // Per-icon physics state
+    const state = floatIcons.map((_, i) => ({
+      y: 0,      // current vertical offset px (positive = down)
+      vel: 0,    // current velocity px/frame
+      mass: 0.9 + i * 0.07,   // heavier icons lag more
+      phase: i * 0.31,         // sin phase for idle bob
+    }));
 
-    const buildPolygon = () =>
-      'polygon(' + cur.map((v, i) => `${PX[i]}% ${v.toFixed(2)}%`).join(',') + ',100% 100%,0% 100%)';
+    let prevScrollY = window.scrollY;
+    let scrollImpulse = 0;
+    let oilRaf = null;
 
-    // Spring step — runs via rAF until all points are settled
-    const springStep = () => {
-      let settled = true;
-      for (let i = 0; i < N; i++) {
-        const d = tgt[i] - cur[i];
-        if (Math.abs(d) > 0.05) { cur[i] += d * 0.13; settled = false; }
-        else cur[i] = tgt[i];
-      }
-      drip.style.clipPath = buildPolygon();
-      rafId = settled ? null : requestAnimationFrame(springStep);
-    };
+    const STIFFNESS = 0.009;   // very slow spring — oil weight
+    const DAMPING   = 0.955;   // high damping — viscous, not bouncy
+    const MAX_DISP  = 10;      // px — icons don't travel far
 
-    // Generate a sinusoidal wave whose amplitude is proportional to velocity.
-    // A Gaussian envelope tapers the wave to zero at both side edges so the
-    // left and right corners stay sharp (no liquid "bleed" off-screen).
-    const triggerWave = (velocity) => {
-      const speed = Math.min(Math.abs(velocity), 24);
-      const dir   = velocity > 0 ? 0 : Math.PI;         // phase: down vs up scroll
-      const amp   = speed * 3.8;                         // max ~91 % at speed 24
-
-      for (let i = 0; i < N; i++) {
-        const t   = i / (N - 1);                         // 0 → 1
-        const env = Math.sin(t * Math.PI);               // tapers to 0 at edges
-        tgt[i] = Math.max(0, Math.min(90,
-          env * amp * (0.5 + 0.5 * Math.sin(t * Math.PI * 2.4 + dir))
-        ));
-      }
-
-      drip.classList.add('is-active');
-      if (!rafId) rafId = requestAnimationFrame(springStep);
-
-      clearTimeout(dripTimer);
-      dripTimer = setTimeout(() => {
-        tgt.fill(0);                                    // return to flat
-        if (!rafId) rafId = requestAnimationFrame(springStep);
-        setTimeout(() => drip.classList.remove('is-active'), 560);
-      }, 190);
+    const oilStep = (t) => {
+      let allSettled = true;
+      floatIcons.forEach((el, i) => {
+        const s = state[i];
+        // idle bob: tiny sinusoidal float even at rest
+        const bob = Math.sin(t * 0.0006 + s.phase) * 1.4;
+        const target = bob;
+        const spring = (target - s.y) * STIFFNESS / s.mass;
+        s.vel = s.vel * DAMPING + spring + (scrollImpulse / s.mass) * 0.28;
+        s.y   = Math.max(-MAX_DISP, Math.min(MAX_DISP, s.y + s.vel));
+        el.style.setProperty('--fy', s.y.toFixed(2));
+        if (Math.abs(s.vel) > 0.01 || Math.abs(s.y - target) > 0.05) allSettled = false;
+      });
+      scrollImpulse *= 0.78;  // impulse decays quickly
+      oilRaf = requestAnimationFrame(oilStep);
     };
 
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
-      const v = y - prevY;
-      prevY = y;
-
-      header.classList.toggle('is-scrolled', y > 12);
-      if (Math.abs(v) > 1.5) triggerWave(v);
+      const v = y - prevScrollY;
+      prevScrollY = y;
+      // Downward scroll → positive impulse pushes icons up (negative Y = up)
+      scrollImpulse += -v * 0.55;
+      scrollImpulse = Math.max(-18, Math.min(18, scrollImpulse));
     }, { passive: true });
+
+    oilRaf = requestAnimationFrame(oilStep);
   }
 
   // Mobile Menu Toggle
