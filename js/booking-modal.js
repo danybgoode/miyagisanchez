@@ -159,8 +159,9 @@
     }
 
     return '<div class="bm-content">' +
-      header(title) +
+      header(title, 'Free · 10 min · Zoom') +
       '<div class="bm-body">' +
+        '<p class="bm-intro">Pick a time and we\'ll walk you through the methodology. No commitment — just clarity.</p>' +
         durRow +
         '<div class="bm-month-nav">' +
           '<button class="bm-nav-btn" id="bm-prev"' + (canPrev ? '' : ' disabled') + '>&#8249;</button>' +
@@ -232,7 +233,7 @@
       : '';
 
     return '<div class="bm-content">' +
-      header(title) +
+      header(title, 'Free · 10 min · Zoom') +
       '<div class="bm-body">' +
         '<button class="bm-back-btn" id="bm-back">&#8592; Back</button>' +
         '<p class="bm-slots-date">' + dateLabel + '</p>' +
@@ -250,7 +251,7 @@
     var dur = state.selectedEventType ? (state.selectedEventType.lengthInMinutes || state.selectedEventType.length) + ' min' : '';
 
     return '<div class="bm-content">' +
-      header('Your details') +
+      header('Almost there', 'A Zoom link lands in your inbox right after') +
       '<div class="bm-body">' +
         '<button class="bm-back-btn" id="bm-back">&#8592; Back</button>' +
         '<div class="bm-booking-summary">' +
@@ -293,7 +294,7 @@
           '<div class="bm-confirm-icon">&#10003;</div>' +
           '<p class="bm-confirm-title">' + esc(title) + '</p>' +
           (when ? '<p class="bm-confirm-detail">' + when + '</p>' : '') +
-          '<p class="bm-confirm-note">You\'ll receive a calendar invite and confirmation email shortly.</p>' +
+          '<p class="bm-confirm-note">Check your inbox — a Zoom link and calendar invite are on their way. See you soon.</p>' +
           '<button class="bm-submit" id="bm-done">Done</button>' +
         '</div>' +
       '</div>' +
@@ -318,9 +319,12 @@
 
   /* ── Shared header snippet ──────────────────────────────────────────────── */
 
-  function header(title) {
+  function header(title, sub) {
     return '<div class="bm-header">' +
-      '<span class="bm-event-title">' + esc(title) + '</span>' +
+      '<div>' +
+        '<span class="bm-event-title">' + esc(title) + '</span>' +
+        (sub ? '<span class="bm-event-sub">' + esc(sub) + '</span>' : '') +
+      '</div>' +
       '<button class="bm-close-btn" id="lg-close-btn" aria-label="Close">&#x2715;</button>' +
     '</div>';
   }
@@ -485,8 +489,17 @@
   }
 
   function closeModal() {
-    if (modalEl) modalEl.classList.remove('is-open');
+    if (!modalEl) return;
+    var p    = document.getElementById('lg-panel');
+    var isMobile = window.innerWidth < 640;
+    var anim = isMobile ? 'lg-slide-down 260ms cubic-bezier(0.4,0,1,0.6) both'
+                        : 'lg-collapse 260ms ease both';
+    if (p) p.style.animation = anim;
     document.body.classList.remove('modal-open');
+    setTimeout(function () {
+      modalEl.classList.remove('is-open');
+      if (p) p.style.animation = '';
+    }, 240);
   }
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
