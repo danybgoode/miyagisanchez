@@ -23,7 +23,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Baloo+2:wght@800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/globals.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/liquid-glass.css">
@@ -52,7 +52,6 @@
 
             <div class="hero-content hero-layout">
                 <div class="hero-copy">
-                    <p class="eyebrow" data-i18n="hero_eyebrow">Bonsai OS</p>
                     <h1 data-i18n="hero_title">Turn your product team from cost center to revenue engine.</h1>
                     <p class="hero-subhead" data-i18n="hero_subhead">
                         Run our methodology and walk away knowing exactly what your product
@@ -69,14 +68,18 @@
                     </div>
                 </div>
 
-                <aside class="hero-quote-card">
-                    <blockquote data-i18n="hero_quote">
-                        Your product is playing a Productivity game. Your North Star is
-                        Weekly Active Users. It moves when you improve breadth, depth, and
-                        frequency. That means your next three builds should focus on
-                        activation, retention, and channel expansion.
+                <aside class="hero-quote-card hero-magic-card">
+                    <canvas class="hero-magic-canvas" data-hero-magic-canvas aria-hidden="true"></canvas>
+                    <blockquote class="hero-magic-text" data-hero-magic-text data-i18n="hero_magic_text">
+                        Despacho Bonsai is playing a <span class="magic-word magic-word-fire" data-fx="fire">Productivity</span> game.<br>
+                        Its <span class="magic-word magic-word-gold" data-fx="gold">North Star</span> is Deeply Active Merchants —<br>
+                        <span class="magic-detail">multi-channel merchants whose AI agents handle<br>
+                        20+ conversations per month across 2+ channels.</span>
+                        It moves when we improve <span class="magic-word magic-word-lightning" data-fx="lightning">time-to-activation</span>.<br>
+                        That should be the focus of our <span class="magic-word magic-word-smoke" data-fx="smoke">backlog</span>.
                     </blockquote>
-                    <p data-i18n="hero_quote_caption">This is what clarity looks like. This is what we produce.</p>
+                    <p class="hero-quote-caption" data-i18n="hero_quote_caption">This is what clarity looks like. This is what we produce.</p>
+                    <p class="hero-quote-question" data-i18n="hero_quote_question">Can you answer that about your business? Does your backlog align with your vision?</p>
                 </aside>
             </div>
         </section>
@@ -106,7 +109,7 @@
         <section class="section-shell">
             <div class="section-heading wide">
                 <h2 data-i18n="method_h2">The Methodology</h2>
-                <p class="hero-subhead" style="margin-top:0.5rem;" data-i18n="method_subtitle">Introducing Bonsai OS</p>
+                <a class="glass-button section-heading-button" href="bonsai-os.html" data-i18n="method_cta">Explore Bonsai OS</a>
             </div>
             <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
                 <article class="glass-panel service-panel">
@@ -128,7 +131,6 @@
         <section class="section-shell" id="bonsai-commerce">
             <div class="atlas-band">
                 <div class="atlas-copy">
-                    <p class="eyebrow" data-i18n="os_eyebrow">Commerce</p>
                     <h2 data-i18n="os_h2">Bonsai Commerce</h2>
                     <p data-i18n="os_p">
                         AI customer support built for e-commerce. Connect Shopify,
@@ -157,7 +159,7 @@
                         <li><span data-i18n="cta_step_3">Ask Claude: <em>"hi claude i just connected the bonsai connector, what can we do together?"</em></span></li>
                         <li><span data-i18n="cta_step_4">That's it.</span></li>
                     </ol>
-                    <button class="glass-button glass-button-primary" id="copy-mcp-card" data-i18n="cta_claude_btn">
+                    <button class="glass-button glass-button-secondary" id="copy-mcp-card" data-i18n="cta_claude_btn">
                         Copy MCP URL
                     </button>
                 </article>
@@ -181,6 +183,7 @@
     <script src="js/shared-shell.js"></script>
     <script src="js/i18n.js?v=3"></script>
     <script src="js/main.js"></script>
+    <script src="js/hero-magic-text.js"></script>
     <script src="js/booking-modal.js"></script>
     <script>
       (function() {

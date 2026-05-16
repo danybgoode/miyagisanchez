@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Touch-first press feedback so buttons feel tactile on mobile too.
-  const tactileButtons = document.querySelectorAll('.btn-primary, .btn-secondary, .trust-channel-key');
+  const tactileButtons = document.querySelectorAll('.btn-primary, .btn-secondary, .btn-purple, .glass-button, .trust-channel-key');
   const clearPressedState = button => {
     button.classList.remove('is-pressed');
   };
