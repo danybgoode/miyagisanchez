@@ -1,0 +1,30 @@
+{
+  "page_title": "Bonsai Academy — The Product Methodology",
+  "hero_eyebrow": "Bonsai Academy",
+  "hero_title": "The operating system for product teams.",
+  "hero_subhead": "One framework. Three workshops. Your entire team aligned on what to build, why, and what comes next.",
+  "hero_cta_primary": "Schedule a consultation. Totally free.",
+  "hero_cta_secondary": "See the methodology",
+
+  "method_eyebrow": "The Methodology",
+  "method_subtitle": "Three workshops. One clear direction.",
+  "method_1_h": "North Star",
+  "method_1_p": "One session. Your team leaves with one metric, four inputs that drive it, and a prioritized list of what to build next. No more guessing. No more politics.",
+  "method_2_h": "Product Market Fit",
+  "method_2_p": "Is your product solving the right problem for the right person? We dissect your market position across six dimensions and surface the gaps before they become expensive mistakes.",
+  "method_3_h": "Experiment and Validate",
+  "method_3_p": "What are you most likely wrong about? We identify the highest-risk assumption in your strategy and design the cheapest possible test to validate it before you build.",
+
+  "os_eyebrow": "What you get",
+  "os_h2": "It lives somewhere this time.",
+  "os_1_h": "Notion Workspace",
+  "os_1_p": "Your North Star, your roadmap, and your team's decision log — all pre-configured and connected.",
+  "os_2_h": "Financial Templates",
+  "os_2_p": "GSheets templates wired to the model. Track the numbers that actually move your North Star.",
+  "os_3_h": "Backlog & Boards",
+  "os_3_p": "Scrum and kanban boards with the methodology baked in. Every ticket tested against the North Star before it ships.",
+
+  "cta_h2": "Ready to align your team?",
+  "cta_p": "One free session is all it takes to see the difference a shared North Star makes.",
+  "cta_btn": "Schedule a free consultation"
+}

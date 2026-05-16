@@ -12,7 +12,7 @@
     el.id = 'mcp-modal';
     el.setAttribute('role', 'dialog');
     el.setAttribute('aria-modal', 'true');
-    el.setAttribute('aria-label', 'Run Bonsai OS in Claude');
+    el.setAttribute('aria-label', 'Run Bonsai Academy in Claude');
     el.innerHTML = '<div class="lg-panel" id="mm-panel"></div>';
     document.body.appendChild(el);
     el.addEventListener('click', function (e) { if (e.target === el) closeModal(); });
@@ -30,13 +30,13 @@
     return '<div class="bm-content">' +
       '<div class="bm-header">' +
         '<div>' +
-          '<span class="bm-event-title">Run Bonsai OS in Claude</span>' +
+          '<span class="bm-event-title">Run Bonsai Academy in Claude</span>' +
           '<span class="bm-event-sub">Connects in 2 minutes &mdash; no subscription required</span>' +
         '</div>' +
         '<button class="bm-close-btn" id="mm-close-btn" aria-label="Close">&#x2715;</button>' +
       '</div>' +
       '<div class="bm-body">' +
-        '<p class="bm-intro">Connect the Bonsai OS MCP server to Claude and run the full methodology as a native Claude experience.</p>' +
+        '<p class="bm-intro">Connect the Bonsai Academy MCP server to Claude and run the full methodology as a native Claude experience.</p>' +
         '<ol class="mm-step-list">' +
           '<li>' +
             '<span class="mm-step-num">1</span>' +

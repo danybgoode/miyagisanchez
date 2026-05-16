@@ -45,24 +45,24 @@
 
     const navSets = {
       bonsai: `
-        <a href="bonsai-os.html">Bonsai OS</a>
-        <a href="commerce.html">Commerce</a>
+        <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       home: `
-        <a href="bonsai-os.html">Bonsai OS</a>
-        <a href="commerce.html">Commerce</a>
+        <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       commerce: `
-        <a href="bonsai-os.html">Bonsai OS</a>
-        <a href="commerce.html">Commerce</a>
+        <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       marketing: `
-        <a href="bonsai-os.html">Bonsai OS</a>
-        <a href="commerce.html">Commerce</a>
+        <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       legal: `
-        <a href="bonsai-os.html">Bonsai OS</a>
-        <a href="commerce.html">Commerce</a>
+        <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `
     };
 

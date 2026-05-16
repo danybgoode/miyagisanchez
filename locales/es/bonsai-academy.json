@@ -1,0 +1,30 @@
+{
+  "page_title": "Bonsai Academy — La Metodología de Producto",
+  "hero_eyebrow": "Bonsai Academy",
+  "hero_title": "El sistema operativo para equipos de producto.",
+  "hero_subhead": "Un marco de trabajo. Tres talleres. Todo tu equipo alineado en qué construir, por qué y qué sigue.",
+  "hero_cta_primary": "Agenda una consulta. Totalmente gratis.",
+  "hero_cta_secondary": "Ver la metodología",
+
+  "method_eyebrow": "La Metodología",
+  "method_subtitle": "Tres talleres. Una dirección clara.",
+  "method_1_h": "North Star",
+  "method_1_p": "Una sesión. Tu equipo sale con una métrica, cuatro inputs que la mueven, y una lista priorizada de qué construir. Sin más suposiciones. Sin más política.",
+  "method_2_h": "Product Market Fit",
+  "method_2_p": "¿Tu producto resuelve el problema correcto para la persona correcta? Diseccionamos tu posición de mercado en seis dimensiones y revelamos las brechas antes de que se vuelvan errores costosos.",
+  "method_3_h": "Experimenta y Valida",
+  "method_3_p": "¿En qué es más probable que estés equivocado? Identificamos el supuesto de mayor riesgo en tu estrategia y diseñamos la prueba más barata posible para validarlo antes de construir.",
+
+  "os_eyebrow": "Lo que recibes",
+  "os_h2": "Esta vez sí vive en algún lugar.",
+  "os_1_h": "Workspace en Notion",
+  "os_1_p": "Tu North Star, tu roadmap y el registro de decisiones del equipo — todo preconfigurado y conectado.",
+  "os_2_h": "Plantillas Financieras",
+  "os_2_p": "Plantillas en GSheets conectadas al modelo. Sigue los números que realmente mueven tu North Star.",
+  "os_3_h": "Backlog y Tableros",
+  "os_3_p": "Tableros de scrum y kanban con la metodología integrada. Cada ticket evaluado contra el North Star antes de que salga.",
+
+  "cta_h2": "¿Listo para alinear a tu equipo?",
+  "cta_p": "Una sesión gratuita es todo lo que se necesita para ver la diferencia que hace un North Star compartido.",
+  "cta_btn": "Agendar una consulta gratuita"
+}

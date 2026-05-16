@@ -1,0 +1,673 @@
+/*
+ * ══════════════════════════════════════════════════════════════════════════════
+ * BONSAI DESIGN SYSTEM  —  v1.0
+ * ══════════════════════════════════════════════════════════════════════════════
+ *
+ * PURPOSE
+ * -------
+ * This file is the single source of truth for Bonsai's visual language.
+ * It is intentionally self-contained: no imports, no build step, no framework.
+ * Drop it into any project (Next.js, Rails, plain HTML) and reference it.
+ *
+ * HOW TO USE IN ANOTHER PROJECT
+ * ──────────────────────────────
+ * 1. Copy this file into your project's styles directory.
+ * 2. Import it before any project-specific CSS.
+ * 3. Use the CSS custom properties (tokens) defined in :root throughout your
+ *    component styles — do not hardcode any colour, radius, or shadow value.
+ * 4. The component classes (.glass-panel, .glass-button, etc.) can be used
+ *    directly or adapted into your framework's component conventions.
+ * 5. The animation keyframes (lg-expand, lg-collapse) should be used as-is
+ *    for any panel/modal open-close choreography.
+ *
+ * AGENT INSTRUCTIONS
+ * ──────────────────
+ * When adapting these styles to a new project, follow this order:
+ *   1. Apply the :root token block first — every value here must be preserved.
+ *   2. Set the body background (see §2 BACKGROUND).
+ *   3. Implement glass panels using the §4 GLASS MATERIAL spec.
+ *   4. Implement buttons using the §5 BUTTON spec.
+ *   5. Apply animations from §7 ANIMATIONS for any overlay/panel open-close.
+ *   6. Do not introduce hardcoded colours or radii — always reference tokens.
+ *
+ * COLOUR SYSTEM
+ * ─────────────
+ *   Page background : --color-page  (#f4f6f2)  — warm off-white
+ *   Primary brand   : --color-primary (#173f35) — deep forest green
+ *   Ink/text        : --color-ink  (#101410)   — near-black with green cast
+ *   Muted text      : --color-muted (#5f675e)  — subdued green-grey
+ *   Accents         : --color-accent (sage), --color-warm (peach), --color-sky (blue)
+ *
+ *   Dark overlay glass (modals, chat panels):
+ *     background: rgba(10, 16, 12, 0.62)
+ *     backdrop-filter: blur(20px) saturate(1.6) brightness(0.85)
+ *     See: --glass-dark-bg, --glass-dark-blur
+ *
+ * ══════════════════════════════════════════════════════════════════════════════
+ */
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §1  DESIGN TOKENS
+ * All raw values live here. Reference these everywhere — never hardcode.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+
+  /* ── Colour palette ─────────────────────────────────────────────────────── */
+  --color-page:          #f4f6f2;           /* page/surface background */
+  --color-ink:           #101410;           /* primary text */
+  --color-muted:         #5f675e;           /* secondary text */
+  --color-hairline:      rgba(16, 20, 16, 0.12); /* dividers on light bg */
+  --color-primary:       #173f35;           /* brand green */
+  --color-primary-mid:   #1a5244;           /* slightly lighter brand green */
+  --color-primary-ink:   #f7fff7;           /* text on primary bg */
+  --color-accent:        #b7d7ce;           /* sage / light teal */
+  --color-warm:          #f2caa7;           /* warm peach */
+  --color-sky:           #b6d5ec;           /* soft blue */
+  --color-success:       #4ade80;           /* green for status/CTA */
+
+  /* ── Glass material — light (panels on page) ────────────────────────────── */
+  --color-glass:         rgba(255, 255, 255, 0.50);
+  --color-glass-strong:  rgba(255, 255, 255, 0.68);
+  --color-glass-border:  rgba(255, 255, 255, 0.62);
+  --color-glass-border-dim: rgba(255, 255, 255, 0.16);
+  --blur-glass:          blur(24px) saturate(1.28);
+  --blur-glass-strong:   blur(26px) saturate(1.30);
+  --blur-button:         blur(22px) saturate(1.24);
+  --blur-header:         blur(20px) saturate(1.40);
+
+  /* ── Glass material — dark (modals, overlays, chat panels) ─────────────── */
+  --glass-dark-bg:       rgba(10, 16, 12, 0.62);
+  --glass-dark-blur:     blur(20px) saturate(1.6) brightness(0.85);
+  --glass-dark-border-top:    0.5px solid rgba(255, 255, 255, 0.45);
+  --glass-dark-border-side:   0.5px solid rgba(255, 255, 255, 0.12);
+  --glass-dark-border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  --glass-dark-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.06) inset,
+    0 24px 56px rgba(0, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.30);
+
+  /* ── Shadows ────────────────────────────────────────────────────────────── */
+  --shadow-glass:
+    0 18px 50px rgba(34, 49, 37, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  --shadow-glass-dark:
+    0 28px 70px rgba(16, 20, 16, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --shadow-soft:    0 8px 24px rgba(34, 49, 37, 0.08);
+  --shadow-subtle:  0 2px 8px rgba(34, 49, 37, 0.06);
+
+  /* ── Border radii ───────────────────────────────────────────────────────── */
+  --radius-xs:   8px;
+  --radius-sm:   14px;
+  --radius-md:   20px;
+  --radius-lg:   28px;
+  --radius-xl:   36px;
+  --radius-pill: 999px;
+
+  /* ── Typography ─────────────────────────────────────────────────────────── */
+  --font-display: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+                  "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+  --font-text:    ui-sans-serif, -apple-system, BlinkMacSystemFont,
+                  "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+  --fs-h1: clamp(3.1rem,  6vw,   5.4rem);
+  --fs-h2: clamp(2rem,    5.2vw, 4.8rem);
+  --fs-h3: clamp(1.35rem, 3vw,   2.05rem);
+  --fs-h4: clamp(1.15rem, 2vw,   1.35rem);
+  --lh-display: 0.98;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-black:    800;
+
+  /* ── Motion / easing ────────────────────────────────────────────────────── */
+  --ease-default: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out:     cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-hover:    180ms;
+  --dur-panel:    280ms;
+  --dur-press:     90ms;
+  --dur-expand:   540ms;   /* lg-expand modal animation */
+  --dur-collapse: 260ms;   /* lg-collapse modal animation */
+
+  /* ── Layout ─────────────────────────────────────────────────────────────── */
+  --max-width:     1160px;
+  --gutter:        clamp(1rem, 4vw, 2rem);
+  --header-offset: 64px;
+
+  /* ── Legacy semantic aliases (backwards compat) ─────────────────────────── */
+  --fg-1:             var(--color-ink);
+  --fg-2:             var(--color-muted);
+  --fg-on-primary:    var(--color-primary-ink);
+  --bg-page:          var(--color-page);
+  --primary-blue:     var(--color-primary);
+  --primary-blue-dark:var(--color-primary-mid);
+  --text-primary:     var(--color-ink);
+  --text-secondary:   var(--color-muted);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §2  BACKGROUND
+ * The Bonsai page background is a three-layer gradient creating a warm,
+ * light, organic field. Apply to <body> or the root surface.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+.bonsai-surface {
+  background:
+    linear-gradient(120deg, rgba(183, 215, 206, 0.50), transparent 36%),
+    linear-gradient(290deg, rgba(242, 202, 167, 0.42), transparent 34%),
+    linear-gradient(145deg, #f7f8f4 0%, #eef4ef 48%, #f7f3eb 100%);
+}
+
+/* Minimal version — use when the full gradient is too heavy */
+.bonsai-surface-lite {
+  background-color: var(--color-page);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §3  TYPOGRAPHY UTILITIES
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+.bonsai-eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bonsai-h1 {
+  margin: 0;
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-display);
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.bonsai-h2 {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-display);
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.bonsai-h3 {
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.bonsai-body {
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.bonsai-body-lg {
+  color: var(--color-muted);
+  font-size: clamp(1.08rem, 2.2vw, 1.36rem);
+  line-height: 1.52;
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §4  GLASS MATERIAL
+ *
+ * TWO variants:
+ *
+ * A) LIGHT GLASS  — used for cards, panels, buttons on the light page surface.
+ *    Semi-transparent white with blur. Specular top border.
+ *
+ * B) DARK GLASS  — used for modals, overlays, the chat panel.
+ *    Dark tinted clear glass. Background content is visible but darkened.
+ *    This is the Apple Fitness/visionOS overlay material.
+ *
+ * Both variants share the border-radius scale and shadow system.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── A) Light glass panel ── */
+.glass-panel {
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.34)),
+    rgba(255, 255, 255, 0.40);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: var(--blur-glass);
+  -webkit-backdrop-filter: var(--blur-glass);
+}
+
+/* Size variants */
+.glass-panel--sm  { border-radius: var(--radius-sm); }
+.glass-panel--lg  { border-radius: var(--radius-lg); }
+.glass-panel--xl  { border-radius: var(--radius-xl); }
+
+/* Content helpers */
+.glass-panel--padded    { padding: clamp(1.2rem, 3vw, 1.6rem); }
+.glass-panel--padded-lg { padding: clamp(1.3rem, 6vw, 4rem); }
+
+/* ── B) Dark glass overlay/modal ── */
+.glass-dark {
+  background: var(--glass-dark-bg);
+  backdrop-filter: var(--glass-dark-blur);
+  -webkit-backdrop-filter: var(--glass-dark-blur);
+  border-top:    var(--glass-dark-border-top);
+  border-left:   var(--glass-dark-border-side);
+  border-right:  var(--glass-dark-border-side);
+  border-bottom: var(--glass-dark-border-bottom);
+  box-shadow: var(--glass-dark-shadow);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* ── Overlay scrim (the dim layer behind a modal) ── */
+.glass-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.48);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.glass-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ── Modal panel inside overlay ── */
+.glass-modal {
+  position: relative;
+  width: min(100%, 400px);
+  max-height: calc(100svh - 3rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 22px;
+
+  /* Dark glass material */
+  background: var(--glass-dark-bg);
+  backdrop-filter: var(--glass-dark-blur);
+  -webkit-backdrop-filter: var(--glass-dark-blur);
+  border-top:    var(--glass-dark-border-top);
+  border-left:   var(--glass-dark-border-side);
+  border-right:  var(--glass-dark-border-side);
+  border-bottom: var(--glass-dark-border-bottom);
+  box-shadow: var(--glass-dark-shadow);
+  color: rgba(255, 255, 255, 0.88);
+
+  /* Hidden state — revealed by animation */
+  clip-path: inset(50% 50% 50% 50% round 22px);
+  opacity: 0;
+}
+
+.glass-overlay.is-open .glass-modal {
+  animation: lg-expand var(--dur-expand) ease both;
+}
+
+/* ── Modal header ── */
+.glass-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+/* ── Modal close button (circle × ) ── */
+.glass-modal-close {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  border: 0.5px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.60);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  line-height: 1;
+  transition: background 150ms;
+}
+
+.glass-modal-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* ── Modal scrollable body ── */
+.glass-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 18px 22px;
+  overscroll-behavior: contain;
+}
+
+.glass-modal-body::-webkit-scrollbar { width: 0; }
+
+/* ── Mobile modal: sheet from bottom ── */
+@media (max-width: 639px) {
+  .glass-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .glass-modal {
+    width: 100%;
+    max-height: 90svh;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    clip-path: none;
+    opacity: 0;
+  }
+
+  .glass-overlay.is-open .glass-modal {
+    animation: lg-slide-up 380ms var(--ease-spring) both;
+  }
+}
+
+/* Fallback — no backdrop-filter support */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-panel  { background: rgba(255, 255, 255, 0.92); }
+  .glass-dark   { background: rgba(10, 16, 12, 0.90); }
+  .glass-modal  { background: rgba(10, 16, 12, 0.95); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §5  BUTTONS
+ *
+ * Primary pattern: pill-shaped glass buttons with a specular sheen animation.
+ * TWO variants:
+ *   .glass-button             — light glass, dark text (default)
+ *   .glass-button-primary     — dark/brand-green fill, light text
+ *
+ * The 3D "lift" effect uses a bottom box-shadow offset (not translateY on hover
+ * only) — this creates the physical button feel Apple uses in visionOS.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+.glass-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 1.1rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.34)),
+    rgba(255, 255, 255, 0.48);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 760;
+  line-height: 1.1;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  text-decoration: none;
+  box-shadow:
+    0 8px 0 rgba(185, 194, 184, 0.68),
+    0 18px 34px rgba(34, 49, 37, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84),
+    inset 0 -1px 0 rgba(16, 20, 16, 0.10);
+  backdrop-filter: var(--blur-button);
+  -webkit-backdrop-filter: var(--blur-button);
+  transition:
+    transform var(--dur-hover) var(--ease-default),
+    box-shadow var(--dur-hover) var(--ease-default),
+    background 180ms ease;
+  will-change: transform;
+}
+
+/* Specular highlight (top shine) */
+.glass-button::before {
+  position: absolute;
+  inset: 1px 2px auto;
+  height: 48%;
+  content: "";
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.06));
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+/* Moving sheen sweep */
+.glass-button::after {
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: -65%;
+  width: 42%;
+  content: "";
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.62), transparent);
+  opacity: 0.38;
+  transform: translateX(0) skewX(-18deg);
+  pointer-events: none;
+  animation: glass-button-sheen 7s ease-in-out infinite;
+}
+
+.glass-button:hover {
+  transform: translateY(-3px);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.44)),
+    rgba(255, 255, 255, 0.66);
+  box-shadow:
+    0 10px 0 rgba(185, 194, 184, 0.72),
+    0 24px 42px rgba(34, 49, 37, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(16, 20, 16, 0.10);
+}
+
+.glass-button:active {
+  transform: translateY(5px) scale(0.992);
+  box-shadow:
+    0 2px 0 rgba(185, 194, 184, 0.72),
+    0 8px 16px rgba(34, 49, 37, 0.14),
+    inset 0 2px 5px rgba(16, 20, 16, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.46);
+  transition-duration: var(--dur-press);
+}
+
+/* Primary variant — brand green */
+.glass-button-primary {
+  border-color: rgba(23, 63, 53, 0.20);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 42%),
+    color-mix(in srgb, var(--color-primary) 92%, transparent);
+  color: var(--color-primary-ink);
+  box-shadow:
+    0 8px 0 rgba(11, 47, 38, 0.82),
+    0 18px 34px rgba(23, 63, 53, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
+}
+
+.glass-button-primary:hover {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    var(--color-primary);
+  box-shadow:
+    0 10px 0 rgba(11, 47, 38, 0.86),
+    0 24px 42px rgba(23, 63, 53, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
+}
+
+.glass-button-primary:active {
+  box-shadow:
+    0 2px 0 rgba(11, 47, 38, 0.88),
+    0 8px 16px rgba(23, 63, 53, 0.20),
+    inset 0 2px 5px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/* Full-width modifier */
+.glass-button--full { width: 100%; }
+
+@media (max-width: 520px) {
+  .glass-button { width: 100%; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §6  STATUS / BADGE TOKENS
+ * Used for presence indicators, live status dots, success states.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+.bonsai-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.25);
+}
+
+/* Animated pulse ring variant */
+.bonsai-status-dot--pulse::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-success);
+  animation: bonsai-pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes bonsai-pulse-ring {
+  0%   { opacity: 0.7; transform: scale(1); }
+  70%  { opacity: 0;   transform: scale(2.2); }
+  100% { opacity: 0;   transform: scale(2.2); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §7  ANIMATIONS
+ *
+ * lg-expand / lg-collapse
+ * ───────────────────────
+ * The signature Bonsai panel materialise animation. Used for modals, drawers,
+ * and any panel that should "snap into existence" with intent.
+ *
+ * HOW IT WORKS (desktop):
+ *   1. A horizontal line snaps on (clip-path collapses to a thin bar).
+ *   2. The bar expands vertically into the full panel.
+ * This is a two-phase animation — the timing-function changes mid-way.
+ *
+ * Apply: animation: lg-expand 540ms ease both;
+ * Remove: animation: lg-collapse 260ms ease both; then remove element/class.
+ *
+ * Mobile variants: lg-slide-up / lg-slide-down — sheet from bottom.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+/* Desktop: horizontal then vertical expand */
+@keyframes lg-expand {
+  0% {
+    clip-path: inset(50% 50% 50% 50% round 22px);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  14% {
+    clip-path: inset(50% 50% 50% 50% round 22px);
+    opacity: 1;                                       /* line snaps on */
+    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  44% {
+    clip-path: inset(47% 0% 47% 0% round 3px);       /* full-width thin line */
+    animation-timing-function: cubic-bezier(0.0, 0.0, 0.15, 1);
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0% round 22px);        /* full panel */
+    opacity: 1;
+  }
+}
+
+/* Desktop: collapse (reverse) */
+@keyframes lg-collapse {
+  0% {
+    clip-path: inset(0% 0% 0% 0% round 22px);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 0.6);
+  }
+  55% {
+    clip-path: inset(47% 0% 47% 0% round 3px);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+  }
+  100% {
+    clip-path: inset(50% 50% 50% 50% round 22px);
+    opacity: 0;
+  }
+}
+
+/* Mobile: sheet rises from bottom */
+@keyframes lg-slide-up {
+  from { transform: translateY(48px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Mobile: sheet leaves to bottom (applied by JS before class removal) */
+@keyframes lg-slide-down {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(48px); opacity: 0; }
+}
+
+/* Button sheen sweep (runs on all glass-button elements) */
+@keyframes glass-button-sheen {
+  0%,  62% { transform: translateX(0)    skewX(-18deg); opacity: 0; }
+  70%       { opacity: 0.42; }
+  86%, 100% { transform: translateX(390%) skewX(-18deg); opacity: 0; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §8  LAYOUT UTILITIES
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+.bonsai-container {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+}
+
+.bonsai-section {
+  padding: clamp(4.5rem, 10vw, 7.5rem) 0;
+}
+
+.bonsai-section--tight {
+  padding-top: clamp(3rem, 8vw, 5.5rem);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * §9  REDUCED MOTION
+ * Always include this block. It ensures accessibility.
+ * ───────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
