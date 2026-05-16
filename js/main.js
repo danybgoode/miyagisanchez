@@ -21,14 +21,79 @@ document.addEventListener('DOMContentLoaded', () => {
   syncHeaderOffset();
   window.addEventListener('resize', syncHeaderOffset);
 
-  // Glass header: deepen blur/opacity on scroll
+  // ── Liquid-Glass Nav (iOS 26 HIG) ──────────────────────────────────────── //
+  // The drip strip below the nav deforms like molten glass as content
+  // scrolls under it. A 9-point wave polygon is driven by scroll velocity
+  // and settles back to flat via spring physics.
   const header = document.querySelector('.main-header');
+  const drip   = document.querySelector('.lg-nav-drip');
+
   if (header) {
-    const onScroll = () => {
-      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    header.classList.toggle('is-scrolled', window.scrollY > 12);
+  }
+
+  if (header && drip) {
+    let prevY       = window.scrollY;
+    let rafId       = null;
+    let dripTimer   = null;
+
+    // 9 control points evenly spaced along the top edge of the drip strip.
+    // Each value is Y% within the strip (0 = top / flush with nav, 100 = bottom).
+    const N  = 9;
+    const PX = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+    const cur = new Array(N).fill(0);   // current interpolated positions
+    const tgt = new Array(N).fill(0);   // spring targets
+
+    const buildPolygon = () =>
+      'polygon(' + cur.map((v, i) => `${PX[i]}% ${v.toFixed(2)}%`).join(',') + ',100% 100%,0% 100%)';
+
+    // Spring step — runs via rAF until all points are settled
+    const springStep = () => {
+      let settled = true;
+      for (let i = 0; i < N; i++) {
+        const d = tgt[i] - cur[i];
+        if (Math.abs(d) > 0.05) { cur[i] += d * 0.13; settled = false; }
+        else cur[i] = tgt[i];
+      }
+      drip.style.clipPath = buildPolygon();
+      rafId = settled ? null : requestAnimationFrame(springStep);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+
+    // Generate a sinusoidal wave whose amplitude is proportional to velocity.
+    // A Gaussian envelope tapers the wave to zero at both side edges so the
+    // left and right corners stay sharp (no liquid "bleed" off-screen).
+    const triggerWave = (velocity) => {
+      const speed = Math.min(Math.abs(velocity), 24);
+      const dir   = velocity > 0 ? 0 : Math.PI;         // phase: down vs up scroll
+      const amp   = speed * 3.8;                         // max ~91 % at speed 24
+
+      for (let i = 0; i < N; i++) {
+        const t   = i / (N - 1);                         // 0 → 1
+        const env = Math.sin(t * Math.PI);               // tapers to 0 at edges
+        tgt[i] = Math.max(0, Math.min(90,
+          env * amp * (0.5 + 0.5 * Math.sin(t * Math.PI * 2.4 + dir))
+        ));
+      }
+
+      drip.classList.add('is-active');
+      if (!rafId) rafId = requestAnimationFrame(springStep);
+
+      clearTimeout(dripTimer);
+      dripTimer = setTimeout(() => {
+        tgt.fill(0);                                    // return to flat
+        if (!rafId) rafId = requestAnimationFrame(springStep);
+        setTimeout(() => drip.classList.remove('is-active'), 560);
+      }, 190);
+    };
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const v = y - prevY;
+      prevY = y;
+
+      header.classList.toggle('is-scrolled', y > 12);
+      if (Math.abs(v) > 1.5) triggerWave(v);
+    }, { passive: true });
   }
 
   // Mobile Menu Toggle
