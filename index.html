@@ -62,7 +62,7 @@
                         <button class="glass-button glass-button-primary" onclick="openBookingModal()" data-i18n="hero_cta_primary">
                             Schedule a consultation call. Totally free.
                         </button>
-                        <button class="glass-button" id="copy-mcp-hero" data-i18n="hero_cta_mcp">
+                        <button class="glass-button" onclick="openMcpModal()" data-i18n="hero_cta_mcp">
                             Run Bonsai OS in Claude
                         </button>
                     </div>
@@ -84,10 +84,10 @@
             </div>
         </section>
 
-        <!-- The Pain -->
+        <!-- The Pain — Your Organization -->
         <section class="section-shell section-tight">
             <div class="section-heading">
-                <p class="eyebrow" data-i18n="pain_eyebrow">The Pain</p>
+                <p class="eyebrow">Your Organization</p>
             </div>
             <div style="display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
                 <article class="glass-panel quote-panel copy-card">
@@ -99,8 +99,29 @@
                     <p data-i18n="pain_2_p">Every team tracks something different. Nobody agrees on what winning looks like. Roadmap decisions become political.</p>
                 </article>
                 <article class="glass-panel quote-panel copy-card">
-                    <h3 data-i18n="pain_3_h">Never ending customer support.</h3>
-                    <p data-i18n="pain_3_p">Customers on every channel at all hours asking the same thing over and over.</p>
+                    <h3>Budget Blackhole.</h3>
+                    <p>The exec team sees R&amp;D spend with no revenue line next to it. You feel it every budget cycle.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- The Pain — Your Operation -->
+        <section class="section-shell section-tight">
+            <div class="section-heading">
+                <p class="eyebrow">Your Operation</p>
+            </div>
+            <div style="display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+                <article class="glass-panel quote-panel copy-card">
+                    <h3>24/7 Support.</h3>
+                    <p>Customers on all hours asking the same thing over and over.</p>
+                </article>
+                <article class="glass-panel quote-panel copy-card">
+                    <h3>Omnichannel Pain.</h3>
+                    <p>Keep Inbox zero across your channels is whack-a-mole as sport.</p>
+                </article>
+                <article class="glass-panel quote-panel copy-card">
+                    <h3>Syncing Tools.</h3>
+                    <p>You answered the questions, now update the pipeline. Yay.</p>
                 </article>
             </div>
         </section>
@@ -129,6 +150,9 @@
 
         <!-- Bonsai Commerce Band -->
         <section class="section-shell" id="bonsai-commerce">
+            <div class="section-heading wide">
+                <h2>The Tools</h2>
+            </div>
             <div class="atlas-band">
                 <div class="atlas-copy">
                     <h2 data-i18n="os_h2">Bonsai Commerce</h2>
@@ -185,6 +209,7 @@
     <script src="js/main.js"></script>
     <script src="js/hero-magic-text.js"></script>
     <script src="js/booking-modal.js"></script>
+    <script src="js/mcp-modal.js"></script>
     <script>
       (function() {
         var MCP_URL = 'https://bonsaios-mcp.vercel.app/api/mcp';
@@ -200,7 +225,6 @@
             });
           });
         }
-        setupCopyMcp('copy-mcp-hero');
         setupCopyMcp('copy-mcp-card');
       })();
     </script>
