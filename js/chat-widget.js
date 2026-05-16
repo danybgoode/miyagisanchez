@@ -14,7 +14,7 @@
     btn.className = 'miyagi-bubble';
     btn.setAttribute('aria-label', 'Open chat');
     btn.innerHTML =
-      '<img class="miyagi-mascot" src="miyagi-nobg.png" alt="" draggable="false">' +
+      '<img class="miyagi-mascot" src="miyagisticker.png" alt="" draggable="false">' +
       '<span class="miyagi-pulse" aria-hidden="true"></span>';
     document.body.appendChild(btn);
     btn.addEventListener('click', toggle);
