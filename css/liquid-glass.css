@@ -835,17 +835,35 @@ body.modal-open { overflow: hidden; }
 }
 
 
+/* green presence dot in our header sub-line */
+.miyagi-status-dot {
+  color: #4ade80;
+}
+
 .miyagi-panel-body {
   flex: 1;
   min-height: 0;
-  display: flex;
+  overflow: hidden; /* clips Chatwoot's own header */
+  position: relative;
 }
 
-.miyagi-iframe {
-  flex: 1;
-  width: 100%;
-  border: none;
-  background: #fff;
+/* ── Chatwoot SDK widget relocated inside our panel ── */
+.miyagi-panel-body #cw-widget-holder {
+  position: relative !important;
+  width: 100% !important;
+  /* push widget up to hide Chatwoot's own ~62px header */
+  top: -62px !important;
+  height: calc(100% + 62px) !important;
+  right: auto !important;
+  bottom: auto !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.miyagi-panel-body #chatwoot_live_chat_widget {
+  width: 100% !important;
+  height: 100% !important;
+  visibility: visible !important;
   border-radius: 0 0 21px 21px;
 }
 
