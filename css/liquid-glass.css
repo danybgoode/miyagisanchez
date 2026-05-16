@@ -693,22 +693,20 @@ body.modal-open { overflow: hidden; }
 
 .miyagi-bubble {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 20px;
+  right: 20px;
   z-index: 8900;
-  width: 72px;
-  height: 72px;
   padding: 0;
   border: none;
   background: none;
   cursor: pointer;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.38));
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.42));
   transition: filter 200ms, transform 200ms;
   animation: miyagi-swing 9s ease-in-out 3s infinite;
 }
 
 .miyagi-bubble:hover {
-  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.58));
   transform: scale(1.07) !important;
   animation-play-state: paused;
 }
@@ -716,6 +714,14 @@ body.modal-open { overflow: hidden; }
 .miyagi-bubble--open {
   animation-play-state: paused;
   transform: scale(0.94);
+}
+
+/* Free-form mascot — transparent PNG, natural silhouette, no clipping */
+.miyagi-mascot {
+  display: block;
+  width: 84px;
+  height: auto;
+  pointer-events: none;
 }
 
 /* circular mascot avatar — glass ring treatment */
