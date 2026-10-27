@@ -8,10 +8,10 @@
     const shellNav = body.dataset.shellNav || 'marketing';
 
     const logo = `
-      <a href="index.html" class="logo-link" aria-label="Bonsai home">
+      <a href="index.html" class="logo-link" aria-label="Despacho Bonsai home">
         <div class="logo">
           <img src="assets/brand/bonsai-mark.svg" class="logo-mark" alt="">
-          <span class="logo-wordmark">bonsai</span>
+          <span class="logo-wordmark">despacho bonsai</span>
         </div>
       </a>
     `;
@@ -46,23 +46,18 @@
     const navSets = {
       bonsai: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
-        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       home: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
-        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       commerce: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
-        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       marketing: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
-        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `,
       legal: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
-        <a href="bonsai-commerce.html">Bonsai Commerce</a>
       `
     };
 
@@ -101,7 +96,7 @@
               <a href="terms.html" class="text-muted" data-i18n="footer_terms">Terms of Service</a>
               <a href="cookies.html" class="text-muted" data-i18n="footer_cookies">Cookie Policy</a>
             </div>
-            <p class="footer-text text-secondary" data-i18n="footer_copy">&copy; 2025 Despacho Bonsai. All rights reserved.</p>
+            <p class="footer-text text-secondary" data-i18n="footer_copy">&copy; 2026 Despacho Bonsai. All rights reserved.</p>
           </div>
         </footer>
       `;
