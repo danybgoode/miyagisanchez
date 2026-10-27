@@ -31,7 +31,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Baloo+2:wght@800&family=Cormorant+Garamond:wght@500;600;700&family=DynaPuff:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/globals.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/liquid-glass.css">
@@ -76,14 +76,15 @@
                     </div>
                 </div>
 
-                <aside class="hero-quote-card">
-                    <blockquote>
-                        Your product is playing a Productivity game. Your North Star is
-                        Weekly Active Users. It moves when you improve breadth, depth, and
-                        frequency. That means your next three builds should focus on
-                        activation, retention, and channel expansion.
+                <aside class="hero-quote-card hero-magic-card">
+                    <canvas class="hero-magic-canvas" data-hero-magic-canvas aria-hidden="true"></canvas>
+                    <blockquote class="hero-magic-text" data-hero-magic-text data-i18n="hero_magic_text">
+                        Your product is playing a <span class="magic-word magic-word-fire" data-fx="fire">Productivity</span> game.<br>
+                        Your <span class="magic-word magic-word-gold" data-fx="gold">North Star</span> is Weekly Active Users.<br>
+                        It moves when you improve breadth, depth, and frequency.<br>
+                        That means your <span class="magic-word magic-word-smoke" data-fx="smoke">next three builds</span> should focus on <span class="magic-word magic-word-lightning" data-fx="lightning">activation</span>, retention, and channel expansion.
                     </blockquote>
-                    <p>This is what clarity looks like. This is what we produce.</p>
+                    <p class="hero-quote-caption" data-i18n="hero_quote_caption">This is what clarity looks like. This is what we produce.</p>
                 </aside>
             </div>
         </section>
@@ -151,6 +152,7 @@
     <script src="js/shared-shell.js"></script>
     <script src="js/i18n.js?v=3"></script>
     <script src="js/main.js"></script>
+    <script src="js/hero-magic-text.js"></script>
     <script src="js/booking-modal.js"></script>
 </body>
 </html>

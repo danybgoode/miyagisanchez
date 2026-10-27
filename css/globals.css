@@ -214,7 +214,10 @@ a {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  mix-blend-mode: screen;
+}
+
+.hero-magic-canvas.hero-magic-canvas-front {
+  z-index: 2;
 }
 
 .hero-magic-text {
@@ -262,11 +265,11 @@ a {
   isolation: isolate;
   font-size: 1.08em;
   white-space: nowrap;
-  transform: translateZ(0);
   background-clip: text;
   -webkit-background-clip: text;
 }
 
+/* Fire: incandescent letters, hottest at the core. Flames, embers and the heat glow live in the WebGL layer. */
 .magic-word-fire {
   color: transparent;
   font-family: "Baloo 2", "Cooper Black", "Arial Rounded MT Bold", var(--font-display);
@@ -274,68 +277,62 @@ a {
   font-weight: 800;
   letter-spacing: 0;
   background-image:
-    repeating-linear-gradient(92deg, rgba(138, 87, 38, 0.26) 0 1px, transparent 1px 8px),
-    repeating-linear-gradient(176deg, rgba(255, 244, 203, 0.28) 0 1px, transparent 1px 11px),
-    radial-gradient(120% 160% at 18% 50%, rgba(255, 232, 180, 0.46), transparent 50%),
-    linear-gradient(180deg, #f1d18c 0%, #d7a761 28%, #b8793e 52%, #e4b66d 76%, #9c5f2b 100%);
-  background-size: 48px 100%, 100% 22px, 100% 100%, 100% 100%;
-  background-position: 0 0, 0 0, 0 0, 0 0;
+    radial-gradient(60% 90% at var(--heat-x, 30%) 55%, rgba(255, 252, 230, 0.85), transparent 70%),
+    linear-gradient(180deg, #fff1b8 0%, #ffd062 28%, #ff9a2c 58%, #f25a14 82%, #b8280a 100%);
+  background-size: 100% 100%, 100% 100%;
   filter:
-    drop-shadow(0 1px 0 rgba(73, 39, 13, 0.56))
-    drop-shadow(0 0 1px rgba(255, 238, 188, 0.18));
-  -webkit-text-stroke: 0.12px rgba(255, 242, 205, 0.30);
-  text-shadow:
-    0 1px 0 rgba(85, 44, 13, 0.48),
-    0 -1px 0 rgba(255, 244, 207, 0.22);
-  animation: magic-wood-grain 9s linear infinite;
+    drop-shadow(0 1px 0 rgba(70, 14, 0, 0.75))
+    drop-shadow(0 0 6px rgba(255, 128, 32, 0.55));
+  animation: magic-heat 3.6s ease-in-out infinite alternate;
 }
 
+/* Gold: polished metal with a horizon-line reflection and a slow specular sweep; glints come from WebGL. */
 .magic-word-gold {
   color: transparent;
   font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif;
   font-size: 1.14em;
-  font-weight: 840;
+  font-weight: 700;
   letter-spacing: 0.01em;
   background-image:
-    linear-gradient(112deg, transparent 0%, transparent 42%, rgba(255, 255, 234, 0.98) 49%, transparent 57%, transparent 100%),
-    linear-gradient(180deg, #fff8bd 0%, #ffdf4f 16%, #fff3a4 30%, #d99b10 47%, #fff2a8 60%, #f0bd25 74%, #ffe57b 100%);
-  background-size: 260% 100%, 100% 100%;
-  background-position: 120% 0, 0 0;
-  text-shadow: 0 1px 0 rgba(38, 24, 2, 0.62);
-  filter: drop-shadow(0 0 7px rgba(255, 220, 72, 0.24));
-  animation: magic-chrome-sheen 6.8s linear infinite;
+    linear-gradient(110deg, transparent 38%, rgba(255, 255, 240, 0.95) 48%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 240, 0.95) 52%, transparent 62%),
+    linear-gradient(180deg, #fff6cf 0%, #ffe08a 18%, #f3bf3e 38%, #9a6410 52%, #d99a22 60%, #ffd96e 78%, #a36a14 100%);
+  background-size: 300% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 130% 0, 0 0;
+  filter:
+    drop-shadow(0 1px 0 rgba(48, 28, 0, 0.85))
+    drop-shadow(0 0 8px rgba(255, 196, 70, 0.22));
+  animation: magic-gold-sheen 7s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
+/* Lightning: plasma-white letters; --zap (0–1) is set by the WebGL layer on every strike. */
 .magic-word-lightning {
+  --zap: 0;
   color: #f4f8ff;
   font-style: italic;
   font-weight: 700;
-  text-shadow:
-    0 0 2px #f5fbff,
-    0 0 8px rgba(139, 195, 255, 0.54),
-    0 0 16px rgba(68, 132, 255, 0.20);
-  animation: magic-bolt-flicker 4.6s steps(1) infinite;
+  filter:
+    drop-shadow(0 0 calc(1.5px + 2px * var(--zap)) rgba(235, 245, 255, calc(0.8 + 0.2 * var(--zap))))
+    drop-shadow(0 0 calc(6px + 10px * var(--zap)) rgba(120, 180, 255, calc(0.5 + 0.4 * var(--zap))))
+    drop-shadow(0 0 calc(14px + 18px * var(--zap)) rgba(60, 120, 255, calc(0.18 + 0.4 * var(--zap))));
 }
 
+/* Smoke: soft violet letters dissolving at the top edge; the rising wisps come from WebGL. */
 .magic-word-smoke {
   color: transparent;
   font-family: "DynaPuff", "Cooper Black", "Arial Rounded MT Bold", var(--font-display);
   font-size: 1.1em;
   font-weight: 700;
   letter-spacing: 0;
-  background-image: linear-gradient(180deg, #ffd6ff 0%, #d58aff 28%, #8f45d8 64%, #5a2294 100%);
+  background-image:
+    linear-gradient(180deg, rgba(240, 222, 255, 0.95) 0%, #d6a8ff 30%, #a865e8 62%, #6c2fb0 100%);
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(28, 7, 44, 0.48));
-  -webkit-text-stroke: 0.25px rgba(255, 222, 255, 0.48);
-  text-shadow:
-    -1px -1px 0 rgba(245, 196, 255, 0.46),
-    1px -1px 0 rgba(198, 111, 255, 0.62),
-    -1px 1px 0 rgba(107, 42, 176, 0.68),
-    1px 1px 0 rgba(64, 21, 111, 0.76),
-    -2px 0 1px rgba(219, 136, 255, 0.35),
-    2px 0 1px rgba(96, 36, 154, 0.42),
-    0 2px 2px rgba(38, 10, 61, 0.52);
-  animation: magic-fur-ruffle 4.8s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, #000 38%);
+          mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, #000 38%);
+  filter:
+    drop-shadow(0 1px 0 rgba(30, 6, 50, 0.6))
+    drop-shadow(0 0 7px rgba(190, 130, 255, 0.35));
+  animation: magic-smoke-breathe 6s ease-in-out infinite;
 }
 
 .magic-word-jade {
@@ -358,44 +355,27 @@ a {
   pointer-events: none;
 }
 
-@keyframes magic-wood-grain {
-  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-  100% { background-position: 48px 0, 0 22px, 0 0, 0 0; }
+@property --heat-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 30%;
 }
 
-@keyframes magic-chrome-sheen {
-  0% { background-position: 125% 0, 0 0; }
-  100% { background-position: -55% 0, 0 0; }
+@keyframes magic-heat {
+  0% { --heat-x: 18%; }
+  35% { --heat-x: 62%; }
+  70% { --heat-x: 38%; }
+  100% { --heat-x: 82%; }
 }
 
-@keyframes magic-bolt-flicker {
-  0%, 93%, 96%, 100% { opacity: 1; }
-  94%, 95% { opacity: 0.7; }
+@keyframes magic-gold-sheen {
+  0%, 18% { background-position: 130% 0, 0 0; }
+  62%, 100% { background-position: -30% 0, 0 0; }
 }
 
-@keyframes magic-fur-ruffle {
-  0%, 100% {
-    transform: translateY(0) skewX(0deg);
-    text-shadow:
-      -1px -1px 0 rgba(245, 196, 255, 0.46),
-      1px -1px 0 rgba(198, 111, 255, 0.62),
-      -1px 1px 0 rgba(107, 42, 176, 0.68),
-      1px 1px 0 rgba(64, 21, 111, 0.76),
-      -2px 0 1px rgba(219, 136, 255, 0.35),
-      2px 0 1px rgba(96, 36, 154, 0.42),
-      0 2px 2px rgba(38, 10, 61, 0.52);
-  }
-  45% {
-    transform: translateY(-0.5px) skewX(-1.2deg);
-    text-shadow:
-      -1.5px -1px 0 rgba(255, 208, 255, 0.56),
-      0.5px -1.5px 0 rgba(212, 128, 255, 0.68),
-      -0.5px 1.5px 0 rgba(120, 48, 192, 0.70),
-      1.5px 1px 0 rgba(73, 25, 124, 0.78),
-      -2.5px 0 1px rgba(230, 150, 255, 0.42),
-      2.5px 0 1px rgba(104, 40, 166, 0.46),
-      0 2.5px 2px rgba(38, 10, 61, 0.50);
-  }
+@keyframes magic-smoke-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.86; }
 }
 
 .hero-visual {
@@ -1005,10 +985,6 @@ a {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
-  }
-
-  .hero-magic-canvas {
-    display: none;
   }
 }
 
