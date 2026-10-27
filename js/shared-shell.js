@@ -46,18 +46,23 @@
     const navSets = {
       bonsai: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer">Miyagi Sánchez</a>
       `,
       home: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer">Miyagi Sánchez</a>
       `,
       commerce: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer">Miyagi Sánchez</a>
       `,
       marketing: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer">Miyagi Sánchez</a>
       `,
       legal: `
         <a href="bonsai-academy.html">Bonsai Academy</a>
+        <a href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer">Miyagi Sánchez</a>
       `
     };
 
