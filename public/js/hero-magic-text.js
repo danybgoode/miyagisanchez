@@ -5,7 +5,8 @@
 //   · sprites — CPU-simulated particles drawn as soft discs, star glints and glowing segments (embers, bolts, arcs).
 // The words themselves stay real DOM text styled in CSS (globals.css .magic-word-*); this layer only lights them.
 // Word rects are cached and re-measured on resize, font load and i18n swaps, never per frame. The loop pauses
-// offscreen and in background tabs; reduced motion gets a single still frame.
+// offscreen and in background tabs; reduced motion gets a single still frame. GPU budget: the effects are soft
+// light, so they render at 1x pixel density and 30 fps, and the front layer is skipped while it has nothing to draw.
 (() => {
   const cards = document.querySelectorAll('.hero-magic-card');
   if (!cards.length) return;
@@ -23,7 +24,7 @@
     float fbm(vec2 p) {
       float v = 0.0, a = 0.5;
       mat2 r = mat2(0.8, 0.6, -0.6, 0.8);
-      for (int i = 0; i < 5; i++) { v += a * noise(p); p = r * p * 2.03; a *= 0.5; }
+      for (int i = 0; i < 4; i++) { v += a * noise(p); p = r * p * 2.03; a *= 0.5; }
       return v;
     }`;
 
@@ -219,6 +220,8 @@
   // Sprites drawn in front of the text: highlights that catch the letters, plus each bolt's impact flash.
   // Everything else, bolt channels included, stays behind the text so no line is ever covered.
   const FRONT = new Set(['glint', 'spark']);
+  const MAX_DPR = 1;
+  const FRAME_MS = 1000 / 30;
 
   // One WebGL2 canvas with its programs and HDR target. A card has two: behind the text and in front of it.
   function Layer(canvas) {
@@ -324,13 +327,14 @@
     let visible = true;
     let rafId = 0;
     let last = performance.now();
+    let frontDrawn = true;   // whether the front canvas holds pixels that still need clearing
     const t0 = last;
     const running = () => rafId !== 0;
     const still = () => draw(1.7);
 
     function resize() {
       const rect = card.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+      const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
       const w = Math.max(1, rect.width), h = Math.max(1, rect.height);
       back.resize(w, h, dpr);
       if (front) front.resize(w, h, dpr);
@@ -564,7 +568,8 @@
       });
 
       back.render(time, fieldData, n, backData, mb);
-      if (front) front.render(time, fieldData, 0, frontData, mf);
+      if (front && (mf || frontDrawn)) front.render(time, fieldData, 0, frontData, mf);
+      frontDrawn = mf > 0;
 
       // Let the lightning word itself flare with its bolt.
       words.forEach(word => {
@@ -576,11 +581,12 @@
 
     // ── loop ───────────────────────────────────────────────────────────────
     function frame(now) {
+      rafId = requestAnimationFrame(frame);
+      if (now - last < FRAME_MS - 2) return;
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       step(dt, now / 1000);
       draw((now - t0) / 1000);
-      rafId = requestAnimationFrame(frame);
     }
 
     function sync() {

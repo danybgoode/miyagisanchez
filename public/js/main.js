@@ -69,8 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Math.abs(s.vel) > 0.01 || Math.abs(s.y - target) > 0.05) allSettled = false;
       });
       scrollImpulse *= 0.78;  // impulse decays quickly
-      oilRaf = requestAnimationFrame(oilStep);
+      oilRaf = footerVisible ? requestAnimationFrame(oilStep) : null;
     };
+
+    // Each icon is a blurred glass chip, so moving it costs a GPU recomposite: only animate while the footer shows.
+    let footerVisible = false;
+    new IntersectionObserver(entries => {
+      footerVisible = entries[entries.length - 1].isIntersecting;
+      if (footerVisible && !oilRaf) oilRaf = requestAnimationFrame(oilStep);
+    }).observe(document.querySelector('.main-footer'));
 
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
@@ -80,8 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollImpulse += -v * 0.55;
       scrollImpulse = Math.max(-18, Math.min(18, scrollImpulse));
     }, { passive: true });
-
-    oilRaf = requestAnimationFrame(oilStep);
   }
 
   // Mobile Menu Toggle
