@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import MagicCard from '../components/MagicCard.astro';
+import OfferLadder from '../components/OfferLadder.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import RunInClaude from '../components/RunInClaude.astro';
+import { type Lang, SITE, localePath, useT } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang, 'index');
+const s = SITE[lang];
+---
+<Base lang={lang} path="/" title={t('page_title')}
+  description={s.home_meta}
+  scripts={['/js/hero-magic-text.js']}>
+  <main class="overflow-x-hidden">
+
+    <!-- Hero -->
+    <section class="hero-shell">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="liquid-field"></div>
+      </div>
+      <div class="hero-content hero-layout">
+        <div class="hero-copy">
+          <h1 set:html={t('hero_title')} />
+          <p class="hero-subhead" set:html={t('hero_subhead')} />
+          <div class="hero-actions">
+            <button class="glass-button glass-button-primary" onclick="openBookingModal()"
+              data-track="book_call" data-track-location="home_hero" set:html={t('hero_cta_primary')} />
+            <button class="glass-button" onclick="openMcpModal()"
+              data-track="run_free" data-track-location="home_hero" set:html={t('hero_cta_mcp')} />
+          </div>
+        </div>
+        <MagicCard html={t('hero_magic_text')} caption={t('hero_quote_caption')} question={t('hero_quote_question')} />
+      </div>
+    </section>
+
+    <!-- The Pain — Your Organization -->
+    <section class="section-shell section-tight">
+      <div class="section-heading">
+        <p class="eyebrow">{s.home_org_eyebrow}</p>
+      </div>
+      <div style="display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+        <article class="glass-panel quote-panel copy-card">
+          <h3 set:html={t('pain_1_h')} />
+          <p set:html={t('pain_1_p')} />
+        </article>
+        <article class="glass-panel quote-panel copy-card">
+          <h3 set:html={t('pain_2_h')} />
+          <p set:html={t('pain_2_p')} />
+        </article>
+        <article class="glass-panel quote-panel copy-card">
+          <h3>{s.home_pain_3_h}</h3>
+          <p>{s.home_pain_3_p}</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- The Methodology -->
+    <section class="section-shell">
+      <div class="section-heading wide">
+        <h2 set:html={t('method_h2')} />
+        <a class="glass-button section-heading-button" href={localePath(lang, '/academy')}
+          data-track="explore_academy" data-track-location="home_method" set:html={t('method_cta')} />
+      </div>
+      <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
+        <article class="glass-panel service-panel">
+          <h3 set:html={t('method_1_h')} />
+          <p set:html={t('method_1_p')} />
+        </article>
+        <article class="glass-panel service-panel">
+          <h3 set:html={t('method_2_h')} />
+          <p set:html={t('method_2_p')} />
+        </article>
+        <article class="glass-panel service-panel">
+          <h3 set:html={t('method_3_h')} />
+          <p set:html={t('method_3_p')} />
+        </article>
+      </div>
+    </section>
+
+    <OfferLadder lang={lang} />
+
+    <ProofStrip lang={lang} />
+
+    <!-- Miyagi Sánchez Band (replaces Bonsai Commerce) -->
+    <section class="section-shell" id="miyagi-sanchez">
+      <div class="section-heading wide">
+        <h2 set:html={t('tools_h2')} />
+      </div>
+      <div class="atlas-band">
+        <div class="atlas-copy">
+          <h2 set:html={t('os_h2')} />
+          <p set:html={t('os_p')} />
+          <a class="glass-button" href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer"
+            data-track="outbound" data-track-location="home_miyagi_band" set:html={t('os_cta_btn')} />
+        </div>
+      </div>
+    </section>
+
+    <RunInClaude lang={lang} location="home_cta_grid" />
+
+  </main>
+</Base>

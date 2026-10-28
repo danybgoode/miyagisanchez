@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import MagicCard from '../components/MagicCard.astro';
+import RunInClaude from '../components/RunInClaude.astro';
+import { type Lang, SITE, useT } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang, 'academy');
+const s = SITE[lang];
+---
+<Base lang={lang} path="/academy" title={t('page_title')} description={s.academy_meta}
+  scripts={['/js/hero-magic-text.js']}>
+  <main class="overflow-x-hidden">
+
+    <!-- Hero -->
+    <section class="hero-shell">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="liquid-field"></div>
+      </div>
+      <div class="hero-content hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow" set:html={t('hero_eyebrow')} />
+          <h1 set:html={t('hero_title')} />
+          <p class="hero-subhead" set:html={t('hero_subhead')} />
+          <div class="hero-actions">
+            <button class="glass-button glass-button-primary" onclick="openBookingModal()"
+              data-track="book_call" data-track-location="academy_hero" set:html={t('hero_cta_primary')} />
+            <a class="glass-button" href="#methodology" set:html={t('hero_cta_secondary')} />
+          </div>
+        </div>
+        <MagicCard html={t('hero_magic_text')} caption={t('hero_quote_caption')} />
+      </div>
+    </section>
+
+    <!-- The Methodology -->
+    <section class="section-shell" id="methodology">
+      <div class="section-heading wide">
+        <p class="eyebrow" set:html={t('method_eyebrow')} />
+        <h2 set:html={t('method_subtitle')} />
+      </div>
+      <div style="display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
+        <article class="glass-panel service-panel">
+          <h3 set:html={t('method_1_h')} />
+          <p set:html={t('method_1_p')} />
+        </article>
+        <article class="glass-panel service-panel">
+          <h3 set:html={t('method_2_h')} />
+          <p set:html={t('method_2_p')} />
+        </article>
+        <article class="glass-panel service-panel">
+          <h3 set:html={t('method_3_h')} />
+          <p set:html={t('method_3_p')} />
+        </article>
+      </div>
+    </section>
+
+    <!-- What you get -->
+    <section class="section-shell section-tight">
+      <div class="section-heading">
+        <p class="eyebrow" set:html={t('os_eyebrow')} />
+        <h2 set:html={t('os_h2')} />
+      </div>
+      <div style="display:grid; gap:0.75rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+        <article class="glass-panel quote-panel copy-card">
+          <h3 set:html={t('os_1_h')} />
+          <p set:html={t('os_1_p')} />
+        </article>
+        <article class="glass-panel quote-panel copy-card">
+          <h3 set:html={t('os_2_h')} />
+          <p set:html={t('os_2_p')} />
+        </article>
+        <article class="glass-panel quote-panel copy-card">
+          <h3 set:html={t('os_3_h')} />
+          <p set:html={t('os_3_p')} />
+        </article>
+      </div>
+    </section>
+
+    <RunInClaude lang={lang} location="academy_cta_grid" />
+
+    <!-- CTA -->
+    <section class="section-shell section-tight">
+      <div class="cta-grid" style="grid-template-columns: 1fr;">
+        <article class="glass-panel action-panel action-panel-dark" style="text-align:center; align-items:center;">
+          <h2 set:html={t('cta_h2')} />
+          <p set:html={t('cta_p')} />
+          <button class="glass-button" onclick="openBookingModal()"
+            data-track="book_call" data-track-location="academy_final" set:html={t('cta_btn')} />
+        </article>
+      </div>
+    </section>
+
+  </main>
+</Base>

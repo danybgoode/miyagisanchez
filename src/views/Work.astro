@@ -1,0 +1,74 @@
+---
+// Portfolio: products in production, the method, and the career behind them. Copy from the CV (resume.js).
+import Base from '../layouts/Base.astro';
+import { type Lang, SITE, localePath } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = SITE[lang];
+// The CV keeps its current address while the move to daniel.despachobonsai.com is parked.
+const CV_URL = 'https://danielresume.vercel.app';
+---
+<Base lang={lang} path="/work" title={s.work_page_title} description={s.work_meta}>
+  <main class="overflow-x-hidden">
+
+    <section class="hero-shell hire-hero">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="liquid-field"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">{s.work_eyebrow}</p>
+          <h1>{s.work_h1}</h1>
+          <p class="hero-subhead">{s.work_lede}</p>
+          <div class="hero-actions">
+            <a class="glass-button" href={CV_URL} target="_blank" rel="noopener noreferrer"
+              data-track="outbound" data-track-location="work_cv">{s.work_cv} ↗</a>
+            <a class="glass-button glass-button-primary" href={localePath(lang, '/hire')}
+              data-track="hire" data-track-location="work_hero">{s.nav_hire}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="projects">
+        {s.projects.map(p => (
+          <article class="glass-panel project">
+            <header class="project-head">
+              <div>
+                <h2>{p.name}</h2>
+                <p class="project-tagline">{p.tagline}</p>
+              </div>
+              <p class="project-meta">{p.role} · {p.dates}</p>
+            </header>
+            <ul class="check-list">{p.points.map(pt => <li>{pt}</li>)}</ul>
+            {p.url && (
+              p.url.startsWith('http')
+                ? <a class="glass-button" href={p.url} target="_blank" rel="noopener noreferrer"
+                    data-track="outbound" data-track-location={`work_${p.name.toLowerCase().replace(/\W+/g, '_')}`}>{s.work_visit} {p.url.replace('https://', '')} ↗</a>
+                : <a class="glass-button" href={p.url}>{p.name}</a>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="section-heading"><h2>{s.career_title}</h2></div>
+      <div class="card-row">
+        {s.career.map(c => (
+          <article class="glass-panel quote-panel copy-card">
+            <p class="project-meta">{c.dates}</p>
+            <h3>{c.company}</h3>
+            <p class="project-tagline">{c.title}</p>
+            <p>{c.p}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+  </main>
+</Base>

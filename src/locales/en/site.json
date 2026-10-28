@@ -1,0 +1,233 @@
+{
+  "home_meta": "Run our methodology and walk away knowing exactly what your product should optimize for, what to build next, and why — with your whole team aligned.",
+  "academy_meta": "One framework. Three workshops. Your entire team aligned on what to build, why, and what comes next.",
+  "nav_work": "Work",
+  "nav_hire": "Hire me",
+  "nav_academy": "Bonsai Academy",
+  "lang_label": "Language",
+
+  "footer_linkedin": "LinkedIn",
+  "footer_github": "GitHub",
+
+  "home_org_eyebrow": "Your Organization",
+  "home_pain_3_h": "Budget Blackhole.",
+  "home_pain_3_p": "The exec team sees R&D spend with no revenue line next to it. You feel it every budget cycle.",
+  "home_copied": "Copied!",
+
+  "ladder_eyebrow": "Ways to work together",
+  "ladder_h2": "Start small, or go all in.",
+  "ladder_cta": "See all engagements",
+
+  "proof_eyebrow": "Built and shipped",
+  "proof_h2": "Strategy is only real once it ships.",
+  "proof_cta": "See the work",
+  "proof_stats": [
+    { "figure": "Since 2012", "label": "Leading product teams" },
+    { "figure": "$70M+", "label": "Portfolio owned at AB InBev" },
+    { "figure": "70+", "label": "People led, product & engineering" },
+    { "figure": "2", "label": "Products running in production" }
+  ],
+
+  "offers": [
+    {
+      "id": "free",
+      "title": "Bonsai Academy in Claude",
+      "oneliner": "Run the method yourself, free, with Claude as your coach.",
+      "body": "Connect Bonsai Academy to Claude and work through the same three workshops I run with teams: your product-market-fit story, your North Star and the inputs that move it, and the riskiest assumption in your plan.",
+      "leave": "A written North Star, its input metrics and one test to run next.",
+      "length": "1–2 hours, on your own",
+      "price": "Free",
+      "best": "Teams who want to try the method before talking to anyone.",
+      "button": "Run it free in Claude",
+      "action": "mcp"
+    },
+    {
+      "id": "clarity",
+      "title": "Clarity Session",
+      "oneliner": "Half a day on one real initiative. You leave knowing what to build, why, and how you'll know it worked.",
+      "body": "We take one live initiative of yours and work it through with your team: the outcome it should move, the North Star and inputs it connects to, the riskiest assumption, and a first bet with a target and a date to read the result. Then we compare it with how you work today and keep what holds up.",
+      "leave": "A first bet written down with its why, target and read date; a written readout within two working days; and, if you want it, Golden Frijoles set up in your repo.",
+      "length": "Half a day, remote or in Mexico City. Optional 30-day follow-through.",
+      "price": "$1,500 · $2,500 with 30-day follow-through",
+      "best": "Founders and product leaders who need clarity on one decision before committing to more.",
+      "button": "Book a free intro call",
+      "action": "book"
+    },
+    {
+      "id": "fractional",
+      "title": "Bring product to life",
+      "oneliner": "For leaders who know where they're going but can't get product and engineering aligned to get there.",
+      "body": "I boil a complex problem down to a crisp concept, slice it into pieces you can ship, and work with your engineers and their agents until it's live and measured. You get a product lead who also writes the specs, runs the rituals and reads the numbers.",
+      "leave": "A shipped, measured outcome; a backlog tied to your North Star; and a team that keeps the cadence after I'm gone.",
+      "length": "Typically 6–12 weeks, 2–3 days a week. Six-week minimum.",
+      "price": "From $2,500 a week",
+      "best": "Teams with engineers but no senior product lead, or a lead who is stretched too thin.",
+      "button": "Book a free intro call",
+      "action": "book"
+    },
+    {
+      "id": "fde",
+      "title": "Forward-deployed product engineer",
+      "oneliner": "I join your team and your stack, own an outcome instead of a ticket queue, and write production code with agents.",
+      "body": "We start from the foundations: who the users are, what value you promise them and how the business makes money. Then I build with your team, inside your repo and your rules, so everything we ship has a reason and a way to tell if it worked.",
+      "leave": "Working software in production, the outcome measured against the baseline we wrote down on day one, and a handoff your team can run without me.",
+      "length": "Typically 4–12 weeks, embedded. Four-week minimum.",
+      "price": "From $5,000 a week",
+      "best": "Companies that need something real shipped fast and want the person who decides what to build to also build it.",
+      "button": "Book a free intro call",
+      "action": "book"
+    }
+  ],
+  "offer_leave_label": "You leave with",
+  "offer_length_label": "Length",
+  "offer_price_label": "Price",
+  "offer_best_label": "Best for",
+
+  "includes_title": "Every engagement includes",
+  "includes": [
+    "An outcome and a baseline written down before we build",
+    "A date to read the result, agreed up front",
+    "Working software demoed every week, not slide decks",
+    "Decisions and trade-offs recorded where your team works",
+    "Access, NDA and data handling agreed before I touch your code",
+    "A handoff your team can run without me"
+  ],
+
+  "hire_page_title": "Hire me — Daniel Vásquez, forward-deployed product engineer",
+  "hire_meta": "Hands-on product leader for fractional and embedded work: strategy that fits on one card, shipped with your engineers and their agents, measured on a date we set up front.",
+  "hire_eyebrow": "Hire me",
+  "hire_h1": "Forward-deployed product engineer.",
+  "hire_lede": "Since 2012, leading product and engineering teams. I turn a clear strategy into shipped, measured product, working alongside your team and their agents.",
+  "hire_cred": "Ex-AB InBev and Linio. Builder of Golden Frijoles and Miyagi Sánchez.",
+  "hire_cta_primary": "Book a free intro call",
+  "hire_cta_secondary": "See engagements and prices",
+
+  "how_title": "How it works",
+  "how_steps": [
+    { "h": "Tell me what you're trying to ship", "p": "Book a free intro call. No deck, no prep." },
+    { "h": "Get a straight answer", "p": "Within one working day I tell you whether I can help, and how." },
+    { "h": "Agree it in writing", "p": "Scope, outcome, baseline and the date we read the result, before any work starts." }
+  ],
+
+  "who_title": "Who it's for",
+  "who": [
+    { "h": "Founders shipping with AI agents", "p": "Your team ships a lot. You can't tell which of it paid off." },
+    { "h": "Product and tech leaders", "p": "Your R&D spend has no revenue line next to it, and you feel it every budget cycle." },
+    { "h": "Teams without a senior product lead", "p": "Good engineers, no one turning strategy into shippable, measured slices." }
+  ],
+
+  "engagements_title": "Engagements and prices",
+  "engagements_note": "Prices in USD. All prices are \"from\" prices and are confirmed in a written scope before anything starts.",
+
+  "fit_title": "Is this a fit?",
+  "fit_yes_title": "A good fit if",
+  "fit_yes": [
+    "You have a live product or a funded initiative",
+    "You want outcomes measured, not slides",
+    "Your team is open to working with AI agents"
+  ],
+  "fit_no_title": "Not a fit if",
+  "fit_no": [
+    "You need a full-time hire right now",
+    "You want a roadmap deck and no shipping",
+    "You can't share access to the code or the numbers"
+  ],
+
+  "notready_title": "Not ready to talk?",
+  "notready_p": "Run the method yourself, free, with Claude as your coach. Come back when you want a human in the room.",
+  "notready_cta": "Run it free in Claude",
+
+  "faq_title": "Questions",
+  "faq": [
+    { "q": "Do you write code?", "a": "Yes. As a forward-deployed product engineer I write production code with agents inside your repo. In the other engagements I work alongside your engineers." },
+    { "q": "Where are you, and what hours do you work?", "a": "Mexico City. My working day overlaps fully with US time zones." },
+    { "q": "English or Spanish?", "a": "Both. Sessions, documents and code reviews in whichever your team prefers." },
+    { "q": "How do you handle NDAs and access to our systems?", "a": "Access scopes, NDA and data handling are agreed in writing before I touch your code." },
+    { "q": "We're pre-revenue. Is this for us?", "a": "Yes. The Clarity Session is built for exactly that: one decision, made clearly, before you spend more." },
+    { "q": "Why not just hire someone full-time?", "a": "You may need to, eventually. This starts in days, not months, has no long-term commitment, and ends with a handoff your team can run without me." }
+  ],
+
+  "final_title": "Tell me what you're trying to ship.",
+  "final_p": "I'll reply with whether I can help, and how.",
+  "final_cta": "Book a free intro call",
+
+  "work_page_title": "Work — Despacho Bonsai",
+  "work_meta": "Products built and shipped by Daniel Vásquez: Golden Frijoles, Miyagi Sánchez and the Bonsai Academy method.",
+  "work_eyebrow": "Work",
+  "work_h1": "Products I've built and shipped.",
+  "work_lede": "Most of them with teams of AI agents, all of them measured against an outcome written down before we built.",
+  "work_cv": "Full CV",
+  "work_visit": "Visit",
+  "projects": [
+    {
+      "name": "Golden Frijoles",
+      "dates": "2025 — Present",
+      "role": "Founder & Product Lead",
+      "tagline": "Product management for teams that build with AI agents.",
+      "points": [
+        "A platform that lets one person and their AI agents run a full product practice: decide what is worth building, ship it safely and measure whether it paid off.",
+        "Replaces the patchwork of separate tools for analytics, feature releases and experiments with one connected system.",
+        "Built in the open: 87 initiatives shipped so far, all visible on a public roadmap."
+      ],
+      "url": "https://goldenfrijoles.com"
+    },
+    {
+      "name": "Miyagi Sánchez",
+      "dates": "2025 — Present",
+      "role": "Founder & Product Lead",
+      "tagline": "A no-commission marketplace for Mexico.",
+      "points": [
+        "Anyone can sell products, services, rentals, digital goods, subscriptions or event tickets without paying commission.",
+        "Sellers reach buyers four ways from one catalogue: the marketplace, their own website, a widget on any page and AI shopping assistants.",
+        "147 initiatives shipped, each closed with a written review."
+      ],
+      "url": "https://miyagisanchez.com"
+    },
+    {
+      "name": "Bonsai Academy",
+      "dates": "2025 — Present",
+      "role": "Method",
+      "tagline": "Three workshops that turn a product team from cost center to revenue engine.",
+      "points": [
+        "The PMF narrative, the North Star and its inputs, and the riskiest assumption in the plan.",
+        "Runs free inside Claude, or live with a facilitator."
+      ],
+      "url": "/academy"
+    },
+    {
+      "name": "Bicimensajero.com",
+      "dates": "2014 — 2016",
+      "role": "Founder",
+      "tagline": "On-demand bike courier service.",
+      "points": [
+        "Built the product myself, before today's AI tools.",
+        "Grew the operation to 100+ couriers and led the company to an acquisition."
+      ],
+      "url": ""
+    }
+  ],
+  "career_title": "Before that",
+  "career": [
+    { "company": "AB InBev", "dates": "2020 — 2023", "title": "Global Principal Product Manager", "p": "Built the global rewards ecosystem across Central America, Europe and South Korea. Led a 70+ person product and engineering organisation and owned a $70M+ portfolio." },
+    { "company": "Linio Group", "dates": "2019 — 2020", "title": "Group Product Manager", "p": "Directed post-M&A systems integration through the Falabella acquisition." }
+  ],
+
+  "legal_updated": "Last updated: October 2026",
+  "privacy_body": [
+    { "h": "Who we are", "p": "Despacho Bonsai is the product practice of Daniel Vásquez, based in Mexico City. This policy covers this website." },
+    { "h": "What we collect", "p": "When you book a call, the booking form sends your name, email and anything you choose to tell us to Cal.com, which schedules the call. We also use Google Tag Manager and Google Analytics to understand which pages are useful, which sets analytics cookies." },
+    { "h": "How we use it", "p": "Only to reply to you, prepare and hold the call you booked, and improve this website. We do not sell or share your information with third parties for advertising. Ever." },
+    { "h": "Your choices", "p": "You can ask us to see, correct or delete what we hold about you at any time, and you can block analytics cookies in your browser without losing access to anything on this site." }
+  ],
+  "terms_body": [
+    { "h": "This website", "p": "This site describes Despacho Bonsai's services and lets you book a call. You may use it for that purpose. Its content is ours unless stated otherwise." },
+    { "h": "Engagements", "p": "Any paid work is governed by a separate written scope and agreement, signed before the work starts. Nothing on this site is a binding offer; prices shown are starting points." },
+    { "h": "No warranty", "p": "We keep this site accurate, but it is provided as is. Links to other sites, including the products we build, are governed by those sites' own terms." }
+  ],
+  "cookies_body": [
+    { "h": "Analytics cookies", "p": "Google Tag Manager and Google Analytics set cookies that tell us which pages are visited and how people move through the site." },
+    { "h": "Booking", "p": "The booking calendar is provided by Cal.com and may set the cookies it needs to schedule your call." },
+    { "h": "Your choice", "p": "You can block or delete these cookies in your browser at any time. Everything on this site keeps working without them." }
+  ],
+  "legal_contact_title": "Contact"
+}

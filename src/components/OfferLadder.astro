@@ -1,0 +1,28 @@
+---
+// Homepage teaser for the four engagements; the full detail lives on /hire.
+import { type Lang, SITE, localePath } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = SITE[lang];
+---
+<section class="section-shell" id="work-with-me">
+  <div class="section-heading wide">
+    <p class="eyebrow">{s.ladder_eyebrow}</p>
+    <h2>{s.ladder_h2}</h2>
+    <a class="glass-button section-heading-button" href={`${localePath(lang, '/hire')}#engagements`}
+      data-track="see_engagements" data-track-location="home_ladder">{s.ladder_cta}</a>
+  </div>
+  <div class="offer-ladder">
+    {s.offers.map((o, i) => (
+      <article class="glass-panel service-panel offer-rung">
+        <p class="offer-step">0{i}</p>
+        <h3>{o.title}</h3>
+        <p>{o.oneliner}</p>
+        <p class="offer-meta"><span>{o.length}</span><strong>{o.price}</strong></p>
+      </article>
+    ))}
+  </div>
+</section>

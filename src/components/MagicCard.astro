@@ -1,0 +1,16 @@
+---
+// The hero clarity card. Its words are lit by /js/hero-magic-text.js (WebGL); the copy comes in as HTML
+// with the .magic-word spans already in place.
+interface Props {
+  html: string;
+  caption: string;
+  question?: string;
+}
+const { html, caption, question } = Astro.props;
+---
+<aside class="hero-quote-card hero-magic-card">
+  <canvas class="hero-magic-canvas" data-hero-magic-canvas aria-hidden="true"></canvas>
+  <blockquote class="hero-magic-text" data-hero-magic-text set:html={html} />
+  <p class="hero-quote-caption" set:html={caption} />
+  {question && <p class="hero-quote-question" set:html={question} />}
+</aside>

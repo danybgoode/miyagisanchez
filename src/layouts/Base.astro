@@ -1,0 +1,164 @@
+---
+// Shared page shell: head, header, footer and the site-wide scripts. Ported from the old js/shared-shell.js
+// markup so the existing CSS applies unchanged; language is now a route (/es/...) instead of a client swap.
+import { type Lang, SITE, localePath, useT } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** English path of this page, e.g. "/" or "/hire". */
+  path: string;
+  title: string;
+  description: string;
+  ogTitle?: string;
+  /** Extra scripts this page needs, from /public/js. */
+  scripts?: string[];
+}
+
+const { lang, path, title, description, ogTitle = title, scripts = [] } = Astro.props;
+const t = useT(lang, 'global');
+const s = SITE[lang];
+const site = 'https://despachobonsai.com';
+const canonical = site + (localePath(lang, path) === '/' ? '/' : localePath(lang, path));
+const alt = (l: Lang) => site + (localePath(l, path) === '/' ? '/' : localePath(l, path));
+const href = (p: string) => localePath(lang, p);
+const ogImage = `${site}/assets/brand/og-image-1200x630.png`;
+
+const socials = [
+  { href: 'https://www.facebook.com/people/Despacho-Bonsai/61572082478661/', label: 'Facebook', img: 'icons8-facebook-64.png' },
+  { href: 'https://www.instagram.com/miyagi_sanchez', label: 'Instagram', img: 'icons8-instagram-64.png' },
+  { href: 'https://www.tiktok.com/@miyagi_sanchez', label: 'TikTok', img: 'icons8-tiktok-64.png' },
+  { href: 'https://x.com/miyagi_sanchez', label: 'Twitter', img: 'icons8-twitter-bird-64.png' },
+  { href: 'https://wa.me/525599629166?text=Hola%2C%20me%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20Despacho%20Bonsai%3F', label: 'WhatsApp', img: 'icons8-whatsapp-64.png' },
+  { href: 'https://www.linkedin.com/in/danielvasquezparedes', label: s.footer_linkedin, img: 'linkedin.svg' },
+  { href: 'https://github.com/danybgoode', label: s.footer_github, img: 'github.svg' },
+];
+
+// Active language button keeps the old iOS 6 "pressed" look that i18n.js used to apply inline.
+const pressed = 'background: linear-gradient(to bottom, #d0d0d0, #b8b8b8); box-shadow: inset 0 2px 3px rgba(0,0,0,0.3); transform: translateY(1px);';
+const langBtn = 'padding: 6px 10px; font-size: 12px; min-width: 40px; height: 32px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;';
+---
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#f4f6f2">
+  <link rel="canonical" href={canonical}>
+  <link rel="alternate" hreflang="en" href={alt('en')}>
+  <link rel="alternate" hreflang="es-MX" href={alt('es')}>
+  <link rel="alternate" hreflang="x-default" href={alt('en')}>
+  <meta property="og:site_name" content="Despacho Bonsai">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content={lang === 'es' ? 'es_MX' : 'en_US'}>
+  <meta property="og:title" content={ogTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Despacho Bonsai">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={ogTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/brand/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Baloo+2:wght@800&family=Cormorant+Garamond:wght@500;600;700&family=DynaPuff:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/globals.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/liquid-glass.css">
+  <link rel="stylesheet" href="/css/site.css">
+  <!-- Google Tag Manager -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WNMX9KMS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body data-shell-nav="bonsai">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNMX9KMS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="shared-header-shell">
+    <header class="main-header" id="nav">
+      <div class="container nav-container">
+        <a href={href('/')} class="logo-link" aria-label="Despacho Bonsai home">
+          <div class="logo">
+            <img src="/assets/brand/bonsai-mark.svg" class="logo-mark" alt="">
+            <span class="logo-wordmark">despacho bonsai</span>
+          </div>
+        </a>
+        <div class="lang-switcher" role="group" aria-label={s.lang_label} style="display:flex; gap: 0; margin-left: auto; margin-right: 10px;">
+          <a class:list={['btn-secondary', 'lang-btn', { active: lang === 'en' }]} href={localePath('en', path)} hreflang="en" lang="en"
+            data-track="lang_switch" data-track-location="en"
+            style={`${langBtn} border-radius: 12px 0 0 12px; ${lang === 'en' ? pressed : ''}`}>EN</a>
+          <a class:list={['btn-secondary', 'lang-btn', { active: lang === 'es' }]} href={localePath('es', path)} hreflang="es" lang="es"
+            data-track="lang_switch" data-track-location="es"
+            style={`${langBtn} border-radius: 0 12px 12px 0; border-left: 0; ${lang === 'es' ? pressed : ''}`}>ES</a>
+        </div>
+        <button class="btn-secondary mobile-menu-btn" aria-label={t('nav_menu')}>
+          <span class="hamburger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+        <nav class="nav-links">
+          <a href={href('/work')} aria-current={path === '/work' ? 'page' : undefined}>{s.nav_work}</a>
+          <a href={href('/academy')} aria-current={path === '/academy' ? 'page' : undefined}>{s.nav_academy}</a>
+          <a href="https://miyagisanchez.com" target="_blank" rel="noopener noreferrer" data-track="outbound" data-track-location="nav_miyagi">Miyagi Sánchez</a>
+          <a href={href('/hire')} aria-current={path === '/hire' ? 'page' : undefined}>{s.nav_hire}</a>
+          <button class="glass-button" onclick="openBookingModal()" data-track="book_call" data-track-location="nav">{t('nav_get_started')}</button>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <slot />
+
+  <footer class="main-footer">
+    <div class="container">
+      <a href={href('/')} class="logo-link" aria-label="Despacho Bonsai home">
+        <div class="logo">
+          <img src="/assets/brand/bonsai-mark.svg" class="logo-mark" alt="">
+          <span class="logo-wordmark">despacho bonsai</span>
+        </div>
+      </a>
+      <div class="social-icons">
+        {socials.map(so => (
+          <a href={so.href} target="_blank" rel="noopener noreferrer" class="social-icon-link" aria-label={so.label}
+            data-track="outbound" data-track-location={`footer_${so.label.toLowerCase()}`}>
+            <img src={`/assets/social/${so.img}`} alt={so.label} class="social-icon-img">
+          </a>
+        ))}
+      </div>
+      <div class="footer-links">
+        <a href={href('/privacy')} class="text-muted">{t('footer_privacy')}</a>
+        <a href={href('/terms')} class="text-muted">{t('footer_terms')}</a>
+        <a href={href('/cookies')} class="text-muted">{t('footer_cookies')}</a>
+      </div>
+      <p class="footer-text text-secondary">{t('footer_copy')}</p>
+    </div>
+  </footer>
+
+  <script is:inline define:vars={{ lang }}>
+    // One listener for every tracked control: [data-track] names the action, [data-track-location] where it sits.
+    window.dataLayer = window.dataLayer || [];
+    document.addEventListener('click', function (e) {
+      var el = e.target.closest && e.target.closest('[data-track]');
+      if (!el) return;
+      window.dataLayer.push({ event: 'cta_click', cta: el.dataset.track, cta_location: el.dataset.trackLocation || '', lang: lang });
+    });
+  </script>
+  <script is:inline src="/js/main.js"></script>
+  <script is:inline src="/js/booking-modal.js"></script>
+  <script is:inline src="/js/mcp-modal.js"></script>
+  {scripts.map(src => <script is:inline src={src}></script>)}
+</body>
+</html>

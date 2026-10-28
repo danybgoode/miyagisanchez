@@ -1,0 +1,47 @@
+---
+// "Run it with Claude / Run it with us" pair. Copy lives in the homepage translations; the academy page reuses it.
+import { type Lang, SITE, useT } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  location: string;
+}
+const { lang, location } = Astro.props;
+const t = useT(lang, 'index');
+const MCP_URL = 'https://bonsaios-mcp.vercel.app/api/mcp';
+---
+<section class="section-shell section-tight" id="bonsai-cta">
+  <div class="cta-grid">
+    <article class="glass-panel action-panel">
+      <h2 set:html={t('cta_claude_h2')} />
+      <p set:html={t('cta_claude_p')} />
+      <ol class="step-list">
+        <li><span set:html={t('cta_step_1')} /></li>
+        <li><span set:html={t('cta_step_2')} /></li>
+        <li><span set:html={t('cta_step_3')} /></li>
+        <li><span set:html={t('cta_step_4')} /></li>
+      </ol>
+      <button class="glass-button glass-button-secondary" data-copy-mcp data-track="copy_mcp_url" data-track-location={location}
+        set:html={t('cta_claude_btn')} />
+    </article>
+
+    <article class="glass-panel action-panel action-panel-dark">
+      <h2 set:html={t('cta_us_h2')} />
+      <p set:html={t('cta_us_p')} />
+      <button class="glass-button" onclick="openBookingModal()" data-track="book_call" data-track-location={location}
+        set:html={t('cta_us_btn')} />
+    </article>
+  </div>
+</section>
+
+<script is:inline define:vars={{ MCP_URL, copied: SITE[lang].home_copied }}>
+  document.querySelectorAll('[data-copy-mcp]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(MCP_URL).then(function () {
+        var orig = btn.textContent;
+        btn.textContent = copied;
+        setTimeout(function () { btn.textContent = orig; }, 2000);
+      });
+    });
+  });
+</script>

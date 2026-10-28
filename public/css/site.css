@@ -1,0 +1,279 @@
+/* Sections added in the Astro rebuild: offer ladder, proof strip, Hire and Work pages.
+   Built on the tokens and panels in globals.css; nothing here restyles an existing component. */
+
+/* ── Shared ───────────────────────────────────────────────────────────── */
+.section-heading-button + .section-note,
+.section-note {
+  margin: 0.6rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.card-row {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.check-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0 1.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.7rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.check-list li::before {
+  position: absolute;
+  top: 0.08em;
+  left: 0;
+  display: grid;
+  width: 1.15rem;
+  height: 1.15rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  content: "✓";
+}
+
+.check-list.cross li::before {
+  background: rgba(16, 20, 16, 0.12);
+  color: var(--color-ink);
+  content: "✕";
+}
+
+.action-panel-dark .check-list li { color: rgba(245, 251, 244, 0.78); }
+
+.offer-step {
+  margin: 0 0 0.9rem;
+  color: var(--color-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* ── Homepage: offer ladder ─────────────────────────────────────────────── */
+.offer-ladder {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.offer-rung {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.offer-rung h3 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  line-height: 1.1;
+}
+
+.offer-rung p { margin: 0; color: var(--color-muted); line-height: 1.45; }
+
+.offer-rung .offer-meta {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.offer-meta strong { color: var(--color-ink); font-size: 1.02rem; }
+
+/* ── Homepage: proof strip ──────────────────────────────────────────────── */
+.proof-stats {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-bottom: 0.75rem;
+  border-radius: var(--radius-lg);
+  padding: clamp(1.1rem, 3vw, 1.6rem);
+}
+
+.proof-stat { display: grid; gap: 0.25rem; }
+
+.proof-stat strong {
+  color: var(--color-primary);
+  font-family: "Archivo Black", var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  line-height: 1;
+}
+
+.proof-stat span { color: var(--color-muted); font-size: 0.92rem; line-height: 1.3; }
+
+.proof-projects {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.proof-project {
+  color: inherit;
+  text-decoration: none;
+  transition: transform var(--dur-hover) var(--ease-default);
+}
+
+.proof-project:hover { transform: translateY(-2px); }
+
+.proof-link {
+  display: inline-block;
+  margin-top: 0.9rem;
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+/* ── Hire ──────────────────────────────────────────────────────────────── */
+.hire-hero { min-height: 0; padding-top: clamp(7rem, 14vh, 9rem); padding-bottom: clamp(2rem, 6vh, 4rem); }
+.hire-hero .hero-content { grid-template-columns: minmax(0, 1fr); }
+.hire-hero .hero-copy { max-width: 860px; }
+
+.hire-cred {
+  margin: 1rem 0 0;
+  color: var(--color-primary);
+  font-weight: var(--fw-semibold);
+}
+
+.how-steps {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.how-num {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-bottom: 1rem;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font-weight: 800;
+}
+
+.engagements {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+}
+
+.engagement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: var(--radius-lg);
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.engagement h3 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+  line-height: 1.05;
+}
+
+.engagement p { color: var(--color-muted); line-height: 1.5; }
+
+.engagement .engagement-oneliner {
+  color: var(--color-ink);
+  font-size: 1.08rem;
+  font-weight: var(--fw-semibold);
+}
+
+.engagement-featured { outline: 2px solid var(--color-primary); outline-offset: -2px; }
+
+.engagement-facts {
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0.6rem 0 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-hairline);
+}
+
+.engagement-facts div { display: grid; gap: 0.15rem; }
+
+.engagement-facts dt {
+  color: var(--color-primary);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.engagement-facts dd { margin: 0; color: var(--color-ink); line-height: 1.45; }
+
+.engagement .glass-button { margin-top: auto; }
+
+.includes-panel,
+.notready-panel { min-height: 0; }
+
+.includes-panel .check-list { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); width: 100%; }
+
+.notready-panel p { max-width: 640px; }
+
+.faq { display: grid; gap: 0.6rem; }
+
+.faq-item {
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-size: 1.08rem;
+  font-weight: var(--fw-semibold);
+  list-style-position: outside;
+}
+
+.faq-item p { margin: 0.75rem 0 0.25rem; color: var(--color-muted); line-height: 1.5; }
+
+/* ── Work ──────────────────────────────────────────────────────────────── */
+.projects { display: grid; gap: 1rem; }
+
+.project {
+  border-radius: var(--radius-lg);
+  padding: clamp(1.3rem, 3.5vw, 2.2rem);
+}
+
+.project-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+}
+
+.project h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  line-height: 1;
+}
+
+.project-tagline {
+  margin: 0.45rem 0 0;
+  color: var(--color-ink);
+  font-weight: var(--fw-semibold);
+}
+
+.project-meta {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}

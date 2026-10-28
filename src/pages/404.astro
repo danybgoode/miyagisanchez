@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../i18n';
+const s = SITE.en;
+---
+<Base lang="en" path="/" title="Not found — Despacho Bonsai" description={s.home_meta}>
+  <main class="container">
+    <div class="card standard-panel">
+      <div class="card-header">Page not found</div>
+      <div class="card-text">
+        <p>That page doesn't exist, or it moved when the site was rebuilt.</p>
+        <p><a href="/">Home</a> · <a href="/hire">{s.nav_hire}</a> · <a href="/work">{s.nav_work}</a> · <a href="/es">Español</a></p>
+      </div>
+    </div>
+  </main>
+</Base>

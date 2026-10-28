@@ -1,0 +1,103 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/bonsai-academy.html",
+      "destination": "/academy",
+      "permanent": true
+    },
+    {
+      "source": "/bonsai-academy",
+      "destination": "/academy",
+      "permanent": true
+    },
+    {
+      "source": "/bonsai-os.html",
+      "destination": "/academy",
+      "permanent": true
+    },
+    {
+      "source": "/bonsai-os",
+      "destination": "/academy",
+      "permanent": true
+    },
+    {
+      "source": "/bonsai-commerce.html",
+      "destination": "https://miyagisanchez.com/mx/vende",
+      "permanent": true
+    },
+    {
+      "source": "/bonsai-commerce",
+      "destination": "https://miyagisanchez.com/mx/vende",
+      "permanent": true
+    },
+    {
+      "source": "/commerce.html",
+      "destination": "https://miyagisanchez.com/mx/vende",
+      "permanent": true
+    },
+    {
+      "source": "/commerce",
+      "destination": "https://miyagisanchez.com/mx/vende",
+      "permanent": true
+    },
+    {
+      "source": "/agency.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/agency",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/creators.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/creators",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/merchants.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/merchants",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/executive-agent.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/executive-agent",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/screencast.html",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/screencast",
+      "destination": "/work",
+      "permanent": true
+    }
+  ]
+}

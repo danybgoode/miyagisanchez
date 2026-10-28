@@ -1,0 +1,140 @@
+---
+// The offer page: every engagement with its price, how it works, who it's for, a fit check and the FAQ.
+// Structure after benhowdle.im/fractional-cto; copy from docs/offers.md (draft, pending Daniel's review).
+import Base from '../layouts/Base.astro';
+import { type Lang, SITE } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = SITE[lang];
+---
+<Base lang={lang} path="/hire" title={s.hire_page_title} description={s.hire_meta}>
+  <main class="overflow-x-hidden">
+
+    <section class="hero-shell hire-hero">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="liquid-field"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">{s.hire_eyebrow}</p>
+          <h1>{s.hire_h1}</h1>
+          <p class="hero-subhead">{s.hire_lede}</p>
+          <p class="hire-cred">{s.hire_cred}</p>
+          <div class="hero-actions">
+            <button class="glass-button glass-button-primary" onclick="openBookingModal()"
+              data-track="book_call" data-track-location="hire_hero">{s.hire_cta_primary}</button>
+            <a class="glass-button" href="#engagements" data-track="see_engagements" data-track-location="hire_hero">{s.hire_cta_secondary}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="section-heading"><h2>{s.how_title}</h2></div>
+      <ol class="how-steps">
+        {s.how_steps.map((step, i) => (
+          <li class="glass-panel quote-panel copy-card">
+            <span class="how-num">{i + 1}</span>
+            <h3>{step.h}</h3>
+            <p>{step.p}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="section-heading"><h2>{s.who_title}</h2></div>
+      <div class="card-row">
+        {s.who.map(w => (
+          <article class="glass-panel quote-panel copy-card">
+            <h3>{w.h}</h3>
+            <p>{w.p}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-shell" id="engagements">
+      <div class="section-heading wide">
+        <h2>{s.engagements_title}</h2>
+        <p class="section-note">{s.engagements_note}</p>
+      </div>
+      <div class="engagements">
+        {s.offers.map((o, i) => (
+          <article class:list={['glass-panel', 'engagement', { 'engagement-featured': o.id === 'fde' }]} id={o.id}>
+            <p class="offer-step">0{i}</p>
+            <h3>{o.title}</h3>
+            <p class="engagement-oneliner">{o.oneliner}</p>
+            <p>{o.body}</p>
+            <dl class="engagement-facts">
+              <div><dt>{s.offer_leave_label}</dt><dd>{o.leave}</dd></div>
+              <div><dt>{s.offer_length_label}</dt><dd>{o.length}</dd></div>
+              <div><dt>{s.offer_price_label}</dt><dd><strong>{o.price}</strong></dd></div>
+              <div><dt>{s.offer_best_label}</dt><dd>{o.best}</dd></div>
+            </dl>
+            {o.action === 'mcp'
+              ? <button class="glass-button" onclick="openMcpModal()" data-track="run_free" data-track-location={`hire_${o.id}`}>{o.button}</button>
+              : <button class="glass-button glass-button-primary" onclick="openBookingModal()" data-track="book_call" data-track-location={`hire_${o.id}`}>{o.button}</button>}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-shell section-tight">
+      <article class="glass-panel action-panel includes-panel">
+        <h2>{s.includes_title}</h2>
+        <ul class="check-list">
+          {s.includes.map(item => <li>{item}</li>)}
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="section-heading"><h2>{s.fit_title}</h2></div>
+      <div class="cta-grid">
+        <article class="glass-panel action-panel">
+          <h3>{s.fit_yes_title}</h3>
+          <ul class="check-list">{s.fit_yes.map(item => <li>{item}</li>)}</ul>
+        </article>
+        <article class="glass-panel action-panel">
+          <h3>{s.fit_no_title}</h3>
+          <ul class="check-list cross">{s.fit_no.map(item => <li>{item}</li>)}</ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell section-tight">
+      <article class="glass-panel action-panel notready-panel">
+        <h2>{s.notready_title}</h2>
+        <p>{s.notready_p}</p>
+        <button class="glass-button" onclick="openMcpModal()" data-track="run_free" data-track-location="hire_notready">{s.notready_cta}</button>
+      </article>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="section-heading"><h2>{s.faq_title}</h2></div>
+      <div class="faq" id="faq">
+        {s.faq.map(f => (
+          <details class="glass-panel faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-shell section-tight">
+      <div class="cta-grid" style="grid-template-columns: 1fr;">
+        <article class="glass-panel action-panel action-panel-dark" style="text-align:center; align-items:center;">
+          <h2>{s.final_title}</h2>
+          <p>{s.final_p}</p>
+          <button class="glass-button" onclick="openBookingModal()" data-track="book_call" data-track-location="hire_final">{s.final_cta}</button>
+        </article>
+      </div>
+    </section>
+
+  </main>
+</Base>

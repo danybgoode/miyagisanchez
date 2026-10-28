@@ -1,0 +1,34 @@
+---
+// Homepage proof: the CV's headline numbers and the products in production, linking on to /work.
+import { type Lang, SITE, localePath } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const s = SITE[lang];
+const live = s.projects.filter(p => p.url.startsWith('http'));
+---
+<section class="section-shell section-tight" id="proof">
+  <div class="section-heading wide">
+    <p class="eyebrow">{s.proof_eyebrow}</p>
+    <h2>{s.proof_h2}</h2>
+    <a class="glass-button section-heading-button" href={localePath(lang, '/work')}
+      data-track="see_work" data-track-location="home_proof">{s.proof_cta}</a>
+  </div>
+  <div class="proof-stats glass-panel">
+    {s.proof_stats.map(st => (
+      <div class="proof-stat"><strong>{st.figure}</strong><span>{st.label}</span></div>
+    ))}
+  </div>
+  <div class="proof-projects">
+    {live.map(p => (
+      <a class="glass-panel quote-panel copy-card proof-project" href={p.url} target="_blank" rel="noopener noreferrer"
+        data-track="outbound" data-track-location={`home_proof_${p.name.toLowerCase().replace(/\W+/g, '_')}`}>
+        <h3>{p.name}</h3>
+        <p>{p.tagline}</p>
+        <span class="proof-link">{p.url.replace('https://', '')} ↗</span>
+      </a>
+    ))}
+  </div>
+</section>
