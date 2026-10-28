@@ -160,5 +160,7 @@ const langBtn = 'padding: 6px 10px; font-size: 12px; min-width: 40px; height: 32
   <script is:inline src="/js/booking-modal.js"></script>
   <script is:inline src="/js/mcp-modal.js"></script>
   {scripts.map(src => <script is:inline src={src}></script>)}
+  <!-- Bonsai Chat (~/dobby/bonsai-chat on Cloud Run): answers from /llms.txt, books through openBookingModal(). -->
+  <script is:inline src="https://bonsai-chat-483236779207.us-central1.run.app/widget.js" data-site="despachobonsai" data-icon="/assets/brand/bonsai-icon.svg" defer></script>
 </body>
 </html>
