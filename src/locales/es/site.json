@@ -5,29 +5,36 @@
   "nav_hire": "Contrátame",
   "nav_academy": "Bonsai Academy",
   "lang_label": "Idioma",
-
   "footer_linkedin": "LinkedIn",
   "footer_github": "GitHub",
-
   "home_org_eyebrow": "Tu Organización",
   "home_pain_3_h": "Agujero Negro de Presupuesto.",
   "home_pain_3_p": "El equipo directivo ve el gasto en R&D sin una línea de ingresos al lado. Lo sientes en cada ciclo de presupuesto.",
   "home_copied": "¡Copiado!",
-
   "ladder_eyebrow": "Formas de trabajar juntos",
   "ladder_h2": "Empieza en pequeño, o entra de lleno.",
   "ladder_cta": "Ver todos los proyectos",
-
   "proof_eyebrow": "Construido y lanzado",
   "proof_h2": "La estrategia solo es real cuando sale a producción.",
   "proof_cta": "Ver los proyectos",
   "proof_stats": [
-    { "figure": "Desde 2012", "label": "Liderando equipos de producto" },
-    { "figure": "$70M+", "label": "Portafolio gestionado en AB InBev" },
-    { "figure": "70+", "label": "Personas lideradas, producto e ingeniería" },
-    { "figure": "2", "label": "Productos corriendo en producción" }
+    {
+      "figure": "Desde 2012",
+      "label": "Liderando equipos de producto"
+    },
+    {
+      "figure": "$70M+",
+      "label": "Portafolio gestionado en AB InBev"
+    },
+    {
+      "figure": "70+",
+      "label": "Personas lideradas, producto e ingeniería"
+    },
+    {
+      "figure": "2",
+      "label": "Productos corriendo en producción"
+    }
   ],
-
   "offers": [
     {
       "id": "free",
@@ -47,8 +54,8 @@
       "oneliner": "Medio día sobre una iniciativa real. Sales sabiendo qué construir, por qué y cómo vas a saber si funcionó.",
       "body": "Tomamos una iniciativa viva de tu equipo y la trabajamos juntos: el resultado que debe mover, la North Star y las métricas de entrada a las que se conecta, el supuesto más riesgoso, y una primera apuesta con una meta y una fecha para leer el resultado. Luego la comparamos con cómo trabajan hoy y se quedan con lo que funciona.",
       "leave": "Una primera apuesta por escrito con su porqué, su meta y su fecha de lectura; un reporte escrito en menos de dos días hábiles; y, si lo quieres, Golden Frijoles instalado en tu repo.",
-      "length": "Medio día, remoto o en Ciudad de México. Acompañamiento opcional de 30 días.",
-      "price": "$1,500 USD · $2,500 USD con acompañamiento de 30 días",
+      "length": "Medio día, remoto o en persona.",
+      "price": "Desde $1,500 USD",
       "best": "Fundadores y líderes de producto que necesitan claridad sobre una decisión antes de comprometerse a más.",
       "button": "Agenda una llamada gratis",
       "action": "book"
@@ -59,7 +66,7 @@
       "oneliner": "Para líderes que saben a dónde van pero no logran alinear a producto e ingeniería para llegar.",
       "body": "Convierto un problema complejo en un concepto claro, lo divido en piezas que se pueden lanzar, y trabajo con tus ingenieros y sus agentes hasta que está en producción y medido. Tienes un líder de producto que también escribe las especificaciones, lleva los rituales y lee los números.",
       "leave": "Un resultado lanzado y medido; un backlog ligado a tu North Star; y un equipo que mantiene el ritmo cuando me voy.",
-      "length": "Normalmente de 6 a 12 semanas, 2 a 3 días por semana. Mínimo seis semanas.",
+      "length": "Normalmente de 6 a 12 semanas, 2 a 3 días por semana, en persona o remoto.",
       "price": "Desde $2,500 USD por semana",
       "best": "Equipos con ingenieros pero sin un líder de producto senior, o con uno que no se da abasto.",
       "button": "Agenda una llamada gratis",
@@ -71,7 +78,7 @@
       "oneliner": "Me integro a tu equipo y a tu stack, me hago cargo de un resultado en lugar de una fila de tickets, y escribo código de producción con agentes.",
       "body": "Empezamos por lo básico: quiénes son los usuarios, qué valor les prometes y cómo gana dinero el negocio. Luego construyo con tu equipo, dentro de tu repo y con tus reglas, para que todo lo que lancemos tenga una razón y una forma de saber si funcionó.",
       "leave": "Software funcionando en producción, el resultado medido contra la línea base que escribimos el primer día, y una entrega que tu equipo puede operar sin mí.",
-      "length": "Normalmente de 4 a 12 semanas, integrado al equipo. Mínimo cuatro semanas.",
+      "length": "Normalmente de 4 a 12 semanas, integrado a tu equipo, en persona o remoto.",
       "price": "Desde $5,000 USD por semana",
       "best": "Empresas que necesitan lanzar algo real rápido y quieren que la persona que decide qué construir también lo construya.",
       "button": "Agenda una llamada gratis",
@@ -82,7 +89,6 @@
   "offer_length_label": "Duración",
   "offer_price_label": "Precio",
   "offer_best_label": "Ideal para",
-
   "includes_title": "Todos los proyectos incluyen",
   "includes": [
     "Un resultado y una línea base por escrito antes de construir",
@@ -92,33 +98,46 @@
     "Accesos, NDA y manejo de datos acordados antes de tocar tu código",
     "Una entrega que tu equipo puede operar sin mí"
   ],
-
   "hire_page_title": "Contrátame — Daniel Vásquez, forward-deployed product engineer",
   "hire_meta": "Líder de producto que construye, para proyectos fraccionales o integrados: una estrategia que cabe en una tarjeta, lanzada con tus ingenieros y sus agentes, medida en una fecha acordada desde el inicio.",
   "hire_eyebrow": "Contrátame",
   "hire_h1": "Forward-deployed product engineer.",
   "hire_lede": "Desde 2012 liderando equipos de producto e ingeniería. Convierto una estrategia clara en producto lanzado y medido, trabajando junto a tu equipo y sus agentes.",
-  "hire_cred": "Ex AB InBev y Linio. Creador de Golden Frijoles y Miyagi Sánchez.",
+  "hire_cred": "Ex AB InBev y Linio. Creador de Golden Frijoles y Miyagi Sánchez. En persona o remoto, en Estados Unidos, Canadá y México.",
   "hire_cta_primary": "Agenda una llamada gratis",
   "hire_cta_secondary": "Ver proyectos y precios",
-
   "how_title": "Cómo funciona",
   "how_steps": [
-    { "h": "Cuéntame qué quieres lanzar", "p": "Agenda una llamada gratis. Sin presentaciones, sin preparación." },
-    { "h": "Recibe una respuesta directa", "p": "En menos de un día hábil te digo si puedo ayudar, y cómo." },
-    { "h": "Lo acordamos por escrito", "p": "Alcance, resultado, línea base y la fecha para leer el resultado, antes de empezar cualquier trabajo." }
+    {
+      "h": "Cuéntame qué quieres lanzar",
+      "p": "Agenda una llamada. Es gratis: sin presentaciones, sin preparación, sin compromiso."
+    },
+    {
+      "h": "Recibe una respuesta directa",
+      "p": "En menos de un día hábil te digo si puedo ayudar, y cómo."
+    },
+    {
+      "h": "Lo acordamos por escrito",
+      "p": "Alcance, resultado, línea base y la fecha para leer el resultado, antes de empezar cualquier trabajo."
+    }
   ],
-
   "who_title": "Para quién es",
   "who": [
-    { "h": "Fundadores que lanzan con agentes de IA", "p": "Tu equipo lanza mucho. No sabes qué de eso dio resultado." },
-    { "h": "Líderes de producto y tecnología", "p": "Tu gasto en R&D no tiene una línea de ingresos al lado, y lo sientes en cada ciclo de presupuesto." },
-    { "h": "Equipos sin un líder de producto senior", "p": "Buenos ingenieros, nadie que convierta la estrategia en piezas medibles que se puedan lanzar." }
+    {
+      "h": "Fundadores que lanzan con agentes de IA",
+      "p": "Tu equipo lanza mucho. No sabes qué de eso dio resultado."
+    },
+    {
+      "h": "Líderes de producto y tecnología",
+      "p": "Tu gasto en R&D no tiene una línea de ingresos al lado, y lo sientes en cada ciclo de presupuesto."
+    },
+    {
+      "h": "Equipos sin un líder de producto senior",
+      "p": "Buenos ingenieros, nadie que convierta la estrategia en piezas medibles que se puedan lanzar."
+    }
   ],
-
   "engagements_title": "Proyectos y precios",
-  "engagements_note": "Precios en USD. Todos son precios \"desde\" y se confirman en un alcance por escrito antes de empezar.",
-
+  "engagements_note": "Precios en USD y como punto de partida: cada proyecto se define contigo en la llamada gratuita. En persona en cualquier lugar, sobre todo en Estados Unidos, Canadá y México, con los gastos de viaje acordados desde el inicio.",
   "fit_title": "¿Somos un buen match?",
   "fit_yes_title": "Encaja si",
   "fit_yes": [
@@ -132,25 +151,43 @@
     "Quieres un roadmap en presentación y nada lanzado",
     "No puedes compartir acceso al código o a los números"
   ],
-
   "notready_title": "¿Aún no quieres hablar?",
   "notready_p": "Aplica el método por tu cuenta, gratis, con Claude como coach. Regresa cuando quieras a una persona en la sala.",
   "notready_cta": "Ejecútalo gratis en Claude",
-
   "faq_title": "Preguntas",
   "faq": [
-    { "q": "¿Escribes código?", "a": "Sí. Como forward-deployed product engineer escribo código de producción con agentes dentro de tu repo. En los otros proyectos trabajo junto a tus ingenieros." },
-    { "q": "¿Dónde estás y en qué horario trabajas?", "a": "En Ciudad de México. Mi jornada coincide por completo con los husos horarios de Estados Unidos." },
-    { "q": "¿Inglés o español?", "a": "Ambos. Sesiones, documentos y revisiones de código en el idioma que prefiera tu equipo." },
-    { "q": "¿Cómo manejas los NDA y el acceso a nuestros sistemas?", "a": "Los accesos, el NDA y el manejo de datos se acuerdan por escrito antes de tocar tu código." },
-    { "q": "Todavía no tenemos ingresos. ¿Esto es para nosotros?", "a": "Sí. La Clarity Session está hecha justo para eso: una decisión, tomada con claridad, antes de gastar más." },
-    { "q": "¿Por qué no contratar a alguien de tiempo completo?", "a": "Quizá lo necesites, eventualmente. Esto empieza en días, no meses, no tiene compromiso a largo plazo y termina con una entrega que tu equipo puede operar sin mí." }
+    {
+      "q": "¿La llamada de introducción es realmente gratis?",
+      "a": "Sí. Sin costo y sin compromiso: me cuentas qué quieres lanzar y te digo con honestidad si puedo ayudar."
+    },
+    {
+      "q": "¿Escribes código?",
+      "a": "Sí. Como forward-deployed product engineer escribo código de producción con agentes dentro de tu repo. En los otros proyectos trabajo junto a tus ingenieros."
+    },
+    {
+      "q": "¿Trabajas en persona?",
+      "a": "Sí, y es una parte importante de cómo trabajo. Estoy en Ciudad de México y viajo a donde sea, sobre todo en Estados Unidos, Canadá y México; los gastos de viaje se acuerdan desde el inicio. También trabajo remoto: mi jornada coincide por completo con los husos horarios de Estados Unidos."
+    },
+    {
+      "q": "¿Inglés o español?",
+      "a": "Ambos. Sesiones, documentos y revisiones de código en el idioma que prefiera tu equipo."
+    },
+    {
+      "q": "¿Cómo manejas los NDA y el acceso a nuestros sistemas?",
+      "a": "Los accesos, el NDA y el manejo de datos se acuerdan por escrito antes de tocar tu código."
+    },
+    {
+      "q": "Todavía no tenemos ingresos. ¿Esto es para nosotros?",
+      "a": "Sí. La Clarity Session está hecha justo para eso: una decisión, tomada con claridad, antes de gastar más."
+    },
+    {
+      "q": "¿Por qué no contratar a alguien de tiempo completo?",
+      "a": "Quizá lo necesites, eventualmente. Esto empieza en días, no meses, no tiene compromiso a largo plazo y termina con una entrega que tu equipo puede operar sin mí."
+    }
   ],
-
   "final_title": "Cuéntame qué quieres lanzar.",
-  "final_p": "Te respondo si puedo ayudar, y cómo.",
+  "final_p": "La llamada es gratis. Te digo si puedo ayudar, y cómo.",
   "final_cta": "Agenda una llamada gratis",
-
   "work_page_title": "Proyectos — Despacho Bonsai",
   "work_meta": "Productos construidos y lanzados por Daniel Vásquez: Golden Frijoles, Miyagi Sánchez y el método Bonsai Academy.",
   "work_eyebrow": "Proyectos",
@@ -208,26 +245,65 @@
   ],
   "career_title": "Antes de eso",
   "career": [
-    { "company": "AB InBev", "dates": "2020 — 2023", "title": "Global Principal Product Manager", "p": "Construí el ecosistema global de recompensas en Centroamérica, Europa y Corea del Sur. Lideré una organización de más de 70 personas de producto e ingeniería y gestioné un portafolio de más de $70M USD." },
-    { "company": "Linio Group", "dates": "2019 — 2020", "title": "Group Product Manager", "p": "Dirigí la integración de sistemas post-M&A durante la adquisición por Falabella." }
+    {
+      "company": "AB InBev",
+      "dates": "2020 — 2023",
+      "title": "Global Principal Product Manager",
+      "p": "Construí el ecosistema global de recompensas en Centroamérica, Europa y Corea del Sur. Lideré una organización de más de 70 personas de producto e ingeniería y gestioné un portafolio de más de $70M USD."
+    },
+    {
+      "company": "Linio Group",
+      "dates": "2019 — 2020",
+      "title": "Group Product Manager",
+      "p": "Dirigí la integración de sistemas post-M&A durante la adquisición por Falabella."
+    }
   ],
-
   "legal_updated": "Última actualización: octubre de 2026",
   "privacy_body": [
-    { "h": "Quiénes somos", "p": "Despacho Bonsai es la práctica de producto de Daniel Vásquez, con sede en Ciudad de México. Esta política cubre este sitio web." },
-    { "h": "Qué recopilamos", "p": "Cuando agendas una llamada, el formulario envía tu nombre, tu correo y lo que decidas contarnos a Cal.com, que programa la llamada. También usamos Google Tag Manager y Google Analytics para entender qué páginas son útiles, lo que instala cookies de analítica." },
-    { "h": "Cómo lo usamos", "p": "Solo para responderte, preparar y realizar la llamada que agendaste, y mejorar este sitio. No vendemos ni compartimos tu información con terceros para publicidad. Nunca." },
-    { "h": "Tus opciones", "p": "Puedes pedirnos ver, corregir o borrar lo que tenemos sobre ti en cualquier momento, y puedes bloquear las cookies de analítica en tu navegador sin perder acceso a nada de este sitio." }
+    {
+      "h": "Quiénes somos",
+      "p": "Despacho Bonsai es la práctica de producto de Daniel Vásquez, con sede en Ciudad de México. Esta política cubre este sitio web."
+    },
+    {
+      "h": "Qué recopilamos",
+      "p": "Cuando agendas una llamada, el formulario envía tu nombre, tu correo y lo que decidas contarnos a Cal.com, que programa la llamada. También usamos Google Tag Manager y Google Analytics para entender qué páginas son útiles, lo que instala cookies de analítica."
+    },
+    {
+      "h": "Cómo lo usamos",
+      "p": "Solo para responderte, preparar y realizar la llamada que agendaste, y mejorar este sitio. No vendemos ni compartimos tu información con terceros para publicidad. Nunca."
+    },
+    {
+      "h": "Tus opciones",
+      "p": "Puedes pedirnos ver, corregir o borrar lo que tenemos sobre ti en cualquier momento, y puedes bloquear las cookies de analítica en tu navegador sin perder acceso a nada de este sitio."
+    }
   ],
   "terms_body": [
-    { "h": "Este sitio", "p": "Este sitio describe los servicios de Despacho Bonsai y te permite agendar una llamada. Puedes usarlo para eso. Su contenido es nuestro salvo que se indique lo contrario." },
-    { "h": "Proyectos", "p": "Cualquier trabajo pagado se rige por un alcance y un acuerdo escritos por separado, firmados antes de empezar. Nada en este sitio es una oferta vinculante; los precios mostrados son puntos de partida." },
-    { "h": "Sin garantía", "p": "Mantenemos este sitio al día, pero se ofrece tal cual. Los enlaces a otros sitios, incluidos los productos que construimos, se rigen por los términos de esos sitios." }
+    {
+      "h": "Este sitio",
+      "p": "Este sitio describe los servicios de Despacho Bonsai y te permite agendar una llamada. Puedes usarlo para eso. Su contenido es nuestro salvo que se indique lo contrario."
+    },
+    {
+      "h": "Proyectos",
+      "p": "Cualquier trabajo pagado se rige por un alcance y un acuerdo escritos por separado, firmados antes de empezar. Nada en este sitio es una oferta vinculante; los precios mostrados son puntos de partida."
+    },
+    {
+      "h": "Sin garantía",
+      "p": "Mantenemos este sitio al día, pero se ofrece tal cual. Los enlaces a otros sitios, incluidos los productos que construimos, se rigen por los términos de esos sitios."
+    }
   ],
   "cookies_body": [
-    { "h": "Cookies de analítica", "p": "Google Tag Manager y Google Analytics instalan cookies que nos dicen qué páginas se visitan y cómo se mueve la gente por el sitio." },
-    { "h": "Agenda", "p": "El calendario para agendar lo provee Cal.com y puede instalar las cookies que necesita para programar tu llamada." },
-    { "h": "Tu decisión", "p": "Puedes bloquear o borrar estas cookies en tu navegador en cualquier momento. Todo en este sitio sigue funcionando sin ellas." }
+    {
+      "h": "Cookies de analítica",
+      "p": "Google Tag Manager y Google Analytics instalan cookies que nos dicen qué páginas se visitan y cómo se mueve la gente por el sitio."
+    },
+    {
+      "h": "Agenda",
+      "p": "El calendario para agendar lo provee Cal.com y puede instalar las cookies que necesita para programar tu llamada."
+    },
+    {
+      "h": "Tu decisión",
+      "p": "Puedes bloquear o borrar estas cookies en tu navegador en cualquier momento. Todo en este sitio sigue funcionando sin ellas."
+    }
   ],
   "legal_contact_title": "Contacto"
 }
