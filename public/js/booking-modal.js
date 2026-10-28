@@ -2,8 +2,8 @@
 (function () {
   'use strict';
 
-  var API      = 'https://api.cal.com/v2';
-  var KEY      = 'cal_live_5fcf6f814e0f0e1d31a2e27445ede93a';
+  // Calls go through /api/cal, which holds the Cal.com key server-side and only allows this event.
+  var API      = '/api/cal';
   var USERNAME = 'miyagisan';
   var SLUG     = 'bonsaitalk';
   var VER      = '2024-06-14';
@@ -31,7 +31,6 @@
 
   function headers() {
     return {
-      'Authorization': 'Bearer ' + KEY,
       'cal-api-version': VER,
       'Content-Type': 'application/json'
     };
