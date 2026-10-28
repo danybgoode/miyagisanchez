@@ -269,6 +269,10 @@
       "p": "Cuando agendas una llamada, el formulario envía tu nombre, tu correo y lo que decidas contarnos a Cal.com, que programa la llamada. También usamos Google Tag Manager y Google Analytics para entender qué páginas son útiles, lo que instala cookies de analítica."
     },
     {
+      "h": "El asistente de chat",
+      "p": "El chat en la esquina de cada página es un asistente de IA. Lo que escribes se envía al servicio Gemini de Google en Google Cloud para redactar la respuesta, y la conversación se guarda en Google Cloud para que Daniel pueda leerla y darle seguimiento. Si dejas un mensaje, tu nombre, tu correo y tu nota le llegan a Daniel. Por favor no compartas información sensible en el chat."
+    },
+    {
       "h": "Cómo lo usamos",
       "p": "Solo para responderte, preparar y realizar la llamada que agendaste, y mejorar este sitio. No vendemos ni compartimos tu información con terceros para publicidad. Nunca."
     },

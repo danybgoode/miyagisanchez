@@ -269,6 +269,10 @@
       "p": "When you book a call, the booking form sends your name, email and anything you choose to tell us to Cal.com, which schedules the call. We also use Google Tag Manager and Google Analytics to understand which pages are useful, which sets analytics cookies."
     },
     {
+      "h": "The chat assistant",
+      "p": "The chat in the corner of every page is an AI assistant. What you type is sent to Google's Gemini service on Google Cloud to write the reply, and the conversation is stored on Google Cloud so Daniel can read it and follow up. If you leave a message, your name, email and note go to Daniel. Please don't share sensitive information in the chat."
+    },
+    {
       "h": "How we use it",
       "p": "Only to reply to you, prepare and hold the call you booked, and improve this website. We do not sell or share your information with third parties for advertising. Ever."
     },
