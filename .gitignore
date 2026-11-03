@@ -7,3 +7,7 @@ dist/
 .vercel/
 .vercel
 .env*
+
+# Cloudflare (wrangler): local state and local-only secrets
+.wrangler/
+.dev.vars*

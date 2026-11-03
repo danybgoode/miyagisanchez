@@ -1,0 +1,45 @@
+# Push to master = deploy despachobonsai.com to Cloudflare Workers (worker despachobonsai-site; static assets + /api/cal).
+# Repo secrets: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, and CALCOM_KEY (pushed to the Worker as a secret on each deploy).
+# Custom domains (despachobonsai.com, www) are declared in wrangler.jsonc; the deploy attaches them.
+name: Deploy
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: 4.156.2
+          command: deploy
+          secrets: |
+            CALCOM_KEY
+        env:
+          CALCOM_KEY: ${{ secrets.CALCOM_KEY }}
+      - name: Smoke the live site
+        run: |
+          set -eu
+          for i in $(seq 1 12); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/ || true)
+            [ "$code" = 200 ] && break; sleep 10
+          done
+          echo "/ → $code"; [ "$code" = 200 ]
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/es)" = 200
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/bonsai-os)" = 301
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/api/cal/event-types)" = 200

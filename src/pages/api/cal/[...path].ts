@@ -4,6 +4,7 @@
 //   GET  /api/cal/slots/available  → free slots, for an allowed eventTypeId
 //   POST /api/cal/bookings         → a booking, for an allowed eventTypeId, with only the fields the modal sends
 import type { APIRoute } from 'astro';
+import { env } from 'cloudflare:workers';
 
 export const prerender = false;
 
@@ -16,7 +17,8 @@ const ALLOWED_TTL_MS = 10 * 60 * 1000;
 let allowed: { ids: Set<number>; at: number } | null = null;
 
 function key(): string {
-  const k = process.env.CALCOM_KEY ?? import.meta.env.CALCOM_KEY;
+  // A Worker secret (`wrangler secret put CALCOM_KEY`); locally, .dev.vars.
+  const k = (env as { CALCOM_KEY?: string }).CALCOM_KEY;
   if (!k) throw new Error('CALCOM_KEY is not set');
   return k;
 }
