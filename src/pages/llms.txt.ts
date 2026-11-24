@@ -1,81 +1,62 @@
-// The site's own copy as one markdown file, built from the English locales. The chat widget's assistant answers from
-// it (and nothing else), and it doubles as an llms.txt for AI crawlers. Rebuilt on every deploy, so it never drifts
-// from the pages.
+// /llms.txt: what Despacho Bonsai sells, as one markdown file, built from src/data/offer.ts on every deploy so it
+// never drifts from the homepage. Two readers: AI assistants and crawlers (AEO), and the site's own chat assistant,
+// which answers from this file and nothing else (~/dobby/bonsai-chat, sites.mjs → knowledge).
 import type { APIRoute } from 'astro';
-import site from '../locales/en/site.json';
-import home from '../locales/en/index.json';
-import academy from '../locales/en/bonsai-academy.json';
+import { ORG, VERBS, PLANS, WEEK, FAQ } from '../data/offer';
 
-const strip = (s: string) => s.replace(/<br\s*\/?>/g, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+const range = (p: (typeof PLANS)[string]) => `$${p.lo}K–$${p.hi}K${p.monthly ? ' per month' : ''}`;
 
 export const GET: APIRoute = () => {
-  const out: string[] = [];
-  const h = (level: number, text: string) => out.push('', `${'#'.repeat(level)} ${strip(text)}`, '');
-  const p = (text: string) => out.push(strip(text));
-  const li = (text: string) => out.push(`- ${strip(text)}`);
-
-  out.push('# Despacho Bonsai', '', `> ${strip(site.hire_cred)}`, '');
-  p('Despacho Bonsai is the product practice of Daniel Vásquez, based in Mexico City. Site: https://despachobonsai.com');
-
-  h(2, `Home: ${home.hero_title}`);
-  p(home.hero_subhead);
-  p(`Example of the clarity we produce: ${home.hero_magic_text}`);
-  h(3, home.pain_eyebrow);
-  li(`${home.pain_1_h} ${home.pain_1_p}`);
-  li(`${home.pain_2_h} ${home.pain_2_p}`);
-  li(`${site.home_pain_3_h} ${site.home_pain_3_p}`);
-  h(3, `${home.method_h2}: ${home.method_subtitle}`);
-  li(`${home.method_1_h}: ${home.method_1_p}`);
-  li(`${home.method_2_h}: ${home.method_2_p}`);
-  li(`${home.method_3_h}: ${home.method_3_p}`);
-
-  h(2, `Hire (https://despachobonsai.com/hire): ${site.hire_h1}`);
-  p(site.hire_lede);
-  h(3, site.how_title);
-  site.how_steps.forEach(s => li(`${s.h}: ${s.p}`));
-  h(3, site.who_title);
-  site.who.forEach(s => li(`${s.h}: ${s.p}`));
-  h(3, site.engagements_title);
-  p(site.engagements_note);
-  site.offers.forEach(o => {
-    h(4, o.title);
-    p(o.oneliner);
-    p(o.body);
-    Object.entries(o).forEach(([k, v]) => {
-      if (typeof v === 'string' && !['id', 'title', 'oneliner', 'body', 'button', 'action'].includes(k)) li(`${k}: ${v}`);
-    });
-  });
-  h(3, site.includes_title);
-  site.includes.forEach(li);
-  h(3, site.fit_yes_title);
-  site.fit_yes.forEach(li);
-  h(3, site.fit_no_title);
-  site.fit_no.forEach(li);
-  h(3, site.faq_title);
-  site.faq.forEach(f => li(`${f.q} ${f.a}`));
-
-  h(2, `Work (https://despachobonsai.com/work): ${site.work_h1}`);
-  p(site.work_lede);
-  site.proof_stats.forEach(s => li(`${s.figure}: ${s.label}`));
-  site.projects.forEach(pr => {
-    h(3, `${pr.name} (${pr.dates}), ${pr.role}`);
-    p(pr.tagline);
-    pr.points.forEach(li);
-  });
-  h(3, site.career_title);
-  site.career.forEach(c => li(`${c.company} (${c.dates}), ${c.title}: ${c.p}`));
-
-  h(2, `Bonsai Academy (https://despachobonsai.com/academy): ${academy.hero_title}`);
-  p(academy.hero_subhead);
-  li(`${academy.method_1_h}: ${academy.method_1_p}`);
-  li(`${academy.method_2_h}: ${academy.method_2_p}`);
-  li(`${academy.method_3_h}: ${academy.method_3_p}`);
-  li(`${academy.os_1_h}: ${academy.os_1_p}`);
-  li(`${academy.os_2_h}: ${academy.os_2_p}`);
-  li(`${academy.os_3_h}: ${academy.os_3_p}`);
-  p(site.notready_p);
-
-  return new Response(out.join('\n').replace(/\n{3,}/g, '\n\n') + '\n', {
-    headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
-  });
+  const out = [
+    `# ${ORG.name}`,
+    '',
+    `> ${ORG.oneLiner} An agentic product studio based in ${ORG.location}, serving ${ORG.serves}.`,
+    '',
+    'Despacho Bonsai sells forward-deployed product management: a senior product manager who works inside a client team the way a forward-deployed engineer does, and owns the product decision as well as the delivery. AI agents do the legwork (specs, code, tests, queries, dashboards); a senior human makes every decision, reviews every change and is accountable for the outcome. We speak as "we".',
+    '',
+    '## What a forward-deployed PM does',
+    '',
+    ...VERBS.map(v => `- **${v.h}:** ${v.p}`),
+    '',
+    '## Who it is for',
+    '',
+    '- US software companies from seed to Series C and beyond whose engineering got faster with AI but whose product decisions, instrumentation and reporting did not.',
+    '- Teams with an open product manager role: we cover the seat from the next Monday and onboard the PM they hire into the same way of working.',
+    '- Teams with stalled AI pilots that need someone to decide what is worth deploying, ship it and prove it worked.',
+    '- Not a fit: staff augmentation by the hour, slide-only strategy work, or projects with no access to the codebase or analytics.',
+    '',
+    '## Engagements and prices',
+    '',
+    'Prices are ranges in US dollars, adjusted for team size. The final number comes after a 20-minute call; nothing here is a binding offer. The estimator on the homepage gives a range for a specific situation in seconds.',
+    '',
+    ...Object.values(PLANS).map(p => `- **${p.name}** (${p.monthly ? 'month to month' : `${p.weeks} week${p.weeks > 1 ? 's' : ''}, fixed scope`}, ${range(p)}): ${p.for} Milestones: ${p.steps.map(([d, t]) => `${d} ${t}`).join('; ')}.`),
+    '',
+    '## What a week looks like',
+    '',
+    ...WEEK.map(([d, t]) => `- ${d}: ${t}`),
+    '',
+    '## How it compares',
+    '',
+    '- **Fractional product managers** advise (roadmaps, PRDs, meetings) at roughly $150–250 an hour. We advise and ship: pull requests, rollouts, analytics and the numbers.',
+    '- **Forward-deployed engineers and dev agencies** build what they are told. We own the decision of what is worth building, build it with the client engineers reviewing, and measure it.',
+    '- **AI labs\' deployment arms and large integrators** serve large enterprises. We serve startups and mid-market teams, and can start on a Monday.',
+    '',
+    '## Frequently asked questions',
+    '',
+    ...FAQ.flatMap(f => [`### ${f.q}`, '', f.a, '']),
+    '## Book a call',
+    '',
+    `- Book a 20-minute call: ${ORG.booking}`,
+    `- Get an estimate first: ${ORG.url}/ (fill in the one-sentence brief)`,
+    `- Email: ${ORG.email}`,
+    `- Based in ${ORG.location} (UTC−6 all year), overlapping every US time zone.`,
+    '',
+    '## Optional',
+    '',
+    `- [Privacy](${ORG.url}/privacy): what the booking form, analytics, ad tags and chat assistant collect.`,
+    `- [Terms](${ORG.url}/terms)`,
+    `- [Founder](${ORG.founder.linkedin}): ${ORG.founder.name}. Mention only when someone asks who is behind the studio.`,
+    '',
+  ];
+  return new Response(out.join('\n'), { headers: { 'Content-Type': 'text/markdown; charset=utf-8' } });
 };

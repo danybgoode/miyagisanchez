@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ad tiles — source</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2EFE6; --paper2:#E9E5D9; --ink:#111110; --ink2:#1D1D1B; --lime:#C8F031;
+    --mute:#6E6C64; --line:#D6D1C3; --purple:#8250DF; --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#888;padding:40px;display:flex;flex-wrap:wrap;gap:40px;font-family:Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .ad{width:600px;height:600px;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);padding:44px 44px 0}
+  .ad.wide{width:600px;height:314px;padding:28px 30px 0}
+  .dark{background:var(--ink);color:var(--paper)}
+  .limebg{background:var(--lime);color:var(--ink)}
+  .mono{font-family:"Geist Mono",ui-monospace,monospace}
+  .serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+  .eyebrow{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+  .dark .eyebrow{color:#9A988F}
+  .h{font-weight:700;letter-spacing:-.035em;line-height:1.02}
+  .foot{position:absolute;left:44px;right:44px;bottom:30px;display:flex;justify-content:space-between;align-items:center;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.06em}
+  .wide .foot{left:30px;right:30px;bottom:18px;font-size:9.5px}
+  .mark{display:flex;align-items:center;gap:8px;font-family:Geist;font-weight:700;font-size:13px;letter-spacing:-.01em}
+  .wide .mark{font-size:11.5px}
+  .mark i{width:14px;height:14px;border-radius:3px;background:var(--ink);display:inline-block;position:relative}
+  .mark i:after{content:"";position:absolute;inset:4px;background:var(--lime);border-radius:1px}
+  .dark .mark i{background:var(--lime)} .dark .mark i:after{background:var(--ink)}
+  .mark small{font-family:"Geist Mono";font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.6;margin-left:4px}
+  .ok{color:#1A7F37} .dark .ok,.term .ok{color:var(--lime)}
+  .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600}
+
+  /* A1 tickets */
+  .ticket{position:absolute;left:44px;top:214px;width:330px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;transform:rotate(-2.2deg);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+  .ticket .k{display:flex;gap:8px;align-items:center;font-family:"Geist Mono";font-size:11px;color:var(--mute)}
+  .ticket .k b{background:#E8F1FF;color:#0B57D0;border-radius:4px;padding:2px 6px;font-weight:600}
+  .ticket p{font-size:14.5px;line-height:1.4;margin-top:10px;font-weight:500}
+  .ticket .g{margin-top:10px;font-family:"Geist Mono";font-size:11.5px;line-height:1.6;color:#3a3a36;border-top:1px dashed var(--line);padding-top:10px}
+  .ticket .g em{font-style:normal;color:#9A3412;font-weight:600}
+  .term{position:absolute;right:40px;top:300px;width:300px;background:var(--ink);color:#E8E6DF;border-radius:10px;padding:14px 16px 16px;font-family:"Geist Mono";font-size:11.5px;line-height:1.75;box-shadow:0 18px 40px rgba(0,0,0,.25);transform:rotate(1.4deg)}
+  .term .dots{display:flex;gap:5px;margin-bottom:8px}.term .dots span{width:8px;height:8px;border-radius:50%;background:#3a3a37}
+  .term .p{color:var(--lime)}
+
+  /* A2 bottleneck */
+  .chart{position:absolute;left:44px;right:44px;top:250px;height:210px}
+  .legend{display:flex;gap:18px;font-family:"Geist Mono";font-size:11px;margin-top:6px}
+  .legend span{display:flex;align-items:center;gap:7px}
+  .legend i{width:16px;height:3px;border-radius:2px;display:inline-block}
+
+  /* A3 PR */
+  .pr{position:absolute;left:44px;right:44px;top:212px;background:var(--white);border:1px solid #D0D7DE;border-radius:10px;overflow:hidden;font-family:-apple-system,"Geist",sans-serif}
+  .pr .top{padding:18px 20px 14px;border-bottom:1px solid #D0D7DE}
+  .pr .t{font-size:19px;font-weight:600;letter-spacing:-.01em;color:#1F2328}
+  .pr .t span{color:#59636E;font-weight:400}
+  .pr .meta{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:13px;color:#59636E}
+  .pr .meta .pill{background:var(--purple);color:#fff}
+  .pr .meta b{color:#1F2328}
+  .pr ul{list-style:none;padding:12px 20px 14px;font-family:"Geist Mono";font-size:12.5px;line-height:2;color:#1F2328}
+  .pr ul li span{color:#1A7F37;font-weight:600;margin-right:8px}
+  .pr .bar{display:flex;justify-content:space-between;background:#F6F8FA;border-top:1px solid #D0D7DE;padding:10px 20px;font-size:12px;color:#59636E;font-family:"Geist Mono"}
+
+  /* A4 slack */
+  .slack{position:absolute;left:44px;right:44px;top:186px;background:var(--white);border-radius:10px;border:1px solid var(--line);padding:16px 18px;font-size:13px;line-height:1.42;color:#1D1C1D}
+  .msg{display:flex;gap:12px}
+  .msg+.msg{margin-top:16px}
+  .av{width:34px;height:34px;border-radius:7px;flex:none;display:grid;place-items:center;font-weight:700;font-size:13px}
+  .msg .n{font-weight:700;font-size:14px}.msg .n small{font-weight:400;color:#616061;font-size:11.5px;margin-left:6px}
+  .kpi{display:flex;align-items:baseline;gap:10px;margin:8px 0 6px}
+  .kpi b{font-size:26px;letter-spacing:-.03em}
+  .kpi s{color:#888;text-decoration:none;font-size:15px}
+  .refs{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .refs span{font-family:"Geist Mono";font-size:11px;border:1px solid var(--line);border-radius:5px;padding:3px 7px;background:#FAF9F5}
+  .tag{position:absolute;top:16px;right:16px;font-family:"Geist Mono";font-size:9.5px;letter-spacing:.1em;color:#A09D93;text-transform:uppercase}
+
+  /* A5 stat */
+  .big{font-size:168px;font-weight:800;letter-spacing:-.07em;line-height:.85}
+  /* A6 job */
+  .job{position:absolute;left:44px;right:44px;top:250px;background:var(--white);border:1px solid var(--line);border-radius:10px;padding:22px 22px 20px}
+  .job .row{display:flex;gap:14px;align-items:center}
+  .logo{width:44px;height:44px;border-radius:9px;background:var(--paper2);display:grid;place-items:center;font-family:"Geist Mono";font-size:12px;color:var(--mute)}
+  .job h4{font-size:20px;letter-spacing:-.02em}
+  .job .s{font-size:13px;color:var(--mute);margin-top:2px}
+  .job .lines{margin-top:16px;display:grid;gap:8px}
+  .job .lines i{display:block;height:9px;border-radius:5px;background:var(--paper2)}
+  .stamp{position:absolute;right:30px;top:346px;transform:rotate(-8deg);background:var(--lime);color:var(--ink);border:2.5px solid var(--ink);border-radius:8px;padding:10px 16px;font-family:"Geist Mono";font-weight:600;font-size:14px;letter-spacing:.04em;text-transform:uppercase;box-shadow:4px 4px 0 var(--ink)}
+  .stamp small{display:block;font-size:10px;letter-spacing:.1em;opacity:.75;font-weight:500}
+
+  /* A7 verbs */
+  .verbs{margin-top:34px}
+  .verbs div{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #2E2E2B;padding:9px 0 7px}
+  .verbs b{font-size:66px;letter-spacing:-.05em;font-weight:700;line-height:1}
+  .verbs span{font-family:"Geist Mono";font-size:12px;color:#A3A197;text-align:right}
+  .verbs div:nth-child(2) b{color:var(--lime)}
+
+  /* A8 week */
+  .week{position:absolute;left:44px;right:44px;top:212px}
+  .week .d{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;padding:13px 0;border-top:1px solid var(--line);font-size:16px}
+  .week .d .mono{font-size:12px;color:var(--mute);letter-spacing:.06em}
+  .week .d b{font-weight:600}
+  .week .d em{font-style:normal;font-family:"Geist Mono";font-size:11px;padding:3px 8px;border-radius:5px;background:var(--paper2)}
+  .week .d.hl em{background:var(--ink);color:var(--lime)}
+</style>
+</head>
+<body>
+
+<!-- A1 — Tickets were prompts -->
+<section class="ad" id="a1-tickets">
+  <div class="eyebrow">For every PM who ever wrote Gherkin</div>
+  <h1 class="h" style="font-size:43px;margin-top:14px">You've been writing prompts for 15 years.<br><span class="serif" style="font-size:52px">You called them tickets.</span></h1>
+  <div class="ticket">
+    <div class="k"><b>STORY</b> PROD-4127 · 5 pts · Sprint 42</div>
+    <p>As a returning customer, I want to reorder in one tap so that I don't rebuild my cart.</p>
+    <div class="g"><em>Given</em> a past order<br><em>When</em> I tap "Reorder"<br><em>Then</em> my cart is ready in &lt;1s</div>
+  </div>
+  <div class="term">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <div><span class="p">❯</span> ship PROD-4127</div>
+    <div><span class="ok">✓</span> spec → 14 tests written</div>
+    <div><span class="ok">✓</span> PR #482 merged</div>
+    <div><span class="ok">✓</span> live · flag at 10%</div>
+    <div><span class="ok">✓</span> events: reorder_*</div>
+  </div>
+  <div style="position:absolute;left:44px;right:44px;bottom:64px;font-size:16px;line-height:1.35;font-weight:500">Now the tickets ship themselves. Product managers who <b>design, deploy, analyze and report.</b></div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A2 — Bottleneck -->
+<section class="ad dark" id="a2-bottleneck">
+  <div class="eyebrow">The agentic era, in one chart</div>
+  <h1 class="h" style="font-size:50px;margin-top:14px">Your engineers got 10x faster.<br><span style="color:var(--lime)">Your roadmap didn't.</span></h1>
+  <div class="chart">
+    <svg viewBox="0 0 512 190" width="512" height="190">
+      <g stroke="#2E2E2B" stroke-width="1"><line x1="0" y1="180" x2="512" y2="180"/><line x1="0" y1="120" x2="512" y2="120" stroke-dasharray="2 4"/><line x1="0" y1="60" x2="512" y2="60" stroke-dasharray="2 4"/></g>
+      <path d="M0 172 C 120 170, 200 160, 270 130 S 400 40, 512 12" fill="none" stroke="#C8F031" stroke-width="4" stroke-linecap="round"/>
+      <path d="M0 168 C 140 166, 300 164, 512 160" fill="none" stroke="#7A786F" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="512" cy="12" r="6" fill="#C8F031"/><circle cx="512" cy="160" r="6" fill="#7A786F"/>
+      <text x="0" y="198" font-family="Geist Mono" font-size="10" fill="#7A786F">2023</text>
+      <text x="482" y="198" font-family="Geist Mono" font-size="10" fill="#7A786F">2026</text>
+    </svg>
+    <div class="legend" style="margin-top:12px"><span><i style="background:#C8F031"></i>Code shipped</span><span><i style="background:#7A786F"></i>Product decisions made</span><span style="color:#6E6C64">illustrative</span></div>
+  </div>
+  <div style="position:absolute;left:44px;right:44px;bottom:66px;font-size:15px;line-height:1.4;color:#CFCCC2">Andrew Ng: engineer-to-PM ratios are heading toward <b style="color:#fff">1:1</b>. The bottleneck moved to deciding. We put product managers there who also ship.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A3 — PR -->
+<section class="ad" id="a3-pull-request">
+  <div class="eyebrow">Product management, with commit access</div>
+  <h1 class="h" style="font-size:47px;margin-top:14px">Our product managers<br>open pull requests.</h1>
+  <div class="pr">
+    <div class="top">
+      <div class="t">feat: one-tap reorder for returning customers <span>#482</span></div>
+      <div class="meta"><span class="pill">⤳ Merged</span><span><b>bonsai-pm</b> merged 6 commits · reviewed by 2 engineers</span></div>
+    </div>
+    <ul>
+      <li><span>✓</span>Decision memo → spec → acceptance tests</li>
+      <li><span>✓</span>UI built from your design system</li>
+      <li><span>✓</span>Events: reorder_clicked, reorder_completed</li>
+      <li><span>✓</span>Rollout 10% → 50% → 100%, readout on Monday</li>
+    </ul>
+    <div class="bar"><span>All checks passed</span><span>deployed · production</span></div>
+  </div>
+  <div style="position:absolute;left:44px;right:44px;bottom:64px;font-size:16px;line-height:1.35;font-weight:500">Your PM decides it, builds it, measures it. Your engineers review it.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A4 — Grounded reporting -->
+<section class="ad" id="a4-grounded-report">
+  <div class="eyebrow">Reporting at any altitude, at any moment</div>
+  <h1 class="h" style="font-size:42px;margin-top:14px">Every number arrives<br>with the query behind it.</h1>
+  <div class="slack">
+    <span class="tag">example</span>
+    <div class="msg"><div class="av" style="background:#E9E5D9;color:#6E6C64">CE</div><div><div class="n">CEO <small>9:02 AM</small></div>Did the new onboarding move activation? Board deck is tomorrow.</div></div>
+    <div class="msg"><div class="av" style="background:var(--ink);color:var(--lime)">DB</div><div style="flex:1"><div class="n">Bonsai PM <small>9:06 AM</small></div>Yes. 7-day activation:
+      <div class="kpi"><s>31.4%</s><span>→</span><b>36.9%</b><span style="font-size:12px;color:#1A7F37;font-weight:600">+5.5 pts</span></div>
+      n = 2,140 signups, Nov 3–17. Holds without paid traffic. Slide is in your drafts.
+      <div class="refs"><span>▸ SQL · events.signup_v2</span><span>▸ experiment log</span><span>▸ dashboard</span></div>
+    </div></div>
+  </div>
+  <div style="position:absolute;left:44px;right:44px;bottom:64px;font-size:16px;line-height:1.35;font-weight:500">Not instrumented yet? We instrument it, whatever the stack.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A5 — FDE stat -->
+<section class="ad limebg" id="a5-fde-stat">
+  <div class="eyebrow" style="color:#3B4A0B">FDE job posts · Indeed · Apr '25 → Apr '26</div>
+  <div class="big" style="margin-top:26px">+729%</div>
+  <h1 class="h" style="font-size:40px;margin-top:30px">Everyone's hiring engineers to deploy AI.<br><span class="serif" style="font-size:48px">Who decides what's worth deploying?</span></h1>
+  <div style="position:absolute;left:44px;right:44px;bottom:64px;font-size:16px;line-height:1.35;font-weight:600">Forward-deployed product managers. They make the call, then they ship it.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small style="opacity:.7">forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A6 — Hire while you hire -->
+<section class="ad" id="a6-hire-while-you-hire">
+  <div class="eyebrow">For teams with an open PM req</div>
+  <h1 class="h" style="font-size:46px;margin-top:14px">Hiring a founding PM?<br><span class="serif" style="font-size:54px">Ship while you search.</span></h1>
+  <div class="job">
+    <div class="row"><div class="logo">YOU</div><div><h4>Founding Product Manager</h4><div class="s">Remote · US · Posted 5 weeks ago</div></div></div>
+    <div class="lines"><i style="width:92%"></i><i style="width:78%"></i><i style="width:85%"></i><i style="width:60%"></i></div>
+  </div>
+  <div class="stamp">Covered from Monday<small>forward-deployed PM</small></div>
+  <div style="position:absolute;left:44px;right:44px;bottom:64px;font-size:16px;line-height:1.35;font-weight:500">A full-stack PM starts shipping this week. When you hire, we train your hire to work the same way.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A7 — Four verbs -->
+<section class="ad dark" id="a7-four-verbs">
+  <div class="eyebrow">The full-stack product manager, as a service</div>
+  <div class="verbs">
+    <div><b>Design.</b><span>the business case<br>and the interface</span></div>
+    <div><b>Deploy.</b><span>real builds<br>to production</span></div>
+    <div><b>Analyze.</b><span>full-stack metrics,<br>any stack</span></div>
+    <div><b>Report.</b><span>any level, any moment,<br>always grounded</span></div>
+  </div>
+  <div style="position:absolute;left:44px;right:44px;bottom:66px;font-size:15px;line-height:1.4;color:#CFCCC2">Senior product managers, fully agentic, embedded in your repo, your analytics and your Slack.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- A8 — One week -->
+<section class="ad" id="a8-one-week">
+  <div class="eyebrow">What a week looks like</div>
+  <h1 class="h" style="font-size:35px;margin-top:14px;white-space:nowrap">Decided Monday. Live Friday.<br><span class="serif" style="font-size:46px">Measured by Monday.</span></h1>
+  <div class="week">
+    <div class="d"><span class="mono">MON</span><b>Problem framed, decision memo signed</b><em>memo.md</em></div>
+    <div class="d"><span class="mono">TUE</span><b>Flows designed in your design system</b><em>figma</em></div>
+    <div class="d"><span class="mono">WED</span><b>Built, tested, merged behind a flag</b><em>PR #482</em></div>
+    <div class="d"><span class="mono">THU</span><b>Events instrumented, dashboard up</b><em>analytics</em></div>
+    <div class="d hl"><span class="mono">FRI</span><b>Rolled out to 10% of users</b><em>live</em></div>
+  </div>
+  <div style="position:absolute;left:44px;right:44px;bottom:64px;font-size:16px;line-height:1.35;font-weight:500">No 40-page PRD. No ticket ping-pong. One product manager who carries it all the way.</div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+<!-- L1 — wide bottleneck -->
+<section class="ad wide dark" id="l1-bottleneck-wide">
+  <div style="display:grid;grid-template-columns:1fr 230px;gap:20px;align-items:start">
+    <div>
+      <div class="eyebrow" style="font-size:9.5px">The agentic era, in one chart</div>
+      <h1 class="h" style="font-size:33px;margin-top:10px">Your engineers got 10x faster.<br><span style="color:var(--lime)">Your roadmap didn't.</span></h1>
+      <p style="font-size:12.5px;line-height:1.45;color:#CFCCC2;margin-top:14px">Product managers who decide <b style="color:#fff">and</b> ship: design, deploy, analyze, report.</p>
+    </div>
+    <svg viewBox="0 0 230 150" width="230" height="150" style="margin-top:8px">
+      <line x1="0" y1="140" x2="230" y2="140" stroke="#2E2E2B"/>
+      <path d="M0 134 C 60 132, 100 122, 130 100 S 190 24, 230 8" fill="none" stroke="#C8F031" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M0 130 C 70 129, 150 127, 230 124" fill="none" stroke="#7A786F" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="70" y="74" font-family="Geist Mono" font-size="9" fill="#C8F031">code shipped</text>
+      <text x="120" y="117" font-family="Geist Mono" font-size="9" fill="#9A988F">decisions made</text>
+    </svg>
+  </div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small>forward-deployed product</small></span><span>illustrative · despachobonsai.com</span></div>
+</section>
+
+<!-- L2 — wide FDE -->
+<section class="ad wide limebg" id="l2-fde-wide">
+  <div style="display:grid;grid-template-columns:250px 1fr;gap:22px;align-items:center">
+    <div><div class="big" style="font-size:76px">+729%</div><div class="eyebrow" style="color:#3B4A0B;font-size:8.5px;margin-top:10px;line-height:1.5">FDE job posts · Indeed<br>Apr 2025 → Apr 2026</div></div>
+    <div><h1 class="h" style="font-size:27px">Everyone's hiring engineers to deploy AI.</h1><p class="serif" style="font-size:30px;line-height:1.05;margin-top:8px">Who decides what's worth deploying?</p></div>
+  </div>
+  <div class="foot"><span class="mark"><i></i>Despacho Bonsai<small style="opacity:.7">forward-deployed product</small></span><span>despachobonsai.com</span></div>
+</section>
+
+</body>
+</html>

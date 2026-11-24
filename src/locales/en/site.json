@@ -258,15 +258,15 @@
       "p": "Directed post-M&A systems integration through the Falabella acquisition."
     }
   ],
-  "legal_updated": "Last updated: October 2026",
+  "legal_updated": "Last updated: November 2026",
   "privacy_body": [
     {
       "h": "Who we are",
-      "p": "Despacho Bonsai is the product practice of Daniel Vásquez, based in Mexico City. This policy covers this website."
+      "p": "Despacho Bonsai is an agentic product studio founded by Daniel Vásquez, based in Mexico City. This policy covers this website."
     },
     {
       "h": "What we collect",
-      "p": "When you book a call, the booking form sends your name, email and anything you choose to tell us to Cal.com, which schedules the call. We also use Google Tag Manager and Google Analytics to understand which pages are useful, which sets analytics cookies."
+      "p": "When you book a call, the booking form sends your name, email and anything you choose to tell us to Cal.com, which schedules the call. We also use Google Tag Manager and Google Analytics to understand which pages are useful, Microsoft Clarity to see how people use the page, and the Microsoft Advertising, Reddit, LinkedIn and Meta tags to measure whether our ads lead to booked calls. These set analytics and advertising cookies. The estimate tool runs in your browser; what you type in it is only sent to Cal.com if you choose to book."
     },
     {
       "h": "The chat assistant",
@@ -298,7 +298,7 @@
   "cookies_body": [
     {
       "h": "Analytics cookies",
-      "p": "Google Tag Manager and Google Analytics set cookies that tell us which pages are visited and how people move through the site."
+      "p": "Google Tag Manager, Google Analytics and Microsoft Clarity set cookies that tell us which pages are visited and how people move through the site. The Microsoft Advertising (UET), Reddit, LinkedIn Insight and Meta Pixel tags set cookies that tell us whether someone who saw our ads went on to book a call."
     },
     {
       "h": "Booking",

@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Forward-Deployed Product · GTM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2EFE6; --surface:#FBFAF6; --surface2:#E9E5D9; --ink:#111110; --ink2:#3A3934; --mute:#6E6C64;
+  --line:#D6D1C3; --lime:#C8F031; --limeInk:#3B4A0B; --good:#1A7F37; --warn:#9A3412; --blue:#0B57D0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111110; --surface:#1A1A18; --surface2:#24241F; --ink:#F2EFE6; --ink2:#CFCCC2; --mute:#9A988F;
+    --line:#2E2E2B; --limeInk:#C8F031; --good:#5BD17C; --warn:#F59E62; --blue:#7FB0FF;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111110; --surface:#1A1A18; --surface2:#24241F; --ink:#F2EFE6; --ink2:#CFCCC2; --mute:#9A988F;
+  --line:#2E2E2B; --limeInk:#C8F031; --good:#5BD17C; --warn:#F59E62; --blue:#7FB0FF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+@media(min-width:720px){.wrap{padding:0 32px}}
+.mono{font-family:"Geist Mono",ui-monospace,monospace}
+.serif{font-family:Geist,system-ui,sans-serif;font-style:normal;font-weight:700!important;background:var(--lime);color:#111;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.eyebrow{font-family:"Geist Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.05;margin:0}
+h1{font-size:clamp(40px,7vw,76px);font-weight:700}
+h2{font-size:clamp(30px,4.4vw,46px);font-weight:700;margin:10px 0 18px}
+h3{font-size:20px;font-weight:650;letter-spacing:-.015em;margin:0 0 8px}
+p{margin:0 0 14px;color:var(--ink2)}
+.lede{font-size:clamp(18px,2.2vw,22px);line-height:1.45;color:var(--ink2);max-width:760px}
+section{padding:72px 0;border-top:1px solid var(--line)}
+nav.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:18px;align-items:center;height:52px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav.top a{font-family:"Geist Mono";font-size:12px;text-decoration:none;color:var(--mute)}
+nav.top a:hover{color:var(--ink)}
+.mark{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--ink)!important;margin-right:6px}
+.mark i{width:14px;height:14px;border-radius:3px;background:var(--ink);position:relative;display:inline-block}
+.mark i:after{content:"";position:absolute;inset:4px;background:var(--lime);border-radius:1px}
+.theme{margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;color:var(--mute);font:12px "Geist Mono";padding:4px 8px;cursor:pointer}
+header.hero{padding:72px 0 64px}
+.grid{display:grid;gap:16px}
+@media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card p:last-child{margin-bottom:0}
+.stat b{display:block;font-size:42px;letter-spacing:-.04em;line-height:1;font-weight:750}
+.stat span{display:block;font-size:14px;color:var(--ink2);margin-top:8px;line-height:1.45}
+.stat small{display:block;font-family:"Geist Mono";font-size:11px;color:var(--mute);margin-top:10px}
+.callout{border-left:3px solid var(--lime);background:var(--surface);padding:18px 20px;border-radius:0 10px 10px 0;margin:22px 0}
+.callout.dark{background:var(--ink);color:var(--bg);border-left-color:var(--lime)}
+.callout.dark p{color:var(--bg)}
+.pill{display:inline-block;font:600 11px "Geist Mono";letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 9px;background:var(--surface2);color:var(--ink2)}
+.pill.lime{background:var(--lime);color:#111}
+.pill.warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:12px 12px 12px 0;border-bottom:1px solid var(--line)}
+th{font:500 11px "Geist Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+td b{color:var(--ink)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tscroll table{min-width:720px}
+.strike{text-decoration:line-through;color:var(--mute)}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 44px}
+ol.steps li:before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:1px;font:600 12px "Geist Mono";color:var(--mute)}
+.big-quote{font-size:clamp(26px,3.6vw,40px);line-height:1.12;letter-spacing:-.03em;font-weight:650;margin:0 0 16px}
+/* ads gallery */
+.gallery{display:grid;gap:20px}
+@media(min-width:720px){.gallery{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.feed{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.feed .hd{display:flex;gap:10px;align-items:center;padding:12px 14px}
+.feed .av{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--lime);display:grid;place-items:center;font:700 13px Geist;flex:none}
+.feed .who{font-size:13.5px;line-height:1.25}.feed .who b{display:block}.feed .who span{color:var(--mute);font-size:12px}
+.feed .tx{padding:0 14px 12px;font-size:14px;line-height:1.45;color:var(--ink)}
+.feed img{display:block;width:100%;height:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feed .ft{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;font-size:13px;gap:10px}
+.feed .ft span{color:var(--mute);font-family:"Geist Mono";font-size:11px}
+.feed .cta{border:1px solid var(--ink);border-radius:999px;padding:5px 12px;font-weight:600;font-size:13px;white-space:nowrap}
+.feed .meta{padding:10px 14px 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink2);margin-top:auto}
+.feed .meta b{font-family:"Geist Mono";font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);display:block;margin-bottom:3px}
+.wide2{display:grid;gap:20px;margin-top:20px}
+@media(min-width:720px){.wide2{grid-template-columns:1fr 1fr}}
+/* serp */
+.serp{background:#fff;color:#202124;border:1px solid var(--line);border-radius:12px;padding:18px 20px;font-family:arial,sans-serif}
+.serp .sp{font-size:12px;font-weight:700;color:#202124}
+.serp .u{font-size:12.5px;color:#202124;margin:2px 0 4px}
+.serp .t{font-size:19px;color:#1a0dab;line-height:1.3}
+.serp .d{font-size:14px;color:#4d5156;line-height:1.5;margin-top:4px}
+.serp + .serp{margin-top:12px}
+/* copy blocks */
+.copy{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;font-size:15px;line-height:1.6;white-space:pre-wrap;color:var(--ink)}
+.copy .ph{background:color-mix(in srgb,var(--lime) 45%,transparent);border-radius:3px;padding:0 3px;font-family:"Geist Mono";font-size:13px}
+details{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:12px 0}
+details summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details summary::-webkit-details-marker{display:none}
+details summary:after{content:"+";font-family:"Geist Mono";color:var(--mute)}
+details[open] summary:after{content:"–"}
+details .in{padding:0 18px 18px}
+details .copy{background:var(--bg)}
+.map{width:100%;height:auto;display:block}
+.kpi-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.kpi-row .pill{font-size:11.5px}
+.src li{margin-bottom:6px;font-size:14px;color:var(--ink2)}
+.src{padding-left:18px}
+footer{padding:48px 0 80px;color:var(--mute);font-size:13px;border-top:1px solid var(--line)}
+.bar{height:10px;border-radius:5px;background:var(--surface2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink)}
+.budget td:nth-child(2),.budget th:nth-child(2){text-align:right;white-space:nowrap}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <a class="mark" href="#top"><i></i>Bonsai GTM</a>
+  <a href="#round2">Round 2</a><a href="#thesis">Thesis</a><a href="#market">Market</a><a href="#vocab">Language</a><a href="#map">Competition</a><a href="#reframe">Reframe</a><a href="#position">Positioning</a><a href="#icp">ICP</a><a href="#offer">Offer</a><a href="#ads">Ads</a><a href="#search">Search</a><a href="#outbound">Outbound</a><a href="#content">Content</a><a href="#plan">Plan</a><a href="#risks">Risks</a><a href="#sources">Sources</a>
+  <button class="theme" id="themeBtn" type="button">theme</button>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="eyebrow">Despacho Bonsai · Go-to-market memo from the new CMO · 23 Nov 2026 · branch gtm/agentic-pm</div>
+  <h1 style="margin-top:18px">The market is hiring engineers to deploy AI.<br><span class="serif" style="font-weight:400">Nobody is selling the person who decides what to deploy.</span></h1>
+  <p class="lede" style="margin-top:26px">This memo starts from zero. Nothing from the current site or the last campaign is assumed. It answers four questions: what the US market is actually demanding, what to call what you sell, who buys it first, and how to reach them with almost no budget. The ads are rendered and ready to run.</p>
+  <div class="kpi-row">
+    <span class="pill lime">Category: forward-deployed product</span>
+    <span class="pill">ICP: US Series A–C, 20–250 people</span>
+    <span class="pill">Entry offer: 2-week Ship Sprint</span>
+    <span class="pill">Test: 6 weeks · ~$4.6k</span>
+  </div>
+</div></header>
+
+<!-- ROUND 2 -->
+<section id="round2" style="background:var(--surface)"><div class="wrap">
+  <div class="eyebrow">00 · Round 2 · 24 Nov · your feedback, applied</div>
+  <h2>First flight: MX$1,000, five days, to learn how ads work.</h2>
+  <p class="lede">At roughly US$55, this flight buys lessons, not leads: what a click costs, which message gets clicked, and whether people use the estimator. One booked call would be a bonus. The full $4.6K plan below becomes phase 2, once this flight has taught us something.</p>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card" style="border-color:var(--ink)">
+      <h3>Flight 1 budget</h3>
+      <div class="tscroll"><table class="budget" style="min-width:0">
+        <tr><th>Channel</th><th>MXN</th><th style="width:38%"></th></tr>
+        <tr><td><b>Microsoft Ads search</b> (Bing, with LinkedIn targeting), ~MX$110/day × 5</td><td>550</td><td><div class="bar"><i style="width:100%"></i></div></td></tr>
+        <tr><td><b>Reddit image ads</b>, US$5/day minimum × 5 days</td><td>450</td><td><div class="bar"><i style="width:82%"></i></div></td></tr>
+        <tr><td>LinkedIn: organic posts from the Despacho Page + your reshares</td><td>0</td><td></td></tr>
+        <tr><td>Outbound: 40 job-post emails (the main engine stays free)</td><td>0</td><td></td></tr>
+        <tr><td><b>Total</b></td><td><b>1,000</b></td><td></td></tr>
+      </table></div>
+      <p style="font-size:13px;color:var(--mute);margin-top:10px">LinkedIn ads require at least US$10/day and clicks typically cost $5–12, so MX$1,000 would buy about 5 clicks. Google needs more spend before it learns, so it moves to flight 2. Both platforms sometimes offer new-advertiser credits; check inside the account.</p>
+    </div>
+    <div class="card">
+      <h3>Do less-used platforms give an edge? Yes, two of them</h3>
+      <p><b>Microsoft Ads (Bing).</b> This is the real edge. Search ads can be targeted by <b>LinkedIn profile data</b> (company size, industry, job function, and since June 2026 seniority). Google can't do that. Competition is thinner, and vendors report clicks 20–40% cheaper than Google (unverified, so test it). It skews toward desktop and office work, where Edge and Bing are the defaults. It can also import your Google campaigns later.</p>
+      <p><b>Reddit.</b> The cheapest clicks (~$0.50–3) and targeting by subreddit: r/startups, r/SaaS, r/ycombinator. The audience is skeptical, so the ads that look like content (A1 tickets, A5 +729%) fit best.</p>
+      <p style="margin:0"><b>Skip for now:</b> X (cheap, but low B2B quality), Quora (declining), newsletter sponsorships and developer ad networks (minimums around US$1K).</p>
+    </div>
+  </div>
+
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card">
+      <h3>Microsoft Ads setup</h3>
+      <p style="font-size:14.5px">US only, weekdays. Use two ad groups from <span class="mono">copy.md</span>: <b>Fractional</b> → <span class="mono">?v=pr</span> and <b>Hiring</b> → <span class="mono">?v=hire</span>. Add LinkedIn targeting: company size 11–500; functions Engineering, Product, Entrepreneurship; seniority Director and up. Set a bid adjustment for that audience rather than restricting to it, or volume will be too small.</p>
+    </div>
+    <div class="card">
+      <h3>Reddit setup</h3>
+      <p style="font-size:14.5px">Communities: r/startups, r/SaaS, r/ycombinator. Two creatives, A1 and A5, each linking to its own <span class="mono">?v=</span>. Turn comments off for the first flight. Install the Reddit pixel and count <span class="mono">booking_clicked</span> as the conversion.</p>
+    </div>
+    <div class="card">
+      <h3>What to read on day 5</h3>
+      <p style="font-size:14.5px">Cost per click per platform. Click-through rate per creative (search above 3% is good; Reddit above 0.5% is good). For the landing page: the share of visitors who request an estimate, and the share who then click "Book." Read the <b>search terms report</b> too: it shows how buyers actually phrase this need.</p>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>Posting from the Despacho Page instead of your profile</h3>
+      <p>Yes, that works. Page posts are the standard identity for LinkedIn ads, and the Page is where the brand lives. The catch is that a new Page reaches almost nobody organically, because Page posts only reach followers. Fix: <b>post from the Page, then reshare from your profile with one or two lines of your own</b>. The reshare is where the reach comes from. When LinkedIn ads come back in phase 2, test a Page ad against a Thought Leader Ad from your post.</p>
+    </div>
+    <div class="card">
+      <h3>Which channels this plan uses</h3>
+      <p><b>Phase 2 (the full plan below):</b> LinkedIn ads (Thought Leader Ads plus retargeting on the outbound list), Google Search, job-post outbound by email and LinkedIn DM, and founder content plus pages AI assistants can cite. <b>Flight 1:</b> Microsoft Ads plus Reddit as paid, with LinkedIn Page posts and outbound as free channels. Outbound stays the engine in both phases. Paid ads are there to learn and to make you look familiar.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:20px">
+    <p style="margin:0 0 8px;color:var(--ink)"><b>Pricing on the site: no price list, but a range inside the estimate.</b></p>
+    <p style="margin:0;color:var(--ink2)">Buyers do want pricing. 69% name missing pricing among their top frustrations with vendors, and NN/g argues complex services should still show some. A full price list on a custom service invites comparison shopping before you've framed the value. The middle path: the estimator shows a <b>personalized range</b> ("Ship Sprint · $12–18K · 2 weeks") with "final number after the call." That filters out people who can't afford it, anchors the price before the call, and keeps the detail for your proposal. HockeyStack found that visible pricing lowers raw conversion but makes visitors 9.5% more likely to request a demo, which is the trade you want. Prices never appear in ads. The landing page has a one-line switch (<span class="mono">showPrice</span>) if you'd rather hide the range.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>Landing page: one goal, a booked call</h3>
+      <p>Open <span class="mono">landing/index.html</span>, and try <span class="mono">?v=hire</span>, <span class="mono">?v=fde</span> and the other variants. The headline matches the ad that was clicked, and the brief comes pre-filled for it. The visitor adjusts a few blanks (stage, team size, need, deadline, who makes product calls today), gets an estimate in about a second, and clicks <b>Book a 20-min call</b>. The booking link carries the brief and estimate into the call notes, so you start the call already knowing their situation. A quiet "skip it, just book a call" link stays for senior buyers who won't fill anything in.</p>
+      <p style="margin:0;font-size:14px;color:var(--mute)">The estimate uses fixed rules rather than AI, on purpose: it's instant, free, and never invents a price. An AI-written plan can come later in v2. To make it live: the real booking URL, analytics (events are already emitted), and moving it into the site.</p>
+    </div>
+    <div class="card">
+      <h3>Identity v2: Designers Republic-inspired, without the cursive</h3>
+      <p><b>Display face "DB Matriz":</b> a condensed poster grotesk where every 4th letter is swapped for a dot-matrix glyph, as if the machine wrote it. That's AI plus human, set in type. It was built with the same mixing technique as Bastardica (your videovision <span class="mono">bastard.py</span>, adapted). It's used only for big uppercase headlines. Numbers, sublines and labels use the plain condensed face, so everything stays readable. An alternate, "DB Orbita," is in <span class="mono">brand/fonts</span>.</p>
+      <p style="margin:0"><b>Devices from the poster:</b> paper and ink with one acid green, print grit, crosshairs, halftone dots, rulers, numbered black blocks and vertical labels. Loud type with a quiet structure, so the page stays dead simple. Your v1 ads are archived in <span class="mono">ads/v1/</span>.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- THESIS -->
+<section id="thesis"><div class="wrap">
+  <div class="eyebrow">01 · The thesis in one screen</div>
+  <h2>Code got cheap. Deciding, shipping and proving didn't.</h2>
+  <div class="grid g2" style="margin-top:24px">
+    <div>
+      <p class="big-quote">The demand is real but mislabeled. Companies are hiring <span class="serif" style="font-weight:400">engineers</span> and asking them to do <span class="serif" style="font-weight:400">product management</span>.</p>
+    </div>
+    <div>
+      <p>Forward-deployed engineer (FDE) job posts grew roughly 7x in a year. OpenAI and Anthropic each stood up a services company to put engineers inside customers. When you read the FDE postings, the fastest-growing requirement isn't a framework. It's <b>requirements discovery, stakeholder management and translating ambiguous business problems</b>, which shows up in over 70% of postings in one 1,000-post sample.</p>
+      <p>At the same time, AI-native startups are hiring <i>fewer</i> classic PMs, LinkedIn renamed its APM program to <b>Associate Product Builder</b>, and Andrew Ng says the engineer-to-PM ratio is heading toward 1:1 because product is now the bottleneck.</p>
+      <p>Put together: the market doesn't want more document-writing PMs, and it can't get enough people who can make the call <i>and</i> ship it. That gap is the business.</p>
+    </div>
+  </div>
+  <div class="callout dark">
+    <p style="margin:0;font-size:18px"><b style="color:var(--lime)">Recommendation.</b> Sell <b>forward-deployed product managers</b>: senior, fully agentic PMs who design, deploy, analyze and report from inside the client's repo, analytics and Slack. Lead with one wedge, <b>"Ship while you search,"</b> aimed at US startups that have an open PM req. Their demand is visible, budgeted and dated.</p>
+  </div>
+</div></section>
+
+<!-- MARKET -->
+<section id="market"><div class="wrap">
+  <div class="eyebrow">02 · What the market is actually saying</div>
+  <h2>Demand shows up as hiring, not as search.</h2>
+  <p class="lede">The strongest signal in this category isn't keyword volume. It's job postings and capital. Buyers express the need by opening a req or signing a services deal, so the job market is the best lead source you have. Your instinct was right.</p>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="card stat"><b>+729%</b><span>FDE job postings, Apr 2025 → Apr 2026 (643 → 5,330 on Indeed). Lightcast puts Jan–Aug 2026 at +1,000% YoY, against +13% for tech overall.</span><small>Business Insider / Indeed · Fortune / Lightcast</small></div>
+    <div class="card stat"><b>$9B+</b><span>committed by OpenAI, Anthropic, Microsoft and AWS to forward-deployed ventures in 2026. OpenAI's DeployCo raised ~$4B and bought Tomoro. Anthropic's Ode came out of Fractional AI.</span><small>Plank State of FDE · OpenAI · TechCrunch</small></div>
+    <div class="card stat"><b>70%+</b><span>of FDE postings ask for discovery skills ("requirements discovery," "stakeholder management," "ambiguous business problems"). That's PM work, labeled as engineering.</span><small>Perspective AI, 1,000-post sample</small></div>
+    <div class="card stat"><b>1:1</b><span>Andrew Ng: engineer-to-PM ratios are moving from 4–10:1 toward 1:1, because AI made building cheap and product became the bottleneck.</span><small>Stanford CS230 · Business Insider</small></div>
+    <div class="card stat"><b>40%+</b><span>of agentic AI projects will be canceled by end of 2027 over unclear business value, cost or risk controls. That's a product failure, not an engineering one.</span><small>Gartner, Jun 2025 forecast</small></div>
+    <div class="card stat"><b>APM → APB</b><span>LinkedIn replaced its Associate Product Manager program with Associate Product Builder: PM, design and engineering in one role, graduating to "Full Stack Builder."</span><small>LinkedIn Careers</small></div>
+  </div>
+  <div class="grid g2" style="margin-top:28px">
+    <div class="card">
+      <h3>Who's underserved</h3>
+      <p>The labs' deployment companies and the SIs (Globant AI Pods, CI&amp;T) are built for <b>large enterprises</b>. Plank's FDE census says startups and scale-ups are underserved. That's the open space, and it's where US rates are good and decisions are fast.</p>
+    </div>
+    <div class="card">
+      <h3>How buyers choose</h3>
+      <p>Most B2B buyers have a preferred vendor before they talk to anyone (6sense, 2026), and about half of software buyers now start research in an AI chatbot (G2, n=1,076). You win by being <b>known before the search</b>: founder content, a public proof trail, and pages AI assistants can cite. Ads speed that up but can't replace it.</p>
+    </div>
+    <div class="card">
+      <h3>What it pays</h3>
+      <p>Fractional PM averages about $150/hr (p25–p75: $100–180). Fractional CPOs run $200–250+/hr. FDE salaries: $167K–240K median band, 27% above $300K. Productized FDE boutiques charge $10K/month and up (3-month minimum), or $25–60K for a 2-week build. You can price above fractional PM because you ship, and below an FDE team because you're one senior person with agents.</p>
+    </div>
+    <div class="card">
+      <h3>What hiring managers write</h3>
+      <p>Startup PM postings now ask candidates to "prototype rapidly" with Cursor, Claude Code or Replit, to "vibe code," and to build agent workflows. Contract and fractional versions appear on Upwork, Wellfound and YC's job board. Each posting says, in the buyer's own words, what they want. That's your copy and your list.</p>
+    </div>
+  </div>
+  <p style="margin-top:18px;font-size:13px;color:var(--mute)">Most growth figures come from recruiters, vendors and secondhand press. Treat them as direction, not precision. Where sources disagree (FDE growth is quoted at 729%, 1,000% and 1,165%), the ads use the most conservative figure that has a named source.</p>
+</div></section>
+
+<!-- VOCAB -->
+<section id="vocab"><div class="wrap">
+  <div class="eyebrow">03 · The language the market already uses</div>
+  <h2>Borrow demand. Don't invent a category in an ad.</h2>
+  <p class="lede">A new category name costs years and millions to teach. Pair a term buyers already understand with a proof they've never seen.</p>
+  <div class="tscroll" style="margin-top:22px"><table>
+    <tr><th>Term</th><th>Who says it</th><th>What it signals</th><th>How we use it</th></tr>
+    <tr><td><b>Forward-deployed engineer</b></td><td>Labs, enterprises, VCs, recruiters</td><td>Hot, funded, engineering-coded. Means "someone inside your company who makes AI actually work."</td><td><span class="pill lime">Borrow</span> as a modifier: <b>forward-deployed product</b>. Buyers instantly get "embedded, hands-on, outcome-owned."</td></tr>
+    <tr><td><b>Fractional PM / head of product</b></td><td>Founders who need product help but not a full-time hire</td><td>The actual words people use to buy this service. Priced at $150–250/hr.</td><td><span class="pill lime">Target</span> Google keywords and comparison content: "fractional, but ships."</td></tr>
+    <tr><td><b>AI product manager</b></td><td>Hiring managers, job seekers</td><td>Ambiguous: a PM for AI products, or a PM who uses AI? Mostly job-search traffic.</td><td><span class="pill">Trigger only</span> Use it to find reqs. Never as the brand.</td></tr>
+    <tr><td><b>Product engineer</b></td><td>Startups (Linear, PostHog), engineers</td><td>Engineers who own product calls. Searches up 89% since 2021 per PostHog.</td><td><span class="pill">Ally</span> "They're engineers who think like PMs. We're PMs who ship like engineers."</td></tr>
+    <tr><td><b>Product builder / full-stack builder</b></td><td>LinkedIn (APB program), creators</td><td>Institutional proof that PM, design and engineering are merging into one role.</td><td><span class="pill">Story</span> Content and mission. Not yet a buying term.</td></tr>
+    <tr><td><b>AI-native agency / studio</b></td><td>YC (Requests for Startups), investors</td><td>Validates the business model: services with AI as the backend.</td><td><span class="pill">Partners</span> Use with investors and partner studios, not with buyers.</td></tr>
+    <tr><td><b>Full-stack PM</b></td><td>You, plus some creators</td><td>Low mainstream use (not verified). Most precise description of the role.</td><td><span class="pill">Mission</span> "We make full-stack product managers." Internal and talent brand.</td></tr>
+    <tr><td><b>Fully agentic / AI-powered</b></td><td>Everyone</td><td>Table stakes, and often "agent washing." Gartner estimates only ~130 of thousands of agentic vendors are real.</td><td><span class="pill warn">Show, don't say</span> A PR, a query or a ship log beats the adjective.</td></tr>
+  </table></div>
+</div></section>
+
+<!-- COMPETITIVE MAP -->
+<section id="map"><div class="wrap">
+  <div class="eyebrow">04 · Who else is here, and what they actually sell</div>
+  <h2>Everyone either decides or ships. Almost nobody does both.</h2>
+  <div class="card" style="margin-top:22px;padding:14px">
+    <svg class="map" viewBox="0 0 900 520" role="img" aria-label="Competitive map: who owns the product decision vs who ships to production">
+      <defs><style>.ax{font:500 12px 'Geist Mono';fill:var(--mute);letter-spacing:.06em}.lb{font:600 14px Geist;fill:var(--ink)}.sm{font:400 12px Geist;fill:var(--mute)}</style></defs>
+      <rect x="70" y="20" width="810" height="440" rx="10" fill="none" stroke="var(--line)"/>
+      <line x1="475" y1="20" x2="475" y2="460" stroke="var(--line)" stroke-dasharray="4 6"/>
+      <line x1="70" y1="240" x2="880" y2="240" stroke="var(--line)" stroke-dasharray="4 6"/>
+      <text class="ax" x="475" y="490" text-anchor="middle">SHIPS TO PRODUCTION →</text>
+      <text class="ax" x="34" y="240" text-anchor="middle" transform="rotate(-90 34 240)">OWNS THE PRODUCT DECISION →</text>
+      <text class="ax" x="90" y="48">ADVISES</text><text class="ax" x="860" y="48" text-anchor="end">DECIDES + SHIPS</text>
+      <text class="ax" x="90" y="448">EXECUTES SPECS</text><text class="ax" x="860" y="448" text-anchor="end">BUILDS WHAT'S ASKED</text>
+      <!-- top-left: fractional -->
+      <circle cx="170" cy="110" r="9" fill="var(--mute)"/><text class="lb" x="186" y="106">Fractional PMs / CPOs</text><text class="sm" x="186" y="124">Go Fractional, A.Team, solo consultants</text>
+      <circle cx="210" cy="180" r="13" fill="var(--mute)"/><text class="lb" x="230" y="176">Strategy firms</text><text class="sm" x="230" y="194">MBB, Big 4: decks, roadmaps</text>
+      <!-- bottom-right: builders -->
+      <circle cx="600" cy="300" r="9" fill="var(--mute)"/><text class="lb" x="616" y="296">AI engineering studios</text><text class="sm" x="616" y="314">The Agile Monkeys, Rootstrap, GeekyAnts</text>
+      <circle cx="560" cy="372" r="9" fill="var(--mute)"/><text class="lb" x="576" y="368">FDE boutiques</text><text class="sm" x="576" y="386">Plank, Advanced Client, Ryz Labs</text>
+      <circle cx="720" cy="262" r="16" fill="var(--mute)" opacity=".75"/><text class="lb" x="640" y="204">Lab deploy arms + SIs</text><text class="sm" x="640" y="222">DeployCo, Ode, Globant AI Pods (enterprise)</text>
+      <circle cx="300" cy="400" r="9" fill="var(--mute)" opacity=".6"/><text class="lb" x="316" y="396">Freelance marketplaces</text><text class="sm" x="316" y="414">Upwork, Toptal: tasks</text>
+      <!-- us -->
+      <circle cx="790" cy="90" r="16" fill="var(--lime)" stroke="var(--ink)" stroke-width="2"/>
+      <text class="lb" x="768" y="80" text-anchor="end" style="font-size:16px">Despacho Bonsai</text>
+      <text class="sm" x="768" y="98" text-anchor="end">forward-deployed product · startups → mid-market</text>
+    </svg>
+    <p style="font-size:13px;color:var(--mute);margin:8px 6px 4px">Dot size ≈ typical client size. Placement is a judgment from each firm's public positioning.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card">
+      <span class="pill">Your reference</span>
+      <h3 style="margin-top:10px">The Agile Monkeys</h3>
+      <p>Their whole site is one sentence: <i>"We are an AI engineering studio."</i> Then: 90+ people, AI projects "often in regulated industries," and "this is our whole website: no less, no more." There's no services list, no pricing and no sales CTA. The main button is a hiring link. Credibility comes from a public <b>Lab</b> (agent architecture, evals, a case on "building products out of AI agents"), a <b>Claude Partner Network</b> badge, and one named client (nau!, Spain).</p>
+      <p><b>Steal:</b> the confidence, the public Lab as proof of work, and the partner badge. <b>Don't steal:</b> having no sales path. They live on 15 years of reputation and a Spanish network. You need pipeline in the US now. <b>The gap they leave:</b> they sell engineering. Product judgment isn't in their story.</p>
+    </div>
+    <div class="card">
+      <span class="pill">The other Globant</span>
+      <h3 style="margin-top:10px">Globant AI Pods</h3>
+      <p>"Subscription-based AI Pods": agent-orchestrated service units sold to enterprises, with an Anthropic alliance and FDE certification for 5,000 architects. They claim 40% of their top 20 accounts adopted it. It confirms the packaging trend: <b>subscriptions to an outcome-producing unit, not hours</b>. It's also why you shouldn't sell "Globant, but only product engineers." The phrase gets you compared to a 30,000-person company on scale. Compete on altitude instead: one senior decision-maker who ships beats a pod that waits for specs.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- REFRAME -->
+<section id="reframe"><div class="wrap">
+  <div class="eyebrow">05 · Your thoughts, reframed</div>
+  <h2>What you said → what a buyer hears → what we say.</h2>
+  <p class="lede">You're closer than you think. Most of your ideas are right and just need to be in the buyer's language. One of them is the brand story.</p>
+  <div class="tscroll" style="margin-top:22px"><table>
+    <tr><th style="width:24%">You said</th><th style="width:30%">A US buyer hears</th><th>We say instead</th></tr>
+    <tr><td>"PMs were prompting before it was a thing. Tickets, PRDs, Gherkin."</td><td><b>Nothing yet, and that's the opening.</b> It's true, surprising, and every PM and founder recognizes it instantly.</td><td><span class="pill lime">Brand story</span> <b>"You've been writing prompts for 15 years. You called them tickets."</b> It explains why PMs are the natural operators of agents, with no jargon.</td></tr>
+    <tr><td>"Product managers that ship."</td><td>Good, but "ship" can sound like "pushes deadlines."</td><td>Make it literal: <b>"Our product managers open pull requests."</b> / <b>"Product management, with commit access."</b></td></tr>
+    <tr><td>"Design, deploy, analyze, report."</td><td>Clear and complete. It's the job description.</td><td><span class="pill lime">Keep</span> as the four-verb spine on every asset. Add the qualifiers: business <i>and</i> interface; real builds; any stack; grounded.</td></tr>
+    <tr><td>"Forward-deployed full-stack product management."</td><td>Too long. "Forward-deployed" lands, though.</td><td><b>Forward-deployed product managers</b> (role) / <b>forward-deployed product</b> (category descriptor).</td></tr>
+    <tr><td>"We are an engineering studio. Fully agentic integrated."</td><td>One of thousands. "Agentic" is a claim everybody makes.</td><td>Show it. The PR, the query link, the Friday rollout. Describe yourselves as a <b>product studio that ships</b>.</td></tr>
+    <tr><td>"Mission: make full-stack product managers."</td><td>Nice for you. Buyers buy a covered seat, not a mission.</td><td>Make it a commercial feature: <b>"When you hire your PM, we train them to work this way."</b> The mission becomes the handoff, a hiring kit and a talent brand.</td></tr>
+    <tr><td>"Dysfunctional orgs communicate only through tickets."</td><td>Painful and familiar, but negative as a headline.</td><td>Use it in content and outbound as the enemy: <b>"No ticket ping-pong. One person carries it from decision to production."</b></td></tr>
+    <tr><td>"PM is the next growth engine and revenue center."</td><td>Aspirational. Needs proof you don't have publicly yet.</td><td>Hold it for case studies. Earn it with reported numbers first.</td></tr>
+    <tr><td>"Globant, but only product engineers."</td><td>Compares you on scale, which you lose.</td><td>Keep it as an internal analogy only.</td></tr>
+  </table></div>
+</div></section>
+
+<!-- POSITIONING -->
+<section id="position"><div class="wrap">
+  <div class="eyebrow">06 · Positioning and messaging house</div>
+  <h2>One sentence, four verbs, three proofs.</h2>
+  <div class="callout" style="font-size:18px;line-height:1.5">
+    <p style="margin:0;color:var(--ink)">For <b>US software teams whose engineering got faster with AI but whose product decisions didn't</b>, Despacho Bonsai provides <b>forward-deployed product managers</b>: senior, fully agentic PMs who design, deploy, analyze and report from inside your repo, analytics and Slack. <b>Unlike fractional PMs</b>, we ship. <b>Unlike engineering studios and FDE firms</b>, we own the decision and prove the outcome.</p>
+  </div>
+  <div class="grid g4" style="margin-top:22px">
+    <div class="card"><span class="eyebrow">Design</span><h3 style="margin-top:8px">The business and the interface</h3><p>Decision memo, sizing, flows in your design system. One page, not forty.</p></div>
+    <div class="card"><span class="eyebrow">Deploy</span><h3 style="margin-top:8px">Real builds to production</h3><p>PRs in your repo, tests, flags, staged rollout. Your engineers review.</p></div>
+    <div class="card"><span class="eyebrow">Analyze</span><h3 style="margin-top:8px">Full-stack product metrics</h3><p>Instrument what's missing, whatever the stack is or needs to be.</p></div>
+    <div class="card"><span class="eyebrow">Report</span><h3 style="margin-top:8px">Any level, any moment</h3><p>From standup to board deck. Every number links to its query.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>Line to test A</h3><p class="big-quote" style="font-size:26px;margin:0">Forward-deployed product managers.</p><p style="margin-top:10px;font-size:14px">Borrows FDE demand. Best for CTOs and AI-forward founders.</p></div>
+    <div class="card"><h3>Line to test B</h3><p class="big-quote" style="font-size:26px;margin:0">Product management, with commit access.</p><p style="margin-top:10px;font-size:14px">The most distinctive line. Best for PM-literate buyers (VPs of Product, CPOs).</p></div>
+    <div class="card"><h3>Line to test C</h3><p class="big-quote" style="font-size:26px;margin:0">Fractional PMs who ship.</p><p style="margin-top:10px;font-size:14px">Rides existing purchase language. Best for search and founders without a PM.</p></div>
+  </div>
+  <p style="margin-top:16px">The descriptor under the logo stays <b>"forward-deployed product"</b> in every test. Only the headline changes, so the test is clean.</p>
+  <div class="callout"><p style="margin:0;color:var(--ink)"><b>A note on the name.</b> "Despacho Bonsai" is unfamiliar to US buyers, and that's fine. "The Agile Monkeys" is odd too. A quirky studio name works when the descriptor does the explaining, so the descriptor is always there. Don't rename before the test. If US calls keep stumbling on it, revisit with data.</p></div>
+</div></section>
+
+<!-- ICP -->
+<section id="icp"><div class="wrap">
+  <div class="eyebrow">07 · Who buys first</div>
+  <h2>Go where the need is dated and budgeted.</h2>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card" style="border-color:var(--ink)">
+      <span class="pill lime">Primary · 70% of effort</span>
+      <h3 style="margin-top:10px">US startups with an open PM req</h3>
+      <p><b>Who:</b> Seed to Series C, 20–250 people, software or AI product, engineers already using AI coding tools.</p>
+      <p><b>Trigger:</b> an open posting for Founding PM, AI PM, Product Engineer, Technical PM, Head of Product, or any contract or fractional PM role.</p>
+      <p><b>Buyer:</b> the hiring manager (founder, CEO, CTO or VP Product), not the recruiter.</p>
+      <p><b>Why first:</b> the budget exists (it's the salary), the pain has a date (the search takes months), and the post tells you what they need.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Secondary · 20%</span>
+      <h3 style="margin-top:10px">Scale-ups with stalled AI work</h3>
+      <p><b>Who:</b> 250–2,000 people, often PE- or growth-backed, with a board-level AI mandate and pilots that never reached production.</p>
+      <p><b>Trigger:</b> "AI" in the earnings or board narrative, FDE or AI-engineer postings, an announced agent product.</p>
+      <p><b>Buyer:</b> CPO, VP Product, CTO.</p>
+      <p><b>Pitch:</b> "Your FDEs need someone deciding what's worth deploying." This is where the Gartner 40% stat lands.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Leverage · 10%</span>
+      <h3 style="margin-top:10px">Partners who lack product</h3>
+      <p><b>Who:</b> engineering studios, FDE boutiques and nearshore dev shops that keep losing deals or projects to "nobody owned the product."</p>
+      <p><b>Offer:</b> white-label forward-deployed PMs on their accounts, with a referral fee or margin share.</p>
+      <p><b>Also:</b> VC platform teams. A portfolio-wide "Ship Sprint" offer is an easy yes for them.</p>
+    </div>
+  </div>
+  <p style="margin-top:18px"><b>Deprioritize for now:</b> large enterprises (labs and SIs own them, with long cycles) and small businesses (no budget, and OpenAI's free programs anchor them at $0).</p>
+</div></section>
+
+<!-- OFFER -->
+<section id="offer"><div class="wrap">
+  <div class="eyebrow">08 · What the ads sell</div>
+  <h2>Three doors, one escalator.</h2>
+  <p class="lede">You said not to worry about the product. Marketing still needs something concrete to put behind the button, so here are hypotheses to validate on calls, not a pricing decision.</p>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card">
+      <span class="eyebrow">Entry</span>
+      <h3 style="margin-top:8px">Ship Sprint</h3>
+      <p class="big-quote" style="font-size:34px;margin:6px 0 10px">$15K <span style="font-size:15px;font-weight:500;color:var(--mute)">fixed · 2 weeks</span></p>
+      <p>One problem → decision memo → shipped to production behind a flag → instrumented → readout. Credited toward the monthly plan if they continue.</p>
+      <p style="font-size:13px;color:var(--mute)">Anchor: a 2-week AI build from boutiques runs $25–60K.</p>
+    </div>
+    <div class="card" style="border-color:var(--ink)">
+      <span class="eyebrow">Core</span>
+      <h3 style="margin-top:8px">Forward-Deployed PM</h3>
+      <p class="big-quote" style="font-size:34px;margin:6px 0 10px">$18K<span style="font-size:15px;font-weight:500;color:var(--mute)">/month</span></p>
+      <p>A senior full-stack PM plus the agent stack, embedded in repo, analytics and Slack. Weekly ship log, monthly altitude report. Month-to-month after 60 days.</p>
+      <p style="font-size:13px;color:var(--mute)">Anchor: a fractional CPO at ~$225/hr × 80 hrs ≈ $18K, and they don't ship.</p>
+    </div>
+    <div class="card">
+      <span class="eyebrow">Wedge</span>
+      <h3 style="margin-top:8px">Seat Cover</h3>
+      <p class="big-quote" style="font-size:34px;margin:6px 0 10px">Core <span style="font-size:15px;font-weight:500;color:var(--mute)">+ handover</span></p>
+      <p>For teams with an open PM req. We cover from Monday. When the hire lands, we onboard them into the same workflow. This is your mission, sold as a feature.</p>
+      <p style="font-size:13px;color:var(--mute)">Optional: help them run the hire (take-home, scorecard).</p>
+    </div>
+  </div>
+  <p style="margin-top:18px;font-size:14px;color:var(--mute)">Price-test question for every call: "If this cost $X/month, would that be a no-brainer, a stretch, or a no?" Ask it at $12K, $18K and $25K across calls. Don't publish prices in ads until 10 calls are done.</p>
+</div></section>
+
+<!-- ADS -->
+<section id="ads"><div class="wrap">
+  <div class="eyebrow">09 · The creative</div>
+  <h2>Proof over adjectives.</h2>
+  <p class="lede">Every tile shows an artifact a PM would never normally produce (a merged PR, a query-linked report, a Friday rollout) instead of saying "AI-powered." All ten are rendered at LinkedIn sizes in <span class="mono" style="font-size:14px">ads/png/</span>.</p>
+  <p style="font-size:14px;color:var(--mute)">Shown in the feed as Thought Leader Ads from the founder's profile. On LinkedIn these cost about $2.29 per click against ~$9.39 for standard ads (vendor benchmarks). Tiles marked "example" use illustrative numbers and must stay labeled.</p>
+
+  <div class="gallery" style="margin-top:24px">
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">My first prompt was a Jira ticket. So was yours. Given / When / Then was always an instruction set. Now the system can read it directly…</div>
+      <img src="ads/png/a1-tickets.png" alt="Ad: You've been writing prompts for 15 years. You called them tickets.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Learn more</span></div>
+      <div class="meta"><b>A1 · Brand story · all cells</b>The hero. It turns a PM's 15 years into the qualification for the agentic era, and it's flattering, which helps it spread.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">Andrew Ng says the engineer-to-PM ratio is heading to 1:1. Most startups I talk to are at 8:1, with the founder doing PM at 11pm.</div>
+      <img src="ads/png/a2-bottleneck.png" alt="Ad: Your engineers got 10x faster. Your roadmap didn't.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Learn more</span></div>
+      <div class="meta"><b>A2 · Problem · Line A/C</b>Names the pain in a phrase founders repeat. Best cold-audience opener.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">Unpopular in PM circles: if your product manager can't open a PR in 2026, you're paying for a translator.</div>
+      <img src="ads/png/a3-pull-request.png" alt="Ad: Our product managers open pull requests.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Book a call</span></div>
+      <div class="meta"><b>A3 · Proof · Line B</b>The most distinctive claim in the set. Expect strong reactions, which is the point.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">"Can you pull the numbers for the board?" shouldn't take a week, and it shouldn't come back without a source.</div>
+      <img src="ads/png/a4-grounded-report.png" alt="Ad: Every number arrives with the query behind it.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Learn more</span></div>
+      <div class="meta"><b>A4 · Proof · CEO/board buyers</b>The "report" verb made tangible. Good retargeting for people who already engaged.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">Read 20 FDE job posts. The fastest-growing requirement isn't a framework. It's "requirements discovery." That's product management with a different badge.</div>
+      <img src="ads/png/a5-fde-stat.png" alt="Ad: +729%. Everyone's hiring engineers to deploy AI. Who decides what's worth deploying?">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Learn more</span></div>
+      <div class="meta"><b>A5 · Category · Line A</b>Borrows the hottest term in the market and turns it into our question.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">If you've had a PM req open for a month, your roadmap has been on hold for a month. It doesn't have to be.</div>
+      <img src="ads/png/a6-hire-while-you-hire.png" alt="Ad: Hiring a founding PM? Ship while you search.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Book a call</span></div>
+      <div class="meta"><b>A6 · Wedge · matched audiences</b>Runs only against the outbound account list (company-list upload). Pairs with the cold email.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">The job description for a product manager in the agentic era, in four words.</div>
+      <img src="ads/png/a7-four-verbs.png" alt="Ad: Design. Deploy. Analyze. Report.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Learn more</span></div>
+      <div class="meta"><b>A7 · Definition · all cells</b>The spine. Works as a profile banner, deck cover and carousel slide 1.</div>
+    </div>
+    <div class="feed">
+      <div class="hd"><div class="av">D</div><div class="who"><b>Daniel · Despacho Bonsai</b><span>Founder · Promoted</span></div></div>
+      <div class="tx">What we did last week for a client, minus the 40-page PRD.</div>
+      <img src="ads/png/a8-one-week.png" alt="Ad: Decided Monday. Live Friday. Measured by Monday.">
+      <div class="ft"><span>despachobonsai.com</span><span class="cta">Book a call</span></div>
+      <div class="meta"><b>A8 · How it works · bottom of funnel</b>Shows the Ship Sprint in a glance. Replace the example with a real anonymized week as soon as you have one.</div>
+    </div>
+  </div>
+  <div class="wide2">
+    <div class="feed"><img src="ads/png/l1-bottleneck-wide.png" alt="Landscape ad: bottleneck" style="border-top:0"><div class="meta"><b>L1 · 1200×628</b>Landscape cut of A2 for LinkedIn link ads and X.</div></div>
+    <div class="feed"><img src="ads/png/l2-fde-wide.png" alt="Landscape ad: FDE stat" style="border-top:0"><div class="meta"><b>L2 · 1200×628</b>Landscape cut of A5.</div></div>
+  </div>
+</div></section>
+
+<!-- SEARCH -->
+<section id="search"><div class="wrap">
+  <div class="eyebrow">10 · Search, small and surgical</div>
+  <h2>Only buy the words of people who are already buying.</h2>
+  <div class="grid g2" style="margin-top:22px">
+    <div>
+      <div class="serp">
+        <div class="sp">Sponsored</div>
+        <div class="u">despachobonsai.com › fractional-pm</div>
+        <div class="t">Fractional PMs Who Ship | Live in Production by Friday | 2-Week Ship Sprint, Fixed Fee</div>
+        <div class="d">Senior product managers who design, build, deploy and measure. Inside your repo and Slack.</div>
+      </div>
+      <div class="serp">
+        <div class="sp">Sponsored</div>
+        <div class="u">despachobonsai.com › hiring-a-pm</div>
+        <div class="t">Hiring a PM? Ship Meanwhile | Covered While You Hire | Forward-Deployed PMs</div>
+        <div class="d">Hiring a PM? Ours starts Monday, then trains your hire to work the same way.</div>
+      </div>
+      <div class="serp">
+        <div class="sp">Sponsored</div>
+        <div class="u">despachobonsai.com › forward-deployed</div>
+        <div class="t">Forward-Deployed PMs | Your PM Opens Pull Requests | Decide It. Ship It. Prove It.</div>
+        <div class="d">Engineers got 10x faster. We fix the part that didn't: deciding, shipping and proving it.</div>
+      </div>
+      <p style="font-size:13px;color:var(--mute);margin-top:10px">All 15 headlines are ≤30 characters and all 5 descriptions ≤90, checked by script. Full set in <span class="mono">copy.md</span>.</p>
+    </div>
+    <div>
+      <div class="tscroll"><table style="min-width:0">
+        <tr><th>Ad group</th><th>Keywords (phrase match)</th></tr>
+        <tr><td><b>Fractional</b><br><span style="font-size:12px;color:var(--mute)">Line C</span></td><td>fractional product manager · fractional head of product · fractional cpo · interim product manager · contract product manager</td></tr>
+        <tr><td><b>Hiring</b><br><span style="font-size:12px;color:var(--mute)">Seat Cover</span></td><td>hire ai product manager · hire a product manager for startup · founding product manager</td></tr>
+        <tr><td><b>Forward-deployed</b><br><span style="font-size:12px;color:var(--mute)">Line A</span></td><td>forward deployed engineer company · forward deployed engineering services · ai product development partner</td></tr>
+        <tr><td><b>Negatives</b></td><td>jobs · salary · course · certification · interview · resume · internship · how to become · remote job · template</td></tr>
+      </table></div>
+      <div class="callout" style="margin-top:16px"><p style="margin:0;color:var(--ink)"><b>Before spending a dollar:</b> run these in Google Keyword Planner (US, 12 months). I couldn't verify volumes from here. If a group shows under ~100 searches/month, cut it and move the budget to LinkedIn. Expect low volume and high intent. That's fine.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- OUTBOUND -->
+<section id="outbound"><div class="wrap">
+  <div class="eyebrow">11 · The engine: job-posting outbound</div>
+  <h2>Every PM job post is an inbound lead that went to the wrong place.</h2>
+  <p class="lede">This was your idea, and it's the best channel in the plan. Emails that cite a real trigger get 5–18% replies against ~3.4% for generic cold email (vendor data). And you're not offering to replace their hire. You're offering to keep the roadmap moving while they find one, then to make that hire better.</p>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <h3>Weekly list build (2 hours)</h3>
+      <ol class="steps" style="margin-top:12px">
+        <li><b>Pull postings</b> from the last 14 days: LinkedIn Jobs, YC Work at a Startup, Wellfound, Upwork (contract, US) and Google: <span class="mono" style="font-size:12.5px">site:jobs.ashbyhq.com "founding product manager"</span>, <span class="mono" style="font-size:12.5px">site:boards.greenhouse.io "AI product manager" "Claude Code"</span>, <span class="mono" style="font-size:12.5px">site:jobs.lever.co "product engineer"</span></li>
+        <li><b>Filter:</b> US or US-remote, 20–250 employees, funded, software or AI product.</li>
+        <li><b>Score 0–3:</b> +1 mentions prototyping or AI coding tools, +1 founder-as-PM signals ("work directly with the CEO"), +1 raised in the last 12 months.</li>
+        <li><b>Find the hiring manager</b> (CEO, CTO or VP Product), not the recruiter. Note one specific line from the post to quote.</li>
+        <li><b>Log it</b> in the sheet: company, req title, days open, score, quote, contact, status. Re-check open reqs every 2 weeks. Days open is your urgency signal.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Targets for the 6-week test</h3>
+      <div class="tscroll"><table style="min-width:0">
+        <tr><td>Accounts contacted</td><td style="text-align:right"><b>240</b> (40/week)</td></tr>
+        <tr><td>Reply rate target</td><td style="text-align:right"><b>≥ 8%</b></td></tr>
+        <tr><td>Qualified calls</td><td style="text-align:right"><b>≥ 10</b></td></tr>
+        <tr><td>Ship Sprints sold</td><td style="text-align:right"><b>≥ 2</b></td></tr>
+      </table></div>
+      <p style="margin-top:14px">Every contacted account also goes into a LinkedIn matched audience, so the A6 "Ship while you search" ad follows the email. That costs pennies at this audience size and makes a cold email feel warm.</p>
+      <p><b>Bonus signal:</b> track how many reqs you saw each week. After six weeks you'll have your own demand index for this category, which is a strong content piece in itself.</p>
+    </div>
+  </div>
+
+  <details open><summary>Email 1 · Day 0 · "the req"</summary><div class="in"><div class="copy">Subject: your <span class="ph">{Founding PM}</span> req
+
+Hi <span class="ph">{first}</span>,
+
+Saw <span class="ph">{company}</span> is hiring a <span class="ph">{title}</span>. The line "<span class="ph">{quote from the posting}</span>" stood out.
+
+Filling that seat usually takes a while, and the roadmap doesn't pause while you search.
+
+We're a small studio of senior product managers who work agentically. We make the product call, build it into your repo, instrument it and report on it. Think forward-deployed engineer, but for product.
+
+Two ways teams use us while they hire:
+1. A 2-week Ship Sprint on one thing that's been stuck (<span class="ph">{guess from the posting}</span>).
+2. Cover the seat month to month. When your hire lands, we onboard them into the same workflow.
+
+Worth 20 minutes this week?
+
+<span class="ph">{Daniel}</span></div></div></details>
+  <details><summary>Email 2 · Day 3 · proof, not pressure</summary><div class="in"><div class="copy">Subject: re: your <span class="ph">{Founding PM}</span> req
+
+<span class="ph">{first}</span>, here's what a week with us looks like, in one screen: <span class="ph">{link to a real, anonymized ship log}</span>
+
+Monday decision memo, Wednesday PR merged behind a flag, Friday 10% rollout, Monday readout with the query attached.
+
+If <span class="ph">{the thing from the posting}</span> is the priority, I can sketch what week one would look like for it. No call needed.
+
+<span class="ph">{Daniel}</span></div></div></details>
+  <details><summary>Email 3 · Day 8 · give something away</summary><div class="in"><div class="copy">Subject: a take-home for your PM candidates
+
+<span class="ph">{first}</span>, last note from me.
+
+Whoever you hire, the 2026 version of this role should be able to ship. We use a 3-hour take-home that tests exactly that: a real decision, a working prototype, an instrumented metric and a one-paragraph readout.
+
+Here it is, free to use: <span class="ph">{link: The Full-Stack PM Take-Home}</span>
+
+If you'd rather have someone shipping while you interview, I'm here.
+
+<span class="ph">{Daniel}</span></div></div></details>
+  <details><summary>LinkedIn DM (connection note, ≤300 characters)</summary><div class="in"><div class="copy">Hi <span class="ph">{first}</span>, saw the <span class="ph">{title}</span> opening at <span class="ph">{company}</span>. I run a studio of PMs who ship (PRs, instrumentation, reporting) and we often cover the seat while teams hire. Happy to share the take-home we use to test PM candidates for this. Useful either way.</div></div></details>
+  <details><summary>Partner email (engineering studios / FDE boutiques)</summary><div class="in"><div class="copy">Subject: the product half of your FDE engagements
+
+Hi <span class="ph">{first}</span>,
+
+Most FDE job descriptions now ask for "requirements discovery" and "stakeholder management." That's product management, and it's usually the part that decides whether an engagement renews.
+
+We're senior product managers who work agentically: decision memos, PRs, instrumentation, board-level reporting. We plug into your client engagements white-label or co-branded, and you keep the account.
+
+Open to a 20-minute call to see if there's a client where this would have helped last quarter?
+
+<span class="ph">{Daniel}</span></div></div></details>
+</div></section>
+
+<!-- CONTENT -->
+<section id="content"><div class="wrap">
+  <div class="eyebrow">12 · Being known before the search</div>
+  <h2>Founder posts are the ads. The Lab is the proof.</h2>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card">
+      <h3>Three series, three posts a week</h3>
+      <p><b>"Tickets were prompts"</b> (Mon): PM craft rewritten for agents. Each post takes one artifact (user story, PRD, Gherkin, roadmap) and shows its agent-era form. This is the brand story, told in parts.</p>
+      <p><b>"Ship log"</b> (Wed): one real, anonymized week. Decision → PR → metric → readout. This is your Agile Monkeys Lab equivalent and your proof of work.</p>
+      <p><b>"Altitude"</b> (Fri): one number, reported three ways (engineer, CEO, board). Teaches grounded reporting.</p>
+      <p style="font-size:14px;color:var(--mute)">Boost the best post of each week as a Thought Leader Ad. Let organic engagement pick the creative.</p>
+    </div>
+    <div class="card">
+      <h3>Assets that also feed AI search</h3>
+      <p>About half of software buyers start research in a chatbot, so publish pages an assistant can quote:</p>
+      <p>· <b>"Forward-deployed engineer vs fractional PM vs forward-deployed PM"</b>, an honest comparison with prices<br>
+         · <b>The Full-Stack PM Take-Home</b> (the email 3 giveaway, and your mission made useful)<br>
+         · <b>The 2026 PM Req Index</b>: what PM job posts ask for, refreshed monthly from your own outbound list<br>
+         · A plain <span class="mono" style="font-size:13px">llms.txt</span> that says what you do, for whom and at what price</p>
+    </div>
+  </div>
+  <details><summary>Founder post draft · "Tickets were prompts" (pairs with A1)</summary><div class="in"><div class="copy">My first prompt was a Jira ticket.
+
+"As a returning customer, I want to reorder in one tap so that I don't rebuild my cart."
+Given a past order. When I tap Reorder. Then my cart is ready.
+
+That's an instruction set: context, intent, constraints and acceptance tests. We wrote thousands of them. Some of us wrote Gherkin so precise a machine could run it, and sometimes one did.
+
+For 15 years, product managers wrote instructions for systems that couldn't read them directly. So we routed them through people, sprints and standups. In the worst orgs, the ticket became the only conversation.
+
+Now the system reads them.
+
+So the PM who writes a great ticket can also ship it: open the PR, instrument the events, roll it out to 10% on Friday, and tell the CEO on Monday what moved, with the query attached.
+
+That's the job now. Design. Deploy. Analyze. Report.
+
+It's what we do at Despacho Bonsai, embedded in your team. If your engineers got faster and your roadmap didn't, my DMs are open.</div></div></details>
+  <details><summary>Founder post draft · "The FDE gap" (pairs with A5)</summary><div class="in"><div class="copy">Forward-deployed engineer job posts grew 729% in a year (Indeed). OpenAI and Anthropic each started a company just to put engineers inside customers.
+
+Now read the job descriptions.
+
+The fastest-growing requirement isn't a framework. It's "requirements discovery." "Stakeholder management." "Translating ambiguous business problems."
+
+That's product management with a different badge.
+
+The market is hiring engineers and asking them to be PMs. We think it's simpler to send PMs who can build.
+
+Forward-deployed product managers: they decide what's worth deploying, then they deploy it.
+
+Curious whether this matches what you're seeing in your own hiring?</div></div></details>
+  <details><summary>Founder post draft · "The ratio" (pairs with A2)</summary><div class="in"><div class="copy">Andrew Ng says engineer-to-PM ratios are heading toward 1:1.
+
+Most startups I talk to are at 8:1, with the founder doing PM at 11pm.
+
+AI made code cheap, and that exposed the expensive part: deciding what to build, then proving it worked.
+
+Three signs your bottleneck moved:
+1. PRs wait on "what exactly should this do?"
+2. You ship weekly but learn quarterly.
+3. The board numbers take a week to assemble, and nobody fully trusts them.
+
+If two of three are true, hiring another engineer won't help. You need someone who decides, ships and measures, and in the agentic era that can be one person.</div></div></details>
+</div></section>
+
+<!-- PLAN -->
+<section id="plan"><div class="wrap">
+  <div class="eyebrow">13 · Phase 2 · the 6-week plan, after flight 1 (section 00)</div>
+  <h2>Small bets, one number: cost per qualified call.</h2>
+  <div class="grid g2" style="margin-top:22px">
+    <div>
+      <div class="tscroll"><table class="budget" style="min-width:0">
+        <tr><th>Line</th><th>6 weeks</th><th style="width:40%"></th></tr>
+        <tr><td>LinkedIn Thought Leader Ads (3 lines × best weekly post)</td><td>$2,100</td><td><div class="bar"><i style="width:100%"></i></div></td></tr>
+        <tr><td>LinkedIn matched-audience retargeting (A6, A4, A8)</td><td>$700</td><td><div class="bar"><i style="width:33%"></i></div></td></tr>
+        <tr><td>Google Search (3 ad groups, if volume checks out)</td><td>$900</td><td><div class="bar"><i style="width:43%"></i></div></td></tr>
+        <tr><td>Outbound stack (data, sending domain, warm-up)</td><td>$550</td><td><div class="bar"><i style="width:26%"></i></div></td></tr>
+        <tr><td>Reserve for the winning line</td><td>$350</td><td><div class="bar"><i style="width:17%"></i></div></td></tr>
+        <tr><td><b>Total</b></td><td><b>$4,600</b></td><td></td></tr>
+      </table></div>
+      <p style="font-size:13px;color:var(--mute);margin-top:10px">If Keyword Planner kills search, move that $900 into retargeting and TLA.</p>
+    </div>
+    <div>
+      <ol class="steps">
+        <li><b>Week 0 (this week):</b> confirm the line test and set up a booking link with one question ("What made you book?"). Write one real ship log from your own past work, anonymized. Without real proof, everything else underperforms. Build the first 40-account list.</li>
+        <li><b>Weeks 1–2:</b> outbound 40/week. Three founder posts a week, best one boosted. Google live at $20/day. A6 retargeting on the account list.</li>
+        <li><b>Week 3 · first read:</b> pause any line with cost per qualified call over $600 or zero calls. Move the money to the leader.</li>
+        <li><b>Weeks 4–5:</b> scale the winning line. Publish the take-home and the comparison page.</li>
+        <li><b>Day 42 · go / no-go:</b> <b>Go</b> if you have ≥2 paid Ship Sprints, or ≥10 qualified calls with ≥30% saying the price is "fine" or "no-brainer." Otherwise change the wedge, not the channel.</li>
+      </ol>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>What counts as a qualified call</h3>
+    <p style="margin:0">US company · 20–2,000 people · the person on the call controls the budget · names a specific product problem with a deadline · uses (or is willing to use) AI coding tools. Tag each call with the <b>line</b> and <b>channel</b> that brought it. That tagging is the whole experiment.</p>
+  </div>
+</div></section>
+
+<!-- RISKS -->
+<section id="risks"><div class="wrap">
+  <div class="eyebrow">14 · What could make me wrong</div>
+  <h2>Honest risks.</h2>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>No public proof yet</h3><p>The biggest risk. "Our PMs open PRs" needs one real PR story behind it. Fix it in week 0 with an anonymized ship log from your own work. Never fabricate a client result, and keep "example" labels on illustrative tiles.</p></div>
+    <div class="card"><h3>"Why not just hire?"</h3><p>The answer has to be in the offer: start Monday, no recruiting fee, month-to-month, and we train your hire. If calls keep ending on this objection, lead harder with Seat Cover.</p></div>
+    <div class="card"><h3>Statistic decay</h3><p>FDE growth figures come from vendors and secondhand press, and they'll age. Re-check before each new flight. Keep the 729% (Indeed via BI) as the conservative choice.</p></div>
+    <div class="card"><h3>Engineers bristle at "PMs open PRs"</h3><p>Some will. That's fine for reach, but the copy always says "your engineers review it." We're adding hands, not taking turf.</p></div>
+    <div class="card"><h3>Capacity</h3><p>"Forward-deployed PMs," plural, implies a bench. Make sure you can staff 2–3 engagements before you scale spend, or the test succeeds into a delivery problem.</p></div>
+    <div class="card"><h3>Search may be empty</h3><p>Services-intent keywords in this niche may be tiny. That's why search gets only 20% of the budget and a kill rule.</p></div>
+  </div>
+</div></section>
+
+<!-- SOURCES -->
+<section id="sources"><div class="wrap">
+  <div class="eyebrow">15 · Sources</div>
+  <h2>Where every number came from.</h2>
+  <ul class="src" style="margin-top:18px">
+    <li><a href="https://theagilemonkeys.com/">The Agile Monkeys: homepage</a>, <a href="https://www.theagilemonkeys.com/labs/">Lab</a>, <a href="https://theagilemonkeys.com/transparency-portal">Transparency portal</a></li>
+    <li><a href="https://joinplank.com/state-of-fde">Plank: The State of FDE as a Service, 2026</a> ($9B+, census, underserved startups, discovery as the edge)</li>
+    <li><a href="https://getperspective.ai/blog/2026-fde-hiring-trends-what-1000-job-posts-reveal">Perspective AI: 2026 FDE hiring trends, 1,000 job posts</a> (discovery in 70%+ of posts)</li>
+    <li><a href="https://www.cpomagazine.com/digital/embedded-ai-engineer-hiring-soars-placing-vendor-staff-inside-client-data/">CPO Magazine: embedded AI engineer hiring</a> · <a href="https://dexity.com/intel/fde-jobs-data-2026">Dexity: FDE jobs data 2026</a> · <a href="https://vishleshan.ai/blogs/fde-job-postings-growth-enterprise-ai-buyers">Vishleshan: FDE postings growth</a></li>
+    <li><a href="https://openai.com/index/openai-launches-the-deployment-company">OpenAI: launches the Deployment Company</a> · <a href="https://theregister.com/ai-ml/2026/05/11/openai-buys-ai-consultancy-to-sell-enterprises-on-its-models/5238213">The Register: Tomoro acquisition</a> · <a href="https://techcrunch.com/2026/07/15/anthropic-blackstone-bet-the-next-trillion-dollar-ai-business-is-implementation-not-models/">TechCrunch: Anthropic, Blackstone and Ode</a></li>
+    <li><a href="https://www.prnewswire.com/news-releases/globant-announces-an-alliance-with-anthropic-to-redefine-enterprise-ai-delivery-with-claude-powered-ai-pods-302813858.html">Globant × Anthropic: AI Pods</a></li>
+    <li><a href="https://cs230.stanford.edu/syllabus/fall_2025/8/lecture_8.pdf">Stanford CS230 lecture 8 (Ng, engineer:PM ratio)</a> · <a href="https://www.aol.com/andrew-ng-says-real-bottleneck-051543175.html">Business Insider via AOL: PM is the bottleneck</a></li>
+    <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027">Gartner: 40%+ of agentic AI projects canceled by 2027</a></li>
+    <li><a href="https://careers.linkedin.com/pathways-programs/entry-level/apb">LinkedIn: Associate Product Builder program</a></li>
+    <li><a href="https://posthog.com/blog/product-engineer-vs-product-manager">PostHog: product engineer vs product manager</a> · <a href="https://www.cio.com/article/4190086/the-rise-of-the-product-engineer-how-ai-is-reshaping-modern-tech-teams.html">CIO: the rise of the product engineer</a></li>
+    <li><a href="https://claude.com/blog/product-management-on-the-ai-exponential">Anthropic: product management on the AI exponential</a></li>
+    <li><a href="https://review.firstround.com/when-to-hire-your-first-pm/">First Round: when to hire your first PM</a> · <a href="https://www.norwest.com/blog/when-should-founders-hire-their-first-product-leader-ai-is-changing-the-answer/">Norwest: first product leader</a></li>
+    <li><a href="https://gofractional.com/insights/rates/product-manager">Go Fractional: PM rate benchmarks</a> · <a href="https://www.a.team/talent/guides/product-manager-rates">A.Team: PM rates</a> · <a href="https://www.gtm8020.com/blog/best-product-marketing-agencies">GTM 80/20: fractional vs agency pricing</a></li>
+    <li>Prior research, reused for pricing anchors only: <a href="https://justthink.ai/pricing/sprint">Just Think AI sprint pricing</a> · <a href="https://www.advancedclient.io/articles/forward-deployed-gtm-engineer-cost">Advanced Client FDE cost</a> · <a href="https://www.ryzlabs.com/best/forward-deployed-engineering-firms">Ryz Labs FDE firms</a></li>
+    <li><a href="https://ycombinator.com/rfs">Y Combinator Requests for Startups: AI-native agencies</a></li>
+    <li><a href="https://6sense.com/buyer-experience-report-2026">6sense: 2026 Buyer Experience Report</a> · <a href="https://demandgenreport.com/industry-news/news-brief/half-of-b2b-software-buyers-now-start-their-research-with-ai-chatbots-g2/52737">G2: half of buyers start in AI chatbots</a></li>
+    <li><a href="https://www.stackmatix.com/blog/linkedin-average-cost-per-click">LinkedIn CPC benchmarks 2026</a> · <a href="https://dreamdata.io/blog/linkedin-ads-benchmarks">Dreamdata LinkedIn benchmarks</a></li>
+    <li>Round 2: <a href="https://searchengineland.com/linkedin-targeting-microsoft-advertising-467021">Search Engine Land: LinkedIn targeting in Microsoft Advertising</a> · <a href="https://searchengineland.com/microsoft-ads-expands-linkedin-targeting-with-job-seniority-filters-480296">Microsoft Ads adds job-seniority targeting</a> · <a href="https://searchengineland.com/linkedin-ads-cpc-benchmarks-how-costs-compare-with-google-ads-481010">LinkedIn vs Google CPC benchmarks</a> · <a href="https://business.linkedin.com/advertise/ads/best-practices/maximize-your-budget">LinkedIn: $10/day minimum</a> · <a href="https://www.stackmatix.com/blog/reddit-ads-minimum-spend">Reddit ads minimum spend</a> · <a href="https://www.nngroup.com/articles/show-price/">NN/g: show the price</a> · <a href="https://hockeystack.com/blog/the-state-of-pricing-demo-and-case-study-pages/">HockeyStack: pricing vs demo pages</a> · <a href="https://www.eight25media.com/blog/transparent-vs-non-transparent-pricing-the-real-impact-on-sales">eight25: transparent vs non-transparent pricing</a> · <a href="https://bastardica.mitpit.com">Bastardica</a></li>
+    <li><a href="https://instantly.ai/report-page">Instantly cold email benchmark</a> · <a href="https://prospeo.io/s/cold-email-triggers">Prospeo: cold email triggers</a></li>
+    <li>Job posting samples: <a href="https://wellfound.com/jobs/4244218-technical-product-manager">Klarity TPM</a> · <a href="https://vibehackers.io/jobs/ai-product-manager-beewise">Beewise AI PM</a> · <a href="https://www.mindtheproduct.com/jobs/listing/product-engineer-pm-pub042/">Product Engineer (PM), contract</a> · <a href="https://jobs.generalcatalyst.com/companies/remote/jobs/96837316-technical-product-manager-b2b-saas-ai">General Catalyst portfolio TPM</a></li>
+  </ul>
+</div></section>
+
+<footer><div class="wrap">
+  Local working file · gtm/agentic-pm/index.html · ad source in ads/ads.html, rendered with ads/render.mjs · paste-ready copy in copy.md
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  try{var t=localStorage.getItem('gtm-theme'); if(t) root.setAttribute('data-theme',t);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark'; root.setAttribute('data-theme',next);
+    try{localStorage.setItem('gtm-theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

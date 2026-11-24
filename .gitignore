@@ -7,3 +7,6 @@ dist/
 .vercel/
 .vercel
 .env*
+
+# font sources downloaded by gtm/agentic-pm/brand/tools/bastard.py
+gtm/agentic-pm/brand/tools/fontsrc/

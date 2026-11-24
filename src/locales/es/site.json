@@ -258,15 +258,15 @@
       "p": "Dirigí la integración de sistemas post-M&A durante la adquisición por Falabella."
     }
   ],
-  "legal_updated": "Última actualización: octubre de 2026",
+  "legal_updated": "Última actualización: noviembre de 2026",
   "privacy_body": [
     {
       "h": "Quiénes somos",
-      "p": "Despacho Bonsai es la práctica de producto de Daniel Vásquez, con sede en Ciudad de México. Esta política cubre este sitio web."
+      "p": "Despacho Bonsai es un estudio de producto agéntico fundado por Daniel Vásquez, con sede en la Ciudad de México. Esta política cubre este sitio web."
     },
     {
       "h": "Qué recopilamos",
-      "p": "Cuando agendas una llamada, el formulario envía tu nombre, tu correo y lo que decidas contarnos a Cal.com, que programa la llamada. También usamos Google Tag Manager y Google Analytics para entender qué páginas son útiles, lo que instala cookies de analítica."
+      "p": "Cuando agendas una llamada, el formulario envía tu nombre, tu correo y lo que decidas contarnos a Cal.com, que programa la llamada. También usamos Google Tag Manager y Google Analytics para entender qué páginas son útiles, Microsoft Clarity para ver cómo se usa la página, y las etiquetas de Microsoft Advertising, Reddit, LinkedIn y Meta para medir si nuestros anuncios llevan a llamadas agendadas. Esto instala cookies de analítica y de publicidad. La herramienta de estimación funciona en tu navegador; lo que escribes solo se envía a Cal.com si decides agendar."
     },
     {
       "h": "El asistente de chat",
@@ -298,7 +298,7 @@
   "cookies_body": [
     {
       "h": "Cookies de analítica",
-      "p": "Google Tag Manager y Google Analytics instalan cookies que nos dicen qué páginas se visitan y cómo se mueve la gente por el sitio."
+      "p": "Google Tag Manager, Google Analytics y Microsoft Clarity instalan cookies que nos dicen qué páginas se visitan y cómo se mueve la gente por el sitio. Las etiquetas de Microsoft Advertising (UET), Reddit, LinkedIn Insight y Meta Pixel instalan cookies que nos dicen si alguien que vio nuestros anuncios terminó agendando una llamada."
     },
     {
       "h": "Agenda",

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ad tiles v2 — source</title>
+<link rel="stylesheet" href="../brand/brand.css">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#777;padding:40px;display:flex;flex-wrap:wrap;gap:40px;-webkit-font-smoothing:antialiased}
+  .ad{width:600px;height:600px;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);font-family:var(--cond)}
+  .ad.wide{width:600px;height:314px}
+  .ad.dark{background:var(--ink);color:var(--paper)}
+  .ad.dark .x:before,.ad.dark .x:after{background:var(--paper)}
+  .ad.acidbg{background:var(--acid)}
+  .top{position:absolute;left:30px;right:30px;top:26px;display:flex;justify-content:space-between;align-items:flex-start}
+  .dark .wm .sq{background:var(--acid);color:var(--ink)}
+  .foot{position:absolute;left:30px;right:30px;bottom:24px;display:flex;justify-content:space-between;align-items:flex-end}
+  .arrow{font-family:var(--cond);font-stretch:62%;font-weight:900;font-size:46px;line-height:.7}
+  .sub{font-family:var(--cond);font-weight:500;font-size:17px;line-height:1.3;max-width:420px}
+  .blurb{font-family:var(--mono);font-size:9px;line-height:1.5;letter-spacing:.02em;max-width:190px;text-transform:none}
+</style>
+</head>
+<body>
+
+<!-- A1 — Tickets were prompts -->
+<section class="ad" id="a1-tickets">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right">FDP·26<br>Brand story 01</div></div>
+  <div class="dots fade" style="right:30px;top:226px;width:70px;height:56px"></div>
+  <h1 class="display grit" style="position:absolute;left:28px;top:92px;font-size:58px;width:545px">You've been writing prompts for 15 years.</h1>
+  <div class="cond grit block acid" style="position:absolute;left:28px;top:222px;font-size:50px">You called them tickets.</div>
+  <div class="ruler" style="position:absolute;left:30px;right:30px;top:354px"></div>
+  <div style="position:absolute;left:30px;top:380px;width:300px;border:2px solid var(--ink);background:#F7F6F1;padding:12px 14px">
+    <div class="code" style="display:flex;justify-content:space-between"><b>PROD-4127 · STORY</b><span>5 PTS</span></div>
+    <div class="body" style="font-size:14px;margin-top:6px">As a returning customer, I want to reorder in one tap.</div>
+    <div class="code" style="margin-top:6px;text-transform:none;font-size:10.5px">Given a past order / When I tap Reorder / Then my cart is ready</div>
+  </div>
+  <div class="arrow" style="position:absolute;left:345px;top:420px">→</div>
+  <div class="inkbg" style="position:absolute;right:30px;top:380px;width:170px;padding:12px 12px 10px">
+    <div class="code" style="color:var(--acid)">✓ PR #482 merged</div><div class="code" style="color:var(--acid)">✓ live · flag 10%</div><div class="code" style="color:var(--acid)">✓ events tracked</div>
+  </div>
+  <div class="foot"><div class="sub" style="font-size:15px;max-width:330px">Now the tickets ship. Product managers who <b>design, deploy, analyze and report.</b></div><div class="code">despachobonsai.com</div></div>
+  <i class="x" style="left:530px;top:330px"></i><i class="x" style="left:14px;top:520px"></i>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- A2 — Bottleneck -->
+<section class="ad dark" id="a2-bottleneck">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right;color:var(--acid)">The agentic era<br>in one chart</div></div>
+  <h1 class="display grit" style="position:absolute;left:28px;top:84px;font-size:70px;width:540px">Engineers: 10× faster.</h1>
+  <div class="cond grit block acid" style="position:absolute;left:28px;top:226px;font-size:58px">Roadmap: same.</div>
+  <svg style="position:absolute;left:30px;top:310px" width="540" height="160" viewBox="0 0 540 160">
+    <g stroke="#ECEAE3" stroke-width="1.5"><line x1="0" y1="150" x2="540" y2="150"/></g>
+    <g stroke="#ECEAE3" stroke-width="1.5">
+      <line x1="0" y1="150" x2="0" y2="140"/><line x1="135" y1="150" x2="135" y2="140"/><line x1="270" y1="150" x2="270" y2="140"/><line x1="405" y1="150" x2="405" y2="140"/><line x1="540" y1="150" x2="540" y2="140"/>
+    </g>
+    <path d="M0 140 C 130 138, 220 128, 290 100 S 430 20, 540 8" fill="none" stroke="#CDE030" stroke-width="7"/>
+    <path d="M0 136 C 160 134, 330 132, 540 128" fill="none" stroke="#8A887F" stroke-width="7"/>
+    <text x="150" y="70" font-family="Space Mono" font-size="11" fill="#CDE030">CODE SHIPPED</text>
+    <text x="352" y="118" font-family="Space Mono" font-size="11" fill="#A9A79E">DECISIONS MADE</text>
+  </svg>
+  <div class="foot"><div class="sub" style="font-size:15px;max-width:380px;color:#D9D7CF">Andrew Ng: engineer-to-PM ratios are heading toward <b style="color:#fff">1:1</b>. We put product managers at the bottleneck. They also ship.</div><div class="code" style="text-align:right">illustrative<br>despachobonsai.com</div></div>
+  <i class="x" style="left:540px;top:84px"></i>
+  <i class="paper-noise" style="opacity:.35;mix-blend-mode:screen"></i>
+</section>
+
+<!-- A3 — PR -->
+<section class="ad" id="a3-pull-request">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right">Product management<br>with commit access</div></div>
+  <h1 class="display grit" style="position:absolute;left:28px;top:88px;font-size:62px;width:520px">Our product managers</h1>
+  <div class="cond grit block acid" style="position:absolute;left:28px;top:204px;font-size:54px">open pull requests.</div>
+  <div style="position:absolute;left:30px;right:30px;top:290px;border:2px solid var(--ink);background:#F7F6F1">
+    <div class="inkbg code" style="display:flex;justify-content:space-between;padding:8px 12px"><span>feat: one-tap reorder · #482</span><span style="color:var(--acid)">■ merged</span></div>
+    <div style="padding:6px 12px 8px">
+      <div style="display:flex;gap:10px;align-items:center;padding:5px 0"><span class="num" style="width:26px;height:26px;font-size:17px">01</span><span class="label" style="font-size:17px">Decision memo → spec → tests</span></div>
+      <div style="display:flex;gap:10px;align-items:center;padding:5px 0"><span class="num" style="width:26px;height:26px;font-size:17px">02</span><span class="label" style="font-size:17px">UI from your design system</span></div>
+      <div style="display:flex;gap:10px;align-items:center;padding:5px 0"><span class="num" style="width:26px;height:26px;font-size:17px">03</span><span class="label" style="font-size:17px">Events instrumented</span></div>
+      <div style="display:flex;gap:10px;align-items:center;padding:5px 0"><span class="num" style="width:26px;height:26px;font-size:17px">04</span><span class="label" style="font-size:17px">Rollout 10 → 50 → 100%</span></div>
+    </div>
+  </div>
+  <div class="foot"><div class="sub" style="font-size:15px">Your PM decides it, builds it, measures it.<br>Your engineers review it.</div><div class="code">despachobonsai.com</div></div>
+  <div class="dots fade" style="right:30px;top:96px;width:70px;height:70px"></div>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- A4 — Grounded reporting -->
+<section class="ad" id="a4-grounded-report">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right">Reporting at any<br>altitude, any moment</div></div>
+  <h1 class="display grit" style="position:absolute;left:28px;top:88px;font-size:58px;width:540px">Every number arrives with its query.</h1>
+  <div class="ruler" style="position:absolute;left:30px;right:30px;top:258px"></div>
+  <div class="code" style="position:absolute;left:30px;top:286px">CEO, 9:02 · "Did onboarding move activation?"</div>
+  <div class="acid grit" style="position:absolute;left:30px;top:316px;padding:10px 16px 6px"><div class="cond" style="font-size:104px;line-height:.9">36.9%</div></div>
+  <div style="position:absolute;left:330px;top:322px;width:240px">
+    <div class="label" style="font-size:22px">7-day activation</div>
+    <div class="body" style="font-size:14px;margin-top:6px">Was 31.4%. n = 2,140 signups, Nov 3–17. Holds without paid traffic.</div>
+    <div class="code" style="margin-top:10px;display:grid;gap:4px"><span>▸ SQL · events.signup_v2</span><span>▸ Experiment log</span><span>▸ Dashboard</span></div>
+  </div>
+  <div class="vert" style="right:8px;top:300px;font-size:11px;color:var(--mute)">EXAMPLE · EXAMPLE</div>
+  <div class="foot"><div class="sub" style="font-size:15px">Not instrumented yet? We instrument it, whatever the stack.</div><div class="code">despachobonsai.com</div></div>
+  <i class="x" style="left:540px;top:440px"></i>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- A5 — FDE stat -->
+<section class="ad acidbg" id="a5-fde-stat">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small style="opacity:.8">forward-deployed product</small></span></div><div class="code" style="text-align:right">FDE job posts · Indeed<br>Apr 2025 → Apr 2026</div></div>
+  <div class="cond grit" style="position:absolute;left:24px;top:84px;font-size:196px;line-height:.86">+729%</div>
+  <div class="ruler" style="position:absolute;left:30px;right:30px;top:276px"></div>
+  <h1 class="cond grit" style="position:absolute;left:30px;top:300px;font-size:50px;width:540px">Everyone's hiring engineers to deploy AI.</h1>
+  <div class="inkbg grit" style="position:absolute;left:30px;top:410px;padding:10px 14px 8px"><div class="display" style="font-size:42px;color:var(--acid)">Who decides what's<br>worth deploying?</div></div>
+  <div class="foot"><div></div><div class="code" style="text-align:right">Forward-deployed PMs →<br>despachobonsai.com</div></div>
+  <i class="x big" style="left:530px;top:420px"></i>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- A6 — Hire while you hire -->
+<section class="ad" id="a6-hire-while-you-hire">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right">For teams with<br>an open PM req</div></div>
+  <h1 class="display grit" style="position:absolute;left:28px;top:88px;font-size:66px;width:540px">Hiring a founding PM?</h1>
+  <div class="cond grit block acid" style="position:absolute;left:28px;top:214px;font-size:56px">Ship while you search.</div>
+  <div style="position:absolute;left:30px;right:30px;top:306px;border:2px solid var(--ink);background:#F7F6F1;padding:16px">
+    <div style="display:flex;gap:12px;align-items:center"><span class="num" style="width:42px;height:42px;font-size:14px;font-family:var(--mono);font-stretch:100%;font-weight:700">YOU</span><div><div class="label" style="font-size:22px">Founding Product Manager</div><div class="code">Remote · US · posted 5 weeks ago</div></div></div>
+    <div style="margin-top:12px;display:grid;gap:7px"><i style="display:block;height:8px;background:var(--paper2);width:92%"></i><i style="display:block;height:8px;background:var(--paper2);width:74%"></i><i style="display:block;height:8px;background:var(--paper2);width:84%"></i></div>
+  </div>
+  <div class="inkbg" style="position:absolute;right:22px;top:396px;transform:rotate(-6deg);padding:8px 14px 6px;border:2px solid var(--ink)"><div class="cond" style="font-size:30px;color:var(--acid)">Covered from Monday</div><div class="code" style="font-size:9.5px">forward-deployed PM</div></div>
+  <div class="foot"><div class="sub" style="font-size:15px;max-width:380px">A full-stack PM ships this week. When you hire, we train your hire to work the same way.</div><div class="code">despachobonsai.com</div></div>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- A7 — Four verbs -->
+<section class="ad dark" id="a7-four-verbs">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right;color:var(--acid)">The full-stack<br>product manager</div></div>
+  <div style="position:absolute;left:30px;right:30px;top:96px">
+    <div style="display:flex;align-items:center;gap:16px;border-top:1.5px solid #3A3A36;padding:12px 0"><span class="num" style="width:62px;height:62px;font-size:40px;background:var(--acid);color:var(--ink)">01</span><span class="display grit" style="font-size:72px;flex:1">Design</span><span class="label" style="font-size:15px;text-align:right;color:#BDBBB2">Business case<br>+ interface</span></div>
+    <div style="display:flex;align-items:center;gap:16px;border-top:1.5px solid #3A3A36;padding:12px 0"><span class="num" style="width:62px;height:62px;font-size:40px;background:var(--acid);color:var(--ink)">02</span><span class="display grit" style="font-size:72px;flex:1;color:var(--acid)">Deploy</span><span class="label" style="font-size:15px;text-align:right;color:#BDBBB2">Real builds<br>to production</span></div>
+    <div style="display:flex;align-items:center;gap:16px;border-top:1.5px solid #3A3A36;padding:12px 0"><span class="num" style="width:62px;height:62px;font-size:40px;background:var(--acid);color:var(--ink)">03</span><span class="display grit" style="font-size:72px;flex:1">Analyze</span><span class="label" style="font-size:15px;text-align:right;color:#BDBBB2">Full-stack metrics<br>any stack</span></div>
+    <div style="display:flex;align-items:center;gap:16px;border-top:1.5px solid #3A3A36;border-bottom:1.5px solid #3A3A36;padding:12px 0"><span class="num" style="width:62px;height:62px;font-size:40px;background:var(--acid);color:var(--ink)">04</span><span class="display grit" style="font-size:72px;flex:1">Report</span><span class="label" style="font-size:15px;text-align:right;color:#BDBBB2">Any level, any moment<br>always grounded</span></div>
+  </div>
+  <div class="foot"><div class="sub" style="font-size:14px;color:#D9D7CF;max-width:380px">Senior product managers, fully agentic, inside your repo, analytics and Slack.</div><div class="code">despachobonsai.com</div></div>
+  <i class="paper-noise" style="opacity:.35;mix-blend-mode:screen"></i>
+</section>
+
+<!-- A8 — One week -->
+<section class="ad" id="a8-one-week">
+  <div class="top"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right">What a week<br>looks like</div></div>
+  <h1 class="display grit" style="position:absolute;left:28px;top:88px;font-size:60px;width:560px">Decided Monday.<br>Live Friday.</h1>
+  <div class="cond grit block acid" style="position:absolute;left:28px;top:206px;font-size:44px">Measured by Monday.</div>
+  <div style="position:absolute;left:30px;right:30px;top:280px">
+    <div style="display:flex;gap:12px;align-items:center;border-top:1.5px solid var(--ink);padding:7px 0"><span class="num" style="width:46px;height:30px;font-size:17px">MON</span><span class="label" style="font-size:19px;flex:1">Decision memo signed</span><span class="code">memo.md</span></div>
+    <div style="display:flex;gap:12px;align-items:center;border-top:1.5px solid var(--ink);padding:7px 0"><span class="num" style="width:46px;height:30px;font-size:17px">TUE</span><span class="label" style="font-size:19px;flex:1">Flows in your design system</span><span class="code">figma</span></div>
+    <div style="display:flex;gap:12px;align-items:center;border-top:1.5px solid var(--ink);padding:7px 0"><span class="num" style="width:46px;height:30px;font-size:17px">WED</span><span class="label" style="font-size:19px;flex:1">Built, tested, merged behind a flag</span><span class="code">PR #482</span></div>
+    <div style="display:flex;gap:12px;align-items:center;border-top:1.5px solid var(--ink);padding:7px 0"><span class="num" style="width:46px;height:30px;font-size:17px">THU</span><span class="label" style="font-size:19px;flex:1">Events instrumented, dashboard up</span><span class="code">analytics</span></div>
+    <div style="display:flex;gap:12px;align-items:center;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding:7px 0"><span class="num" style="width:46px;height:30px;font-size:17px;background:var(--acid);color:var(--ink)">FRI</span><span class="label" style="font-size:19px;flex:1">Rolled out to 10% of users</span><span class="code" style="background:var(--ink);color:var(--acid);padding:1px 6px">live</span></div>
+  </div>
+  <div class="foot"><div class="sub" style="font-size:15px">No 40-page PRD. One PM carries it all the way.</div><div class="code">despachobonsai.com</div></div>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- L1 — wide bottleneck -->
+<section class="ad wide dark" id="l1-bottleneck-wide">
+  <div class="top" style="left:24px;right:24px;top:20px"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲</span></div><div class="code" style="color:var(--acid)">illustrative</div></div>
+  <h1 class="display grit" style="position:absolute;left:22px;top:70px;font-size:50px;width:320px">Engineers: 10× faster.</h1>
+  <div class="cond grit block acid" style="position:absolute;left:22px;top:178px;font-size:40px">Roadmap: same.</div>
+  <svg style="position:absolute;right:24px;top:66px" width="220" height="162" viewBox="0 0 220 162">
+    <line x1="0" y1="140" x2="220" y2="140" stroke="#ECEAE3" stroke-width="1.5"/>
+    <path d="M0 132 C 60 130, 100 120, 130 96 S 190 20, 220 6" fill="none" stroke="#CDE030" stroke-width="6"/>
+    <path d="M0 128 C 70 127, 150 125, 220 122" fill="none" stroke="#8A887F" stroke-width="6"/>
+    <text x="40" y="70" font-family="Space Mono" font-size="9" fill="#CDE030">CODE SHIPPED</text>
+    <text x="0" y="158" font-family="Space Mono" font-size="9" fill="#A9A79E">DECISIONS MADE (GREY)</text>
+  </svg>
+  <div class="foot" style="left:24px;right:24px;bottom:16px"><div class="code" style="color:#D9D7CF">PMs who decide and ship</div><div class="code">despachobonsai.com</div></div>
+  <i class="paper-noise" style="opacity:.35;mix-blend-mode:screen"></i>
+</section>
+
+<!-- L2 — wide FDE -->
+<section class="ad wide acidbg" id="l2-fde-wide">
+  <div class="top" style="left:24px;right:24px;top:20px"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲</span></div><div class="code" style="text-align:right">FDE job posts · Indeed · Apr '25 → Apr '26</div></div>
+  <div class="cond grit" style="position:absolute;left:22px;top:62px;font-size:140px;line-height:.86">+729%</div>
+  <div class="cond grit" style="position:absolute;right:24px;top:70px;font-size:30px;width:200px;text-align:right">Everyone's hiring engineers to deploy AI.</div>
+  <div class="inkbg grit" style="position:absolute;left:24px;bottom:44px;padding:8px 12px 6px"><div class="display" style="font-size:30px;color:var(--acid)">Who decides what's worth deploying?</div></div>
+  <div class="foot" style="left:24px;right:24px;bottom:16px"><div></div><div class="code">despachobonsai.com</div></div>
+  <i class="paper-noise"></i>
+</section>
+
+<!-- OG — site share card (1200×630) -->
+<section class="ad wide" id="og-card" style="height:315px">
+  <div class="top" style="left:24px;right:24px;top:20px"><div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div><div class="code" style="text-align:right">despachobonsai.com</div></div>
+  <h1 class="display grit" style="position:absolute;left:22px;top:82px;font-size:60px;white-space:nowrap">Product managers<br>who ship.</h1>
+  <div class="cond grit block acid" style="position:absolute;left:22px;top:224px;font-size:30px">Design · Deploy · Analyze · Report</div>
+  <div class="dots fade" style="right:24px;top:80px;width:110px;height:120px"></div>
+  <i class="x big" style="left:540px;top:236px"></i>
+  <i class="paper-noise"></i>
+</section>
+
+</body>
+</html>
