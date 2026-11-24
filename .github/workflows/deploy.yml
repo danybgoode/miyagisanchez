@@ -22,6 +22,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Check _redirects for duplicate sources (Cloudflare rejects them)
+        run: |
+          dups=$(grep -vE '^\s*(#|$)' dist/client/_redirects | awk '{print $1}' | sort | uniq -d)
+          if [ -n "$dups" ]; then echo "Duplicate redirect sources:"; echo "$dups"; exit 1; fi
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
