@@ -8,5 +8,9 @@ dist/
 .vercel
 .env*
 
+# Cloudflare (wrangler): local state and local-only secrets
+.wrangler/
+.dev.vars*
+
 # font sources downloaded by gtm/agentic-pm/brand/tools/bastard.py
 gtm/agentic-pm/brand/tools/fontsrc/

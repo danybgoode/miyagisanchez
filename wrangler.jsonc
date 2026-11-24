@@ -1,0 +1,15 @@
+// Cloudflare Workers config for despachobonsai.com (off Vercel, 2026-11-03).
+// The adapter fills in `main` and the ASSETS binding; secrets (CALCOM_KEY) are set with `wrangler secret put`, never here.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "despachobonsai-site",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  // trailingSlash: never: serve /es from es/index.html and 301 /es/ → /es (the Workers default adds the slash).
+  "assets": { "binding": "ASSETS", "html_handling": "drop-trailing-slash" },
+  "routes": [
+    { "pattern": "despachobonsai.com", "custom_domain": true },
+    { "pattern": "www.despachobonsai.com", "custom_domain": true }
+  ]
+}

@@ -1,0 +1,7 @@
+# Hand-written Cloudflare redirects. Astro appends the ones it generates from astro.config.mjs AFTER these, and the
+# first match wins, so specific /es rules must sit above the catch-all here.
+/es/privacy  /privacy  301
+/es/terms    /terms    301
+/es/cookies  /cookies  301
+# Anything else under the retired Spanish twin (incl. /es/ with a trailing slash) goes home.
+/es/*        /         301

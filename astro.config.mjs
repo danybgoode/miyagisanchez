@@ -1,16 +1,19 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 
 const MIYAGI_SELL = 'https://miyagisanchez.com/mx/vende';
 
 // Static site: the forward-deployed-product homepage plus legal pages, English only (it serves US teams).
 // Redirects cover every URL the old sites served (including the retired /es twin, /work, /academy, /hire),
-// each pointing at its final destination in one hop; the adapter turns them into Vercel 301s.
+// each pointing at its final destination in one hop; the adapter turns them into 301s.
+// Hosted on Cloudflare Workers (static assets only), deployed by .github/workflows/deploy.yml.
+// No sessions and no Images binding: nothing here uses either, and each would make the deploy provision one.
 export default defineConfig({
   site: 'https://despachobonsai.com',
   trailingSlash: 'never',
-  adapter: vercel(),
+  adapter: cloudflare({ imageService: 'passthrough' }),
+  session: false,
   build: { inlineStylesheets: 'always' },
   redirects: {
     '/index.html': '/',
