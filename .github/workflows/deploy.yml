@@ -1,5 +1,5 @@
-# Push to master = deploy despachobonsai.com to Cloudflare Workers (worker despachobonsai-site; static assets + /api/cal).
-# Repo secrets: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, and CALCOM_KEY (pushed to the Worker as a secret on each deploy).
+# Push to master = deploy despachobonsai.com to Cloudflare Workers (worker despachobonsai-site; static assets only).
+# Repo secrets: CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID. (CALCOM_KEY is no longer used: booking is the Cal.com embed.)
 # Custom domains (despachobonsai.com, www) are declared in wrangler.jsonc; the deploy attaches them.
 name: Deploy
 on:
@@ -28,10 +28,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: 4.156.2
           command: deploy
-          secrets: |
-            CALCOM_KEY
-        env:
-          CALCOM_KEY: ${{ secrets.CALCOM_KEY }}
       - name: Smoke the live site
         run: |
           set -eu
@@ -40,6 +36,9 @@ jobs:
             [ "$code" = 200 ] && break; sleep 10
           done
           echo "/ → $code"; [ "$code" = 200 ]
-          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/es)" = 200
+          curl -s https://despachobonsai.com/ | grep -q 'id="brief"'
+          curl -s https://despachobonsai.com/llms.txt | grep -qi 'forward-deployed product'
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/privacy)" = 200
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/es)" = 301
+          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/work)" = 301
           test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/bonsai-os)" = 301
-          test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/api/cal/event-types)" = 200

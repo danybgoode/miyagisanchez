@@ -1,0 +1,60 @@
+/* Despacho Bonsai — brand v2 (Designers Republic-inspired: loud type, quiet structure).
+   Display: DB Matriz (Archivo Condensed Black + Doto dot-matrix every 4th letter) — UPPERCASE, ≥40px only.
+   Display small / labels: Archivo, condensed via font-stretch. Codes: Space Mono. Body: Archivo.
+   Site copy of gtm/agentic-pm/brand/brand.css. All fonts self-hosted from /public/fonts (trimmed: Latin, Archivo wdth 62–100 / wght 400–900),
+   font-display: swap so text never waits on a font. Imported by src/layouts/Landing.astro and inlined at build. */
+@font-face{font-family:"DB Matriz";src:url("/fonts/DBMatriz.woff2") format("woff2");font-display:swap}
+@font-face{font-family:"Archivo";src:url("/fonts/Archivo-var.woff2") format("woff2-variations"),url("/fonts/Archivo-var.woff2") format("woff2");font-weight:400 900;font-stretch:62% 100%;font-display:swap}
+@font-face{font-family:"Space Mono";src:url("/fonts/SpaceMono-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Space Mono";src:url("/fonts/SpaceMono-700.woff2") format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  --paper:#ECEAE3; --paper2:#E1DED4; --ink:#0E0E0E; --ink2:#2B2B29; --mute:#6A685F; --acid:#CDE030; --line:#0E0E0E;
+  --hair:rgba(14,14,14,.22);
+  --display:"DB Matriz","Archivo",sans-serif;
+  --cond:"Archivo",sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+  --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 -.12'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --grit:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -34 0 0 0 25.2'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+}
+
+.display{font-family:var(--display);text-transform:uppercase;font-weight:400;line-height:.86;letter-spacing:0;font-feature-settings:"liga" 1,"calt" 1}
+.cond{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:.005em}
+.label{font-family:var(--cond);font-stretch:75%;font-weight:700;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
+.code{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;line-height:1.45}
+.body{font-family:var(--cond);font-stretch:100%;font-weight:450;line-height:1.4}
+
+/* print grit: speckle holes in big type and blocks */
+.grit{-webkit-mask-image:var(--grit);mask-image:var(--grit);-webkit-mask-size:300px;mask-size:300px}
+/* paper noise overlay — put <i class="paper-noise"></i> as last child of a positioned container */
+.paper-noise{position:absolute;inset:0;pointer-events:none;background-image:var(--noise);mix-blend-mode:multiply;opacity:.28;z-index:50}
+
+.acid{background:var(--acid);color:var(--ink)}
+.inkbg{background:var(--ink);color:var(--paper)}
+.block{display:inline-block;padding:.06em .14em .02em}
+
+/* crosshair mark */
+.x{position:absolute;width:16px;height:16px}
+.x:before,.x:after{content:"";position:absolute;background:var(--ink)}
+.x:before{left:7px;top:0;width:1.5px;height:16px}
+.x:after{top:7px;left:0;height:1.5px;width:16px}
+.x.acidx:before,.x.acidx:after{background:var(--acid)}
+.x.big{width:26px;height:26px}.x.big:before{left:11px;width:4px;height:26px}.x.big:after{top:11px;height:4px;width:26px}
+
+/* halftone dot field */
+.dots{position:absolute;background-image:radial-gradient(var(--ink) 1.3px,transparent 1.6px);background-size:7px 7px}
+.dots.fade{-webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
+
+/* ruler with ticks */
+.ruler{height:12px;border-bottom:1.5px solid var(--ink);background-image:linear-gradient(90deg,var(--ink) 1.5px,transparent 1.5px),linear-gradient(90deg,var(--ink) 1.5px,transparent 1.5px);background-size:8px 5px,40px 11px;background-position:0 100%,0 100%;background-repeat:repeat-x}
+
+/* numbered square */
+.num{display:inline-grid;place-items:center;background:var(--ink);color:var(--acid);font-family:var(--cond);font-stretch:62%;font-weight:900;flex:none}
+
+/* vertical label */
+.vert{position:absolute;writing-mode:vertical-rl;font-family:var(--cond);font-stretch:75%;font-weight:800;text-transform:uppercase;letter-spacing:.32em}
+
+/* wordmark */
+.wm{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.wm .sq{width:22px;height:22px;background:var(--ink);color:var(--acid);display:grid;place-items:center;font-family:var(--display);font-size:13px;letter-spacing:0;line-height:1;padding-top:2px}
+.wm small{display:block;font-weight:400;font-size:9px;letter-spacing:.14em;opacity:.7}

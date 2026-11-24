@@ -1,36 +1,43 @@
 ---
-// Privacy, terms and cookies share one layout. Titles and intros carry over from the old pages; the body sections
-// were rewritten for a services practice (the old ones described the retired SaaS).
-import Base from '../layouts/Base.astro';
-import { type Lang, SITE, useT } from '../i18n';
+// Privacy, terms and cookies share one layout, in the brand v2 shell. English only (the site serves US teams;
+// /es/* redirects here). Copy lives in locales/en/site.json (<page>_body) and locales/en/<page>.json.
+import Landing from '../layouts/Landing.astro';
+import { SITE, useT } from '../i18n';
 
 interface Props {
-  lang: Lang;
   page: 'privacy' | 'terms' | 'cookies';
 }
-const { lang, page } = Astro.props;
-const t = useT(lang, page);
-const s = SITE[lang];
+const { page } = Astro.props;
+const t = useT('en', page);
+const s = SITE.en;
 const body = s[`${page}_body`];
-const contact = useT(lang, 'privacy');
+const contact = useT('en', 'privacy');
+const title = t(`${page}_title`);
 ---
-<Base lang={lang} path={`/${page}`} title={t('page_title')} description={t('meta_description')} ogTitle={t('meta_og_title')}>
-  <main class="container">
-    <div class="card standard-panel">
-      <div class="card-header">{t(`${page}_title`)}</div>
-      <div class="card-text">
-        <p><strong>{s.legal_updated}</strong></p>
-        <p>{t(`${page}_intro`)}</p>
-        {body.map((section, i) => (
-          <>
-            <h3 class="card-title" style="margin-top: 24px;">{i + 1}. {section.h}</h3>
-            <p>{section.p}</p>
-          </>
-        ))}
-        <h3 class="card-title" style="margin-top: 24px;">{body.length + 1}. {s.legal_contact_title}</h3>
-        <p>{contact('privacy_email')}</p>
-        <p>{contact('privacy_address')}</p>
-      </div>
-    </div>
+<Landing title={`${title} · Despacho Bonsai`} description={t('meta_description')} path={`/${page}`}>
+  <main class="legal">
+    <div class="code">{s.legal_updated}</div>
+    <h1 class="display grit">{title}</h1>
+    <p class="intro">{t(`${page}_intro`)}</p>
+    {body.map((section, i) => (
+      <section>
+        <h2><span class="num">{String(i + 1).padStart(2, '0')}</span>{section.h}</h2>
+        <p>{section.p}</p>
+      </section>
+    ))}
+    <section>
+      <h2><span class="num">{String(body.length + 1).padStart(2, '0')}</span>{s.legal_contact_title}</h2>
+      <p><a href={`mailto:${contact('privacy_email')}`}>{contact('privacy_email')}</a> · {contact('privacy_address')}</p>
+    </section>
   </main>
-</Base>
+</Landing>
+
+<style is:global>
+.legal{max-width:820px;padding:48px 0 64px}
+.legal h1{font-size:clamp(44px,7vw,88px);margin:14px 0 18px}
+.legal .intro{font:450 19px/1.5 var(--cond);color:var(--ink2);margin-bottom:26px}
+.legal section{border-top:1.5px solid var(--ink);padding:16px 0 18px}
+.legal h2{display:flex;gap:12px;align-items:center;font:800 24px/1.1 var(--cond);font-stretch:75%;text-transform:uppercase;margin-bottom:8px}
+.legal h2 .num{width:40px;height:28px;font-size:16px}
+.legal p{font:450 17px/1.55 var(--cond);color:var(--ink2)}
+</style>

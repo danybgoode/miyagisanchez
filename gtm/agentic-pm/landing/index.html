@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Despacho Bonsai · Forward-deployed product</title>
+<meta name="description" content="Senior product managers who design, deploy, analyze and report. Fully agentic, inside your repo, analytics and Slack.">
+<link rel="stylesheet" href="../brand/brand.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--cond);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.page{position:relative;max-width:1280px;margin:0 auto;padding:0 16px}
+@media(min-width:900px){.page{padding:0 40px}}
+.paper-noise{position:fixed}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0 16px;border-bottom:2px solid var(--ink)}
+header .code{text-align:right}
+
+/* hero */
+.hero{position:relative;display:grid;gap:28px;padding:34px 0 40px}
+.hero>div{min-width:0}
+@media(min-width:1000px){.hero{grid-template-columns:1.05fr .95fr;gap:48px;padding:52px 0 56px;min-height:calc(100vh - 70px);align-content:center}}
+.hl{font-size:clamp(46px,8.2vw,112px)}
+.hl-sub{display:inline-block;margin-top:14px;font-size:clamp(28px,4.4vw,56px);padding:.08em .16em .02em}
+.lede{font-family:var(--cond);font-weight:450;font-size:clamp(17px,1.6vw,20px);line-height:1.4;max-width:520px;margin-top:22px;color:var(--ink2)}
+.verbs-mini{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}
+.verbs-mini span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);padding:4px 8px}
+.verbs-mini span:nth-child(2){background:var(--ink);color:var(--acid)}
+
+/* the brief box */
+.brief{position:relative;background:#F7F6F1;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--ink)}
+.brief-hd{display:flex;justify-content:space-between;align-items:center;background:var(--ink);color:var(--paper);padding:10px 14px}
+.brief-hd .code{color:var(--acid)}
+.madlib{padding:22px 20px 8px;font-family:var(--cond);font-stretch:100%;font-weight:500;font-size:clamp(20px,2.1vw,25px);line-height:1.9}
+@media(min-width:600px){.madlib{padding:26px 26px 10px}}
+.chip{max-width:100%;text-overflow:ellipsis;font:inherit;font-weight:700;color:var(--ink);background:var(--acid);border:0;border-bottom:2.5px solid var(--ink);padding:0 .25em;margin:0 .05em;border-radius:0;line-height:1.25;cursor:pointer;max-width:100%}
+select.chip{-webkit-appearance:none;appearance:none;padding-right:1.05em;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - .5em) 55%,calc(100% - .28em) 55%;background-size:.22em .22em;background-repeat:no-repeat}
+input.chip{cursor:text;background:transparent;border-bottom:2.5px dashed var(--ink);min-width:6ch}
+input.chip:focus,select.chip:focus{outline:2px solid var(--ink);outline-offset:2px}
+.extra{margin:4px 20px 0;display:block;width:calc(100% - 40px);font:500 15px/1.4 var(--cond);font-stretch:100%;border:1.5px solid var(--hair);background:transparent;padding:10px 12px;resize:vertical;min-height:46px;color:var(--ink)}
+@media(min-width:600px){.extra{margin:4px 26px 0;width:calc(100% - 52px)}}
+.extra::placeholder{color:var(--mute)}
+.brief-ft{padding:18px 20px 20px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+@media(min-width:600px){.brief-ft{padding:18px 26px 22px}}
+.cta{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;letter-spacing:.01em;background:var(--ink);color:var(--acid);border:0;padding:14px 22px 12px;cursor:pointer;display:inline-flex;gap:14px;align-items:center;text-decoration:none}
+.cta:hover{background:#000;transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--acid)}
+.cta:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+.skip{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.skip:hover{color:var(--ink)}
+
+/* compile animation + estimate */
+.compile{display:none;padding:18px 26px 22px;font-family:var(--mono);font-size:13px;line-height:1.9}
+.compile.on{display:block}
+.compile .ok{color:var(--ink);font-weight:700}
+.est{display:none;border-top:2px solid var(--ink)}
+.est.on{display:block}
+.est-top{display:grid;grid-template-columns:1fr auto;gap:12px;padding:20px 20px 6px;align-items:start}
+@media(min-width:600px){.est-top{padding:22px 26px 6px}}
+.est-name{font-size:clamp(34px,3.6vw,48px)}
+.est-meta{text-align:right}
+.est-price{display:inline-block;margin-top:6px;font-size:clamp(30px,3.2vw,42px);padding:.06em .14em 0}
+.est-list{padding:6px 20px 0;display:grid}
+@media(min-width:600px){.est-list{padding:6px 26px 0}}
+.est-row{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;border-top:1.5px solid var(--ink);padding:8px 0}
+.est-row .num{height:28px;font-size:16px}
+.est-row .label{font-size:18px}
+.note{margin:12px 20px 0;padding:10px 12px;border-left:4px solid var(--acid);background:var(--paper);font:500 15px/1.4 var(--cond)}
+@media(min-width:600px){.note{margin:12px 26px 0}}
+.fine{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--mute);line-height:1.5}
+
+/* deco */
+.deco-v{right:-2px;top:120px;font-size:12px;color:var(--mute);display:none}
+@media(min-width:1180px){.deco-v{display:block}}
+
+/* below the fold */
+section.band{border-top:2px solid var(--ink);padding:44px 0}
+@media(min-width:900px){section.band{padding:64px 0}}
+.bandhd{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:24px}
+.verbs{display:grid}
+.verb{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;border-top:1.5px solid var(--ink);padding:14px 0}
+@media(min-width:800px){.verb{grid-template-columns:auto 1fr 1.1fr}}
+.verb:last-child{border-bottom:1.5px solid var(--ink)}
+.verb .num{width:clamp(48px,6vw,72px);height:clamp(48px,6vw,72px);font-size:clamp(30px,4vw,46px);background:var(--acid);color:var(--ink)}
+.verb .display{font-size:clamp(48px,8vw,104px)}
+.verb p{grid-column:1/-1;font:450 17px/1.4 var(--cond);color:var(--ink2);max-width:520px}
+@media(min-width:800px){.verb p{grid-column:auto}}
+.week{display:grid;gap:0}
+@media(min-width:800px){.week{grid-template-columns:repeat(5,1fr)}}
+.day{border-top:1.5px solid var(--ink);padding:12px 0 18px;display:grid;gap:8px;align-content:start}
+@media(min-width:800px){.day{border-top:0;border-left:1.5px solid var(--ink);padding:0 14px 6px}.day:first-child{border-left:0;padding-left:0}}
+.day .num{width:58px;height:30px;font-size:18px}
+.day.fri .num{background:var(--acid);color:var(--ink)}
+.day .label{font-size:20px}
+.manifesto{font-size:clamp(40px,6.4vw,88px)}
+.manifesto .cond{display:inline-block;margin-top:10px;font-size:clamp(30px,4.6vw,62px);padding:.06em .14em 0}
+footer{border-top:2px solid var(--ink);padding:26px 0 40px;display:grid;gap:18px}
+@media(min-width:800px){footer{grid-template-columns:1fr 1fr auto;align-items:end}}
+@media(max-width:599px){
+  header>.code{display:none}
+  .brief-hd{flex-wrap:wrap;gap:4px 12px}
+  .hero>.x{display:none}
+}
+</style>
+</head>
+<body>
+<i class="paper-noise"></i>
+<div class="page">
+
+<header>
+  <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div>
+  <div class="code">FDP·26<br>Agentic product studio</div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="hl">
+  <i class="x big" style="left:-6px;top:20px" aria-hidden="true"></i>
+  <div class="dots fade" style="right:0;top:24px;width:110px;height:90px;opacity:.9" aria-hidden="true"></div>
+  <div class="vert deco-v" aria-hidden="true">Design · Deploy · Analyze · Report</div>
+
+  <div>
+    <div class="code" id="eyebrow" style="margin-bottom:16px">Product managers, with commit access</div>
+    <h1 class="display grit hl" id="hl">Our product managers open pull requests.</h1>
+    <div class="cond grit acid hl-sub" id="hlsub">They decide. They ship.</div>
+    <p class="lede" id="lede">Senior product managers who design, deploy, analyze and report. Fully agentic, inside your repo, your analytics and your Slack.</p>
+    <div class="verbs-mini" aria-label="What we do"><span>Design</span><span>Deploy</span><span>Analyze</span><span>Report</span></div>
+    <div class="ruler" style="margin-top:28px;max-width:520px" aria-hidden="true"></div>
+  </div>
+
+  <div class="brief" id="brief">
+    <div class="brief-hd"><span class="code" style="color:var(--paper)">Your brief · edit anything</span><span class="code">Estimate in 10 sec</span></div>
+    <form id="form" autocomplete="off">
+      <p class="madlib">
+        We're a <select class="chip" id="stage" aria-label="Company stage">
+          <option>pre-seed</option><option>seed-stage</option><option selected>Series A</option><option>Series B</option><option>Series C+</option><option>bootstrapped</option><option>public</option>
+        </select> team of <select class="chip" id="size" aria-label="Team size">
+          <option value="8">1–10</option><option value="18">10–25</option><option value="40" selected>25–50</option><option value="100">50–150</option><option value="300">150–500</option><option value="800">500+</option>
+        </select> people. We need to <select class="chip" id="need" aria-label="What you need">
+          <option value="feature">ship a new feature</option>
+          <option value="ai">build an AI agent or AI feature</option>
+          <option value="prototype">turn a prototype into a real product</option>
+          <option value="metrics">fix our metrics and reporting</option>
+          <option value="discovery">figure out what to build next</option>
+          <option value="seat">cover our PM seat while we hire</option>
+        </select>: <input class="chip" id="what" aria-label="Describe it in a few words" value="the feature that's been stuck in the backlog">, <select class="chip" id="deadline" aria-label="Deadline">
+          <option value="2">within 2 weeks</option><option value="4">this month</option><option value="8" selected>by end of next month</option><option value="13">this quarter</option><option value="99">whenever it's right</option>
+        </select>. Right now <select class="chip" id="owner" aria-label="Who makes product calls today">
+          <option>our founder</option><option>our CTO</option><option>an engineer</option><option>a stretched-thin PM</option><option>nobody, honestly</option>
+        </select> makes the product calls.
+      </p>
+      <textarea class="extra" id="extra" rows="1" placeholder="Anything else? Stack, constraints, links. Optional."></textarea>
+      <div class="brief-ft">
+        <button class="cta" type="submit" id="go">Get my estimate <span aria-hidden="true">→</span></button>
+        <a class="skip" href="#" id="skip">or skip it, just book a call</a>
+      </div>
+    </form>
+
+    <div class="compile" id="compile" aria-hidden="true"></div>
+
+    <div class="est" id="est" aria-live="polite">
+      <div class="est-top">
+        <div>
+          <div class="code" id="est-kind">Recommended</div>
+          <div class="display est-name" id="est-name">Ship Sprint</div>
+          <div class="cond acid est-price" id="est-price">$12–18K</div>
+        </div>
+        <div class="est-meta code"><span id="est-id">DB-0000</span><br><span id="est-dur">2 weeks</span><br><span id="est-start">Starts Monday</span></div>
+      </div>
+      <div class="est-list" id="est-list"></div>
+      <div class="note" id="est-note" hidden></div>
+      <div class="brief-ft" style="padding-top:20px">
+        <a class="cta" id="book" href="#" target="_blank" rel="noopener">Book a 20-min call <span aria-hidden="true">→</span></a>
+        <span class="fine" id="est-fine">Bring this estimate. Final scope and number after the call.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="verbs-h">
+  <div class="bandhd"><h2 class="code" id="verbs-h">01 — What a forward-deployed PM does</h2><span class="code">Fully agentic · senior human accountable</span></div>
+  <div class="verbs">
+    <div class="verb"><span class="num">01</span><span class="display grit">Design</span><p>The business case and the interface. A one-page decision memo, flows in your design system. Not a 40-page PRD.</p></div>
+    <div class="verb"><span class="num">02</span><span class="display grit">Deploy</span><p>Real builds to production. Pull requests in your repo, tests, flags, staged rollouts. Your engineers review.</p></div>
+    <div class="verb"><span class="num">03</span><span class="display grit">Analyze</span><p>Full-stack product metrics. If it isn't instrumented, we instrument it, whatever the stack is or needs to be.</p></div>
+    <div class="verb"><span class="num">04</span><span class="display grit">Report</span><p>At any level, at any moment, from standup to board deck. Every number links to the query behind it.</p></div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="week-h">
+  <div class="bandhd"><h2 class="code" id="week-h">02 — What a week looks like</h2><span class="code">Example</span></div>
+  <div class="week">
+    <div class="day"><span class="num">MON</span><span class="label">Decision memo signed</span><span class="fine">memo.md</span></div>
+    <div class="day"><span class="num">TUE</span><span class="label">Flows in your design system</span><span class="fine">figma</span></div>
+    <div class="day"><span class="num">WED</span><span class="label">Built, tested, merged behind a flag</span><span class="fine">PR #482</span></div>
+    <div class="day"><span class="num">THU</span><span class="label">Events instrumented, dashboard up</span><span class="fine">analytics</span></div>
+    <div class="day fri"><span class="num">FRI</span><span class="label">Rolled out to 10% of users</span><span class="fine">live · readout Monday</span></div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="man-h">
+  <h2 class="code" id="man-h" style="margin-bottom:24px">03 — Why product managers</h2>
+  <p class="display grit manifesto">Product managers have been writing prompts for 15 years.<br><span class="cond acid">They called them tickets.</span></p>
+  <p class="lede" style="max-width:640px;margin-top:26px">User stories, acceptance criteria, Gherkin: instructions precise enough for a machine, written long before agents could read them. Now they can. So the person who decides what to build can also build it, measure it and report it, without the ticket ping-pong.</p>
+  <div style="margin-top:30px"><a class="cta" href="#brief" id="cta-bottom">Get my estimate <span aria-hidden="true">↑</span></a></div>
+</section>
+</main>
+
+<footer>
+  <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div>
+  <p class="fine" style="max-width:360px">Despacho Bonsai is an agentic product studio. Senior product managers who design, deploy, analyze and report, working with US teams from Mexico City.</p>
+  <p class="code" style="text-align:left">hola@despachobonsai.com<br>© 2026</p>
+</footer>
+</div>
+
+<script>
+/* ---------- config ---------- */
+const CONFIG = {
+  bookingUrl: 'https://cal.com/despachobonsai/20min', // TODO: real booking link (Cal.com prefill: ?notes=)
+  showPrice: true,                                    // pricing decision: show a range inside the estimate only
+};
+
+/* ---------- ad variants: ?v=<ad id> sets headline + prefills the brief ---------- */
+const VARIANTS = {
+  tickets:    {eyebrow:'Why product managers, now', hl:'Product managers have been writing prompts for 15 years.', sub:'They called them tickets.', need:'feature', what:"the feature that's been stuck in the backlog"},
+  bottleneck: {eyebrow:'The agentic era, in one line', hl:'Engineers: 10× faster.', sub:'Roadmap: same.', need:'discovery', what:'decide which roadmap bets actually matter', owner:'our founder'},
+  pr:         {eyebrow:'Product management, with commit access', hl:'Our product managers open pull requests.', sub:'They decide. They ship.', need:'feature', what:'self-serve onboarding'},
+  report:     {eyebrow:'Reporting at any altitude', hl:'Every number arrives with its query.', sub:'Board-ready, any moment.', need:'metrics', what:'activation and retention numbers we trust'},
+  fde:        {eyebrow:'Forward-deployed product managers', hl:"Everyone's hiring engineers to deploy AI.", sub:"Who decides what's worth deploying?", need:'ai', what:'an AI agent that triages support tickets'},
+  hire:       {eyebrow:'For teams with an open PM req', hl:'Hiring a founding PM?', sub:'Ship while you search.', need:'seat', what:'keep the roadmap moving until our hire lands', owner:'nobody, honestly', deadline:'2'},
+  verbs:      {eyebrow:'The full-stack product manager', hl:'Design. Deploy. Analyze. Report.', sub:'One person. Fully agentic.', need:'feature', what:"the feature that's been stuck in the backlog"},
+  week:       {eyebrow:'What a week looks like', hl:'Decided Monday. Live Friday.', sub:'Measured by Monday.', need:'feature', what:'one-tap reorder for returning customers', deadline:'4'},
+};
+
+/* ---------- estimate engine (deterministic: instant, free, never invents a price) ---------- */
+const PLANS = {
+  feature:   {name:'Ship Sprint', weeks:2, lo:12, hi:18, steps:[['D2','Decision memo: scope, metric, risks'],['D4','Flows in your design system'],['D8','PR merged behind a feature flag'],['D10','Events instrumented · 10% rollout'],['D14','Readout with linked queries']]},
+  ai:        {name:'AI Ship Sprint', weeks:3, lo:18, hi:28, steps:[['D3','Decision memo + success criteria'],['D6','Eval set from your real data'],['D12','Agent in production behind a flag'],['D15','Guardrails, cost per run, monitoring'],['D21','Readout: quality, cost, impact']]},
+  prototype: {name:'Production Sprint', weeks:3, lo:18, hi:26, steps:[['D2','Audit: what breaks at real traffic'],['D7','Hardened, tested, in your CI'],['D12','Analytics + error tracking wired'],['D15','Staged rollout to real users'],['D21','Readout + next-bet memo']]},
+  metrics:   {name:'Instrumentation Sprint', weeks:2, lo:10, hi:16, steps:[['D2','Metric tree: what the board asks'],['D5','Tracking plan, any stack'],['D9','Events shipped + validated'],['D11','Dashboards with linked queries'],['D14','First grounded report, any altitude']]},
+  discovery: {name:'Decision Sprint', weeks:1, lo:6, hi:9, steps:[['D1','Evidence pull: usage, revenue, support'],['D2','Opportunities sized'],['D3','Ranked roadmap with reasoning'],['D4','Prototype of the top bet'],['D5','Decision memo + Monday plan']]},
+  seat:      {name:'Forward-Deployed PM', weeks:0, lo:15, hi:22, monthly:true, steps:[['W1','Embedded: repo, analytics, Slack'],['W1','First thing shipped'],['W2','Roadmap you can defend'],['WEEKLY','Ship log + grounded report'],['HIRE','We onboard your new PM']]},
+};
+const $ = (id) => document.getElementById(id);
+const sizeMult = (n) => n <= 10 ? 0.9 : n <= 50 ? 1 : n <= 150 ? 1.1 : 1.25;
+
+function estimate(b){
+  const p = PLANS[b.need]; const m = sizeMult(+b.size);
+  const lo = Math.round(p.lo*m), hi = Math.round(p.hi*m);
+  const notes = [];
+  if (!p.monthly && +b.deadline < p.weeks*1) notes.push(`Tight: a full ${p.name} is ${p.weeks} week${p.weeks>1?'s':''}. We'd ship the smallest live slice inside your date and keep going.`);
+  if (+b.size > 150) notes.push('At your size we add a stakeholder map and a weekly exec readout, which is included above.');
+  if (!p.monthly && (b.owner==='our founder' || b.owner==='nobody, honestly')) notes.push('Product calls sit with nobody or the founder. Most teams like this continue month to month as their forward-deployed PM after the sprint.');
+  return {...p, lo, hi, notes, id:'DB-'+((Date.now()/1000|0)%100000).toString().padStart(5,'0')};
+}
+
+function readBrief(){
+  return {stage:$('stage').value, size:$('size').value, sizeLabel:$('size').selectedOptions[0].text, need:$('need').value,
+    needLabel:$('need').selectedOptions[0].text, what:$('what').value.trim(), deadline:$('deadline').value,
+    deadlineLabel:$('deadline').selectedOptions[0].text, owner:$('owner').value, extra:$('extra').value.trim()};
+}
+
+function bookingHref(b, e){
+  const lines = e ? [
+    `Estimate ${e.id}: ${e.name}${CONFIG.showPrice ? ` · $${e.lo}–${e.hi}K${e.monthly?'/mo':''}` : ''}${e.weeks?` · ${e.weeks} wk`:''}`,
+  ] : ['Skipped the estimate'];
+  lines.push(`We're a ${b.stage} team of ${b.sizeLabel}. Need to ${b.needLabel}: ${b.what}, ${b.deadlineLabel}. Product calls: ${b.owner}.`);
+  if (b.extra) lines.push('Notes: '+b.extra);
+  const q = new URLSearchParams({notes: lines.join('\n')});
+  const utm = new URLSearchParams(location.search); ['utm_source','utm_campaign','utm_content','v'].forEach(k=>{ if(utm.get(k)) q.set(k, utm.get(k)); });
+  return CONFIG.bookingUrl + '?' + q.toString();
+}
+
+function track(name, props){ try{ (window.dataLayer = window.dataLayer || []).push({event:name, ...props}); }catch(e){} }
+
+function render(b, e){
+  $('est-kind').textContent = e.monthly ? 'Recommended · monthly' : 'Recommended · fixed scope';
+  $('est-name').textContent = e.name;
+  $('est-price').textContent = `$${e.lo}–${e.hi}K${e.monthly?' / month':''}`;
+  $('est-price').hidden = !CONFIG.showPrice;
+  $('est-id').textContent = e.id;
+  $('est-dur').textContent = e.monthly ? 'Month to month' : `${e.weeks} week${e.weeks>1?'s':''}`;
+  $('est-start').textContent = 'Can start Monday';
+  $('est-list').innerHTML = e.steps.map(([d,t]) => `<div class="est-row"><span class="num">${d}</span><span class="label">${t}</span></div>`).join('');
+  const n = $('est-note'); n.hidden = !e.notes.length; n.textContent = e.notes.join(' ');
+  $('book').href = bookingHref(b, e);
+  $('est').classList.add('on');
+}
+
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+$('form').addEventListener('submit', (ev) => {
+  ev.preventDefault();
+  const b = readBrief(); const e = estimate(b);
+  track('estimate_requested', {need:b.need, size:b.size, v:new URLSearchParams(location.search).get('v')||'default'});
+  const c = $('compile'); $('est').classList.remove('on');
+  const steps = ['Reading brief', 'Sizing scope', 'Planning the first Friday', 'Checking calendar'];
+  if (reduced){ render(b, e); $('est').scrollIntoView({block:'nearest'}); return; }
+  c.classList.add('on'); c.innerHTML = '';
+  steps.forEach((s,i) => setTimeout(() => { c.innerHTML += `<div>${s} … <span class="ok">✓</span></div>`; }, 180*i));
+  setTimeout(() => { c.classList.remove('on'); render(b, e); $('est').scrollIntoView({behavior:'smooth', block:'nearest'}); }, 180*steps.length + 120);
+});
+$('skip').addEventListener('click', (ev) => { ev.preventDefault(); track('skip_to_booking', {}); window.open(bookingHref(readBrief(), null), '_blank', 'noopener'); });
+$('book').addEventListener('click', () => track('booking_clicked', {need:$('need').value}));
+
+/* auto-size the free-text chip */
+const fit = () => { $('what').style.width = Math.min(Math.max($('what').value.length + 1, 8), 46) + 'ch'; };  /* capped by max-width:100% on phones */
+$('what').addEventListener('input', fit);
+
+/* size each select chip to its selected text, not its longest option */
+const ruler = document.createElement('span');
+ruler.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px';
+document.body.appendChild(ruler);
+function sizeSelect(sel){
+  const cs = getComputedStyle(sel);
+  ruler.style.font = cs.font; ruler.textContent = sel.selectedOptions[0].text;
+  sel.style.width = Math.ceil(ruler.getBoundingClientRect().width + parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight) + 2) + 'px';
+}
+const sizeAll = () => document.querySelectorAll('select.chip').forEach(sizeSelect);
+document.querySelectorAll('select.chip').forEach(s => s.addEventListener('change', () => sizeSelect(s)));
+document.fonts.ready.then(sizeAll);
+
+/* apply ad variant */
+(function(){
+  const v = VARIANTS[new URLSearchParams(location.search).get('v')] || VARIANTS.pr;
+  $('eyebrow').textContent = v.eyebrow; $('hl').textContent = v.hl; $('hlsub').textContent = v.sub;
+  $('need').value = v.need; $('what').value = v.what;
+  if (v.owner) $('owner').value = v.owner;
+  if (v.deadline) $('deadline').value = v.deadline;
+  fit(); sizeAll();
+})();
+</script>
+</body>
+</html>

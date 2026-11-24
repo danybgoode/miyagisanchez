@@ -1,0 +1,162 @@
+---
+// Site shell (brand v2, Designers Republic-inspired): header, footer, Cal.com booking, chat, analytics.
+// Every page uses it. One goal site-wide: a booked call. Analytics go through the existing GTM container;
+// pages push dataLayer events via window.dbTrack(). window.openBookingModal() is the one booking entry point
+// (the chat widget calls it too).
+import { ORG } from '../data/offer';
+import '../styles/brand.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  noindex?: boolean;
+  /** JSON-LD objects for this page. */
+  schema?: object[];
+}
+const { title, description, path = '/', noindex = false, schema = [] } = Astro.props;
+const canonical = ORG.url + (path === '/' ? '/' : path);
+const ogImage = `${ORG.url}/assets/brand/og-fdp-1200x630.png`;
+const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url: ORG.booking };
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'}>
+  <meta name="theme-color" content="#ECEAE3">
+  <link rel="canonical" href={canonical}>
+  <meta property="og:site_name" content={ORG.name}>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Despacho Bonsai: product managers who ship. Design, deploy, analyze, report.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="alternate" type="text/markdown" title="llms.txt" href="/llms.txt">
+  <link rel="preload" href="/fonts/Archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/DBMatriz.woff2" as="font" type="font/woff2" crossorigin>
+  {schema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  <!-- Google Tag Manager -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WNMX9KMS');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNMX9KMS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <i class="paper-noise" aria-hidden="true"></i>
+  <div class="page">
+    <header class="top">
+      <a class="wm" href="/" aria-label="Despacho Bonsai home"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></a>
+      <div class="code top-code">FDP·26<br>Agentic product studio</div>
+    </header>
+
+    <slot />
+
+    <footer class="foot">
+      <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div>
+      <p class="fine" style="max-width:360px">Despacho Bonsai is an agentic product studio. Senior product managers who design, deploy, analyze and report, working with US teams from Mexico City.</p>
+      <div class="code foot-links"><a href={`mailto:${ORG.email}`}>{ORG.email}</a><br><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/cookies">Cookies</a> · © 2026</div>
+    </footer>
+  </div>
+
+  <script is:inline define:vars={{ CAL }}>
+    // Analytics: everything goes to GTM's dataLayer, tagged with the ad variant that brought the visitor.
+    var params = new URLSearchParams(location.search);
+    var variant = params.get('v') || 'default';
+    window.dbTrack = function (event, props) {
+      try { (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: event, variant: variant }, props || {})); } catch (e) {}
+    };
+    window.dbAttribution = function () {
+      var a = { v: variant };
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','msclkid','rdt_cid'].forEach(function (k) { var x = params.get(k); if (x) a[k] = x; });
+      return a;
+    };
+
+    // Cal.com embed: loaded when the browser is idle, or immediately on the first booking click.
+    var calReady = false;
+    function ensureCal() {
+      if (calReady) return;
+      calReady = true;
+      (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; var s = d.createElement('script'); s.src = A; s.onerror = function () { C.__calFailed = true; }; d.head.appendChild(s); cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === 'string') { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ['initNamespace', namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, 'https://app.cal.com/embed/embed.js', 'init');
+      Cal('init', CAL.ns, { origin: 'https://cal.com' });
+      var ns = Cal.ns[CAL.ns];
+      ns('ui', { theme: 'light', layout: 'month_view', hideEventTypeDetails: false, cssVarsPerTheme: { light: { 'cal-brand': '#0E0E0E' } } });
+      // bookingSuccessfulV2 is the conversion: GA4 key event, Microsoft UET goal, Reddit Lead (configured in GTM).
+      ns('on', { action: 'bookingSuccessfulV2', callback: function (e) { window.dbTrack('booking_completed', { source: window.__bookingSource || '', start: (e && e.detail && e.detail.data && e.detail.data.startTime) || '' }); } });
+      ns('on', { action: 'dryRunBookingSuccessfulV2', callback: function () { window.dbTrack('booking_completed_test', {}); } });
+      ns('on', { action: 'linkFailed', callback: function () { window.__calFailed = true; window.dbTrack('calendar_failed', {}); } });
+    }
+    window.addEventListener('load', function () { (window.requestIdleCallback || function (f) { setTimeout(f, 2500); })(ensureCal, { timeout: 4000 }); });
+
+    window.calFallbackUrl = function (notes) {
+      var q = new URLSearchParams(Object.assign(notes ? { notes: notes } : {}, window.dbAttribution()));
+      return CAL.url + '?' + q.toString();
+    };
+
+    // The one booking entry point. opts: { notes, source, meta }. Called by the page and by the chat widget.
+    window.openBookingModal = function (opts) {
+      opts = opts || {};
+      var source = opts.source || 'chat';
+      var notes = opts.notes || (source === 'chat' ? 'Booked from the chat assistant.' : '');
+      window.__bookingSource = source;
+      window.dbTrack('booking_opened', Object.assign({ source: source }, opts.meta || {}));
+      if (window.__calFailed) { window.open(window.calFallbackUrl(notes), '_blank', 'noopener'); return; }
+      ensureCal();
+      var meta = {};
+      var m = Object.assign({}, window.dbAttribution(), { source: source }, opts.meta || {});
+      Object.keys(m).forEach(function (k) { meta['metadata[' + k + ']'] = String(m[k]); });
+      var config = Object.assign({ layout: 'month_view' }, notes ? { notes: notes } : {}, meta);
+      Cal.ns[CAL.ns]('modal', { calLink: CAL.link, config: config });
+    };
+  </script>
+  <!-- Bonsai Chat (~/dobby/bonsai-chat on Cloud Run): answers only from /llms.txt; "Book a call" → openBookingModal(). -->
+  <script is:inline src="https://bonsai-chat-483236779207.us-central1.run.app/widget.js" data-site="despachobonsai"
+    data-accent="#0E0E0E" data-accent-text="#CDE030" data-font="Archivo, ui-sans-serif, system-ui, sans-serif" data-radius="0" data-surface="#F7F6F1"
+    data-title="Ask a product manager" data-hello="Hi. Ask anything about how a forward-deployed PM would work on your product: scope, timeline, price. Or book a 20-min call."
+    data-chips="What would you ship in 2 weeks?|How much does it cost?|Book a 20-min call"
+    data-sticker="/assets/mascot/miyagisticker.png" data-sticker-open="/assets/mascot/miyagilistening.png" defer></script>
+</body>
+</html>
+
+<style is:global>
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--cond);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.page{position:relative;max-width:1280px;margin:0 auto;padding:0 16px}
+@media(min-width:900px){.page{padding:0 40px}}
+.paper-noise{position:fixed}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0 16px;border-bottom:2px solid var(--ink)}
+header.top .wm{text-decoration:none;color:var(--ink)}
+.top-code{text-align:right}
+.fine{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--mute);line-height:1.5}
+.cta{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:28px;line-height:1;letter-spacing:.01em;background:var(--ink);color:var(--acid);border:0;padding:14px 22px 12px;cursor:pointer;display:inline-flex;gap:14px;align-items:center;text-decoration:none}
+.cta:hover{background:#000;transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--acid)}
+.cta:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+section.band{border-top:2px solid var(--ink);padding:44px 0}
+@media(min-width:900px){section.band{padding:64px 0}}
+.bandhd{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:24px}
+footer.foot{border-top:2px solid var(--ink);padding:26px 0 40px;display:grid;gap:18px}
+@media(min-width:800px){footer.foot{grid-template-columns:1fr 1fr auto;align-items:end}}
+.foot-links a{text-decoration:none;display:inline-block;padding:6px 0}.foot-links a:hover{text-decoration:underline}
+@media(max-width:599px){.top-code{display:none}}
+</style>
