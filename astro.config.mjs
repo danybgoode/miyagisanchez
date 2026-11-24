@@ -45,8 +45,6 @@ export default defineConfig({
     '/es/work': '/',
     '/es/academy': '/',
     '/es/hire': '/',
-    '/es/privacy': '/privacy',
-    '/es/terms': '/terms',
-    '/es/cookies': '/cookies',
+    // /es/privacy, /es/terms, /es/cookies and the /es/* catch-all live in public/_redirects (Cloudflare rejects duplicates).
   },
 });
