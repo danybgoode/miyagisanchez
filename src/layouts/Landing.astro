@@ -1,8 +1,7 @@
 ---
-// Site shell (brand v2, Designers Republic-inspired): header, footer, Cal.com booking, chat, analytics.
-// Every page uses it. One goal site-wide: a booked call. Analytics go through the existing GTM container;
-// pages push dataLayer events via window.dbTrack(). window.openBookingModal() is the one booking entry point
-// (the chat widget calls it too).
+// Site shell (brand v2, Designers Republic-inspired): header, footer, Cal.com booking, analytics.
+// Every page uses it. Primary action site-wide: a WhatsApp chat; a booked call is the secondary route. Analytics go through the existing GTM container;
+// pages push dataLayer events via window.dbTrack(). window.openBookingModal() is the one booking entry point.
 import { ORG } from '../data/offer';
 import '../styles/brand.css';
 
@@ -16,7 +15,7 @@ interface Props {
 }
 const { title, description, path = '/', noindex = false, schema = [] } = Astro.props;
 const canonical = ORG.url + (path === '/' ? '/' : path);
-const ogImage = `${ORG.url}/assets/brand/og-fdp-1200x630.png`;
+const ogImage = `${ORG.url}/assets/brand/og-studio-1200x630.png`;
 const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url: ORG.booking };
 ---
 <!DOCTYPE html>
@@ -38,7 +37,7 @@ const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url
   <meta property="og:image" content={ogImage}>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Despacho Bonsai: product managers who ship. Design, deploy, analyze, report.">
+  <meta property="og:image:alt" content="Despacho Bonsai, the AI engineering studio: Need a developer? Talk to one now.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content={title}>
   <meta name="twitter:description" content={description}>
@@ -65,15 +64,15 @@ const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url
   <i class="paper-noise" aria-hidden="true"></i>
   <div class="page">
     <header class="top">
-      <a class="wm" href="/" aria-label="Despacho Bonsai home"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></a>
-      <div class="code top-code">FDP·26<br>Agentic product studio</div>
+      <a class="wm" href="/" aria-label="Despacho Bonsai home"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>AI engineering studio</small></span></a>
+      <div class="code top-code">Mexico City<br>On US Central time</div>
     </header>
 
     <slot />
 
     <footer class="foot">
-      <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>forward-deployed product</small></span></div>
-      <p class="fine" style="max-width:360px">Despacho Bonsai is an agentic product studio. Senior product managers who design, deploy, analyze and report, working with US teams from Mexico City.</p>
+      <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>AI engineering studio</small></span></div>
+      <p class="fine" style="max-width:360px">Despacho Bonsai is an AI engineering studio. Senior engineers who build, fix and ship software for US teams, from Mexico City.</p>
       <div class="code foot-links"><a href={`mailto:${ORG.email}`}>{ORG.email}</a><br><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/cookies">Cookies</a> · © 2026</div>
     </footer>
   </div>
@@ -128,12 +127,6 @@ const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url
       Cal.ns[CAL.ns]('modal', { calLink: CAL.link, config: config });
     };
   </script>
-  <!-- Bonsai Chat (~/dobby/bonsai-chat on Cloud Run): answers only from /llms.txt; "Book a call" → openBookingModal(). -->
-  <script is:inline src="https://bonsai-chat-483236779207.us-central1.run.app/widget.js" data-site="despachobonsai"
-    data-accent="#0E0E0E" data-accent-text="#CDE030" data-font="Archivo, ui-sans-serif, system-ui, sans-serif" data-radius="0" data-surface="#F7F6F1"
-    data-title="Ask a product manager" data-hello="Hi. Ask anything about how a forward-deployed PM would work on your product: scope, timeline, price. Or book a 20-min call."
-    data-chips="What would you ship in 2 weeks?|How much does it cost?|Book a 20-min call"
-    data-sticker="/assets/mascot/miyagisticker.png" data-sticker-open="/assets/mascot/miyagilistening.png" defer></script>
 </body>
 </html>
 
