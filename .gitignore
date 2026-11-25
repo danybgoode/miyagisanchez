@@ -14,3 +14,9 @@ dist/
 
 # font sources downloaded by gtm/agentic-pm/brand/tools/bastard.py
 gtm/agentic-pm/brand/tools/fontsrc/
+# Strategy files are the maker's own. To commit them, change the next line to !Roadmap/00-strategy/
+Roadmap/00-strategy/
+
+# deep research output (local only)
+research_notes/
+reports/
