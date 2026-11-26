@@ -1,8 +1,8 @@
 ---
 // Site shell (brand v2, Designers Republic-inspired): header, footer, Cal.com booking, analytics.
-// Every page uses it. Primary action site-wide: a WhatsApp chat; a booked call is the secondary route. Analytics go through the existing GTM container;
+// Every page uses it. Primary action site-wide: a booked call; WhatsApp and email are quiet alternatives. Analytics go through the existing GTM container;
 // pages push dataLayer events via window.dbTrack(). window.openBookingModal() is the one booking entry point.
-import { ORG } from '../data/offer';
+import { ORG, SOCIAL } from '../data/offer';
 import '../styles/brand.css';
 
 interface Props {
@@ -37,12 +37,12 @@ const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url
   <meta property="og:image" content={ogImage}>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Despacho Bonsai, the AI engineering studio: Need a developer? Talk to one now.">
+  <meta property="og:image:alt" content="Despacho Bonsai: product management that ships. Full-stack product managers, embedded in your team.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content={title}>
   <meta name="twitter:description" content={description}>
   <meta name="twitter:image" content={ogImage}>
-  <link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/brand/favicon-48.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
@@ -64,16 +64,16 @@ const CAL = { link: 'despachobonsai/bonsaidiscovery', ns: 'bonsaidiscovery', url
   <i class="paper-noise" aria-hidden="true"></i>
   <div class="page">
     <header class="top">
-      <a class="wm" href="/" aria-label="Despacho Bonsai home"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>AI engineering studio</small></span></a>
+      <a class="wm" href="/" aria-label="Despacho Bonsai home"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>Full-stack product managers</small></span></a>
       <div class="code top-code">Mexico City<br>On US Central time</div>
     </header>
 
     <slot />
 
     <footer class="foot">
-      <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>AI engineering studio</small></span></div>
-      <p class="fine" style="max-width:360px">Despacho Bonsai is an AI engineering studio. Senior engineers who build, fix and ship software for US teams, from Mexico City.</p>
-      <div class="code foot-links"><a href={`mailto:${ORG.email}`}>{ORG.email}</a><br><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/cookies">Cookies</a> · © 2026</div>
+      <div class="wm"><span class="sq">DB</span><span>Despacho Bonsai ▲<small>Full-stack product managers</small></span></div>
+      <p class="fine" style="max-width:360px">Despacho Bonsai embeds full-stack product managers in US startups and product teams: from user feedback to shipped, measured releases. From Mexico City, on US time.</p>
+      <div class="code foot-links"><a href={`mailto:${ORG.email}`}>{ORG.email}</a><br>{SOCIAL.map(s => <><a href={s.url} rel="me noopener" target="_blank">{s.name}</a> · </>)}<br><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/cookies">Cookies</a> · © 2026</div>
     </footer>
   </div>
 

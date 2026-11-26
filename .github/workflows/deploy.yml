@@ -41,7 +41,7 @@ jobs:
           done
           echo "/ → $code"; [ "$code" = 200 ]
           curl -s https://despachobonsai.com/ | grep -q 'id="brief"'
-          curl -s https://despachobonsai.com/llms.txt | grep -qi 'AI engineering studio'
+          curl -s https://despachobonsai.com/llms.txt | grep -qi 'full-stack product managers'
           test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/privacy)" = 200
           test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/es)" = 301
           test "$(curl -s -o /dev/null -w '%{http_code}' https://despachobonsai.com/work)" = 301

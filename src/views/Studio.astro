@@ -1,10 +1,10 @@
 ---
-// Homepage (campaign 2026-11): what we sell and how you get it. One action: a WhatsApp chat.
-// Secondary routes stay quiet: "Scope it" (brief builder → prefilled WhatsApp), a 20-min call, email.
+// Homepage (campaign 2026-11, v2): embedded full-stack product managers. One action: book a 20-min call
+// (US buyers live on calendars, not WhatsApp). Quiet alternatives: "Scope it" (brief builder → call notes), WhatsApp, email.
 // ?v=<variant> swaps the headline to match the ad and preselects the brief. Copy/data: src/data/offer.ts.
 import Landing from '../layouts/Landing.astro';
 import BonsaiArt from '../components/BonsaiArt.astro';
-import { ORG, SERVICES, STEPS, WORK, FAQ, STAGES, NEEDS, TOOLS, AI_TOOLS, WHEN, VARIANTS, waLink } from '../data/offer';
+import { ORG, SOCIAL, LOOP, MODES, STEPS, WORK, FAQ, STAGES, NEEDS, TOOLS, WHEN, VARIANTS, waLink } from '../data/offer';
 
 const D = VARIANTS.default;
 const [hlPre, hlPost] = D.h1.split(D.dot);
@@ -16,14 +16,15 @@ const schema = [
     name: ORG.name,
     url: ORG.url,
     logo: `${ORG.url}/assets/brand/logo-480.png`,
+    sameAs: SOCIAL.map(s => s.url),
     image: `${ORG.url}/assets/brand/og-studio-1200x630.png`,
     description: ORG.oneLiner,
-    slogan: 'Senior engineers. Shipped fast.',
+    slogan: 'Product management that ships.',
     email: ORG.email,
     address: { '@type': 'PostalAddress', addressLocality: 'Mexico City', addressCountry: 'MX' },
     areaServed: { '@type': 'Country', name: 'United States' },
-    knowsAbout: ['Software development', 'MVP development', 'AI engineering', 'Web applications', 'Production hardening of AI-built apps'],
-    contactPoint: { '@type': 'ContactPoint', contactType: 'sales', url: waLink(D.wa), email: ORG.email, availableLanguage: ['English', 'Spanish'] },
+    knowsAbout: ['Product management', 'Fractional product management', 'AI-assisted software delivery', 'Product strategy', 'Product manager coaching'],
+    contactPoint: { '@type': 'ContactPoint', contactType: 'sales', url: ORG.booking, email: ORG.email, availableLanguage: ['English', 'Spanish'] },
   },
   {
     '@context': 'https://schema.org',
@@ -32,11 +33,11 @@ const schema = [
   },
   { '@context': 'https://schema.org', '@type': 'WebSite', name: ORG.name, url: ORG.url, publisher: { '@id': `${ORG.url}/#org` } },
 ];
-const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email: ORG.email };
+const BRIEF = { STAGES, NEEDS, WHEN, VARIANTS, wa: ORG.whatsapp, email: ORG.email, booking: ORG.booking };
 ---
 <Landing
-  title="Despacho Bonsai · Senior developers for your app, on US time"
-  description="An AI engineering studio in Mexico City, on US time. We build MVPs, fix AI-built apps and add AI features. Message us on WhatsApp and a senior engineer replies."
+  title="Despacho Bonsai · Full-stack product managers, embedded in your team"
+  description="We embed a senior product manager who runs the whole loop: user feedback, decisions, specs, builds with AI agents, tests, releases and the report. In your tools, under your method. Mexico City, on US time."
   schema={schema}>
 <main>
 <section class="hero" aria-labelledby="hl">
@@ -60,28 +61,31 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
       document.getElementById('hlsub').textContent = v.sub;
     })();
   </script>
-  <p class="lede">We build MVPs, fix apps made with AI tools, add AI features and ship the hard parts: login, payments, deploys, scale. Send a message and a senior engineer replies, usually within 15 minutes, {ORG.hours}.</p>
+  <p class="lede">AI agents made code cheap. Deciding what to build, and proving it worked, didn’t get any easier. We embed a senior product manager who runs the whole loop: user feedback, decisions, specs, builds with AI agents, tests, releases and the report. In your tools, under your method. Everything stays yours.</p>
   <div class="actions">
-    <a class="cta wa-link" href={waLink(D.wa)} data-src="hero" target="_blank" rel="noopener">Message us on WhatsApp <span aria-hidden="true">→</span></a>
+    <button type="button" class="cta book-link" data-src="hero">Book a 20-min call <span aria-hidden="true">→</span></button>
     <a class="ghost" href="#scope">Or scope it first ↓</a>
   </div>
-  <p class="fine alt-routes">Prefer something else? <button type="button" class="linkish book-link" data-src="hero">Book a 20-min call</button> · <a href={`mailto:${ORG.email}`} class="mail-link" data-src="hero">{ORG.email}</a></p>
+  <p class="fine alt-routes">Prefer to write? <a class="wa-link" href={waLink(D.wa)} data-src="hero" target="_blank" rel="noopener">WhatsApp</a> · <a href={`mailto:${ORG.email}`} class="mail-link" data-src="hero">{ORG.email}</a> · We reply within one business day, usually the same day.</p>
   <div class="dots hero-dots" aria-hidden="true"></div>
   </div>
   <BonsaiArt class="hero-art" />
 </section>
 
-<section class="band" aria-labelledby="how-h">
-  <div class="bandhd"><h2 class="code" id="how-h">01 — How it works</h2><span class="code">No forms, no sales calls</span></div>
-  <div class="steps">
-    {STEPS.map(s => <div class="step"><span class="tile worn" aria-hidden="true"><b>{s.n}</b></span><h3 class="label">{s.h}</h3><p>{s.p}</p></div>)}
+<section class="band" aria-labelledby="loop-h">
+  <div class="bandhd"><h2 class="code" id="loop-h">01 — The loop we run</h2><span class="code">One person · end to end</span></div>
+  <ol class="loop">
+    {LOOP.map(s => <li class="lstep"><span class="tile worn" aria-hidden="true"><b>{s.n}</b></span><h3 class="label">{s.h}</h3><p>{s.p}</p></li>)}
+  </ol>
+  <div class="modes">
+    {MODES.map(m => <div class="mode"><span class="code">Work with us as</span><h3 class="cond grit">{m.h}</h3><p>{m.p}</p></div>)}
   </div>
 </section>
 
-<section class="band" aria-labelledby="what-h">
-  <div class="bandhd"><h2 class="code" id="what-h">02 — What we do</h2><span class="code">Web · AI · Mobile</span></div>
-  <div class="services">
-    {SERVICES.map(s => <div class="svc"><h3 class="label">{s.h}</h3><p>{s.p}</p></div>)}
+<section class="band" aria-labelledby="how-h">
+  <div class="bandhd"><h2 class="code" id="how-h">02 — How it starts</h2><span class="code">No pitch deck, no long forms</span></div>
+  <div class="steps">
+    {STEPS.map(s => <div class="step"><span class="num-lg" aria-hidden="true">{s.n}</span><h3 class="label">{s.h}</h3><p>{s.p}</p></div>)}
   </div>
 </section>
 
@@ -89,21 +93,21 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
   <div class="bandhd"><h2 class="code" id="scope-h">03 — Scope it in 60 seconds</h2><span class="code">Tap what fits · we write the brief</span></div>
   <div class="builder">
     <form class="pick" id="pick" autocomplete="off">
-      <fieldset><legend class="label">1 · Where are you?</legend>
+      <fieldset><legend class="label">1 · What’s stuck?</legend>
         <div class="chips">{STAGES.map((s, i) => <label class="opt"><input type="radio" name="stage" value={s.id} checked={i === 0}><span>{s.label}</span></label>)}</div>
       </fieldset>
-      <fieldset><legend class="label">2 · What do you need? <span class="fine">Tap any</span></legend>
+      <fieldset><legend class="label">2 · Where does it hurt? <span class="fine">Tap any</span></legend>
         <div class="chips">{NEEDS.map(n => <label class="opt"><input type="checkbox" name="need" value={n.id}><span>{n.label}</span></label>)}</div>
       </fieldset>
-      <fieldset><legend class="label">3 · Built with</legend>
-        <div class="chips">{TOOLS.map((t, i) => <label class="opt"><input type="radio" name="tool" value={t} checked={t === 'Not sure'}><span>{t}</span></label>)}</div>
+      <fieldset><legend class="label">3 · Your team works in</legend>
+        <div class="chips">{TOOLS.map(t => <label class="opt"><input type="radio" name="tool" value={t} checked={t === 'Not sure'}><span>{t}</span></label>)}</div>
       </fieldset>
       <fieldset><legend class="label">4 · When?</legend>
         <div class="chips">{WHEN.map((w, i) => <label class="opt"><input type="radio" name="when" value={w.id} checked={i === 1}><span>{w.label}</span></label>)}</div>
       </fieldset>
       <fieldset><legend class="label">5 · Anything else? <span class="fine">Optional</span></legend>
-        <input class="field" id="link" type="url" inputmode="url" placeholder="Link to your app or site" aria-label="Link to your app or site">
-        <input class="field" id="note" type="text" maxlength="200" placeholder="One sentence about it" aria-label="One sentence about your project">
+        <input class="field" id="link" type="url" inputmode="url" placeholder="Link to your product" aria-label="Link to your product">
+        <input class="field" id="note" type="text" maxlength="200" placeholder="One sentence about your team" aria-label="One sentence about your team">
       </fieldset>
     </form>
 
@@ -120,16 +124,16 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
         <ol id="b-ask"></ol>
       </div>
       <div class="brief-ft">
-        <a class="cta" id="b-wa" href={waLink(D.wa)} target="_blank" rel="noopener">Send this on WhatsApp <span aria-hidden="true">→</span></a>
-        <span class="fine">No price here. You get a plan and a fixed quote in the chat.</span>
-        <span class="fine brief-alt"><button type="button" class="linkish" id="b-copy">Copy brief</button> · <a id="b-mail" href={`mailto:${ORG.email}`}>Email it</a> · <button type="button" class="linkish book-link" data-src="brief">Book a call with it</button></span>
+        <button type="button" class="cta book-link" id="b-book" data-src="brief">Book a call with this brief <span aria-hidden="true">→</span></button>
+        <span class="fine">No price here. You get a plan and a fixed quote after the call.</span>
+        <span class="fine brief-alt"><a id="b-wa" href={waLink(D.wa)} target="_blank" rel="noopener">Send it on WhatsApp</a> · <a id="b-mail" href={`mailto:${ORG.email}`}>Email it</a> · <button type="button" class="linkish" id="b-copy">Copy brief</button></span>
       </div>
     </article>
   </div>
 </section>
 
 <section class="band" aria-labelledby="work-h">
-  <div class="bandhd"><h2 class="code" id="work-h">04 — Things we’ve built</h2><span class="code">Live · click through</span></div>
+  <div class="bandhd"><h2 class="code" id="work-h">04 — Products we’ve run end to end</h2><span class="code">Live · click through</span></div>
   <div class="work">
     {WORK.map(w => <a class="proj" href={w.url} target="_blank" rel="noopener" data-proj={w.name}><span class="code">{w.kind}</span><h3 class="cond grit">{w.name}</h3><p>{w.p}</p><span class="code go">Open ↗</span></a>)}
   </div>
@@ -148,15 +152,13 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
 </section>
 
 <section class="band closer" aria-labelledby="end-h">
-  <h2 class="cond grit closer-h" id="end-h">Tell us what you’re <span class="display dotword">building.</span></h2>
-  <div class="actions"><a class="cta wa-link" href={waLink(D.wa)} data-src="closer" target="_blank" rel="noopener">Message us on WhatsApp <span aria-hidden="true">→</span></a></div>
-  <p class="fine alt-routes">{ORG.hours} · <button type="button" class="linkish book-link" data-src="closer">Book a 20-min call</button> · <a href={`mailto:${ORG.email}`} class="mail-link" data-src="closer">{ORG.email}</a></p>
+  <h2 class="cond grit closer-h" id="end-h">Tell us what’s <span class="display dotword">stuck.</span></h2>
+  <div class="actions"><button type="button" class="cta book-link" data-src="closer">Book a 20-min call <span aria-hidden="true">→</span></button></div>
+  <p class="fine alt-routes">{ORG.hours} · <a class="wa-link" href={waLink(D.wa)} data-src="closer" target="_blank" rel="noopener">WhatsApp</a> · <a href={`mailto:${ORG.email}`} class="mail-link" data-src="closer">{ORG.email}</a></p>
 </section>
 </main>
 
-<a class="sticky-wa wa-link" href={waLink(D.wa)} data-src="sticky" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
-  <img src="/assets/social/icons8-whatsapp-64.png" alt="" width="22" height="22"> WhatsApp us
-</a>
+<button type="button" class="sticky-cta book-link" data-src="sticky">Book a 20-min call</button>
 </Landing>
 
 <script is:inline define:vars={{ B: BRIEF }}>
@@ -193,26 +195,27 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
 
   function compose(b) {
     var needs = b.needs.filter(function (n) { return n.id !== 'unsure'; });
-    var aiBuilt = B.AI_TOOLS.indexOf(b.tool) > -1;
-    var built = (b.tool === 'Nothing yet' || b.tool === 'Not sure') ? '' : b.tool === 'Custom code' ? ' It is written in custom code.' : ' It is built with ' + b.tool + '.';
-    var sum = b.stage.sum + '.' + (b.stage.id === 'idea' ? '' : built);
-    if (needs.length) sum += ' The work covers ' + list(needs.map(function (n) { return lower(n.label); })) + '.';
-    else sum += ' We are not sure yet what to build first.';
+    var tools = (b.tool === 'Nothing formal') ? ' We don’t have a formal product process yet.' : (b.tool === 'Not sure') ? '' : ' The team works in ' + b.tool + '.';
+    var sum = b.stage.sum + '.' + tools;
+    if (needs.length) sum += ' Where it hurts: ' + list(needs.map(function (n) { return lower(n.label); })) + '.';
+    else sum += ' We are not sure yet where to start.';
     sum += ' Timing: ' + lower(b.when.label) + '.';
     if (b.note) sum += ' ' + b.note.replace(/\.?$/, '.');
 
+    var has = function (id) { return needs.some(function (n) { return n.id === id; }); };
     var ask = [];
-    if (b.stage.id === 'prototype' || b.stage.id === 'live') ask.push(aiBuilt ? 'Can you share the project in ' + b.tool + ', or export it to a GitHub repo we can read?' : 'Can you give us read access to the code and the hosting account?');
+    if (b.stage.id === 'decisions') ask.push('Which decisions wait on you today, and what did the team build last month without you?');
+    if (b.stage.id === 'hiring') ask.push('What has to keep moving while you hire, and when do you expect the new PM to start?');
+    if (b.stage.id === 'team') ask.push('How many PMs, and how does a ticket get from them to production today?');
     if (b.stage.id === 'idea') ask.push('Who is the first user, and what is the one thing they must be able to do?');
-    if (b.stage.id === 'hiring') ask.push('What has to keep moving while you hire, and who reviews the work today?');
-    if (needs.some(function (n) { return n.id === 'payments'; })) ask.push('Which payment provider do you use or prefer, and do you sell one-off or subscriptions?');
-    if (needs.some(function (n) { return n.id === 'ai'; })) ask.push('What should the AI do, and do you have 10 real examples of good answers?');
-    if (b.when.id === 'week') ask.push('What has to work by the end of the week, and what can wait?');
-    if (ask.length < 3) ask.push('How many people will use it in the first month?');
-    if (ask.length < 3) ask.push('Is there a date, a demo or a launch this has to be ready for?');
+    if (has('feedback')) ask.push('Where does user feedback land today: support tool, calls, reviews, a spreadsheet?');
+    if (has('metrics') || has('reporting')) ask.push('Which number does your board or leadership watch most closely?');
+    if (has('build')) ask.push('Do you have engineers we would hand specs to, or should we build it ourselves?');
+    if (b.when.id === 'week') ask.push('What has to be true by the end of the week, and what can wait?');
+    if (ask.length < 3) ask.push('What did the last thing you shipped change for users?');
+    if (ask.length < 3) ask.push('Is there a date, a board meeting or a launch this has to be ready for?');
 
-    var flag = aiBuilt && b.stage.id !== 'idea' && !needs.some(function (n) { return n.id === 'security'; })
-      ? 'Apps built with AI tools often ship with open database rules or exposed keys. We check for that first on every project like this.' : '';
+    var flag = has('prototype') ? 'AI-built prototypes often ship with open database rules or exposed keys. We check for that first on every project like this.' : '';
     return { sum: sum, needs: needs, done: b.stage.done, ask: ask.slice(0, 3), flag: flag, b: b };
   }
 
@@ -237,7 +240,7 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
     $('b-sum').textContent = c.sum;
     $('b-parts').innerHTML = c.needs.length
       ? c.needs.map(function (n) { return '<div class="part"><span class="label">' + esc(n.label) + '</span><ul>' + n.items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul></div>'; }).join('')
-      : '<p class="fine">Tap what you need above, or leave it: we’ll find the first thing worth building together.</p>';
+      : '<p class="fine">Tap where it hurts above, or leave it: we’ll find the first thing worth fixing together.</p>';
     $('b-flag').hidden = !c.flag; $('b-flag').textContent = c.flag;
     $('b-done').textContent = c.done;
     $('b-ask').innerHTML = c.ask.map(function (q) { return '<li>' + esc(q) + '</li>'; }).join('');
@@ -249,6 +252,7 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
   render();
 
   $('b-wa').addEventListener('click', function () { var b = current.b; track('whatsapp_click', { source: 'brief', ref: ref, stage: b.stage.id, needs: current.needs.map(function (n) { return n.id; }).join(','), tool: b.tool, when: b.when.id }); });
+  var briefTouched = function () { return touched; };
   $('b-mail').addEventListener('click', function () { track('email_click', { source: 'brief' }); });
   $('b-copy').addEventListener('click', function (e) {
     var btn = e.currentTarget;
@@ -259,20 +263,22 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
   document.querySelectorAll('.book-link').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var src = btn.dataset.src;
-      w.openBookingModal({ source: src, notes: src === 'brief' ? text(current) : '', meta: { ref: ref } });
+      track('book_click', { source: src, ref: ref, variant: vid || 'default' });
+      var notes = (src === 'brief' || briefTouched()) ? text(current) : (vid ? 'Came from ad: ' + vid : '');
+      if (w.openBookingModal) w.openBookingModal({ source: src, notes: notes, meta: { ref: ref, variant: vid || 'default' } });
+      else w.open(B.booking, '_blank', 'noopener');
     });
   });
-  // Mobile: the pinned WhatsApp button only appears once the hero button is off screen, and steps aside at the closer.
-  var sticky = document.querySelector('.sticky-wa');
+  // Mobile: the pinned booking button only appears once the hero button is off screen, and steps aside near the other CTAs.
+  var sticky = document.querySelector('.sticky-cta');
   if (sticky && 'IntersectionObserver' in w) {
     var seen = {};
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { seen[e.target.dataset.watch] = e.isIntersecting; });
       sticky.classList.toggle('on', !seen.hero && !seen.closer && !seen.brief && seen.hero !== undefined);
     });
-    var hero = document.querySelector('.hero .actions'), closer = document.querySelector('.closer .actions');
-    var bwa = document.getElementById('b-wa');
-    hero.dataset.watch = 'hero'; closer.dataset.watch = 'closer'; bwa.dataset.watch = 'brief'; io.observe(hero); io.observe(closer); io.observe(bwa);
+    var hero = document.querySelector('.hero .actions'), closer = document.querySelector('.closer .actions'), bb = $('b-book');
+    hero.dataset.watch = 'hero'; closer.dataset.watch = 'closer'; bb.dataset.watch = 'brief'; io.observe(hero); io.observe(closer); io.observe(bb);
   } else if (sticky) { sticky.classList.add('on'); }
   document.querySelectorAll('.faq details').forEach(function (d, i) { d.addEventListener('toggle', function () { if (d.open) track('faq_opened', { faq: i + 1 }); }); });
 })();
@@ -285,7 +291,7 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
 .hero-ruler{position:absolute;top:14px;left:0;right:0}
 #eyebrow{margin-bottom:16px}
 .hl{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.88;font-size:clamp(44px,7.4vw,104px)}
-.dotword{font-size:1.02em;line-height:.86;background:var(--acid);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dotword{white-space:nowrap;font-size:1.02em;line-height:.86;background:var(--acid);padding:0 .08em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .hl-sub{display:inline-block;margin-top:14px;font-size:clamp(24px,3.6vw,48px);padding:.08em .16em .02em}
 .hero-dots{position:static;width:120px;height:36px;margin-top:28px}
 .bonsai-art{-webkit-mask-image:var(--grit);mask-image:var(--grit);-webkit-mask-size:300px;mask-size:300px}
@@ -311,9 +317,6 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
   -webkit-mask-size:300px,180px;mask-size:300px,180px;
   -webkit-mask-composite:source-in;mask-composite:intersect;
 }
-.step:nth-child(2) .worn:before{-webkit-mask-position:0 0,40px 70px;mask-position:0 0,40px 70px}
-.step:nth-child(2) .tile:before{border-radius:50%}
-.step:nth-child(3) .worn:before{-webkit-mask-position:0 0,10px 130px;mask-position:0 0,10px 130px;background:linear-gradient(135deg,var(--ink) 54%,transparent 54%),radial-gradient(var(--ink) 1.4px,transparent 1.7px) 0 0/6px 6px}
 .step .label{font-size:clamp(22px,2.4vw,30px)}
 .step p,.svc p,.proj p{font:450 17px/1.4 var(--cond);color:var(--ink2);max-width:420px}
 .services{display:grid}
@@ -363,8 +366,27 @@ const BRIEF = { STAGES, NEEDS, AI_TOOLS, WHEN, VARIANTS, wa: ORG.whatsapp, email
 .faq summary .label{font-size:clamp(20px,2.2vw,26px)}
 .faq details p{font:450 17px/1.5 var(--cond);color:var(--ink2);max-width:720px;padding:0 0 18px 54px}
 .closer-h{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.9;font-size:clamp(40px,6.4vw,88px)}
-.sticky-wa{position:fixed;right:16px;bottom:16px;z-index:60;display:none;gap:8px;align-items:center;background:var(--ink);color:var(--acid);text-decoration:none;font:900 18px/1 var(--cond);font-stretch:62%;text-transform:uppercase;padding:12px 16px;box-shadow:3px 3px 0 var(--acid)}
-@media(max-width:899px){.sticky-wa{display:inline-flex;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}.sticky-wa.on{opacity:1;transform:none;pointer-events:auto}footer.foot{padding-bottom:84px}}
-@media(prefers-reduced-motion:reduce){.sticky-wa{transition:none}}
+.sticky-cta{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;display:none;border:0;cursor:pointer;background:var(--ink);color:var(--acid);font:900 19px/1 var(--cond);font-stretch:62%;text-transform:uppercase;padding:14px 18px;box-shadow:3px 3px 0 var(--acid)}
+@media(max-width:899px){.sticky-cta{display:inline-flex;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}.sticky-cta.on{opacity:1;transform:none;pointer-events:auto}footer.foot{padding-bottom:84px}}
+@media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
+button.cta{border:0;cursor:pointer}
+.loop{list-style:none;margin:0;padding:0;display:grid;gap:0}
+@media(min-width:700px){.loop{grid-template-columns:repeat(2,1fr);column-gap:32px}}
+@media(min-width:1100px){.loop{grid-template-columns:repeat(3,1fr)}}
+.lstep{border-top:1.5px solid var(--ink);padding:16px 0 22px;display:grid;grid-template-columns:76px 1fr;gap:6px 16px;align-content:start}
+.lstep .tile{grid-row:span 2}
+.lstep .label{font-size:clamp(24px,2.6vw,32px);align-self:end}
+.lstep p{font:450 17px/1.4 var(--cond);color:var(--ink2);max-width:420px}
+.lstep:nth-child(2) .tile:before{border-radius:50%}
+.lstep:nth-child(6) .tile:before{background:var(--acid)}.lstep:nth-child(6) .tile b{color:var(--ink)}
+.lstep:nth-child(3n+2) .worn:before{-webkit-mask-position:0 0,40px 70px;mask-position:0 0,40px 70px}
+.lstep:nth-child(3n) .worn:before{-webkit-mask-position:0 0,10px 130px;mask-position:0 0,10px 130px}
+.modes{display:grid;gap:16px;margin-top:28px}
+@media(min-width:800px){.modes{grid-template-columns:1fr 1fr;gap:24px}}
+.mode{background:var(--ink);color:#ECEAE3;padding:22px 22px 24px;display:grid;gap:8px;align-content:start}
+.mode .code{color:var(--acid)}
+.mode .cond{font-size:clamp(40px,5vw,64px);color:var(--acid);line-height:.9}
+.mode p{font:450 17px/1.45 var(--cond);color:#D8D6CE;max-width:460px}
+.num-lg{font:900 46px/1 var(--cond);font-stretch:62%;color:var(--ink);background:var(--acid);justify-self:start;padding:4px 8px 0}
 @media(max-width:599px){.faq details p{padding-left:0}.cta{font-size:22px}}
 </style>
