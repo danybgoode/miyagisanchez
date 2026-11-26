@@ -1,7 +1,7 @@
 // /llms.txt: what Despacho Bonsai sells, as one markdown file, built from src/data/offer.ts on every deploy so it
 // never drifts from the homepage. Read by AI assistants and crawlers. No prices and no founder name, by design.
 import type { APIRoute } from 'astro';
-import { ORG, SERVICES, STEPS, WORK, FAQ, VARIANTS, waLink } from '../data/offer';
+import { ORG, LOOP, MODES, STEPS, WORK, FAQ, VARIANTS, waLink } from '../data/offer';
 
 export const GET: APIRoute = () => {
   const out = [
@@ -9,21 +9,25 @@ export const GET: APIRoute = () => {
     '',
     `> ${ORG.oneLiner}`,
     '',
-    `${ORG.name} is an ${ORG.descriptor} based in ${ORG.location}, serving ${ORG.serves}. AI agents do the legwork (code, tests, reviews); a senior engineer makes every decision and reviews every change. We speak as "we".`,
+    `${ORG.name} is an ${ORG.descriptor} based in ${ORG.location}, serving ${ORG.serves}. A senior product manager runs the whole product loop inside the client's team; AI agents do the legwork (code, tests, drafts) and a human makes every decision and reviews every change. We speak as "we".`,
     '',
-    '## What we do',
+    '## The loop we run',
     '',
-    ...SERVICES.map(s => `- **${s.h}:** ${s.p}`),
+    ...LOOP.map(s => `${s.n.replace(/^0/, '')}. **${s.h}.** ${s.p}`),
     '',
-    '## How it works',
+    '## Two ways to work with us',
+    '',
+    ...MODES.map(m => `- **${m.h}:** ${m.p}`),
+    '',
+    '## How it starts',
     '',
     ...STEPS.map(s => `${s.n.replace(/^0/, '')}. **${s.h}.** ${s.p}`),
     '',
     '## Pricing',
     '',
-    'A fixed price per milestone, agreed in the chat before work starts. There is no public price list. Small jobs are welcome.',
+    'A fixed price per milestone, or a monthly price for an ongoing embed, agreed on a call before work starts. There is no public price list.',
     '',
-    '## Things we have built',
+    '## Products we have run end to end',
     '',
     ...WORK.map(w => `- [${w.name}](${w.url}) (${w.kind}): ${w.p}`),
     '',
@@ -32,9 +36,9 @@ export const GET: APIRoute = () => {
     ...FAQ.flatMap(f => [`### ${f.q}`, '', f.a, '']),
     '## Get in touch',
     '',
-    `- WhatsApp (fastest, ${ORG.hours}): ${waLink(VARIANTS.default.wa)}`,
-    `- Scope a project in about a minute: ${ORG.url}/#scope`,
     `- Book a 20-minute call: ${ORG.booking}`,
+    `- Scope it in about a minute: ${ORG.url}/#scope`,
+    `- WhatsApp (${ORG.hours}): ${waLink(VARIANTS.default.wa)}`,
     `- Email: ${ORG.email}`,
     '',
     '## Optional',
