@@ -298,6 +298,7 @@
       "h": "Analytics cookies",
       "p": "Google Tag Manager, Google Analytics and Microsoft Clarity set cookies that tell us which pages are visited and how people move through the site. The Microsoft Advertising (UET), Reddit, LinkedIn Insight and Meta Pixel tags set cookies that tell us whether someone who saw our ads went on to book a call."
     },
+    {"h": "First-party analytics", "p": "We also run tally, our own analytics. It counts page views, page speed and errors, sets no cookies, keeps a random visitor ID in your browser's local storage and never stores your IP address. It respects Do Not Track and Global Privacy Control."},
     {
       "h": "Booking",
       "p": "The booking calendar is provided by Cal.com and may set the cookies it needs to schedule your call."
