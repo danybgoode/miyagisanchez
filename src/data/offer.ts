@@ -118,4 +118,45 @@ export const VARIANTS: Record<string, { eyebrow: string; h1: string; dot: string
     stage: 'hiring', needs: ['roadmap', 'specs'], wa: 'Hi Despacho Bonsai, we’re hiring a PM and need someone running product meanwhile.' },
   team: { eyebrow: 'For product leaders', h1: 'Make your product managers full-stack.', dot: 'full-stack.', sub: 'From writing tickets to shipping releases.',
     stage: 'team', needs: ['upskill', 'build'], wa: 'Hi Despacho Bonsai, I lead a product team and want our PMs shipping with AI agents.' },
+  fde: { eyebrow: 'Our take on forward deployed engineering', h1: 'Forward deployed product managers.', dot: 'Forward', sub: 'We decide what’s worth deploying, then ship it.',
+    stage: 'idea', needs: ['roadmap', 'build', 'metrics'], wa: 'Hi Despacho Bonsai, we’re looking at forward deployed engineering and want to talk.' },
 };
+
+/** "Forward deployed, product first": our position on FDE (ad F1, ?v=fde). Principles come from the Golden Frijoles method. */
+export const FDE = {
+  h: 'Forward deployed, product first.',
+  p: [
+    'Everyone is hiring forward deployed engineers: people who sit with the business, understand the process and solve it with AI that same week. We agree with the idea.',
+    'With agents, the engineering is now the easy half. The hard half is deciding what’s worth deploying, and proving it worked. That’s product management. So our forward deployed people are product managers who build.',
+  ],
+  principles: [
+    { h: 'Bet before you build', p: 'Every piece of work starts with the number it should move and the date we’ll read it. Written down before any code exists.' },
+    { h: 'Build with agents, behind a switch', p: 'AI agents do the legwork in your repo, a human reviews every change, and each release can be turned off in seconds.' },
+    { h: 'Prove, don’t announce', p: 'Shipping proves something changed. It doesn’t prove the outcome. Every bet ends with a verdict: it paid off, it didn’t, or we can’t tell yet.' },
+  ],
+} as const;
+
+/* ---------- /negocios: Spanish page for Mexico City owner-operators (Meta campaign, 2026-11) ---------- */
+
+export const NEGOCIOS = {
+  wa: 'Hola, quiero saber qué puedo automatizar en mi negocio.',
+  verticals: [
+    { h: 'Clínicas estéticas y spas médicos', pain: 'Te escriben a medianoche preguntando precios, y para cuando contestas ya agendaron en otro lado.', first: 'Un agente que responde, agenda, cobra el anticipo, manda el recordatorio un día antes y le recuerda a cada paciente su retoque a los tres meses.' },
+    { h: 'Consultorios: dermatología, cirugía plástica', pain: 'Entre la valoración y la cirugía pasan semanas, y las valoraciones sin seguimiento se enfrían.', first: 'Seguimiento automático de cada valoración, indicaciones pre y post consulta, y respuestas en español o inglés.' },
+    { h: 'Estudios de entrenamiento', pain: 'Enero llena las clases. Para marzo, la mitad de los nuevos ya no viene.', first: 'Seguimiento por WhatsApp de la primera clase a la quinta, y un aviso cuando alguien deja de venir para que lo recuperes a tiempo.' },
+    { h: 'Despachos contables', pain: 'Cada mes persigues a decenas de clientes por facturas y estados de cuenta antes del 17.', first: 'Recordatorios mensuales, documentos que llegan por WhatsApp a una carpeta por cliente, y una lista de quién falta.' },
+  ],
+  steps: [
+    { n: '01', h: 'Te escuchamos', p: 'Veinte minutos por llamada, o vamos a verte. Nos cuentas cómo opera tu negocio y qué te quita el día.' },
+    { n: '02', h: 'Elegimos qué automatizar', p: 'Una o dos cosas que de verdad te devuelven tiempo. No un sistema nuevo.' },
+    { n: '03', h: 'Lo dejamos funcionando', p: 'Conectado a tu WhatsApp y a tu agenda, en días, no meses. Una persona revisa todo antes de soltarlo.' },
+    { n: '04', h: 'Te enseñamos a usarlo', p: 'Tú y tu equipo saben cómo funciona y cómo apagarlo. Todo queda en tus cuentas.' },
+  ],
+  faq: [
+    { q: '¿Es un chatbot?', a: 'No solo. Un bot responde chats. Lo que dejamos funcionando agenda, cobra y da seguimiento por ti, conectado a tu WhatsApp y a tu agenda, y te pasa la conversación cuando hace falta una persona.' },
+    { q: '¿Tengo que cambiar de sistema?', a: 'No. Trabajamos con lo que ya usas: tu WhatsApp, tu agenda, tu hoja de cálculo o tu software. Si algo no conviene automatizar, te lo decimos.' },
+    { q: '¿Cuánto cuesta?', a: 'Para los primeros 5 negocios en CDMX, la primera automatización va por nuestra cuenta, a cambio de contar tu caso. Después, un precio fijo que acordamos contigo antes de empezar.' },
+    { q: '¿Y los datos de mis clientes o pacientes?', a: 'Se quedan en tus cuentas. No los vendemos ni los compartimos, y te explicamos qué datos toca cada automatización antes de encenderla.' },
+    { q: '¿Dónde están?', a: 'En la Ciudad de México. Podemos platicar por llamada o ir a verte.' },
+  ],
+} as const;

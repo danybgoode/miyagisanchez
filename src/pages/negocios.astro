@@ -1,0 +1,146 @@
+---
+// /negocios: the Spanish trust page for Mexico City owner-operators (clinics, doctors, training studios, accounting firms).
+// Not an ad destination: the Meta ads open WhatsApp directly. This page is linked from the Facebook/Instagram bios and sent
+// in the first WhatsApp reply ("así trabajamos"). One action: WhatsApp. Copy lives in src/data/offer.ts (NEGOCIOS).
+import Landing from '../layouts/Landing.astro';
+import { ORG, NEGOCIOS, waLink } from '../data/offer';
+
+const N = NEGOCIOS;
+const wa = waLink(N.wa);
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${ORG.url}/negocios#service`,
+    name: `${ORG.name} · Automatización para negocios`,
+    url: `${ORG.url}/negocios`,
+    provider: { '@id': `${ORG.url}/#org` },
+    description: 'Automatizamos lo que le quita el día a tu negocio: WhatsApp, agenda, cobros y seguimiento. Ciudad de México.',
+    areaServed: { '@type': 'City', name: 'Ciudad de México' },
+    availableLanguage: ['Spanish', 'English'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: 'es-MX',
+    mainEntity: N.faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+<Landing
+  lang="es"
+  path="/negocios"
+  title="Despacho Bonsai · Automatización para negocios en CDMX"
+  description="Todos tienen IA. Pocos la tienen trabajando a su favor. Automatizamos WhatsApp, agenda, cobros y seguimiento para clínicas, consultorios, estudios de entrenamiento y despachos contables en la Ciudad de México."
+  schema={schema}>
+<main class="neg">
+<section class="hero" aria-labelledby="hl">
+  <div class="ruler hero-ruler" aria-hidden="true"></div>
+  <div class="code eyebrow">Automatización para negocios · Ciudad de México</div>
+  <h1 class="hl" id="hl">Todos tienen IA. Pocos la tienen <span class="display dotword">trabajando</span> a su favor.</h1>
+  <p class="lede">Nos sentamos contigo, vemos cómo opera tu negocio y ponemos la IA a hacer lo que hoy te quita el día: contestar, agendar, cobrar, dar seguimiento. No es otro bot: es un agente conectado a tu WhatsApp y a tu agenda, con una persona detrás.</p>
+  <div class="actions">
+    <a class="cta wa-link" href={wa} data-src="hero" target="_blank" rel="noopener">Escríbenos por WhatsApp <span aria-hidden="true">→</span></a>
+  </div>
+  <p class="fine alt-routes">Te contesta una persona, no un bot · <a class="mail-link" href={`mailto:${ORG.email}`} data-src="hero">{ORG.email}</a></p>
+</section>
+
+<section class="band" aria-labelledby="v-h">
+  <div class="bandhd"><h2 class="code" id="v-h">01 — Lo que automatizamos primero</h2><span class="code">Por tipo de negocio</span></div>
+  <div class="verts">
+    {N.verticals.map(v => (
+      <article class="vcard">
+        <h3 class="cond grit">{v.h}</h3>
+        <p class="pain">{v.pain}</p>
+        <p class="first"><span class="code">Primera automatización</span>{v.first}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="band" aria-labelledby="s-h">
+  <div class="bandhd"><h2 class="code" id="s-h">02 — Cómo trabajamos</h2><span class="code">Sin cambiar de sistema</span></div>
+  <div class="steps4">
+    {N.steps.map(s => <div class="step"><span class="num-lg" aria-hidden="true">{s.n}</span><h3 class="label">{s.h}</h3><p>{s.p}</p></div>)}
+  </div>
+</section>
+
+<section class="band" aria-labelledby="o-h">
+  <div class="offer">
+    <h2 class="cond grit offer-h" id="o-h">Buscamos 5 negocios en CDMX.</h2>
+    <p>Te decimos qué conviene automatizar y la primera automatización va por nuestra cuenta. A cambio, nos dejas contar tu caso.</p>
+    <a class="cta cta-acid wa-link" href={wa} data-src="offer" target="_blank" rel="noopener">Quiero uno de los 5 <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="faq-h">
+  <div class="bandhd"><h2 class="code" id="faq-h">03 — Preguntas</h2><span class="code">Respuestas directas</span></div>
+  <div class="faq">
+    {N.faq.map((f, i) => (
+      <details open={i === 0}>
+        <summary><span class="label">{f.q}</span></summary>
+        <p>{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<section class="band closer" aria-labelledby="end-h">
+  <h2 class="cond grit closer-h" id="end-h">Cuéntanos qué te quita el día.</h2>
+  <div class="actions"><a class="cta wa-link" href={wa} data-src="closer" target="_blank" rel="noopener">Escríbenos por WhatsApp <span aria-hidden="true">→</span></a></div>
+  <p class="fine alt-routes">Lunes a viernes, 9 a 18 h · Ciudad de México</p>
+</section>
+</main>
+</Landing>
+
+<script is:inline>
+  document.querySelectorAll('a.wa-link').forEach(function (a) {
+    a.addEventListener('click', function () { if (window.dbTrack) window.dbTrack('whatsapp_click', { source: a.dataset.src, page: 'negocios' }); });
+  });
+  document.querySelectorAll('.mail-link').forEach(function (a) {
+    a.addEventListener('click', function () { if (window.dbTrack) window.dbTrack('email_click', { source: a.dataset.src, page: 'negocios' }); });
+  });
+</script>
+
+<style is:global>
+.neg .hero{position:relative;padding:40px 0 44px}
+@media(min-width:900px){.neg .hero{padding:64px 0 72px}}
+.neg .hero-ruler{position:absolute;top:14px;left:0;right:0}
+.neg .eyebrow{margin-bottom:16px}
+.neg .hl{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.9;font-size:clamp(42px,7vw,100px);max-width:1100px}
+.neg .dotword{white-space:nowrap;font-size:1.02em;line-height:.86;background:var(--acid);padding:0 .08em}
+.neg .lede{font-family:var(--cond);font-weight:450;font-size:clamp(17px,1.7vw,21px);line-height:1.4;max-width:680px;margin-top:24px;color:var(--ink2)}
+.neg .actions{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;margin-top:28px}
+.neg .alt-routes{margin-top:16px}
+.neg .verts{display:grid;gap:0}
+@media(min-width:800px){.neg .verts{grid-template-columns:repeat(2,1fr);column-gap:40px}}
+.neg .vcard{border-top:1.5px solid var(--ink);padding:16px 0 24px;display:grid;gap:10px;align-content:start}
+.neg .vcard .cond{font-size:clamp(30px,3.6vw,46px);line-height:.92}
+.neg .pain{font:500 18px/1.4 var(--cond);color:var(--ink)}
+.neg .first{font:450 17px/1.45 var(--cond);color:var(--ink2);border-left:4px solid var(--acid);padding-left:12px;display:grid;gap:4px}
+.neg .first .code{color:var(--mute)}
+.neg .steps4{display:grid;gap:0}
+@media(min-width:800px){.neg .steps4{grid-template-columns:repeat(4,1fr)}}
+.neg .step{border-top:1.5px solid var(--ink);padding:16px 0 22px;display:grid;gap:10px;align-content:start}
+@media(min-width:800px){.neg .step{border-top:0;border-left:1.5px solid var(--ink);padding:0 18px 6px}.neg .step:first-child{border-left:0;padding-left:0}}
+.neg .step .label{font-size:clamp(22px,2.2vw,28px)}
+.neg .step p{font:450 17px/1.4 var(--cond);color:var(--ink2)}
+.neg .num-lg{font:900 46px/1 var(--cond);font-stretch:62%;color:var(--ink);background:var(--acid);justify-self:start;padding:4px 8px 0}
+.neg .offer{background:var(--ink);color:#ECEAE3;padding:28px 24px 30px;display:grid;gap:16px;justify-items:start}
+@media(min-width:900px){.neg .offer{padding:44px 48px}}
+.neg .offer-h{font-size:clamp(40px,6vw,84px);color:var(--acid);line-height:.9}
+.neg .offer p{font:450 clamp(17px,1.7vw,21px)/1.45 var(--cond);max-width:640px;color:#D8D6CE}
+.neg .cta-acid{background:var(--acid);color:var(--ink)}
+.neg .cta-acid:hover{background:#d8ea3a;box-shadow:3px 3px 0 #ECEAE3}
+.neg .faq{display:grid;max-width:900px}
+.neg .faq details{border-top:1.5px solid var(--ink)}
+.neg .faq details:last-child{border-bottom:1.5px solid var(--ink)}
+.neg .faq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:12px 0}
+.neg .faq summary::-webkit-details-marker{display:none}
+.neg .faq summary:after{content:"+";font:900 28px/1 var(--cond);font-stretch:62%}
+.neg .faq details[open] summary:after{content:"–"}
+.neg .faq summary .label{font-size:clamp(20px,2.2vw,26px)}
+.neg .faq details p{font:450 17px/1.5 var(--cond);color:var(--ink2);max-width:720px;padding:0 0 18px}
+.neg .closer-h{font-family:var(--cond);font-stretch:62%;font-weight:900;text-transform:uppercase;line-height:.9;font-size:clamp(40px,6.4vw,88px)}
+@media(max-width:599px){.neg .cta{font-size:22px}}
+</style>
