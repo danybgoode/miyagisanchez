@@ -1,7 +1,7 @@
-// Every indexable page. English only: the site serves US teams, and the old /es twin redirects here.
+// Every indexable page. English for US teams, plus /negocios (Spanish, Mexico City owner-operators). The old /es twin redirects home.
 import type { APIRoute } from 'astro';
 
-const PATHS = ['/', '/privacy', '/terms', '/cookies'];
+const PATHS = ['/', '/negocios', '/privacy', '/terms', '/cookies'];
 const SITE = 'https://despachobonsai.com';
 
 export const GET: APIRoute = () => {

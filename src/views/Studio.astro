@@ -4,7 +4,7 @@
 // ?v=<variant> swaps the headline to match the ad and preselects the brief. Copy/data: src/data/offer.ts.
 import Landing from '../layouts/Landing.astro';
 import BonsaiArt from '../components/BonsaiArt.astro';
-import { ORG, SOCIAL, LOOP, MODES, STEPS, WORK, FAQ, STAGES, NEEDS, TOOLS, WHEN, VARIANTS, waLink } from '../data/offer';
+import { ORG, SOCIAL, LOOP, MODES, STEPS, WORK, FAQ, STAGES, NEEDS, TOOLS, WHEN, VARIANTS, FDE, waLink } from '../data/offer';
 
 const D = VARIANTS.default;
 const [hlPre, hlPost] = D.h1.split(D.dot);
@@ -23,7 +23,7 @@ const schema = [
     email: ORG.email,
     address: { '@type': 'PostalAddress', addressLocality: 'Mexico City', addressCountry: 'MX' },
     areaServed: { '@type': 'Country', name: 'United States' },
-    knowsAbout: ['Product management', 'Fractional product management', 'AI-assisted software delivery', 'Product strategy', 'Product manager coaching'],
+    knowsAbout: ['Product management', 'Forward deployed engineering', 'Fractional product management', 'AI-assisted software delivery', 'Product strategy', 'Product manager coaching'],
     contactPoint: { '@type': 'ContactPoint', contactType: 'sales', url: ORG.booking, email: ORG.email, availableLanguage: ['English', 'Spanish'] },
   },
   {
@@ -82,15 +82,28 @@ const BRIEF = { STAGES, NEEDS, WHEN, VARIANTS, wa: ORG.whatsapp, email: ORG.emai
   </div>
 </section>
 
+<section class="band" id="forward-deployed" aria-labelledby="fde-h">
+  <div class="bandhd"><h2 class="code" id="fde-h">02 — Our take on forward deployed engineering</h2><span class="code">Product first</span></div>
+  <div class="fde">
+    <div class="fde-txt">
+      <p class="cond grit fde-h">Forward deployed, product <span class="display dotword">first.</span></p>
+      {FDE.p.map(t => <p class="fde-p">{t}</p>)}
+    </div>
+    <ol class="fde-list">
+      {FDE.principles.map((r, i) => <li><span class="num-lg" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><h3 class="label">{r.h}</h3><p>{r.p}</p></li>)}
+    </ol>
+  </div>
+</section>
+
 <section class="band" aria-labelledby="how-h">
-  <div class="bandhd"><h2 class="code" id="how-h">02 — How it starts</h2><span class="code">No pitch deck, no long forms</span></div>
+  <div class="bandhd"><h2 class="code" id="how-h">03 — How it starts</h2><span class="code">No pitch deck, no long forms</span></div>
   <div class="steps">
     {STEPS.map(s => <div class="step"><span class="num-lg" aria-hidden="true">{s.n}</span><h3 class="label">{s.h}</h3><p>{s.p}</p></div>)}
   </div>
 </section>
 
 <section class="band" id="scope" aria-labelledby="scope-h">
-  <div class="bandhd"><h2 class="code" id="scope-h">03 — Scope it in 60 seconds</h2><span class="code">Tap what fits · we write the brief</span></div>
+  <div class="bandhd"><h2 class="code" id="scope-h">04 — Scope it in 60 seconds</h2><span class="code">Tap what fits · we write the brief</span></div>
   <div class="builder">
     <form class="pick" id="pick" autocomplete="off">
       <fieldset><legend class="label">1 · What’s stuck?</legend>
@@ -133,14 +146,14 @@ const BRIEF = { STAGES, NEEDS, WHEN, VARIANTS, wa: ORG.whatsapp, email: ORG.emai
 </section>
 
 <section class="band" aria-labelledby="work-h">
-  <div class="bandhd"><h2 class="code" id="work-h">04 — Products we’ve run end to end</h2><span class="code">Live · click through</span></div>
+  <div class="bandhd"><h2 class="code" id="work-h">05 — Products we’ve run end to end</h2><span class="code">Live · click through</span></div>
   <div class="work">
     {WORK.map(w => <a class="proj" href={w.url} target="_blank" rel="noopener" data-proj={w.name}><span class="code">{w.kind}</span><h3 class="cond grit">{w.name}</h3><p>{w.p}</p><span class="code go">Open ↗</span></a>)}
   </div>
 </section>
 
 <section class="band" aria-labelledby="faq-h">
-  <div class="bandhd"><h2 class="code" id="faq-h">05 — Questions</h2><span class="code">Straight answers</span></div>
+  <div class="bandhd"><h2 class="code" id="faq-h">06 — Questions</h2><span class="code">Straight answers</span></div>
   <div class="faq">
     {FAQ.map((f, i) => (
       <details open={i === 0}>
@@ -387,6 +400,15 @@ button.cta{border:0;cursor:pointer}
 .mode .code{color:var(--acid)}
 .mode .cond{font-size:clamp(40px,5vw,64px);color:var(--acid);line-height:.9}
 .mode p{font:450 17px/1.45 var(--cond);color:#D8D6CE;max-width:460px}
+.fde{display:grid;gap:28px}
+@media(min-width:960px){.fde{grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}}
+.fde-h{font-size:clamp(40px,5.6vw,80px);line-height:.9;margin-bottom:20px}
+.fde-p{font:450 clamp(17px,1.6vw,20px)/1.45 var(--cond);color:var(--ink2);max-width:620px;margin-top:12px}
+.fde-list{list-style:none;margin:0;padding:0;display:grid}
+.fde-list li{border-top:1.5px solid var(--ink);padding:14px 0 18px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start}
+.fde-list .num-lg{grid-row:span 2;font-size:34px}
+.fde-list .label{font-size:clamp(20px,2.2vw,26px)}
+.fde-list p{font:450 16.5px/1.45 var(--cond);color:var(--ink2)}
 .num-lg{font:900 46px/1 var(--cond);font-stretch:62%;color:var(--ink);background:var(--acid);justify-self:start;padding:4px 8px 0}
 @media(max-width:599px){.faq details p{padding-left:0}.cta{font-size:22px}}
 </style>
